@@ -1,0 +1,75 @@
+/* style 변수 설정 */
+:root {
+  /* concept color */
+  --concept-color1: hsl(174, 53%, 73%);
+  --concept-color2: hsl(163, 48%, 68%);
+  --concept-color3: hsl(151, 53%, 79%);
+  --concept-color4: hsl(188, 61%, 88%);
+  /* 5번이 인기 컬러입니다 */
+  --concept-color5: hsl(130, 45%, 90%);
+  --concept-color6: hsl(78, 59%, 79%);
+
+  /* size(px) */
+  --header-height: 80px;
+  --footer-height: 200px;
+
+  /* padding */
+  --padding-default: 20px;
+  --margin-default: 40px;
+
+  /* font size */
+  --font-size-big-title: 40px;
+  --font-size-default-title: 24px;
+  --font-size-default: 16px;
+  --font-size-small-title: 13px;
+  --font-size-small: 11px;
+
+  /* font color */
+  --font-color-default: hsl(218, 19%, 23%);
+}
+
+/* frame */
+#root,
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  color: var(--font-color-default);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 38%);
+  background-clip: padding-box;
+  border: 4px solid white;
+  border-radius: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 70%);
+}
