@@ -12,7 +12,6 @@ const ReviewsContainer = styled.ul`
   overflow-x: hidden;
   overflow-y: hidden;
   white-space: nowrap;
-
   user-select: none;
 `;
 

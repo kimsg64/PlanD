@@ -1,24 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
-  width: 100%;
+  width: calc(100% - 16px);
   height: var(--header-height);
-  background-color: var(--concept-color1);
   display: flex;
   justify-content: space-between;
+  background-color: white;
   position: fixed;
   z-index: 10;
+  overflow-y: hidden;
 `;
 
 const LogoContainer = styled.div`
   height: 100%;
-  margin-left: var(--margin-default);
-  padding: var(--frame-padding-default);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  #icon,
+  margin-left: calc(var(--margin-default) / 2);
+  position: relative;
+  a {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  #icon {
+    height: 100%;
+  }
   #logo {
     height: 80%;
   }
@@ -30,7 +37,6 @@ const MenuContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid black;
 `;
 
 const LoginBtnContainer = styled.div`
@@ -46,18 +52,32 @@ const Header = () => {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <img id="icon" src="images/temp_icon.png" />
-        <img id="logo" src="images/temp_logo.png" />
+        <Link to={`/`}>
+          <img id="icon" src="images/logos/icon_pin.png" />
+          <img id="logo" src="images/logos/logo.png" />
+        </Link>
       </LogoContainer>
       <MenuContainer>
-        <li>홈</li>
-        <li>플랜 짜기</li>
-        <li>후기</li>
-        <li>코스 추천</li>
+        <li>
+          <Link to={`/`}>홈</Link>
+        </li>
+        <li>
+          <Link to={`/Planning`}>플랜 짜기</Link>
+        </li>
+        <li>
+          <Link to={`/Reviews`}>후기</Link>
+        </li>
+        <li>
+          <Link to={`/`}>코스 추천</Link>
+        </li>
       </MenuContainer>
       <LoginBtnContainer>
-        <div>로그인</div>
-        <div>회원가입</div>
+        <div>
+          <Link to={`/`}>로그인</Link>
+        </div>
+        <div>
+          <Link to={`/`}>회원가입</Link>
+        </div>
       </LoginBtnContainer>
     </HeaderContainer>
   );

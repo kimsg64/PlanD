@@ -1,6 +1,6 @@
 /* style 변수 설정 */
 :root {
-  /* concept color */
+  /* color */
   --concept-color1: hsl(174, 53%, 73%);
   --concept-color2: hsl(163, 48%, 68%);
   --concept-color3: hsl(151, 53%, 79%);
@@ -9,8 +9,14 @@
   --concept-color5: hsl(130, 45%, 90%);
   --concept-color6: hsl(78, 59%, 79%);
 
+  /* color (confirmed) */
+  --color-lightpink: #ffdad7;
+  --color-yellow: #fed16c;
+  --color-pink: #fd7f80;
+  --color-brown: #786352;
+
   /* size(px) */
-  --header-height: 80px;
+  --header-height: 60px;
   --footer-height: 200px;
 
   /* padding */
@@ -46,6 +52,7 @@ body {
   padding: 0;
   box-sizing: inherit;
   color: inherit;
+  user-select: none;
 }
 
 a {
@@ -56,6 +63,14 @@ a {
 ul,
 li {
   list-style-type: none;
+}
+
+.display_on {
+  display: block;
+}
+
+.display_off {
+  display: none;
 }
 
 ::-webkit-scrollbar {

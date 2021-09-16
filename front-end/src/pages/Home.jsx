@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import BodyLayout from "../components/Body/BodyLayout";
 import Footer from "../components/Footer/Footer";
 import ImageSlider from "../components/Body/ImageSlider";
+import ImageSliderContents from "../components/Body/ImageSliderContents";
 
 const StepsContainer = styled.section`
   width: 72vw;
