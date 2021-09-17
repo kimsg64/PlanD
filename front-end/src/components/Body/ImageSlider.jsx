@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ImageSliderContents from "./ImageSliderContents";
+import LinkedContents from "./imageSliderContents/LinkedContents";
 
 const ImageSliderContainer = styled.section`
   height: 60vh;
   width: 100vw;
   position: relative;
-  /* overflow: hidden; */
-  display: flex;
-
-  /* 임시 */
-  overflow: scroll;
+  overflow: hidden;
 
   img {
     width: 100%;
@@ -18,14 +14,12 @@ const ImageSliderContainer = styled.section`
 `;
 
 const ImageSlider = () => {
-  const [isShown, setIsShown] = useState("1st");
-  const handleImage = () => {
-    setIsShown("2nd");
-  };
   return (
-    <ImageSliderContainer>
-      <ImageSliderContents isShown={isShown} onClick={handleImage} />
-    </ImageSliderContainer>
+    <>
+      <ImageSliderContainer>
+        <LinkedContents />
+      </ImageSliderContainer>
+    </>
   );
 };
 

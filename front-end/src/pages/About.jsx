@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import BodyLayout from "../components/Body/BodyLayout";
-import Footer from "../components/Footer/Footer";
-import ImageSlider from "../components/Body/ImageSlider";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+import ImageSlider from "../components/body/ImageSlider";
 
 const TextContainer = styled.section`
   width: 56vw;

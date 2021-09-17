@@ -1,10 +1,10 @@
+// 로그인 전 메인 페이지
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import BodyLayout from "../components/Body/BodyLayout";
-import Footer from "../components/Footer/Footer";
-import ImageSlider from "../components/Body/ImageSlider";
-import ImageSliderContents from "../components/Body/ImageSliderContents";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+import ImageSlider from "../components/body/ImageSlider";
 
 const StepsContainer = styled.section`
   width: 72vw;
@@ -15,6 +15,7 @@ const StepsContainer = styled.section`
   align-items: center;
 `;
 
+//
 const StepWapper = styled.article`
   width: 80%;
   height: 32vh;
@@ -26,10 +27,12 @@ const StepCircle = styled.div`
   width: 32vh;
   height: 32vh;
   border-radius: 50%;
-  background-color: var(--concept-color6);
+  background-color: var(--color-pink);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 160px;
+  color: var(--color-brown);
 `;
 
 const StepTextContainer = styled.div`
@@ -58,7 +61,9 @@ const Home = () => {
         <ImageSlider />
         <StepsContainer>
           <StepWapper>
-            <StepCircle>그림</StepCircle>
+            <StepCircle>
+              <i class="fas fa-user-check"></i>
+            </StepCircle>
             <StepTextContainer>
               <StepTextTitle>STEP 1 회원가입</StepTextTitle>
               <StepTextContent>회원가입 안하면 못 씀 ㅅㄱ</StepTextContent>
@@ -69,10 +74,14 @@ const Home = () => {
               <StepTextTitle>STEP 2 조건 입력 </StepTextTitle>
               <StepTextContent>계획을 짜 보아라</StepTextContent>
             </StepTextContainer>
-            <StepCircle>그림</StepCircle>
+            <StepCircle>
+              <i class="fas fa-edit"></i>
+            </StepCircle>
           </StepWapper>
           <StepWapper>
-            <StepCircle>그림</StepCircle>
+            <StepCircle>
+              <i class="fas fa-search-location"></i>
+            </StepCircle>
             <StepTextContainer>
               <StepTextTitle>STEP 3 코스 추천</StepTextTitle>
               <StepTextContent>와! 정말 좋은 코스입니다.</StepTextContent>
@@ -85,7 +94,9 @@ const Home = () => {
                 일주일 내에 후기를 작성해야만 해
               </StepTextContent>
             </StepTextContainer>
-            <StepCircle>그림</StepCircle>
+            <StepCircle>
+              <i class="fas fa-edit"></i>
+            </StepCircle>
           </StepWapper>
         </StepsContainer>
       </BodyLayout>

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import BodyLayout from "../components/Body/BodyLayout";
-import Footer from "../components/Footer/Footer";
-import KakaoMap from "../components/Body/KakaoMap";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+import KakaoMap from "../components/body/KakaoMap";
 
 const PlannerContainer = styled.div`
   width: 80vw;
