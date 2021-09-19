@@ -50,4 +50,3 @@
 - styled-components
 - react-router
 - axios
-- fontawesome

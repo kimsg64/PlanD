@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
-import ImageSlider from "../components/body/imageSlider/ImageSlider";
+import ImageSlider from "../components/body/ImageSlider";
 
 const TextContainer = styled.section`
   width: 56vw;

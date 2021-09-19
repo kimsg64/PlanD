@@ -10,8 +10,6 @@ public class DataTestVO {
 	private String writedate;
 	private int downcount;
 	
-	private String user_id;
-	
 	// 삭제될 파일명
 	private String delfile;
 	
@@ -70,13 +68,5 @@ public class DataTestVO {
 		this.delfile = delfile;
 	}
 	
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	
 
-	
 }

@@ -12,7 +12,7 @@ const Users = () => {
         setError(null);
         setUsers(null);
         setLoading(true);
-        const response = await axios.get("/wherewego/test");
+        const response = await axios.get("/dateplanner/data");
         setUsers(response.data);
       } catch (e) {
         setError(e);

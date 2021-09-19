@@ -4,7 +4,6 @@ import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import Users from "../server/Users";
-import { Link } from "react-router-dom";
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
@@ -31,7 +30,6 @@ const ProfileBox = styled.div`
 `;
 
 const Reviews = () => {
-  const UsersData = Users;
   const [isDown, setIsDown] = useState(false);
   const sliderRef = useRef();
   let startX;
@@ -71,17 +69,15 @@ const Reviews = () => {
           onMouseUp={stopDraging}
         >
           <ReviewItem>
-            <ProfileBox>{UsersData}</ProfileBox>
+            <ProfileBox>{Users}</ProfileBox>
           </ReviewItem>
           <ReviewItem>
             <ProfileBox>
-              <a href="http://localhost:9090/wherewego">testing connect</a>
+              <a href="http://localhost:9090/myapp/registerForm">go backend</a>
             </ProfileBox>
           </ReviewItem>
           <ReviewItem>
-            <ProfileBox>
-              <Link to={"/users"}>테스트용</Link>
-            </ProfileBox>
+            <ProfileBox>2</ProfileBox>
           </ReviewItem>
           <ReviewItem>
             <ProfileBox>3</ProfileBox>

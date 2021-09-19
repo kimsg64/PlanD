@@ -70,7 +70,7 @@ const MyPage = () => {
           <UserIconSection>
             <UserIcon>
               <UserImage>
-                <img src="images/user.jpg" alt="user" />
+                <img src="images/user.jpg" />
               </UserImage>
             </UserIcon>
             <UserName>김승규 님</UserName>
