@@ -1,0 +1,60 @@
+/* 헤더 틀 */
+header {
+	width: calc(100% - 16px);
+	height: var(--header-height);
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	position: fixed;
+	z-index: 10;
+	overflow-y: hidden;
+}
+
+/* 로고 및 로고 링크 */
+.logo {
+	height: 100%;
+	margin-left: calc(var(--margin-default)/2);
+	position: relative;
+}
+
+.logo a {
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+/* 로고 및 아이콘 크기 조절 */
+#icon {
+	height: 100%;
+}
+
+#logo {
+	height: 80%;
+}
+
+/* 센터 메뉴 */
+.menu {
+	width: 40%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.menu li:hover {
+	color: var(--color-pink);
+}
+
+/* 우측 로그인 버튼 메뉴 */
+.login {
+	width: 16%;
+	height: 100%;
+	padding: var(--padding-default);
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.login div:hover {
+	color: var(--color-pink);
+}
