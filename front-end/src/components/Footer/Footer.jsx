@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   width: 100%;
   height: var(--footer-height);
-  background-color: var(--concept-color5);
+  background-color: var(--color-black);
   margin-top: var(--margin-default);
   display: flex;
   justify-content: center;
+  color: white;
 `;
 
 const NavList = styled.nav`
@@ -25,10 +27,14 @@ const NavItemsTitle = styled.ul`
 `;
 
 const NavItems = styled.li`
-  margin-top: calc(var(--margin-default) / 8);
+  margin-top: calc(var(--margin-default) / 4);
   font-size: var(--font-size-small);
   :first-child {
-    margin-top: calc(var(--margin-default) / 4);
+    margin-top: calc(var(--margin-default) / 2);
+  }
+  :hover {
+    cursor: pointer;
+    color: var(--color-yellow);
   }
 `;
 
@@ -39,7 +45,9 @@ const Footer = () => {
         <NavItemsContainer>
           <NavItemsTitle>
             소개
-            <NavItems>공지사항</NavItems>
+            <NavItems>
+              <Link to={`/Notice`}>공지사항</Link>
+            </NavItems>
             <NavItems>서비스 소개</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
@@ -55,14 +63,20 @@ const Footer = () => {
         <NavItemsContainer>
           <NavItemsTitle>
             광고
-            <NavItems>광고 문의</NavItems>
+            <NavItems>
+              <a href="http://localhost:9090/wherewego/">광고 문의</a>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>
           <NavItemsTitle>
             커뮤니티
-            <NavItems>후기</NavItems>
-            <NavItems>코스 제안</NavItems>
+            <NavItems>
+              <Link to={`/Reviews`}>후기</Link>
+            </NavItems>
+            <NavItems>
+              <Link to={`/UserRecommendation`}>코스 제안</Link>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
       </NavList>

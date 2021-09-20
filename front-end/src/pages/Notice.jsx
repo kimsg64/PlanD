@@ -5,9 +5,11 @@ import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 
 const NoticeTitle = styled.div`
-  width: 400px;
+  width: 800px;
   height: 100px;
-  font-size: var(--font-size-big-title);
+  margin-top: var(--margin-default);
+  background-color: red;
+  font-size: var(--font-size-title-normal);
 `;
 
 const NoticeContainer = styled.ul`

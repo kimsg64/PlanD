@@ -11,6 +11,8 @@ const HeaderContainer = styled.header`
   position: fixed;
   z-index: 10;
   overflow-y: hidden;
+  font-weight: 800;
+  font-size: var(--font-size-large);
 `;
 
 const LogoContainer = styled.div`
@@ -37,6 +39,9 @@ const MenuContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  & > li:hover {
+    color: var(--color-pink);
+  }
 `;
 
 const LoginBtnContainer = styled.div`
@@ -46,6 +51,9 @@ const LoginBtnContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  & > div:hover {
+    color: var(--color-pink);
+  }
 `;
 
 const Header = () => {
@@ -53,8 +61,8 @@ const Header = () => {
     <HeaderContainer>
       <LogoContainer>
         <Link to={`/`}>
-          <img id="icon" src="images/logos/icon_pin.png" />
-          <img id="logo" src="images/logos/logo.png" />
+          <img id="icon" src="images/logos/icon_pin.png" alt="icon" />
+          <img id="logo" src="images/logos/logo.png" alt="logo" />
         </Link>
       </LogoContainer>
       <MenuContainer>
@@ -68,15 +76,15 @@ const Header = () => {
           <Link to={`/Reviews`}>후기</Link>
         </li>
         <li>
-          <Link to={`/`}>코스 추천</Link>
+          <Link to={`/userrecommendation`}>코스 추천</Link>
         </li>
       </MenuContainer>
       <LoginBtnContainer>
         <div>
-          <Link to={`/`}>로그인</Link>
+          <Link to={`/login`}>로그인</Link>
         </div>
         <div>
-          <Link to={`/`}>회원가입</Link>
+          <Link to={`/registration`}>회원가입</Link>
         </div>
       </LoginBtnContainer>
     </HeaderContainer>
