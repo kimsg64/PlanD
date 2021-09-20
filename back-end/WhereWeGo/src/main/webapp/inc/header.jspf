@@ -22,9 +22,8 @@
 		<!-- 센터 메뉴 -->
 		<ul class="menu">
 			<li><a href="http://localhost:3000/">홈</a></li>
-			<li><a href="#">플랜 짜기</a></li>
-			<li><a href="#">후기</a></li>
-			<li><a href="#">코스 추천</a></li>
+			<li><a href="#">뭔가넣어보십시오</a></li>
+			<li><a href="#">아님 뺄까?</a></li>
 		</ul>
 		<!-- 로그인 메뉴-->
 		<div class="login">

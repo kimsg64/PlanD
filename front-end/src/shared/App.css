@@ -17,7 +17,7 @@
   --color-black: #2c3e50;
 
   /* size(px) */
-  --header-height: 60px;
+  --header-height: 80px;
   --footer-height: 200px;
 
   /* padding */
@@ -27,7 +27,7 @@
   /* title font size */
   --font-size-title-large: 60px;
   --font-size-title-normal: 40px;
-  --font-size-title-small: 24px;
+  --font-size-title-small: 20px;
 
   /* font size */
   --font-size-large: 24px;
