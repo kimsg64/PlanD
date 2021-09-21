@@ -17,12 +17,13 @@
   --color-black: #2c3e50;
 
   /* size(px) */
-  --header-height: 80px;
+  --header-height: 60px;
   --footer-height: 200px;
 
   /* padding */
   --padding-default: 20px;
   --margin-default: 40px;
+  --margin-header-to-body: 160px;
 
   /* title font size */
   --font-size-title-large: 60px;
@@ -65,14 +66,6 @@ a {
 ul,
 li {
   list-style-type: none;
-}
-
-.display_on {
-  display: block;
-}
-
-.display_off {
-  display: none;
 }
 
 ::-webkit-scrollbar {

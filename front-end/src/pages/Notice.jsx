@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
@@ -7,7 +7,7 @@ import Button from "../components/body/Button";
 
 const NoticeTitle = styled.div`
   width: 1200px;
-  margin-top: calc(var(--margin-default) * 3);
+  margin-top: var(--margin-header-to-body);
   margin-bottom: var(--margin-default);
   font-size: var(--font-size-title-normal);
 `;
@@ -60,6 +60,7 @@ const ItemTitleBox = styled(TitleBox)`
 const SearchBar = styled.div`
   width: 1200px;
   height: 60px;
+  margin-top: var(--margin-default);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -82,6 +83,11 @@ const SearchBar = styled.div`
 `;
 
 const Notice = () => {
+  const [open, setOpen] = useState();
+  const openItem = () => {
+    setOpen(open);
+  };
+
   return (
     <>
       <Header />
@@ -115,24 +121,24 @@ const Notice = () => {
           </NoticeItem>
           <NoticeItem>
             <SmallBox>3</SmallBox>
-            <ItemTitleBox>
+            <ItemTitleBox onClick={openItem}>
               흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤흐헤헤
             </ItemTitleBox>
             <SmallBox>첨부파일</SmallBox>
-            <SmallBox>조회수</SmallBox>
+            <SmallBox>56</SmallBox>
             <SmallBox>작성일</SmallBox>
           </NoticeItem>
           <NoticeItem>
             <SmallBox>4</SmallBox>
             <ItemTitleBox>제목</ItemTitleBox>
             <SmallBox>첨부파일</SmallBox>
-            <SmallBox>조회수</SmallBox>
+            <SmallBox>85</SmallBox>
             <SmallBox>작성일</SmallBox>
           </NoticeItem>
           <NoticeItem>
             <SmallBox>5</SmallBox>
             <ItemTitleBox>제목</ItemTitleBox>
-            <SmallBox>첨부파일</SmallBox>
+            <SmallBox></SmallBox>
             <SmallBox>조회수</SmallBox>
             <SmallBox>작성일</SmallBox>
           </NoticeItem>

@@ -48,7 +48,9 @@ const Footer = () => {
             <NavItems>
               <Link to={`/Notice`}>공지사항</Link>
             </NavItems>
-            <NavItems>서비스 소개</NavItems>
+            <NavItems>
+              <Link to={`/about`}>서비스 소개</Link>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>

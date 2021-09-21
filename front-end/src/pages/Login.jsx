@@ -8,7 +8,7 @@ const Modal = styled.form`
   width: 480px;
   height: 480px;
   padding: calc(var(--padding-default) * 2);
-  margin: calc(var(--margin-default) * 4) 0;
+  margin-top: var(--margin-header-to-body);
   background-color: var(--color-yellow);
   display: flex;
   flex-direction: column;

@@ -8,7 +8,7 @@ import ImageSlider from "../components/body/imageSlider/ImageSlider";
 const TextContainer = styled.section`
   width: 56vw;
   height: 32vh;
-  margin: var(--margin-default) 0;
+  margin: var(--margin-default);
   background-color: var(--concept-color6);
   display: flex;
   align-items: center;

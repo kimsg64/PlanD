@@ -8,7 +8,7 @@ import KakaoMap from "../components/body/KakaoMap";
 const PlannerContainer = styled.div`
   width: 80vw;
   height: 80vh;
-  margin-top: calc(var(--margin-default) + var(--header-height));
+  margin-top: var(--margin-header-to-body);
   display: flex;
   justify-content: center;
 `;

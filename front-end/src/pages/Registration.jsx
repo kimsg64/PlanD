@@ -9,7 +9,7 @@ import CompanyForm from "../components/body/RegistrationForm/CompanyForm";
 const Classification = styled.div`
   width: 60vw;
   height: auto;
-  margin: calc(var(--margin-default) * 2) 0;
+  margin: var(--margin-header-to-body) 0;
   display: flex;
   justify-content: space-around;
 `;
@@ -27,6 +27,9 @@ const IconContainer = styled.div`
         ? "var(--color-pink)"
         : "var(--color-black)";
     }};
+  background-color: ${(props) => {
+    return props.color === "focused" ? "var(--color-yellow)" : "var(white)";
+  }};
   border-radius: 12px;
   p {
     margin-top: calc(var(--margin-default) / 2);
