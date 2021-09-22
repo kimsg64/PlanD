@@ -6,7 +6,7 @@ const FooterContainer = styled.footer`
   width: 100%;
   height: var(--footer-height);
   background-color: var(--color-black);
-  margin-top: var(--margin-default);
+  margin-top: var(--margin-body-to-footer);
   display: flex;
   justify-content: center;
   color: white;

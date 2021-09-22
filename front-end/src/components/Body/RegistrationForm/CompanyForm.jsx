@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "./Form";
-import Label from "./Label";
-import Button from "../Button";
+import { Label } from "../mixin/Mixin";
+import styled from "styled-components";
 
-const CompanyForm = () => {
+const Container = styled.div`
+  overflow: hidden;
+  transition-duration: 0.5s;
+  height: ${(props) => {
+    return props.isVisible ? "0" : "120vh";
+  }};
+`;
+
+const CompanyForm = ({ isIndividual = true }) => {
   const [test, setTest] = useState("");
 
   const handleSubmit = (e) => {
@@ -25,14 +33,16 @@ const CompanyForm = () => {
   };
 
   return (
-    <form id="company-form" onSubmit={handleSubmit}>
-      <Label>
-        테스트용
-        <input type="text" name="test" value={test} onChange={handleTest} />
-      </Label>
-      {/* <Button form="company-form">제출</Button> */}
-      <input type="submit" value="제출" />
-    </form>
+    <Container isVisible={isIndividual}>
+      <Form id="company-form" onSubmit={handleSubmit}>
+        <Label>
+          테스트용
+          <input type="text" name="test" value={test} onChange={handleTest} />
+        </Label>
+        {/* <Button form="company-form">제출</Button> */}
+        <input type="submit" value="제출" />
+      </Form>
+    </Container>
   );
 };
 

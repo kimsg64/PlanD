@@ -1,16 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
-import Button from "../Button";
+import axios from "axios";
 import Form from "./Form";
-import Label from "./Label";
+import {
+  Button,
+  Label,
+  Input,
+  Hyphen,
+  Checkbox,
+  CheckboxLabel,
+} from "../mixin/Mixin";
 
-const LeftSection = styled.section``;
-const RightSection = styled.section``;
+const Container = styled.div`
+  overflow: hidden;
+  // auto에는 트랜지션 속도가 적용되지 않는 듯
+  transition-duration: 0.5s;
+  height: ${(props) => {
+    return props.isVisible ? "120vh" : "0";
+  }};
+`;
+
+const TopSection = styled.section`
+  width: 100%;
+  display: flex;
+`;
+
+const LeftSection = styled.section`
+  width: 72%;
+`;
+const RightSection = styled.section`
+  width: 28%;
+  padding: var(--padding-default);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const BottomSection = styled.section`
+  width: 100%;
+`;
 
 // 각 항목 스타일링
 const ItemContainer = styled.div`
-  width: 40vw;
+  width: auto;
   margin-top: calc(var(--margin-default) / 2);
   display: flex;
   justify-content: flex-start;
@@ -56,170 +89,219 @@ const PhoneNumContainer = styled(ItemContainer)`
   }
 `;
 
-// 하이픈 스타일링
-const Hyphen = styled.p`
-  margin: 0 calc(var(--margin-default) / 4);
-  font-size: var(--font-size-large);
-  color: var(--color-black);
+const PersonalNumInput = styled(Input)`
+  width: 4.5em;
 `;
-
-// Input 상자 스타일링
-const InputContainer = styled.input`
-  width: 8vw;
-  padding: calc(var(--padding-default) / 4) 0;
-  font-size: var(--font-size-normal);
-  position: relative;
-  border: none;
-  border-bottom: 2px solid var(--color-black);
-  text-align: center;
-  transition-duration: 0.2s;
-  &:focus {
-    outline: none;
-    border-bottom: 2px solid var(--color-brown);
-  }
+const PhoneNumInput = styled(Input)`
+  width: 3em;
 `;
-
-const PersonalNumInput = styled(InputContainer)`
-  width: calc(6vw - var(--margin-default) / 4 - var(--font-size-large));
+const EmailInput = styled(Input)`
+  width: 12em;
 `;
-const PhoneNumInput = styled(InputContainer)`
-  width: calc(4vw - var(--margin-default) / 4 - var(--font-size-large));
+const ZipcodeInput = styled(Input)`
+  width: 4em;
 `;
-const ZipcodeInput = styled(InputContainer)`
-  width: 4vw;
+const AddrInput = styled(Input)`
+  width: 20em;
 `;
-const AddrInput = styled(InputContainer)`
-  width: 20vw;
+const AddrDetailInput = styled(Input)`
+  width: 24em;
 `;
-const AddrDetailInput = styled(InputContainer)`
-  width: 20vw;
-`;
-const CheckBoxInput = styled(InputContainer)`
-  width: auto;
+const AnniversaryInput = styled(Input)`
+  width: 10em;
 `;
 
 const OptionsContainer = styled.div`
-  width: 30vw;
+  max-width: 40vw;
   height: auto;
+  margin-top: var(--margin-default);
   border: 2px solid var(--color-brown);
   border-radius: 4px;
   display: flex;
   flex-wrap: wrap;
   padding: var(--padding-default);
-  label {
-    min-width: 4vw;
-    margin: 0 1vw 1vw 1vw;
-  }
 `;
 
-const IndividualForm = () => {
+const UserImgContainer = styled.div`
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  margin-bottom: var(--margin-line-space);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 160px;
+  background-color: var(--color-lightpink);
+`;
+
+const IndividualForm = ({ isIndividual = true }) => {
+  const [data, setData] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("이벤트", e);
+    const formData = new FormData();
+    formData.append("individualData", data[0]);
+    axios
+      .post("http://localhost:9090/wherewego/registertest", formData, {
+        headers: { "Content-Type": `multipart/form-data` },
+      })
+      .then((response) => {
+        console.log("response : ", JSON.stringify(response, null, 2));
+      })
+      .catch((error) => {
+        console.log("failed", error);
+      });
+    setData(e.target.value);
+    console.log(formData);
+  };
+
+  const handleData = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setData(e.target.value);
+  };
   return (
-    <Form id="individual_form">
-      <IDContainer>
-        <Label>아이디</Label>
-        <InputContainer type="text" name="user_id" id="user_id" />
-        <Button>중복 확인</Button>
-      </IDContainer>
-      <PWDContainer>
-        <Label>비밀번호</Label>
-        <InputContainer type="password" name="user_pwd" id="user_pwd" />
-      </PWDContainer>
-      <PWDCheckContainer>
-        <Label>비밀번호 확인</Label>
-        <InputContainer
-          type="password"
-          name="user_pwdcheck"
-          id="user_pwdcheck"
-        />
-      </PWDCheckContainer>
-      <NameContainer>
-        <Label>이름</Label>
-        <InputContainer type="text" name="user_name" id="user_name" />
-      </NameContainer>
-      <PersonalNumContainer>
-        <Label>주민등록번호</Label>
-        <PersonalNumInput type="text" name="user_num1" id="user_num1" />
-        <Hyphen> - </Hyphen>
-        <PersonalNumInput type="password" name="user_num2" id="user_num2" />
-      </PersonalNumContainer>
-      <PhoneNumContainer>
-        <Label>연락처</Label>
-        <PhoneNumInput type="select" name="user_tel1" id="user_tel1" />
-        <Hyphen> - </Hyphen>
-        <PhoneNumInput type="text" name="user_tel2" id="user_tel2" />
-        <Hyphen> - </Hyphen>
-        <PhoneNumInput type="text" name="user_tel3" id="user_tel3" />
-      </PhoneNumContainer>
-      <ItemContainer>
-        <Label>우편번호</Label>
-        <ZipcodeInput type="text" name="user_zipcode" id="user_zipcode" />
-        <Button>우편번호 검색</Button>
-      </ItemContainer>
-      <ItemContainer>
-        <Label>주소</Label>
-        <AddrInput type="text" name="user_addr" id="user_addr" />
-      </ItemContainer>
-      <ItemContainer>
-        <Label>상세주소</Label>
-        <AddrDetailInput
-          type="text"
-          name="user_addrdetail"
-          id="user_addrdetail"
-        />
-      </ItemContainer>
-      <ItemContainer>
-        <Label>기념일</Label>
-        <InputContainer type="date" name="user_date" id="user_date" />
-      </ItemContainer>
-      <ItemContainer>
-        <Label>관심사</Label>
-        <OptionsContainer>
-          <label>
-            <CheckBoxInput type="checkbox" /> 임시
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 로
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 다양한 값을 입력하여
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 박스의 크기가 예쁘게 늘어나는지
-            확인하기 위한
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 체크박스입니다.
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 값은 아직
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 전달되지 않는다는 사실을 부디
-            명심하시고
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 값이 전달되지 않는다고 엄한
-            노트북에 샷건을 치지 않기를
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 간절하게 바랍니다.
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 이만
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 아직도 있나?
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 그만하자
-          </label>
-          <label>
-            <CheckBoxInput type="checkbox" /> 이정도면 됐지
-          </label>
-        </OptionsContainer>
-      </ItemContainer>
-      <input type="submit" value="제출" />
-    </Form>
+    <Container isVisible={isIndividual}>
+      <Form
+        id="individual_form"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
+        <TopSection>
+          <LeftSection>
+            <IDContainer>
+              <Label>아이디</Label>
+              <Input
+                type="text"
+                name="user_id"
+                id="user_id"
+                value={data}
+                onChange={handleData}
+              />
+              <Button>중복 확인</Button>
+            </IDContainer>
+            <PWDContainer>
+              <Label>비밀번호</Label>
+              <Input type="password" name="user_pwd" id="user_pwd" />
+            </PWDContainer>
+            <PWDCheckContainer>
+              <Label>비밀번호 확인</Label>
+              <Input type="password" name="user_pwdcheck" id="user_pwdcheck" />
+            </PWDCheckContainer>
+            <NameContainer>
+              <Label>이름</Label>
+              <Input type="text" name="user_name" id="user_name" />
+            </NameContainer>
+            <PersonalNumContainer>
+              <Label>주민등록번호</Label>
+              <PersonalNumInput type="number" name="user_num1" id="user_num1" />
+              <Hyphen> - </Hyphen>
+              <PersonalNumInput
+                type="password"
+                name="user_num2"
+                id="user_num2"
+              />
+            </PersonalNumContainer>
+            <PhoneNumContainer>
+              <Label>연락처</Label>
+              <PhoneNumInput type="select" name="user_tel1" id="user_tel1" />
+              <Hyphen> - </Hyphen>
+              <PhoneNumInput type="number" name="user_tel2" id="user_tel2" />
+              <Hyphen> - </Hyphen>
+              <PhoneNumInput type="number" name="user_tel3" id="user_tel3" />
+            </PhoneNumContainer>
+            <ItemContainer>
+              <Label>이메일</Label>
+              <EmailInput tyoe="email"></EmailInput>
+            </ItemContainer>
+            <ItemContainer>
+              <Label>우편번호</Label>
+              <ZipcodeInput
+                type="number"
+                name="user_zipcode"
+                id="user_zipcode"
+              />
+              <Button>우편번호 검색</Button>
+            </ItemContainer>
+            <ItemContainer>
+              <Label>주소</Label>
+              <AddrInput type="text" name="user_addr" id="user_addr" />
+            </ItemContainer>
+            <ItemContainer>
+              <Label>상세주소</Label>
+              <AddrDetailInput
+                type="text"
+                name="user_addrdetail"
+                id="user_addrdetail"
+              />
+            </ItemContainer>
+            <ItemContainer>
+              <Label>기념일</Label>
+              <AnniversaryInput type="date" name="user_date" id="user_date" />
+            </ItemContainer>
+          </LeftSection>
+          <RightSection>
+            <UserImgContainer>
+              <i className="far fa-user"></i>
+            </UserImgContainer>
+            <Button>사진 선택</Button>
+          </RightSection>
+        </TopSection>
+
+        {/* 바텀 폼 */}
+        <BottomSection>
+          <ItemContainer>
+            <Label>관심사</Label>
+            <OptionsContainer>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 임시
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 로
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 다양한 값을 입력하여
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 박스의 크기가 예쁘게 늘어나는지
+                확인하기 위한
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 체크박스입니다.
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 값은 아직
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 전달되지 않는다는 사실을 부디
+                명심하시고
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 값이 전달되지 않는다고 엄한
+                노트북에 샷건을 치지 않기를
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 간절하게 바랍니다.
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 이만
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 아직도 있나?
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 그만하자
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" /> 이정도면 됐지
+              </CheckboxLabel>
+            </OptionsContainer>
+          </ItemContainer>
+        </BottomSection>
+        <input type="submit" value="제출" />
+      </Form>
+    </Container>
   );
 };
 

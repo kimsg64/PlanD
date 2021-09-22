@@ -3,8 +3,8 @@ import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import styled from "styled-components";
-import IndividualForm from "../components/body/RegistrationForm/IndividualForm";
-import CompanyForm from "../components/body/RegistrationForm/CompanyForm";
+import IndividualForm from "../components/body/registrationForm/IndividualForm";
+import CompanyForm from "../components/body/registrationForm/CompanyForm";
 
 const Classification = styled.div`
   width: 60vw;
@@ -19,6 +19,7 @@ const IconContainer = styled.div`
   padding: var(--padding-default) 0;
   display: flex;
   flex-direction: column;
+  transition-duration: 0.2s;
   text-align: center;
   font-size: var(--font-size-title-large);
   border: 2px solid
@@ -37,7 +38,7 @@ const IconContainer = styled.div`
   }
   :hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -70,7 +71,9 @@ const Registration = () => {
             <p>법인회원</p>
           </IconContainer>
         </Classification>
-        {isIndividual ? <IndividualForm /> : <CompanyForm />}
+        <IndividualForm isIndividual={isIndividual} />
+        <CompanyForm isIndividual={isIndividual} />
+        {/* {isIndividual ? <IndividualForm /> : <CompanyForm />} */}
       </BodyLayout>
       <Footer />
     </>

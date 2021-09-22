@@ -76,7 +76,7 @@ const Header = () => {
           <Link to={`/Reviews`}>후기</Link>
         </li>
         <li>
-          <Link to={`/userrecommendation`}>코스 추천</Link>
+          <Link to={`/userrecommendation`}>코스 제안</Link>
         </li>
       </MenuContainer>
       <LoginBtnContainer>

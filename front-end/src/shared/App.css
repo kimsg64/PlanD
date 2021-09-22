@@ -22,8 +22,12 @@
 
   /* padding */
   --padding-default: 20px;
+  --padding-small: 8px;
+  --padding-tiny: 4px;
   --margin-default: 40px;
+  --margin-line-space: 10px;
   --margin-header-to-body: 160px;
+  --margin-body-to-footer: 200px;
 
   /* title font size */
   --font-size-title-large: 60px;
@@ -35,6 +39,7 @@
   --font-size-normal: 18px;
   --font-size-small: 14px;
   --font-size-tiny: 12px;
+  --font-size-3d: 10px;
 }
 
 /* frame */

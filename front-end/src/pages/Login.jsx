@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import BodyLayout from "../components/body/BodyLayout";
+import {
+  Checkbox,
+  CheckboxLabel,
+  Button,
+} from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 
@@ -10,6 +15,7 @@ const Modal = styled.form`
   padding: calc(var(--padding-default) * 2);
   margin-top: var(--margin-header-to-body);
   background-color: var(--color-yellow);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,24 +40,31 @@ const InputBox = styled.input`
   margin-top: calc(var(--margin-default) / 2);
   padding: calc(var(--padding-default) / 2);
   border: 2px solid white;
+  border-radius: 4px;
   &:focus {
     outline: none;
     border: 2px solid var(--color-brown);
   }
 `;
 
-const CheckBox = styled(InputBox)`
-  width: auto;
-  margin-right: calc(var(--margin-default) / 4);
+const CheckboxWithoutMargin = styled(Checkbox)`
+  margin-left: 0;
+`;
+const CheckboxLabelWithoutMargin = styled(CheckboxLabel)`
+  margin: calc(var(--margin-line-space) * 2) 0 0 0;
 `;
 
 const SubmitButton = styled(InputBox)`
   margin-top: calc(var(--margin-default) * 2);
   background-color: var(--color-black);
   border: 2px solid var(--color-black);
+  border-radius: 4px;
   color: white;
+  transition-duration: 0.2s;
   :hover {
     cursor: pointer;
+    transform: scale(1.05);
+    color: var(--color-pink);
   }
   &:focus {
     outline: none;
@@ -72,10 +85,10 @@ const Login = () => {
           <div>
             <InputBox type="text" placeholder="ID" />
             <InputBox type="password" placeholder="Password" />
-            <label>
-              <CheckBox type="checkbox" />
+            <CheckboxLabelWithoutMargin>
+              <CheckboxWithoutMargin type="checkbox" />
               로그인 유지하기
-            </label>
+            </CheckboxLabelWithoutMargin>
           </div>
           <SubmitButton type="submit" value="Sign in" />
         </Modal>

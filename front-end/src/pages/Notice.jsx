@@ -3,14 +3,7 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
-import Button from "../components/body/Button";
-
-const NoticeTitle = styled.div`
-  width: 1200px;
-  margin-top: var(--margin-header-to-body);
-  margin-bottom: var(--margin-default);
-  font-size: var(--font-size-title-normal);
-`;
+import { MenuTitle, Button, Input } from "../components/body/mixin/Mixin";
 
 const NoticeContainer = styled.ul`
   width: 1200px;
@@ -65,17 +58,9 @@ const SearchBar = styled.div`
   justify-content: flex-end;
   align-items: center;
   input {
-    padding: calc(var(--padding-default) / 4) calc(var(--padding-default) / 2);
     margin-right: calc(var(--margin-default) / 2);
-    font-size: var(--font-size-normal);
-    border: none;
-    outline: none;
-    border-bottom: 2px solid var(--color-black);
   }
   Button {
-    margin-right: calc(var(--margin-default));
-    color: var(--color-black);
-    padding: calc(var(--padding-default) / 4) calc(var(--padding-default) * 1.5);
     i {
       font-size: var(--font-size-large);
     }
@@ -92,7 +77,7 @@ const Notice = () => {
     <>
       <Header />
       <BodyLayout>
-        <NoticeTitle>공지사항</NoticeTitle>
+        <MenuTitle>공지사항</MenuTitle>
         <NoticeContainer>
           <NoticeItem>
             <SmallBox>번호</SmallBox>
@@ -216,7 +201,7 @@ const Notice = () => {
           </NoticeItem>
         </NoticeContainer>
         <SearchBar>
-          <input type="text" placeholder="배경색 임시임" />
+          <Input type="text" placeholder="배경색 임시임" />
           <Button>
             <i className="fas fa-search"></i>
           </Button>

@@ -27,7 +27,8 @@ const ReviewsContainer = styled.ul`
 
 const ReviewItem = styled.li`
   width: 160px;
-  height: 24%;
+  min-height: 16%;
+
   position: absolute;
   top: 280px;
   left: 688px;
@@ -35,6 +36,8 @@ const ReviewItem = styled.li`
   flex-direction: column;
   align-items: center;
   background-color: var(--color-black);
+  transition-delay: 0.2s;
+  transition-duration: 0.4s;
 
   /* for ring poster */
   opacity: 0.7;
@@ -52,7 +55,7 @@ const ReviewItem = styled.li`
     margin: 4%;
     color: var(--color-yellow);
   }
-  &.opaque {
+  &.selected {
     opacity: 1;
   }
 `;
@@ -64,8 +67,22 @@ const ProfileBox = styled.div`
   display: flex;
   justify-content: center;
   img {
-    height: 100%;
+    height: 80px;
   }
+`;
+
+const ReviewTitle = styled.p`
+  font-size: var(--font-size-tiny);
+`;
+
+const ReviewContent = styled.p`
+  font-size: var(--font-size-3d);
+  transition-duration: 0.5s;
+  overflow: hidden;
+  /* 가운데 요소만 높이 픽셀로 지정해서 내용 보여주기 */
+  /* 클릭한 요소 가운데로 옮기기 */
+  height: 0;
+  /* height: 100px; */
 `;
 
 const Reviews = () => {
@@ -100,16 +117,18 @@ const Reviews = () => {
                     className={
                       posterAngle * Math.abs(reviewNum - posterNum) ===
                       deg % 360
-                        ? "opaque"
+                        ? "selected"
                         : ""
                     }
                   >
                     <ProfileBox>
                       <img src="images/temp2.jpg" />
                     </ProfileBox>
-                    <p>
-                      {reviewNum}. 베스트 리뷰들입니다. 무슨 내용을 넣을까요?
-                    </p>
+                    <ReviewTitle>베스트 리뷰의 제목입니다.</ReviewTitle>
+                    <ReviewContent>
+                      그리고 이것은 내용입니다. 내용이 길어지면 또 할게 많은데
+                      어휴 이걸 또 어쩐담
+                    </ReviewContent>
                   </ReviewItem>
                 );
               })}

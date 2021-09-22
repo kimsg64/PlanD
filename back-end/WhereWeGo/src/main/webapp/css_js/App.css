@@ -9,7 +9,7 @@
   --font-color-default: #2c3e50;
 
   /* size(px) */
-  --header-height: 80px;
+  --header-height: 60px;
   --footer-height: 200px;
 
   /* padding */
@@ -67,14 +67,6 @@ a {
 ul,
 li {
   list-style-type: none;
-}
-
-.display_on {
-  display: block;
-}
-
-.display_off {
-  display: none;
 }
 
 ::-webkit-scrollbar {
