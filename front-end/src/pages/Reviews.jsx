@@ -122,7 +122,7 @@ const Reviews = () => {
                     }
                   >
                     <ProfileBox>
-                      <img src="images/temp2.jpg" />
+                      <img src="images/temp2.jpg" alt="temp" />
                     </ProfileBox>
                     <ReviewTitle>베스트 리뷰의 제목입니다.</ReviewTitle>
                     <ReviewContent>

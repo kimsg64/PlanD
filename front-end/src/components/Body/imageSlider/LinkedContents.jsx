@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import ContentsBox1 from "./sliderSources/ContentsBox1";
 import ContentsBox2 from "./sliderSources/ContentsBox2";
@@ -11,7 +11,7 @@ const Container = styled.div`
   transition-timing-function: cubic-bezier(0.57, 0.01, 0.36, 0.99);
   transform: translateX(
     ${(props) => {
-      console.log(props.idx);
+      /* console.log(props.idx); */
       return props.idx === "first"
         ? "0"
         : props.idx === "second"
@@ -24,21 +24,22 @@ const Container = styled.div`
 const LinkedContents = () => {
   const [idx, setIdx] = useState("first");
   const interval = useRef();
-  useEffect(() => {
-    interval.current = setInterval(changeIdx, 5000);
-    return () => {
-      clearInterval(interval.current);
-    };
-  }, [idx]);
-
-  const changeIdx = () => {
+  // useCallback을 쓰는 이유???
+  const changeIdx = useCallback(() => {
     idx === "first"
       ? setIdx("second")
       : idx === "second"
       ? setIdx("third")
       : setIdx("first");
     // console.log(idx);
-  };
+  }, [idx]);
+  useEffect(() => {
+    interval.current = setInterval(changeIdx, 5000);
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, [idx, changeIdx]);
+
   return (
     <Container onClick={changeIdx} idx={idx}>
       <ContentsBox1 />

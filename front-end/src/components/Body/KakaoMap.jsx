@@ -15,6 +15,7 @@ const KakaoMap = () => {
       level: 3,
     };
     let map = new kakao.maps.Map(container, options);
+    console.log(map);
   }, []);
 
   return <MapContainer id="map"></MapContainer>;

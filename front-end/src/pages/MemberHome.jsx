@@ -17,19 +17,27 @@ const MenuSection = styled.section`
 const Container = styled.div`
   width: 40%;
   height: 40%;
-  background-color: white;
+  margin: var(--margin-default);
   display: flex;
   flex-direction: column;
-  margin: var(--margin-default);
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-huge);
 `;
 
 const TimerContainer = styled(Container)`
-  font-size: var(--font-size-big-title);
+  background-color: var(--color-lightpink);
 `;
 
-const CalendarContainer = styled(Container)``;
-const NextPlanContainer = styled(Container)``;
-const ReviewsContainer = styled(Container)``;
+const CalendarContainer = styled(Container)`
+  background-color: var(--color-pink);
+`;
+const NextPlanContainer = styled(Container)`
+  background-color: var(--color-yellow);
+`;
+const ReviewsContainer = styled(Container)`
+  background-color: var(--color-brown);
+`;
 
 const MemberHome = () => {
   return (
@@ -43,8 +51,8 @@ const MemberHome = () => {
           <CalendarContainer>
             <i class="far fa-calendar-alt"></i>
           </CalendarContainer>
-          <NextPlanContainer>다음</NextPlanContainer>
-          <ReviewsContainer>리뷰들</ReviewsContainer>
+          <NextPlanContainer>next</NextPlanContainer>
+          <ReviewsContainer>reviews</ReviewsContainer>
         </MenuSection>
       </BodyLayout>
       <Footer />

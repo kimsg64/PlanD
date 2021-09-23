@@ -30,7 +30,7 @@ const StepCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 160px;
+  font-size: var(--font-size-huge);
   color: var(--font-color-default);
 `;
 

@@ -9,7 +9,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   background-color: white;
   position: fixed;
-  z-index: 10;
+  z-index: 2;
   overflow-y: hidden;
   font-weight: 800;
   font-size: var(--font-size-large);

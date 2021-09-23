@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
-import Users from "../server/Users";
-import { Link } from "react-router-dom";
 
 // 여기는 리뷰 상세 페이지로 활용하기
 
@@ -53,7 +51,6 @@ const ProfileBox = styled.div`
 `;
 
 const Reviews = () => {
-  const UsersData = Users;
   const isDown = useRef(false);
   const sliderRef = useRef();
   let startX;

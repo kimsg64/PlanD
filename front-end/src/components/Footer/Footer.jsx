@@ -58,7 +58,9 @@ const Footer = () => {
             고객센터
             <NavItems>이용약관</NavItems>
             <NavItems>개인정보취급방침</NavItems>
-            <NavItems>FAQ</NavItems>
+            <NavItems>
+              <Link to={`/faq`}>FAQ</Link>
+            </NavItems>
             <NavItems>Q&A</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>

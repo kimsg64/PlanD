@@ -16,7 +16,7 @@ const PlannerContainer = styled.div`
 const Conditioner = styled.div`
   width: 32vw;
   height: 80vh;
-  background-color: white;
+  background-color: black;
 `;
 
 const Planning = () => {

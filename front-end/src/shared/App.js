@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import MemberHome from "../pages/MemberHome";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
+import FAQ from "../pages/FAQ";
 import Planning from "../pages/Planning";
 import Registration from "../pages/Registration";
 import Reviews from "../pages/Reviews";
@@ -25,6 +26,7 @@ class App extends Component {
         <Route path="/memberhome" component={MemberHome} />
         <Route path="/mypage" component={MyPage} />
         <Route path="/notice" component={Notice} />
+        <Route path="/faq" component={FAQ} />
         <Route path="/planning" component={Planning} />
         <Route path="/registration" component={Registration} />
         <Route path="/reviews" component={Reviews} />

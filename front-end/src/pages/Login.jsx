@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import BodyLayout from "../components/body/BodyLayout";
-import {
-  Checkbox,
-  CheckboxLabel,
-  Button,
-} from "../components/body/mixin/Mixin";
+import { Checkbox, CheckboxLabel } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 
 const Modal = styled.form`
   width: 480px;
-  height: 480px;
+  height: auto;
   padding: calc(var(--padding-default) * 2);
   margin-top: var(--margin-header-to-body);
   background-color: var(--color-yellow);
@@ -23,14 +19,19 @@ const Modal = styled.form`
     margin-top: var(--margin-default);
     font-weight: 800;
   }
-  & > div {
-    /* input에 의사 요소 안들어가니까 어딘가로 옮기자... */
-    ::after {
-      content: "아이디 또는 비밀번호를 입력해 주세요"
-      margin-left: calc(var(--margin-default) / 4);
-      font-size: var(--font-size-tiny);
-      color: var(--color-pink);
-    }
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  ::after {
+    content: "아이디 또는 비밀번호를 입력해 주세요!";
+    margin-left: calc(var(--margin-default) / 4);
+    font-size: var(--font-size-normal);
+    color: var(--color-pink);
+    font-weight: 800;
+    position: relative;
+    top: 40px;
+    left: 36px;
   }
 `;
 
@@ -43,19 +44,28 @@ const InputBox = styled.input`
   border-radius: 4px;
   &:focus {
     outline: none;
-    border: 2px solid var(--color-brown);
+    border: 2px solid var(--color-black);
+    /* 잘못된 입력 발생시 pink */
   }
 `;
 
+const RadioContainer = styled.div`
+  width: 64%;
+  margin-top: var(--margin-default);
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CheckboxLabelWithoutMargin = styled(CheckboxLabel)`
+  justify-content: flex-end;
+  margin: calc(var(--margin-line-space) * 2) 0 0 0;
+`;
 const CheckboxWithoutMargin = styled(Checkbox)`
   margin-left: 0;
 `;
-const CheckboxLabelWithoutMargin = styled(CheckboxLabel)`
-  margin: calc(var(--margin-line-space) * 2) 0 0 0;
-`;
 
 const SubmitButton = styled(InputBox)`
-  margin-top: calc(var(--margin-default) * 2);
+  margin-top: calc(var(--margin-default) * 1.5);
   background-color: var(--color-black);
   border: 2px solid var(--color-black);
   border-radius: 4px;
@@ -63,7 +73,7 @@ const SubmitButton = styled(InputBox)`
   transition-duration: 0.2s;
   :hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.02);
     color: var(--color-pink);
   }
   &:focus {
@@ -72,25 +82,41 @@ const SubmitButton = styled(InputBox)`
   }
 `;
 
+const FindIDPWD = styled(SubmitButton)`
+  margin-top: calc(var(--margin-default) / 2);
+`;
+
 const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  // 로그인 실패시 회원가입 버튼에 포인트 주기?
   return (
     <>
       <Header />
       <BodyLayout>
         <Modal onSubmit={handleSubmit}>
           <h1>Sign in</h1>
-          <div>
+          <InputContainer>
+            <RadioContainer>
+              <CheckboxLabelWithoutMargin>
+                <CheckboxWithoutMargin type="radio" name="classification" />
+                개인
+              </CheckboxLabelWithoutMargin>
+              <CheckboxLabelWithoutMargin>
+                <CheckboxWithoutMargin type="radio" name="classification" />
+                사업자
+              </CheckboxLabelWithoutMargin>
+            </RadioContainer>
             <InputBox type="text" placeholder="ID" />
             <InputBox type="password" placeholder="Password" />
             <CheckboxLabelWithoutMargin>
               <CheckboxWithoutMargin type="checkbox" />
               로그인 유지하기
             </CheckboxLabelWithoutMargin>
-          </div>
+          </InputContainer>
           <SubmitButton type="submit" value="Sign in" />
+          <FindIDPWD type="button" value="ID, 비밀번호 찾기" />
         </Modal>
       </BodyLayout>
       <Footer />

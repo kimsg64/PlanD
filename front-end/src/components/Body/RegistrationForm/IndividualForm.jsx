@@ -13,6 +13,9 @@ import {
 
 const Container = styled.div`
   overflow: hidden;
+  transition-delay: ${(props) => {
+    return props.isVisible ? "0.5s" : "0";
+  }};
   // auto에는 트랜지션 속도가 적용되지 않는 듯
   transition-duration: 0.5s;
   height: ${(props) => {
@@ -130,7 +133,7 @@ const UserImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 160px;
+  font-size: var(--font-size-huge);
   background-color: var(--color-lightpink);
 `;
 

@@ -7,7 +7,6 @@ const ImageSliderContainer = styled.section`
   width: 100vw;
   position: relative;
   overflow: hidden;
-
   img {
     width: 100%;
   }
