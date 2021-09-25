@@ -1,3 +1,4 @@
+// ★★★ 유효성 검사 시, null 값이 전달될 때 커스텀 경고가 뜨지 않는 현상 해결
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -6,10 +7,12 @@ import {
   Button,
   Label,
   Input,
-  Hyphen,
   Checkbox,
   CheckboxLabel,
-} from "../mixin/Mixin";
+  SubmitButton,
+  ItemContainer,
+  ErrorMsg,
+} from "../registrationForm/FormMixin";
 
 const Container = styled.div`
   overflow: hidden;
@@ -44,78 +47,9 @@ const BottomSection = styled.section`
   width: 100%;
 `;
 
-// 각 항목 스타일링
-const ItemContainer = styled.div`
-  width: auto;
-  margin-top: calc(var(--margin-default) / 2);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  /* Null시 출력될 주의사항 */
-  ::after {
-    margin-left: calc(var(--margin-default) / 4);
-    font-size: var(--font-size-tiny);
-    color: var(--color-pink);
-    /* display: none; */
-  }
-`;
-
-const IDContainer = styled(ItemContainer)`
-  ::after {
-    content: "아이디 중복 여부를 확인해 주세요!";
-    margin-left: 0;
-  }
-`;
-const PWDContainer = styled(ItemContainer)`
-  ::after {
-    content: "비밀번호를 입력해 주세요!";
-  }
-`;
-const PWDCheckContainer = styled(ItemContainer)`
-  ::after {
-    content: "비밀번호 일치 여부를 확인해 주세요!";
-  }
-`;
-const NameContainer = styled(ItemContainer)`
-  ::after {
-    content: "이름을 입력해 주세요!";
-  }
-`;
-const PersonalNumContainer = styled(ItemContainer)`
-  ::after {
-    content: "유효한 주민등록번호를 입력해 주세요!";
-  }
-`;
-const PhoneNumContainer = styled(ItemContainer)`
-  ::after {
-    content: "연락처를 입력해 주세요!";
-  }
-`;
-
-const PersonalNumInput = styled(Input)`
-  width: 4.5em;
-`;
-const PhoneNumInput = styled(Input)`
-  width: 3em;
-`;
-const EmailInput = styled(Input)`
-  width: 12em;
-`;
-const ZipcodeInput = styled(Input)`
-  width: 4em;
-`;
-const AddrInput = styled(Input)`
-  width: 20em;
-`;
-const AddrDetailInput = styled(Input)`
-  width: 24em;
-`;
-const AnniversaryInput = styled(Input)`
-  width: 10em;
-`;
-
+// 옵션 컨테이너
 const OptionsContainer = styled.div`
-  max-width: 40vw;
+  max-width: 48vw;
   height: auto;
   margin-top: var(--margin-default);
   border: 2px solid var(--color-brown);
@@ -125,6 +59,7 @@ const OptionsContainer = styled.div`
   padding: var(--padding-default);
 `;
 
+// 사진 입력 컨테이너
 const UserImgContainer = styled.div`
   width: 240px;
   height: 240px;
@@ -137,118 +72,243 @@ const UserImgContainer = styled.div`
   background-color: var(--color-lightpink);
 `;
 
-const IndividualForm = ({ isIndividual = true }) => {
-  const [data, setData] = useState([]);
+// 제출 박스 컨테이너
+const SubmitSection = styled.section`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
 
-  const handleSubmit = (e) => {
+const IndividualForm = ({ isIndividual = true }) => {
+  const [userId, setUserId] = useState("");
+  const [userPwd, setUserPwd] = useState("");
+  // 비밀번호 체크용(userPwd2)
+  const [isSame, setIsSame] = useState(false);
+
+  // 비밀번호 더블체크
+  const checkPwd = (e) => {
+    if (e.target.value === "") return;
+    return userPwd === e.target.value ? setIsSame(true) : setIsSame(false);
+  };
+
+  // 하이픈 자동 입력
+  const insertHyphen = (e, num) => {
+    // console.log(e.target.value.length, num);
+    // console.log("키코드", e.keyCode);
+    return e.target.value.length === num && e.keyCode !== 8 && e.keyCode !== 46
+      ? (e.target.value += "-")
+      : e.target.value;
+  };
+
+  // 업로드 이미지 미리보기
+  const onChangePhoto = (e) => {
+    console.log("응 밖 로드~", e.target.files[0]);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log("응 안 로드~", e);
+    };
+  };
+
+  const onSubmitForm = (e) => {
     e.preventDefault();
-    console.log("이벤트", e);
-    const formData = new FormData();
-    formData.append("individualData", data[0]);
+    const body = {
+      userId: userId,
+      // userPwd: userPwd,
+      // userPwd2: userPwd2,
+    };
+
+    // 이미지 전송용
+    // const formData = new FormData();
+    // formData.append("individualData", data[0]);
+
     axios
-      .post("http://localhost:9090/wherewego/registertest", formData, {
-        headers: { "Content-Type": `multipart/form-data` },
-      })
+      .post(
+        "/wherewego/user/getUserData",
+        body
+        // , { headers: { "Content-Type": `multipart/form-data` } },
+      )
       .then((response) => {
         console.log("response : ", JSON.stringify(response, null, 2));
+        window.location.href = "http://localhost:3000/";
       })
       .catch((error) => {
         console.log("failed", error);
       });
-    setData(e.target.value);
-    console.log(formData);
   };
 
-  const handleData = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    setData(e.target.value);
-  };
   return (
     <Container isVisible={isIndividual}>
       <Form
         id="individual_form"
+        onSubmit={onSubmitForm}
         encType="multipart/form-data"
-        onSubmit={handleSubmit}
       >
         <TopSection>
           <LeftSection>
-            <IDContainer>
-              <Label>아이디</Label>
+            <ItemContainer>
+              <Label htmlFor="userId">아이디</Label>
               <Input
                 type="text"
-                name="user_id"
-                id="user_id"
-                value={data}
-                onChange={handleData}
+                name="userId"
+                id="userId"
+                required
+                minLenght="6"
+                maxLength="14"
+                pattern="[A-Za-z]{1}\w{5,14}"
+                placeholder=" "
+                onKeyUp={(e) => setUserId(e.target.value)}
               />
-              <Button>중복 확인</Button>
-            </IDContainer>
-            <PWDContainer>
-              <Label>비밀번호</Label>
-              <Input type="password" name="user_pwd" id="user_pwd" />
-            </PWDContainer>
-            <PWDCheckContainer>
-              <Label>비밀번호 확인</Label>
-              <Input type="password" name="user_pwdcheck" id="user_pwdcheck" />
-            </PWDCheckContainer>
-            <NameContainer>
-              <Label>이름</Label>
-              <Input type="text" name="user_name" id="user_name" />
-            </NameContainer>
-            <PersonalNumContainer>
-              <Label>주민등록번호</Label>
-              <PersonalNumInput type="number" name="user_num1" id="user_num1" />
-              <Hyphen> - </Hyphen>
-              <PersonalNumInput
+              <Button type="button">중복 확인</Button>
+              <ErrorMsg>
+                아이디는 6~14자의 영문 대소문자, 숫자로 이루어져야 하며, 첫
+                글자는 영문자만 입력할 수 있습니다!
+              </ErrorMsg>
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userPwd">비밀번호</Label>
+              <Input
                 type="password"
-                name="user_num2"
-                id="user_num2"
+                name="userPwd"
+                id="userPwd"
+                required
+                minLength="8"
+                maxLength="16"
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$"
+                placeholder=" "
+                onKeyUp={(e) => setUserPwd(e.target.value)}
               />
-            </PersonalNumContainer>
-            <PhoneNumContainer>
-              <Label>연락처</Label>
-              <PhoneNumInput type="select" name="user_tel1" id="user_tel1" />
-              <Hyphen> - </Hyphen>
-              <PhoneNumInput type="number" name="user_tel2" id="user_tel2" />
-              <Hyphen> - </Hyphen>
-              <PhoneNumInput type="number" name="user_tel3" id="user_tel3" />
-            </PhoneNumContainer>
-            <ItemContainer>
-              <Label>이메일</Label>
-              <EmailInput tyoe="email"></EmailInput>
+              <ErrorMsg>
+                비밀번호는 8자 이상이어야 하며, 숫자, 영문 대소문자, 특수문자를
+                모두 포함해야 합니다.
+              </ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label>우편번호</Label>
-              <ZipcodeInput
-                type="number"
-                name="user_zipcode"
-                id="user_zipcode"
+              <Label htmlFor="userPwd2">비밀번호 확인</Label>
+              <Input
+                type="password"
+                name="userPwd2"
+                id="userPwd2"
+                required
+                maxLength="16"
+                placeholder=" "
+                onKeyUp={checkPwd}
+                className="check"
+                isSame={isSame}
               />
-              <Button>우편번호 검색</Button>
+              <ErrorMsg>비밀번호가 일치하지 않습니다.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label>주소</Label>
-              <AddrInput type="text" name="user_addr" id="user_addr" />
-            </ItemContainer>
-            <ItemContainer>
-              <Label>상세주소</Label>
-              <AddrDetailInput
+              <Label htmlFor="userName">이름</Label>
+              <Input
                 type="text"
-                name="user_addrdetail"
-                id="user_addrdetail"
+                name="userName"
+                id="userName"
+                required
+                minLength="2"
+                maxLength="10"
+                placeholder=" "
+                pattern="^[가-힣]{2,10}$"
+              />
+              <ErrorMsg>올바른 이름을 입력해 주세요.</ErrorMsg>
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userNum">주민등록번호</Label>
+              {/* length가 6이 되면 밸류에 하이픈이 자동으로 입력됨 */}
+              <Input
+                type="text"
+                name="userNum"
+                id="userNum"
+                required
+                maxLength="14"
+                placeholder="-"
+                pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
+                onKeyUp={(e) => insertHyphen(e, 6)}
+              />
+              <ErrorMsg>올바른 주민등록번호를 입력해 주세요.</ErrorMsg>
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userTel">연락처</Label>
+              <Input
+                type="text"
+                name="userTel"
+                id="userTel"
+                required
+                minLength="9"
+                maxLength="11"
+                placeholder="'-' 없이 입력해 주세요"
+                pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
+              />
+              <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
+            </ItemContainer>
+
+            {/* 여기부터 유효성 검사 재개 */}
+            <ItemContainer>
+              <Label htmlFor="userEmail">이메일</Label>
+              <Input
+                type="email"
+                name="userEmail"
+                id="userEmail"
+                width="20em"
+                required
+                placeholder="@"
+                pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+              />
+              <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userZipcode">우편번호</Label>
+              <Input
+                type="text"
+                name="userZipcode"
+                id="userZipcode"
+                width="5em"
+                className="optional"
+                disabled
+              />
+              <Button type="button">우편번호 검색</Button>
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userAddr">주소</Label>
+              <Input
+                type="text"
+                name="userAddr"
+                id="userAddr"
+                width="20em"
+                className="optional"
               />
             </ItemContainer>
             <ItemContainer>
-              <Label>기념일</Label>
-              <AnniversaryInput type="date" name="user_date" id="user_date" />
+              <Label htmlFor="userAddrDetail">상세주소</Label>
+              <Input
+                type="text"
+                name="userAddrDetail"
+                id="userAddrDetail"
+                width="24em"
+                className="optional"
+              />
+            </ItemContainer>
+            <ItemContainer>
+              <Label htmlFor="userDate">기념일</Label>
+              <Input
+                type="date"
+                name="userDate"
+                id="userDate"
+                width="12em"
+                className="optional"
+              />
             </ItemContainer>
           </LeftSection>
           <RightSection>
             <UserImgContainer>
               <i className="far fa-user"></i>
             </UserImgContainer>
-            <Button>사진 선택</Button>
+            <Input
+              type="file"
+              id="userPhoto"
+              name="userPhoto"
+              accept="image/*"
+              onChange={onChangePhoto}
+            />
           </RightSection>
         </TopSection>
 
@@ -258,51 +318,61 @@ const IndividualForm = ({ isIndividual = true }) => {
             <Label>관심사</Label>
             <OptionsContainer>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 임시
+                <Checkbox type="checkbox" name="user_option" value="임시" />{" "}
+                임시
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 로
+                <Checkbox type="checkbox" name="user_option" /> 로
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 다양한 값을 입력하여
+                <Checkbox type="checkbox" name="user_option" /> 다양한 값을
+                입력하여
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 박스의 크기가 예쁘게 늘어나는지
-                확인하기 위한
+                <Checkbox type="checkbox" name="user_option" /> 박스의 크기가
+                예쁘게 늘어나는지 확인하기 위한
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 체크박스입니다.
+                <Checkbox type="checkbox" name="user_option" /> 체크박스입니다.
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 값은 아직
+                <Checkbox type="checkbox" name="user_option" /> 값은 아직
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 전달되지 않는다는 사실을 부디
-                명심하시고
+                <Checkbox type="checkbox" name="user_option" /> 전달되지
+                않는다는 사실을 부디 명심하시고
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 값이 전달되지 않는다고 엄한
-                노트북에 샷건을 치지 않기를
+                <Checkbox type="checkbox" name="user_option" /> 값이 전달되지
+                않는다고 엄한 노트북에 샷건을 치지 않기를
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 간절하게 바랍니다.
+                <Checkbox type="checkbox" name="user_option" /> 간절하게
+                바랍니다.
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 이만
+                <Checkbox type="checkbox" name="user_option" /> 이만
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 아직도 있나?
+                <Checkbox type="checkbox" name="user_option" /> 아직도 있나?
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 그만하자
+                <Checkbox type="checkbox" name="user_option" /> 그만하자
               </CheckboxLabel>
               <CheckboxLabel>
-                <Checkbox type="checkbox" /> 이정도면 됐지
+                <Checkbox type="checkbox" name="user_option" /> 이정도면 됐지
+              </CheckboxLabel>
+              <CheckboxLabel>
+                <Checkbox type="checkbox" name="user_option" /> 나중엔 DB에
+                있는거 가져와서 map으로 반복을 하겟쥬?
               </CheckboxLabel>
             </OptionsContainer>
           </ItemContainer>
         </BottomSection>
-        <input type="submit" value="제출" />
+        <SubmitSection>
+          <SubmitButton as="input" type="reset" value="초기화" />
+          <SubmitButton as="input" type="submit" value="회원가입" />
+        </SubmitSection>
       </Form>
     </Container>
   );

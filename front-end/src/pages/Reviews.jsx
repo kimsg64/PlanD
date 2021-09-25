@@ -9,6 +9,7 @@ const Stage = styled.div`
   height: auto;
   margin-top: var(--margin-header-to-body);
   perspective: 800px;
+  overflow: hidden;
 `;
 
 const ReviewsContainer = styled.ul`
@@ -93,7 +94,7 @@ const Reviews = () => {
   ];
   const posterNum = testReivew.length;
   const posterAngle = 360 / posterNum;
-  const sliderRef = useRef();
+  const ringRef = useRef();
   // let deg = 0;
 
   // 링 포스터 이동
@@ -108,7 +109,7 @@ const Reviews = () => {
       <Header />
       <BodyLayout>
         <Stage>
-          <ReviewsContainer ref={sliderRef} deg={deg}>
+          <ReviewsContainer ref={ringRef} deg={deg}>
             <div>
               {testReivew.map((reviewNum) => {
                 return (

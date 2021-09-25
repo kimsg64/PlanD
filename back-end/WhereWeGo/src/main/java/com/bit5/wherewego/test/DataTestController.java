@@ -20,7 +20,7 @@ public class DataTestController {
 	}
 	
    @PostMapping("/registertest")
-   public ModelAndView registered(@RequestBody Map<String, Object> testData) {
+   public ModelAndView registered(Map<String, Object> testData) {
       System.out.println(testData);
       System.out.println("³ª¿À³ª?");
       ModelAndView mav = new ModelAndView();

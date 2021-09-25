@@ -3,7 +3,8 @@ import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import styled from "styled-components";
-import { MenuTitle, Button } from "../components/body/mixin/Mixin";
+import { MenuTitle } from "../components/body/mixin/Mixin";
+import { Button } from "../components/body/registrationForm/FormMixin";
 
 // 상단 프로필 섹션
 const ProfileSummary = styled.section`

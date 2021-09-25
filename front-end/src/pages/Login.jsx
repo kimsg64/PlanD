@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import BodyLayout from "../components/body/BodyLayout";
-import { Checkbox, CheckboxLabel } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
+import {
+  Checkbox,
+  CheckboxLabel,
+} from "../components/body/registrationForm/FormMixin";
 
 const Modal = styled.form`
   width: 480px;
@@ -50,7 +53,7 @@ const InputBox = styled.input`
 `;
 
 const RadioContainer = styled.div`
-  width: 64%;
+  width: 68%;
   margin-top: var(--margin-default);
   display: flex;
   justify-content: space-between;

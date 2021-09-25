@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const SignUpForm = styled.form`
-  width: 52vw;
+  width: 60vw;
   height: auto;
   display: flex;
   flex-direction: column;
