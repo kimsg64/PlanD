@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
+import axios from "axios";
 import Form from "./Form";
 import {
   Button,
@@ -47,12 +47,6 @@ const CompanyForm = ({ isIndividual = true }) => {
       .then((response) => console.log(response));
     // window.location.href = "http://localhost:3000/";
   };
-
-  // const handleTest = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target.value);
-  //   setTest(e.target.value);
-  // };
 
   return (
     <Container isVisible={isIndividual}>

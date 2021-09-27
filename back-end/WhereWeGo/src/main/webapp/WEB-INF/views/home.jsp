@@ -19,7 +19,7 @@
 1. Servers > Tomcat... > server.xml 수정
 
 프로젝트용	    
-<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="Bit05" type="javax.sql.DataSource" url="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE" username="c##Bit05"/>
+<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" axWait="-1" name="jdbc/myoracle" password="Bit05" type="javax.sql.DataSource" url="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE" username="c##Bit05"/>
 
 수업용
 <Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="c##scott"/>

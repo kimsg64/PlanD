@@ -15,7 +15,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:https://www.naver.com/");
+		mav.setViewName("home/");
 		return mav;
 	}
 	

@@ -9,26 +9,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	UserDAO dao = new UserDAO();
 	
+	// 회원가입
 	@PostMapping(path = "/user/getUserData")
-	public String getUserData(@RequestBody UserVO userData) {
-		System.out.println(userData.getUserId());
-		System.out.println(userData.getUserPwd());
-		System.out.println(userData.getUserName());
-		System.out.println(userData.getUserNum());
-		System.out.println(userData.getUserTel());
-		System.out.println(userData.getUserEmail());
-		System.out.println(userData.getUserZipcode());
-		System.out.println(userData.getUserAddr());
-		System.out.println(userData.getUserAddrDetail());
-		System.out.println(userData.getUserDate());
-		System.out.println(userData.getUserOption());
+	public int getUserData(@RequestBody UserVO userData) {
 		int result = dao.insertUser(userData);
 		if(result > 0) {
 			System.out.println("you did it~!");			
 		} else {
 			System.out.println("fail");			
 		}
-		return "/";
+		return result;
 	}
-
+	
+	// 로그인
+	@PostMapping(path = "")
+	public int userLogin(@RequestBody UserVO userData) {
+		int result = dao.selectUser(userData);
+		if(result > 0) {
+			System.out.println("you did it~!");
+		} else {
+			System.out.println("fail");
+		}
+		return result;
+	}
 }

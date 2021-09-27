@@ -3,88 +3,103 @@ package com.bit5.wherewego.user;
 public class UserVO {
 
 	private String userId;
-	private String userPwd;
-	private String userName;
-	private String userNum;
-	private String userTel;
-	private String userEmail;
-	private String userZipcode;
-	private String userAddr;
-	private String userAddrDetail;
-	private String userDate;
-	private String userPhotoUrl;
-	private String userOption;
+	private String pwd;
+	private String name;
+	private String num;
+	private String tel;
+	private String email;
+	private String zip;
+	private String addr;
+	private String startdate;
+	private String photo;
+	private String opt;
+	private String zzim;
+	private String history;
+	private String regdate;
+	
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserPwd() {
-		return userPwd;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setUserPwd(String userPwd) {
-		this.userPwd = userPwd;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getUserNum() {
-		return userNum;
+	public String getNum() {
+		return num;
 	}
-	public void setUserNum(String userNum) {
-		this.userNum = userNum;
+	public void setNum(String num) {
+		this.num = num;
 	}
-	public String getUserTel() {
-		return userTel;
+	public String getTel() {
+		return tel;
 	}
-	public void setUserTel(String userTel) {
-		this.userTel = userTel;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getUserZipcode() {
-		return userZipcode;
+	public String getZip() {
+		return zip;
 	}
-	public void setUserZipcode(String userZipcode) {
-		this.userZipcode = userZipcode;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
-	public String getUserAddr() {
-		return userAddr;
+	public String getAddr() {
+		return addr;
 	}
-	public void setUserAddr(String userAddr) {
-		this.userAddr = userAddr;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
-	public String getUserAddrDetail() {
-		return userAddrDetail;
+	public String getStartdate() {
+		return startdate;
 	}
-	public void setUserAddrDetail(String userAddrDetail) {
-		this.userAddrDetail = userAddrDetail;
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
 	}
-	public String getUserDate() {
-		return userDate;
+	public String getPhoto() {
+		return photo;
 	}
-	public void setUserDate(String userDate) {
-		this.userDate = userDate;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
-	public String getUserPhotoUrl() {
-		return userPhotoUrl;
+	public String getOpt() {
+		return opt;
 	}
-	public void setUserPhotoUrl(String userPhotoUrl) {
-		this.userPhotoUrl = userPhotoUrl;
+	public void setOpt(String opt) {
+		this.opt = opt;
 	}
-	public String getUserOption() {
-		return userOption;
+	public String getZzim() {
+		return zzim;
 	}
-	public void setUserOption(String userOption) {
-		this.userOption = userOption;
+	public void setZzim(String zzim) {
+		this.zzim = zzim;
+	}
+	public String getHistory() {
+		return history;
+	}
+	public void setHistory(String history) {
+		this.history = history;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	
 }
