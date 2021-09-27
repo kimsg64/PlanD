@@ -4,7 +4,8 @@ import styled, { css } from "styled-components";
 export const Button = styled.button`
   margin: 0 var(--margin-line-space);
   padding: var(--padding-small);
-  font-weight: 800;
+  font-weight: ${(props) => props.weight || "800"};
+  font-size: var(--font-size-small);
   background-color: var(--color-brown);
   border: none;
   border-radius: 4px;
@@ -58,8 +59,9 @@ export const Input = styled.input`
   /* 유효성 체크 경고문구 표시 */
   &:invalid:not(:focus):not(:placeholder-shown):not(.check) {
     border-bottom: 2px solid var(--color-pink);
+    /* 에러 메시지 표시 */
     & ~ div {
-      max-width: 16vw;
+      max-width: 12vw;
       display: block;
     }
   }
@@ -87,6 +89,11 @@ export const Input = styled.input`
     display: ${(props) => {
       return props.isSame ? "none" : "block";
     }};
+  }
+
+  /* 파일 업로드 스타일링 */
+  &[type="file"] {
+    display: none;
   }
 `;
 

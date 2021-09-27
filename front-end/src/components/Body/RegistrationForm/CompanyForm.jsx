@@ -42,9 +42,10 @@ const CompanyForm = ({ isIndividual = true }) => {
       testData: test,
     };
     axios
+      // .post("/wherewego/user/getUserData", body)
       .post("/wherewego/registertest", body)
       .then((response) => console.log(response));
-    window.location.href = "http://localhost:3000/";
+    // window.location.href = "http://localhost:3000/";
   };
 
   // const handleTest = (e) => {
@@ -67,7 +68,7 @@ const CompanyForm = ({ isIndividual = true }) => {
         </ItemContainer>
         <ItemContainer>
           <Label>비밀번호 확인</Label>
-          <Input type="password" name="" />
+          <Input type="password" name="" autoComplete="new-password" />
         </ItemContainer>
         <ItemContainer>
           <Label>상호명</Label>
