@@ -138,6 +138,11 @@ const IndividualForm = ({ isIndividual = true }) => {
     });
   };
 
+  const onResetForm = (e) => {
+    // 리셋 확인 메시지
+    console.log(e);
+  };
+
   const onSubmitForm = (e) => {
     e.preventDefault();
     const body = {
@@ -183,6 +188,7 @@ const IndividualForm = ({ isIndividual = true }) => {
       <Form
         id="individual_form"
         onSubmit={onSubmitForm}
+        onReset={onResetForm}
         encType="multipart/form-data"
       >
         <TopSection>

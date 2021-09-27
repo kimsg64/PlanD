@@ -22,7 +22,7 @@ public class DataTestController {
    @PostMapping("/registertest")
    public ModelAndView registered(Map<String, Object> testData) {
       System.out.println(testData);
-      System.out.println("³ª¿À³ª?");
+      System.out.println("you did it");
       ModelAndView mav = new ModelAndView();
       
       Map<String, Object> result = new HashMap<String, Object>();
