@@ -49,3 +49,4 @@
 - styled-components
 - react-router
 - axios
+- react-cookie
