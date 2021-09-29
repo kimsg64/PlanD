@@ -49,7 +49,7 @@ const MemberHome = () => {
         <MenuSection>
           <TimerContainer>312일</TimerContainer>
           <CalendarContainer>
-            <i class="far fa-calendar-alt"></i>
+            <i className="far fa-calendar-alt"></i>
           </CalendarContainer>
           <NextPlanContainer>next</NextPlanContainer>
           <ReviewsContainer>reviews</ReviewsContainer>
