@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { read_cookie, delete_cookie } from "sfcookies";
 
 const HeaderContainer = styled.header`
   width: calc(100% - 16px);
@@ -57,6 +58,10 @@ const LoginBtnContainer = styled.div`
 `;
 
 const Header = () => {
+  const onClickLogout = () => {
+    delete_cookie("userId");
+  };
+
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -81,10 +86,20 @@ const Header = () => {
       </MenuContainer>
       <LoginBtnContainer>
         <div>
-          <Link to={`/login`}>로그인</Link>
+          {read_cookie("userId").length > 0 ? (
+            <Link to={`/mypage`}>마이페이지</Link>
+          ) : (
+            <Link to={`/registration`}>회원가입</Link>
+          )}
         </div>
         <div>
-          <Link to={`/registration`}>회원가입</Link>
+          {read_cookie("userId").length > 0 ? (
+            <Link to={`/`} onClick={onClickLogout}>
+              로그아웃
+            </Link>
+          ) : (
+            <Link to={`/login`}>로그인</Link>
+          )}
         </div>
       </LoginBtnContainer>
     </HeaderContainer>
