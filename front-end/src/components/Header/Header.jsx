@@ -66,24 +66,26 @@ const Header = () => {
     <HeaderContainer>
       <LogoContainer>
         <Link to={`/`}>
-          <img id="icon" src="images/logos/icon_pin.png" alt="icon" />
-          <img id="logo" src="images/logos/logo.png" alt="logo" />
+          <img id="icon" src="/images/logos/icon_pin.png" alt="icon" />
+          <img id="logo" src="/images/logos/logo.png" alt="logo" />
         </Link>
       </LogoContainer>
-      <MenuContainer>
-        <li>
-          <Link to={`/`}>홈</Link>
-        </li>
-        <li>
-          <Link to={`/Planning`}>플랜 짜기</Link>
-        </li>
-        <li>
-          <Link to={`/Reviews`}>후기</Link>
-        </li>
-        <li>
-          <Link to={`/userrecommendation`}>코스 제안</Link>
-        </li>
-      </MenuContainer>
+      {read_cookie("userId").length > 0 ? (
+        <MenuContainer>
+          <li>
+            <Link to={`/`}>홈</Link>
+          </li>
+          <li>
+            <Link to={`/Planning`}>플랜 짜기</Link>
+          </li>
+          <li>
+            <Link to={`/Reviews`}>후기</Link>
+          </li>
+          <li>
+            <Link to={`/userrecommendation`}>코스 제안</Link>
+          </li>
+        </MenuContainer>
+      ) : null}
       <LoginBtnContainer>
         <div>
           {read_cookie("userId").length > 0 ? (
