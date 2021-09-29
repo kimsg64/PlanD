@@ -2,9 +2,10 @@
 // 1. ID 중복 확인
 // 2. 우편번호 검색
 // 3. 이미지 파일 업로드(이미지 파일용 formData 전송 or 수업시간 URL 추적방법 조사)
+// 4. DB에 저장된 관심사 데이터 표시하기
 
 // ★★★ 발견된 에러
-// 1. input창 한글 받아갈 때 마지막 받침을 인식하지 못함
+// [해결] input창 한글 받아갈 때 마지막 받침을 인식하지 못함 ★ keyDown => keyUp ★
 // 2. 비밀번호 일치 여부, 추가 입력을 인식하지 못함
 // 3. 유효성 검사 시, null 값이 전달될 때 커스텀 경고가 뜨지 않음
 
@@ -255,7 +256,6 @@ const IndividualForm = ({ isIndividual = true }) => {
                 className="check"
                 isSame={isSame}
                 autoComplete="new-password"
-                onKeyDown={(e) => setName(e.target.value)}
               />
               <ErrorMsg>비밀번호가 일치하지 않습니다.</ErrorMsg>
             </ItemContainer>
@@ -270,6 +270,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 maxLength="8"
                 placeholder=" "
                 pattern="^[가-힣]{2,8}$"
+                onKeyDown={(e) => setName(e.target.value)}
               />
               <ErrorMsg>올바른 이름을 입력해 주세요.</ErrorMsg>
             </ItemContainer>
@@ -343,7 +344,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 id="addr"
                 width="20em"
                 className="optional"
-                onKeyDown={(e) => setAddr(e.target.value)}
+                onKeyUp={(e) => setAddr(e.target.value)}
               />
             </ItemContainer>
             <ItemContainer>
@@ -354,7 +355,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 id="addrDetail"
                 width="24em"
                 className="optional"
-                onKeyDown={(e) => setAddrDetail(e.target.value)}
+                onKeyUp={(e) => setAddrDetail(e.target.value)}
               />
             </ItemContainer>
             <ItemContainer>
