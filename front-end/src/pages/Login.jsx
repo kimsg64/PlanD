@@ -35,7 +35,7 @@ const InputContainer = styled.div`
     font-weight: 800;
     position: relative;
     top: 40px;
-    left: 16%;
+    left: 20%;
     visibility: ${(props) => props.visibility};
   }
 `;
@@ -87,12 +87,12 @@ const SubmitButton = styled(InputBox)`
   }
 `;
 
-const FindIDPWD = styled(SubmitButton)`
+const NormalButton = styled(SubmitButton)`
   margin-top: calc(var(--margin-default) / 2);
 `;
 
 const Login = () => {
-  const [classification, setClassification] = useState("");
+  const [classification, setClassification] = useState("individual");
   const [userId, setUserId] = useState("");
   const [pwd, setPwd] = useState("");
   const [keepSession, setKeepSession] = useState(false);
@@ -105,10 +105,10 @@ const Login = () => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    // console.log(classification);
-    // console.log(keepSession);
+    console.log(classification);
+    console.log(keepSession);
 
-    // 사업자 유저인 경우 매핑 주소 설정
+    // 사업자 유저인 경우 매핑 주소 설정해야 함
     const url =
       classification === "individual" ? "/wherewego/user/userLogin" : "";
     // console.log(url);
@@ -121,13 +121,13 @@ const Login = () => {
     axios
       .post(url, body)
       .then((response) => {
-        console.log("response : ", response.data);
+        // console.log("response : ", response.data);
         if (response.data > 0) {
           setIsSucceeded(true);
           // 로그인 성공시 쿠키 설정 후 다시 백으로 보내서 세션에 등록
           bake_cookie("userId", userId);
           axios.get("/wherewego/user/checkSession").then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             res.data
               ? (window.location.href = "http://localhost:3000/memberhome/")
               : alert("로그인 실패...");
@@ -137,7 +137,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.log("failed", error);
+        // console.log("failed", error);
         setIsSucceeded(false);
       });
   };
@@ -157,6 +157,7 @@ const Login = () => {
                   required
                   value="individual"
                   onClick={(e) => setClassification(e.target.value)}
+                  checked={classification === "individual" ? true : false}
                 />
                 개인
               </CheckboxLabelWithoutMargin>
@@ -167,6 +168,7 @@ const Login = () => {
                   required
                   value="company"
                   onClick={(e) => setClassification(e.target.value)}
+                  checked={classification === "company" ? true : false}
                 />
                 사업자
               </CheckboxLabelWithoutMargin>
@@ -200,7 +202,7 @@ const Login = () => {
             </CheckboxLabelWithoutMargin>
           </InputContainer>
           <SubmitButton type="submit" value="Sign in" />
-          <FindIDPWD type="button" value="ID, 비밀번호 찾기" />
+          <NormalButton type="button" value="ID, 비밀번호 찾기" />
         </LoginForm>
       </BodyLayout>
       <Footer />

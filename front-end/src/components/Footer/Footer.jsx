@@ -5,7 +5,7 @@ import styled from "styled-components";
 const FooterContainer = styled.footer`
   width: 100%;
   height: var(--footer-height);
-  background-color: var(--color-black);
+  background-color: var(--color-brown);
   margin-top: var(--margin-body-to-footer);
   display: flex;
   justify-content: center;
