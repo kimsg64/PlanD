@@ -1,21 +1,20 @@
 /* style 변수 설정 */
 :root {
-  /* color */
-  --concept-color1: hsl(174, 53%, 73%);
-  --concept-color2: hsl(163, 48%, 68%);
-  --concept-color3: hsl(151, 53%, 79%);
-  --concept-color4: hsl(188, 61%, 88%);
-  /* 5번이 인기 컬러입니다 */
-  --concept-color5: hsl(130, 45%, 90%);
-  --concept-color6: hsl(78, 59%, 79%);
-
-  /* color (confirmed) */
+  /* 짤린 색깔들 */
+  --color1: hsl(174, 53%, 73%);
+  --color2: hsl(163, 48%, 68%);
+  --color3: hsl(151, 53%, 79%);
+  --color4: hsl(188, 61%, 88%);
+  --color5: hsl(130, 45%, 90%);
+  --color6: hsl(78, 59%, 79%);
   --color-lightpink: #ffdad7;
-  --color-yellow: #fed16c;
   --color-pink: #fd7f80;
-  --color-brown: #786352;
+  --color-lightbrown: #786352;
   --color-black: #2c3e50;
 
+  --color-brown: #32221d;
+  --color-yellow: #fed16c;
+  --color-line8: #d90073;
   /* size(px) */
   --header-height: 60px;
   --footer-height: 200px;

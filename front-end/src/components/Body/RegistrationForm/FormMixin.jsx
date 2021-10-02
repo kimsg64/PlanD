@@ -1,22 +1,5 @@
 import styled, { css } from "styled-components";
-
-// 버튼
-export const Button = styled.button`
-  margin: 0 var(--margin-line-space);
-  padding: var(--padding-small);
-  font-weight: ${(props) => props.weight || "800"};
-  font-size: var(--font-size-small);
-  background-color: var(--color-brown);
-  border: none;
-  border-radius: 4px;
-  color: white;
-  transition-duration: 0.2s;
-  :hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    color: var(--color-yellow);
-  }
-`;
+import { Button } from "../mixin/Mixin";
 
 // 제출 버튼
 export const SubmitButton = styled(Button)`

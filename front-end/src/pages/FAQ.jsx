@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
-import { MenuTitle } from "../components/body/mixin/Mixin";
-import { Button, Input } from "../components/body/registrationForm/FormMixin";
+import { MenuTitle, Button } from "../components/body/mixin/Mixin";
+import { Input } from "../components/body/registrationForm/FormMixin";
 
 const NoticeContainer = styled.ul`
   width: 1200px;

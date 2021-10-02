@@ -9,6 +9,7 @@ import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import FAQ from "../pages/FAQ";
 import Planning from "../pages/Planning";
+import PlanningDetail from "../pages/PlanningDetail";
 import Registration from "../pages/Registration";
 import Reviews from "../pages/Reviews";
 import Reviews2 from "../pages/Reviews2";
@@ -28,6 +29,7 @@ const App = () => {
       <Route path="/mypage" component={MyPage} />
       <Route path="/notice" component={Notice} />
       <Route path="/planning" component={Planning} />
+      <Route path="/planningdetail" component={PlanningDetail} />
       <Route path="/registration" component={Registration} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/reviews2" component={Reviews2} />

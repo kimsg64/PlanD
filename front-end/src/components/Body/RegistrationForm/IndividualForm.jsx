@@ -12,9 +12,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Form from "./Form";
+import Form from "../mixin/Form";
 import {
-  Button,
   Label,
   Input,
   Checkbox,
@@ -23,6 +22,7 @@ import {
   ItemContainer,
   ErrorMsg,
 } from "../registrationForm/FormMixin";
+import { Button } from "../mixin/Mixin";
 
 const Container = styled.div`
   overflow: hidden;

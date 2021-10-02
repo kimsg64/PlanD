@@ -2,7 +2,6 @@ package com.bit5.wherewego.user;
 
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.CookieValue;
