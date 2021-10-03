@@ -1,6 +1,13 @@
 import React from "react";
 import BodyLayout from "../components/body/BodyLayout";
+import StationViewer from "../components/body/map/metorMap/StationViewer";
 import Form from "../components/body/mixin/Form";
+import {
+  Checkbox,
+  CheckboxLabel,
+  OptionsContainer,
+  StartButton,
+} from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 
@@ -9,6 +16,9 @@ const PlanningDetail = () => {
     <>
       <Header />
       <BodyLayout>
+        <StationViewer />
+        {/* 검색 창 같은거 없애든지... */}
+        {/* 아니면 구조를 바꿔서 아래 페이지만 옆으로 넘기는건?(Single page) */}
         <Form>
           <div>
             <label>
@@ -49,6 +59,32 @@ const PlanningDetail = () => {
               </select>
             </label>
           </div>
+          <OptionsContainer>
+            <CheckboxLabel>
+              <Checkbox type="checkbox" value="일단 그냥 모양만 낸건데" />
+              일단 그냥 모양만 낸건데
+            </CheckboxLabel>
+            <CheckboxLabel>
+              <Checkbox type="checkbox" value="가만 생각해보면" />
+              가만 생각해보면
+            </CheckboxLabel>
+            <CheckboxLabel>
+              <Checkbox type="checkbox" value="나중에" />
+              나중에
+            </CheckboxLabel>
+            <CheckboxLabel>
+              <Checkbox
+                type="checkbox"
+                value="어차피 로그인할때 있었던거 비슷하게 가져올거같기는"
+              />
+              어차피 로그인할때 있었던거 비슷하게 가져올거같기는
+            </CheckboxLabel>
+            <CheckboxLabel>
+              <Checkbox type="checkbox" value="한듯" />
+              한듯
+            </CheckboxLabel>
+          </OptionsContainer>
+          <StartButton>검색</StartButton>
         </Form>
       </BodyLayout>
       <Footer />
