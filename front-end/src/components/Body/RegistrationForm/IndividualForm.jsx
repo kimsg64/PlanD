@@ -5,7 +5,7 @@
 // 4. DB에 저장된 관심사 데이터 표시하기
 
 // ★★★ 발견된 에러
-// [해결] input창 한글 받아갈 때 마지막 받침을 인식하지 못함 ★ keyDown => keyUp ★
+// [해결] FormInput창 한글 받아갈 때 마지막 받침을 인식하지 못함 ★ keyDown => keyUp ★
 // 2. 비밀번호 일치 여부, 추가 입력을 인식하지 못함
 // 3. 유효성 검사 시, null 값이 전달될 때 커스텀 경고가 뜨지 않음
 
@@ -15,14 +15,17 @@ import axios from "axios";
 import Form from "../mixin/Form";
 import {
   Label,
-  Input,
-  Checkbox,
-  CheckboxLabel,
+  FormInput,
   SubmitButton,
   ItemContainer,
   ErrorMsg,
 } from "../registrationForm/FormMixin";
-import { Button } from "../mixin/Mixin";
+import {
+  Button,
+  Checkbox,
+  CheckboxLabel,
+  OptionsContainer,
+} from "../mixin/Mixin";
 
 const Container = styled.div`
   overflow: hidden;
@@ -55,18 +58,6 @@ const RightSection = styled.section`
 
 const BottomSection = styled.section`
   width: 100%;
-`;
-
-// 옵션 컨테이너
-const OptionsContainer = styled.div`
-  max-width: 44vw;
-  height: auto;
-  margin-top: var(--margin-default);
-  border: 2px solid var(--color-brown);
-  border-radius: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--padding-default);
 `;
 
 // 사진 입력 컨테이너
@@ -208,7 +199,7 @@ const IndividualForm = ({ isIndividual = true }) => {
           <LeftSection>
             <ItemContainer>
               <Label htmlFor="userId">아이디</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="userId"
                 id="userId"
@@ -227,7 +218,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="pwd">비밀번호</Label>
-              <Input
+              <FormInput
                 type="password"
                 name="pwd"
                 id="pwd"
@@ -245,7 +236,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="userPwd2">비밀번호 확인</Label>
-              <Input
+              <FormInput
                 type="password"
                 name="userPwd2"
                 id="userPwd2"
@@ -261,7 +252,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="name">이름</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="name"
                 id="name"
@@ -277,7 +268,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             <ItemContainer>
               <Label htmlFor="num">주민등록번호</Label>
               {/* length가 6이 되면 밸류에 하이픈이 자동으로 입력됨 */}
-              <Input
+              <FormInput
                 type="text"
                 name="num"
                 id="num"
@@ -292,7 +283,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="tel">연락처</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="tel"
                 id="tel"
@@ -303,13 +294,14 @@ const IndividualForm = ({ isIndividual = true }) => {
                 pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
                 onKeyDown={(e) => setTel(e.target.value)}
               />
+              <Button type="button">본인 인증</Button>
               <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
 
             {/* 여기부터 유효성 검사 재개 */}
             <ItemContainer>
               <Label htmlFor="email">이메일</Label>
-              <Input
+              <FormInput
                 type="email"
                 name="email"
                 id="email"
@@ -323,7 +315,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="zip">우편번호</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="zip"
                 id="zip"
@@ -338,7 +330,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="addr">주소</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="addr"
                 id="addr"
@@ -349,7 +341,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="addrDetail">상세주소</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="addrDetail"
                 id="addrDetail"
@@ -360,7 +352,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="startdate">기념일</Label>
-              <Input
+              <FormInput
                 type="date"
                 name="startdate"
                 id="startdate"
@@ -381,7 +373,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             <Button as="Label" htmlFor="photo" weight="600">
               파일 선택
             </Button>
-            <Input
+            <FormInput
               type="file"
               id="photo"
               name="photo"
@@ -527,8 +519,8 @@ const IndividualForm = ({ isIndividual = true }) => {
           </ItemContainer>
         </BottomSection>
         <SubmitSection>
-          <SubmitButton as="input" type="reset" value="초기화" />
-          <SubmitButton as="input" type="submit" value="회원가입" />
+          <SubmitButton as="FormInput" type="reset" value="초기화" />
+          <SubmitButton as="FormInput" type="submit" value="회원가입" />
         </SubmitSection>
       </Form>
     </Container>

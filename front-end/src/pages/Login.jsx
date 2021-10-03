@@ -3,10 +3,7 @@ import styled from "styled-components";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
-import {
-  Checkbox,
-  CheckboxLabel,
-} from "../components/body/registrationForm/FormMixin";
+import { Checkbox, CheckboxLabel } from "../components/body/mixin/Mixin";
 import { bake_cookie } from "sfcookies";
 import axios from "axios";
 

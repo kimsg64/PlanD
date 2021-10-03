@@ -14,7 +14,15 @@
 
   --color-brown: #32221d;
   --color-yellow: #fed16c;
+  --color-line1: #263c96;
+  --color-line2: #3cb44a;
+  --color-line3: #ff7300;
+  --color-line4: #2c9ede;
+  --color-line5: #8936e0;
+  --color-line6: #b5500b;
+  --color-line7: #697215;
   --color-line8: #d90073;
+  --color-line9: #cea43a;
   /* size(px) */
   --header-height: 60px;
   --footer-height: 200px;

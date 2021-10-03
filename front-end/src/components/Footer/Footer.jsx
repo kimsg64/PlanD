@@ -49,8 +49,9 @@ const Footer = () => {
               <Link to={`/Notice`}>공지사항</Link>
             </NavItems>
             <NavItems>
-              <Link to={`/about`}>서비스 소개</Link>
+              <Link to={`/about`}>서비스 안내</Link>
             </NavItems>
+            <NavItems>이용 방법</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>
@@ -68,7 +69,7 @@ const Footer = () => {
           <NavItemsTitle>
             광고
             <NavItems>
-              <a href="http://localhost:9090/wherewego/">광고 문의</a>
+              <Link to={`/adforad`}>광고 문의</Link>
             </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>

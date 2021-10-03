@@ -5,16 +5,10 @@ import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import ImageSlider from "../components/body/imageSlider/ImageSlider";
-import { Button } from "../components/body/mixin/Mixin";
+import { StartButton } from "../components/body/mixin/Mixin";
 import { Link } from "react-router-dom";
 import { read_cookie } from "sfcookies";
 import Dots from "../components/body/imageSlider/Dots";
-
-const StartButton = styled(Button)`
-  margin-top: calc(var(--margin-default));
-  padding: calc(var(--padding-default) / 2) var(--padding-default);
-  font-size: var(--font-size-large);
-`;
 
 const Home = () => {
   return (

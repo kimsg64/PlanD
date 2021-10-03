@@ -11,10 +11,14 @@ const Circle = styled.div`
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: var(--color-yellow);
   position: relative;
+  background-color: inherit;
   top: ${(props) => props.fromTop};
   left: ${(props) => props.fromLeft};
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-yellow);
+  }
 `;
 
 const SmallCircle = styled(Circle)`
