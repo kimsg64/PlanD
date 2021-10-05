@@ -1,31 +1,53 @@
 /* style 변수 설정 */
 :root {
-  /* concept color */
-  --concept-color1: hsl(174, 53%, 73%);
-  --concept-color2: hsl(163, 48%, 68%);
-  --concept-color3: hsl(151, 53%, 79%);
-  --concept-color4: hsl(188, 61%, 88%);
-  /* 5번이 인기 컬러입니다 */
-  --concept-color5: hsl(130, 45%, 90%);
-  --concept-color6: hsl(78, 59%, 79%);
+  /* 짤린 색깔들 */
+  --color1: hsl(174, 53%, 73%);
+  --color2: hsl(163, 48%, 68%);
+  --color3: hsl(151, 53%, 79%);
+  --color4: hsl(188, 61%, 88%);
+  --color5: hsl(130, 45%, 90%);
+  --color6: hsl(78, 59%, 79%);
+  --color-lightpink: #ffdad7;
+  --color-pink: #fd7f80;
+  --color-lightbrown: #786352;
+  --color-black: #2c3e50;
 
+  --color-brown: #32221d;
+  --color-yellow: #fed16c;
+  --color-line1: #263c96;
+  --color-line2: #3cb44a;
+  --color-line3: #ff7300;
+  --color-line4: #2c9ede;
+  --color-line5: #8936e0;
+  --color-line6: #b5500b;
+  --color-line7: #697215;
+  --color-line8: #d90073;
+  --color-line9: #cea43a;
   /* size(px) */
-  --header-height: 80px;
+  --header-height: 60px;
   --footer-height: 200px;
 
   /* padding */
   --padding-default: 20px;
+  --padding-small: 8px;
+  --padding-tiny: 4px;
   --margin-default: 40px;
+  --margin-line-space: 10px;
+  --margin-header-to-body: 160px;
+  --margin-body-to-footer: 200px;
+
+  /* title font size */
+  --font-size-huge: 160px;
+  --font-size-title-large: 60px;
+  --font-size-title-normal: 40px;
+  --font-size-title-small: 20px;
 
   /* font size */
-  --font-size-big-title: 40px;
-  --font-size-default-title: 24px;
-  --font-size-default: 16px;
-  --font-size-small-title: 13px;
-  --font-size-small: 11px;
-
-  /* font color */
-  --font-color-default: hsl(218, 19%, 23%);
+  --font-size-large: 24px;
+  --font-size-normal: 18px;
+  --font-size-small: 14px;
+  --font-size-tiny: 12px;
+  --font-size-3d: 10px;
 }
 
 /* frame */
@@ -38,7 +60,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  color: var(--font-color-default);
+  color: var(--color-black);
 }
 
 * {
@@ -46,6 +68,7 @@ body {
   padding: 0;
   box-sizing: inherit;
   color: inherit;
+  user-select: none;
 }
 
 a {

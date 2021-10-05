@@ -1,10 +1,14 @@
 package com.bit5.wherewego.test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController("/")
 public class DataTestController {
@@ -14,4 +18,18 @@ public class DataTestController {
 		List<DataTestVO> list = dao.dataSelect();
 		return list;
 	}
+	
+   @PostMapping("/registertest")
+   public ModelAndView registered(Map<String, Object> testData) {
+      System.out.println(testData);
+      System.out.println("you did it");
+      ModelAndView mav = new ModelAndView();
+      
+      Map<String, Object> result = new HashMap<String, Object>();
+      result.put("data", testData);
+      
+      mav.addObject(result);
+      mav.setViewName("/");
+      return mav;
+   }
 }

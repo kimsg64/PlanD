@@ -1,110 +1,143 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import BodyLayout from "../components/Body/BodyLayout";
-import Footer from "../components/Footer/Footer";
-import Users from "../server/Users";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+
+const Stage = styled.div`
+  width: auto;
+  height: auto;
+  margin-top: var(--margin-header-to-body);
+  perspective: 800px;
+  overflow: hidden;
+`;
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
   height: 80vh;
-  display: flex;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  user-select: none;
+  align-items: center;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition-duration: 1s;
+  transform: rotateY(
+    ${(props) => {
+      return props.deg + "deg";
+    }}
+  );
 `;
 
 const ReviewItem = styled.li`
-  width: auto;
-  height: 100%;
-  margin: 0 var(--margin-default);
+  width: 160px;
+  min-height: 16%;
 
-  /* 체크용 > 삭제 4번 */
-  background-color: var(--concept-color4);
+  position: absolute;
+  top: 280px;
+  left: 688px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-black);
+  transition-delay: 0.2s;
+  transition-duration: 0.4s;
+
+  /* for ring poster */
+  opacity: 0.7;
+  transform: rotateY(
+      ${(props) => {
+        return props.yRotate + "deg";
+      }}
+    )
+    translateZ(560px);
+  :hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  p {
+    margin: 4%;
+    color: var(--color-yellow);
+  }
+  &.selected {
+    opacity: 1;
+  }
 `;
 
 const ProfileBox = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 80%;
+  height: 40%;
+  margin: 4% 0;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 80px;
+  }
+`;
+
+const ReviewTitle = styled.p`
+  font-size: var(--font-size-tiny);
+`;
+
+const ReviewContent = styled.p`
+  font-size: var(--font-size-3d);
+  transition-duration: 0.5s;
+  overflow: hidden;
+  /* 가운데 요소만 높이 픽셀로 지정해서 내용 보여주기 */
+  /* 클릭한 요소 가운데로 옮기기 */
+  height: 0;
+  /* height: 100px; */
 `;
 
 const Reviews = () => {
-  const [isDown, setIsDown] = useState(false);
-  const sliderRef = useRef();
-  let startX;
-  let scrollL;
+  const [deg, setDeg] = useState(0);
+  // 링 포스터 셋업
+  const testReivew = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
+  const posterNum = testReivew.length;
+  const posterAngle = 360 / posterNum;
+  const ringRef = useRef();
+  // let deg = 0;
 
-  // useEffect로 핸들링해야 지속적으로 움직일 수 있을 듯
-  useEffect(() => {
-    setIsDown(true);
-  }, [scrollL]);
-
-  const startDraging = (e) => {
-    startX = e.pageX - sliderRef.current.offsetLeft;
-    scrollL = sliderRef.current.scrollLeft;
-  };
-
-  const slideReviews = (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderRef.current.scrollLeft = scrollL - walk;
-  };
-
-  const stopDraging = () => {
-    setIsDown(false);
+  // 링 포스터 이동
+  const spinRing = () => {
+    // deg += posterAngle;
+    setDeg((prevDeg) => prevDeg + posterAngle);
+    console.log("deg 체크!", deg % 360);
   };
 
   return (
     <>
       <Header />
       <BodyLayout>
-        <ReviewsContainer
-          ref={sliderRef}
-          onMouseDown={startDraging}
-          onMouseMove={slideReviews}
-          onMouseLeave={stopDraging}
-          onMouseUp={stopDraging}
-        >
-          <ReviewItem>
-            <ProfileBox>{Users}</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>
-              <a href="http://localhost:9090/myapp/registerForm">go backend</a>
-            </ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>2</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>3</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>4</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>5</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>6</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>7</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>8</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>9</ProfileBox>
-          </ReviewItem>
-          <ReviewItem>
-            <ProfileBox>10</ProfileBox>
-          </ReviewItem>
-        </ReviewsContainer>
+        <Stage>
+          <ReviewsContainer ref={ringRef} deg={deg}>
+            <div>
+              {testReivew.map((reviewNum) => {
+                return (
+                  <ReviewItem
+                    key={reviewNum}
+                    yRotate={posterAngle * reviewNum}
+                    className={
+                      posterAngle * Math.abs(reviewNum - posterNum) ===
+                      deg % 360
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    <ProfileBox>
+                      <img src="/images/temp2.jpg" alt="temp" />
+                    </ProfileBox>
+                    <ReviewTitle>베스트 리뷰의 제목입니다.</ReviewTitle>
+                    <ReviewContent>
+                      그리고 이것은 내용입니다. 내용이 길어지면 또 할게 많은데
+                      어휴 이걸 또 어쩐담
+                    </ReviewContent>
+                  </ReviewItem>
+                );
+              })}
+            </div>
+          </ReviewsContainer>
+        </Stage>
+        <button onClick={spinRing}>테스트 버튼</button>
       </BodyLayout>
       <Footer />
     </>

@@ -1,0 +1,232 @@
+import React, { useRef } from "react";
+import styled from "styled-components";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+import Stars from "../components/body/mixin/Stars";
+
+// 여기는 리뷰 상세 페이지로 활용하기
+
+const ReviewsContainer = styled.ul`
+  width: 80vw;
+  height: 80vh;
+  margin-top: var(--margin-header-to-body);
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.2s;
+  will-change: transform;
+  perspective: 800px;
+  /* background: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0.65) 100%
+  ); */
+`;
+
+const ReviewItem = styled.li`
+  height: 88%;
+  min-height: 660px;
+  margin: 0 calc(var(--margin-default) / 1.4);
+  padding: var(--padding-default);
+  border-radius: 8px;
+
+  &:nth-child(even) {
+    /* transform: scaleX(1.16) rotateY(10deg); */
+  }
+  &:nth-child(odd) {
+    /* transform: scaleX(1.16) rotateY(-10deg); */
+  }
+
+  /* 체크용 > 색깔 변경예정 */
+  border: 2px solid var(--color-lightpink);
+`;
+
+const ImageBox = styled.div`
+  width: 400px;
+  height: 240px;
+  margin: calc(var(--margin-default) / 2) 0;
+  overflow: hidden;
+  background-color: var(--color-brown);
+  img {
+    width: 100%;
+  }
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  max-height: 192px;
+  margin-top: calc(var(--margin-default) / 2);
+  padding: var(--padding-default);
+  border: 2px solid var(--color-brown);
+  border-radius: 8px;
+  font-size: var(--font-size-normal);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  /* after로 말풍선 툴팁 주기? */
+`;
+
+const ProfileBox = styled.div`
+  width: 400px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.div`
+  width: 60px;
+  height: 60px;
+  margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
+  overflow: hidden;
+  border-radius: 50%;
+  /* border: 2px solid var(--color-brown); */
+  img {
+    width: 100%;
+  }
+`;
+
+const UserInfo = styled.div`
+  width: calc(100% - 60px);
+`;
+
+const NameAndStar = styled.div`
+  display: flex;
+`;
+
+const UserName = styled.div`
+  width: 48%;
+  min-width: 120px;
+  font-size: var(--font-size-large);
+`;
+
+const UserHistory = styled.div`
+  font-size: var(--font-size-normal);
+`;
+
+const Reviews = () => {
+  const isDown = useRef(false);
+  const sliderRef = useRef();
+  let startX;
+  let scrollL;
+
+  // 클릭 & 드래그 이벤트
+  const startDraging = (e) => {
+    // console.log("start~!");
+    isDown.current = true;
+    startX = e.pageX - sliderRef.current.offsetLeft;
+    scrollL = sliderRef.current.scrollLeft;
+  };
+
+  const slideReviews = (e) => {
+    // console.log("moving!", isDown);
+    if (!isDown.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    sliderRef.current.scrollLeft = scrollL - walk;
+  };
+
+  const stopDraging = () => {
+    // console.log("stop...", isDown);
+    isDown.current = false;
+  };
+
+  const showDetailItem = () => {};
+
+  return (
+    <>
+      <Header />
+      <BodyLayout>
+        <ReviewsContainer
+          ref={sliderRef}
+          onMouseDown={startDraging}
+          onMouseMove={slideReviews}
+          onMouseUp={stopDraging}
+        >
+          <ReviewItem onClick={showDetailItem}>
+            <ImageBox>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                alt="cafe_review"
+              />
+            </ImageBox>
+            <TextBox>
+              제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
+              진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
+              취재하고 제가 그 머~ 어~ 대통령이 된 기분이였어요 그런데 17일만에
+              17일만에 마이너리그로 떨어졌어요 못던져서 그만두고 그냥 확
+              한국으로 가버리고 싶었어요 그래서 집에 가는길에 그 맥주6개 달린거
+              있잖아요 맥주6개 그걸 사가지고 집으로 갔어요 그전에는 술먹으면
+              야구 못하는줄 알았어요 그냥 한국으로 가버릴려구.... 그리고 맥주
+              6개먹고 확 죽어버릴려고 그랬어요 야구 못하게 되니깐
+            </TextBox>
+            <ProfileBox>
+              <Icon>
+                <img src={`${process.env.PUBLIC_URL}/images/users/user1.png`} />
+              </Icon>
+              <UserInfo>
+                <NameAndStar>
+                  <UserName>찬호팍</UserName>
+                  <Stars />
+                </NameAndStar>
+                <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+              </UserInfo>
+            </ProfileBox>
+            아래쪽에 자세히 보기 등 버튼 추가, 누가 디자인좀 해줬으면
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+          <ReviewItem onClick={showDetailItem}>
+            <ProfileBox>1</ProfileBox>
+          </ReviewItem>
+        </ReviewsContainer>
+      </BodyLayout>
+      <Footer />
+    </>
+  );
+};
+
+export default Reviews;

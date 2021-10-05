@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   width: 100%;
   height: var(--footer-height);
-  background-color: var(--concept-color5);
-  margin-top: var(--margin-default);
+  background-color: var(--color-brown);
+  margin-top: var(--margin-body-to-footer);
   display: flex;
   justify-content: center;
+  color: white;
 `;
 
 const NavList = styled.nav`
@@ -25,10 +27,14 @@ const NavItemsTitle = styled.ul`
 `;
 
 const NavItems = styled.li`
-  margin-top: calc(var(--margin-default) / 8);
+  margin-top: calc(var(--margin-default) / 4);
   font-size: var(--font-size-small);
   :first-child {
-    margin-top: calc(var(--margin-default) / 4);
+    margin-top: calc(var(--margin-default) / 2);
+  }
+  :hover {
+    cursor: pointer;
+    color: var(--color-yellow);
   }
 `;
 
@@ -39,8 +45,13 @@ const Footer = () => {
         <NavItemsContainer>
           <NavItemsTitle>
             소개
-            <NavItems>공지사항</NavItems>
-            <NavItems>서비스 소개</NavItems>
+            <NavItems>
+              <Link to={`/Notice`}>공지사항</Link>
+            </NavItems>
+            <NavItems>
+              <Link to={`/about`}>서비스 안내</Link>
+            </NavItems>
+            <NavItems>이용 방법</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>
@@ -48,21 +59,29 @@ const Footer = () => {
             고객센터
             <NavItems>이용약관</NavItems>
             <NavItems>개인정보취급방침</NavItems>
-            <NavItems>FAQ</NavItems>
+            <NavItems>
+              <Link to={`/faq`}>FAQ</Link>
+            </NavItems>
             <NavItems>Q&A</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>
           <NavItemsTitle>
             광고
-            <NavItems>광고 문의</NavItems>
+            <NavItems>
+              <Link to={`/adforad`}>광고 문의</Link>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>
           <NavItemsTitle>
             커뮤니티
-            <NavItems>후기</NavItems>
-            <NavItems>코스 제안</NavItems>
+            <NavItems>
+              <Link to={`/Reviews`}>후기</Link>
+            </NavItems>
+            <NavItems>
+              <Link to={`/UserRecommendation`}>코스 제안</Link>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
       </NavList>

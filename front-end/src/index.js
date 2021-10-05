@@ -4,9 +4,6 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Root from "./client/Root";
 
-// export { default as Home } from "./pages/Home";
-// export { default as About } from "./pages/About";
-
 ReactDOM.render(
   <React.StrictMode>
     <Root />

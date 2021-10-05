@@ -1,22 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import BodyLayout from "../components/Body/BodyLayout";
-import Footer from "../components/Footer/Footer";
-import KakaoMap from "../components/Body/KakaoMap";
+import Header from "../components/header/Header";
+import BodyLayout from "../components/body/BodyLayout";
+import Footer from "../components/footer/Footer";
+import Line8 from "../components/body/map/metorMap/line8/Line8";
+import StationViewer from "../components/body/map/metorMap/StationViewer";
 
 const PlannerContainer = styled.div`
-  width: 80vw;
-  height: 80vh;
-  margin-top: calc(var(--margin-default) + var(--header-height));
+  margin-top: calc(var(--margin-header-to-body) / 2);
   display: flex;
-  justify-content: center;
-`;
-
-const Conditioner = styled.div`
-  width: 32vw;
-  height: 80vh;
-  background-color: white;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Planning = () => {
@@ -25,8 +19,8 @@ const Planning = () => {
       <Header />
       <BodyLayout>
         <PlannerContainer>
-          <Conditioner />
-          <KakaoMap />
+          <StationViewer />
+          <Line8 />
         </PlannerContainer>
       </BodyLayout>
       <Footer />
