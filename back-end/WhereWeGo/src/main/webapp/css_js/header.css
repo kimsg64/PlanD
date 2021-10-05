@@ -1,61 +1,110 @@
 @charset "UTF-8";
 /* 헤더 틀 */
-header {
+header  {
 	width: calc(100% - 16px);
 	height: var(--header-height);
 	display: flex;
-	justify-content: space-between;
-	background-color: white;
+	justify-content: center;
+	background-color: var(--color-brown);
 	position: fixed;
-	z-index: 10;
-	overflow-y: hidden;
+	z-index: 2;
+	opacity: 0.9;
+	color: white;
+}
+
+/* 헤더 크기 조절 */
+.size-controller  {
+	width: 72%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.yellow-span {
+	color: var(--color-yellow);
 }
 
 /* 로고 및 로고 링크 */
-.logo {
-	height: 100%;
-	margin-left: calc(var(--margin-default)/2);
+.logo  {
 	position: relative;
+	font-size: var(--font-size-title-large);
 }
-
-.logo a {
+.logo > a {
 	height: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 }
-/* 로고 및 아이콘 크기 조절 */
-#icon {
-	height: 100%;
-}
 
-#logo {
-	height: 80%;
-}
 
 /* 센터 메뉴 */
-.menu {
+/* 센터 메뉴 틀 */
+.menu-section {
 	width: 40%;
+	display: flex;
+	justify-content: flex-end;
+}
+/* 메인 메뉴 */
+.menu  {
+	width: 72%;
+	min-width: 392px;
 	height: 100%;
 	display: flex;
+	justify-content: flex-start;
 	align-items: center;
-	justify-content: space-evenly;
+	font-size: var(--font-size-large);
 }
-
+.menu li {
+	margin-left: var(--margin-default);
+}
 .menu li:hover {
-	color: var(--color-pink);
+	color: var(--color-yellow);
 }
 
-/* 우측 로그인 버튼 메뉴 */
-.login {
-	width: 16%;
+/* 미니 로그인 메뉴 */
+.login-container {
+	width: 28%;
+	min-width: 152px;
 	height: 100%;
-	padding: var(--padding-default);
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	font-size: var(--font-size-small);
+	color: grey;
+}
+.login div {
+	position: relative;
+}
+.login div:hover {
+	color: var(--color-yellow);
 }
 
-.login div:hover {
-	color: var(--color-pink);
+/* 마이페이지 서브메뉴 */
+.submenu-container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+/* 서브메뉴 */
+.submenu {
+	min-width: 152px;
+	height: 0;
+	transition-duration: 0.3s;
+	overflow: hidden;
+	background-color: var(--color-brown);
+	position: absolute;
+	top: 60px;
+	left: -48px;
+}
+/* 서브메뉴 항목 */
+.submenu-item {
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	position: relative;
+}
+.submenu-item:hover {
+	cursor: pointer;
+    color: var(--color-yellow);
 }

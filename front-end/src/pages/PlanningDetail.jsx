@@ -1,5 +1,6 @@
 import React from "react";
 import BodyLayout from "../components/body/BodyLayout";
+import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
 import StationViewer from "../components/body/map/metorMap/StationViewer";
 import Form from "../components/body/mixin/Form";
 import {
@@ -21,6 +22,10 @@ const PlanningDetail = () => {
         {/* 아니면 구조를 바꿔서 아래 페이지만 옆으로 넘기는건?(Single page) */}
         <Form>
           <div>
+            <label>
+              날짜 선택
+              <CustomCalerdar />
+            </label>
             <label>
               데이트 시작 시간
               <select name="start">

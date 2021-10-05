@@ -3,7 +3,9 @@ import Header from "../components/header/Header";
 import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import Form from "../components/body/mixin/Form";
-import { Input } from "../components/body/mixin/Mixin";
+import { Button, Input, SearchBar } from "../components/body/mixin/Mixin";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const UserRecommendation = () => {
   return (
@@ -11,14 +13,34 @@ const UserRecommendation = () => {
       <Header />
       <BodyLayout>
         <Form>
-          <Input type="text" placeholder="코스명" />
-          <Input type="text" placeholder="호선" />
-          <Input type="text" placeholder="역" />
-          <Input type="text" placeholder="시간대" />
-          <Input type="text" placeholder="장소1" />
-          <Input type="text" placeholder="장소2" />
-          <Input type="text" placeholder="장소3" />
-          <Input type="text" placeholder="상세설명" />
+          <label>
+            코스명
+            <Input type="text" width="40em" />
+          </label>
+          <label>
+            역
+            <Input type="text" placeholder="노선" />
+            <Input type="text" placeholder="역" />
+          </label>
+          <SearchBar width="12em">
+            <Input type="text" placeholder="장소1" />
+            <Button>
+              <i className="fas fa-search"></i>
+            </Button>
+          </SearchBar>
+          <SearchBar width="12em">
+            <Input type="text" placeholder="장소2" />
+            <Button>
+              <i className="fas fa-search"></i>
+            </Button>
+          </SearchBar>
+          <SearchBar width="12em">
+            <Input type="text" placeholder="장소3" />
+            <Button>
+              <i className="fas fa-search"></i>
+            </Button>
+          </SearchBar>
+          <CKEditor editor={ClassicEditor}></CKEditor>
         </Form>
       </BodyLayout>
       <Footer />

@@ -9,12 +9,10 @@ import Stars from "../components/body/mixin/Stars";
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
-  height: 80vh;
   margin-top: var(--margin-header-to-body);
   display: flex;
   align-items: center;
   overflow-x: hidden;
-  overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s;
@@ -171,7 +169,10 @@ const Reviews = () => {
             </TextBox>
             <ProfileBox>
               <Icon>
-                <img src={`${process.env.PUBLIC_URL}/images/users/user1.png`} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                  alt="user_icon"
+                />
               </Icon>
               <UserInfo>
                 <NameAndStar>

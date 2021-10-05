@@ -36,6 +36,7 @@ const UserImage = styled.div`
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
+  background-color: var(--color-pink);
   img {
     width: 100%;
     height: 100%;
@@ -96,7 +97,10 @@ const MyPage = () => {
           <UserIconSection>
             <UserIcon>
               <UserImage>
-                <img src="images/user.jpg" alt="user" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                  alt="user"
+                />
               </UserImage>
             </UserIcon>
           </UserIconSection>
