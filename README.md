@@ -1,4 +1,4 @@
-# 우리어디가(WhereWeGO)
+# Plan.D
 
 비트캠프 파이널 프로젝트
 
@@ -48,4 +48,7 @@
 - JQuery
 - styled-components
 - react-router
+- react-router-dom
 - axios
+- sfcookies
+- react-calendar

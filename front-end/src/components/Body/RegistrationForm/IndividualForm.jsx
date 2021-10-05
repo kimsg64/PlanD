@@ -1,18 +1,31 @@
-// ★★★ 유효성 검사 시, null 값이 전달될 때 커스텀 경고가 뜨지 않는 현상 해결
+// ★★★ 미구현 기능
+// 1. ID 중복 확인
+// 2. 우편번호 검색
+// 3. 이미지 파일 업로드(이미지 파일용 formData 전송 or 수업시간 URL 추적방법 조사)
+// 4. DB에 저장된 관심사 데이터 표시하기
+
+// ★★★ 발견된 에러
+// [해결] FormInput창 한글 받아갈 때 마지막 받침을 인식하지 못함 ★ keyDown => keyUp ★
+// 2. 비밀번호 일치 여부, 추가 입력을 인식하지 못함
+// 3. 유효성 검사 시, null 값이 전달될 때 커스텀 경고가 뜨지 않음
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Form from "./Form";
+import Form from "../mixin/Form";
 import {
-  Button,
   Label,
-  Input,
-  Checkbox,
-  CheckboxLabel,
+  FormInput,
   SubmitButton,
   ItemContainer,
   ErrorMsg,
 } from "../registrationForm/FormMixin";
+import {
+  Button,
+  Checkbox,
+  CheckboxLabel,
+  OptionsContainer,
+} from "../mixin/Mixin";
 
 const Container = styled.div`
   overflow: hidden;
@@ -47,18 +60,6 @@ const BottomSection = styled.section`
   width: 100%;
 `;
 
-// 옵션 컨테이너
-const OptionsContainer = styled.div`
-  max-width: 44vw;
-  height: auto;
-  margin-top: var(--margin-default);
-  border: 2px solid var(--color-brown);
-  border-radius: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--padding-default);
-`;
-
 // 사진 입력 컨테이너
 const UserImgContainer = styled.div`
   width: 240px;
@@ -85,27 +86,27 @@ const SubmitSection = styled.section`
 
 const IndividualForm = ({ isIndividual = true }) => {
   const [userId, setUserId] = useState("");
-  const [userPwd, setUserPwd] = useState("");
+  const [pwd, setPwd] = useState("");
   // 비밀번호 체크용(userPwd2)
   const [isSame, setIsSame] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [userNum, setUserNum] = useState("");
-  const [userTel, setUserTel] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+  const [name, setName] = useState("");
+  const [num, setNum] = useState("");
+  const [tel, setTel] = useState("");
+  const [email, setEmail] = useState("");
   // 임시값
-  const [userZipcode, setUserZipcode] = useState("12345");
-  const [userAddr, setUserAddr] = useState("");
-  const [userAddrDetail, setUserAddrDetail] = useState("");
-  const [userDate, setUserDate] = useState("");
-  const [userPhoto, setUserPhoto] = useState(null);
+  const [zip, setZip] = useState("12345");
+  const [addr, setAddr] = useState("");
+  const [addrDetail, setAddrDetail] = useState("");
+  const [startdate, setStartdate] = useState("");
+  const [photo, setPhoto] = useState(null);
   // 미리보기용 url
-  const [userPhotoUrl, setUserPhotoUrl] = useState("");
-  const [userOption, setUserOption] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState("");
+  const [opt, setOpt] = useState([]);
 
   // 비밀번호 더블체크
   const checkPwd = (e) => {
     if (e.target.value === "") return;
-    return userPwd === e.target.value ? setIsSame(true) : setIsSame(false);
+    return pwd === e.target.value ? setIsSame(true) : setIsSame(false);
   };
 
   // 하이픈 자동 입력
@@ -122,15 +123,15 @@ const IndividualForm = ({ isIndividual = true }) => {
     const imageFile = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      setUserPhoto(imageFile);
-      setUserPhotoUrl(reader.result);
+      setPhoto(imageFile);
+      setPhotoUrl(reader.result);
     };
     reader.readAsDataURL(imageFile);
   };
 
   // 체크박스 리스트 만들기
-  const setUserOptionList = (e) => {
-    setUserOption((prevState) => {
+  const setOptList = (e) => {
+    setOpt((prevState) => {
       console.log(prevState);
       return prevState.includes(e.target.value)
         ? prevState.filter((opt) => opt !== e.target.value)
@@ -138,21 +139,25 @@ const IndividualForm = ({ isIndividual = true }) => {
     });
   };
 
+  const onResetForm = (e) => {
+    // 리셋 확인 메시지
+    console.log(e);
+  };
+
   const onSubmitForm = (e) => {
     e.preventDefault();
     const body = {
       userId: userId,
-      userPwd: userPwd,
-      userName: userName,
-      userNum: userNum,
-      userTel: userTel,
-      userEmail: userEmail,
-      userZipcode: userZipcode,
-      userAddr: userAddr,
-      userAddrDetail: userAddrDetail,
-      userDate: userDate,
-      userPhotoUrl: userPhotoUrl,
-      userOption: userOption.join("/"),
+      pwd: pwd,
+      name: name,
+      num: num,
+      tel: tel,
+      email: email,
+      zip: zip,
+      addr: addr + " " + addrDetail,
+      startdate: startdate,
+      photoUrl: photoUrl,
+      opt: opt.join("/"),
     };
     console.log("바디", body);
 
@@ -167,9 +172,13 @@ const IndividualForm = ({ isIndividual = true }) => {
         // , { headers: { "Content-Type": `multipart/form-data` } },
       )
       .then((response) => {
-        console.log("response : ", JSON.stringify(response, null, 2));
-        alert("회원가입이 완료되었습니다!");
-        // window.location.href = "http://localhost:3000/";
+        console.log("response : ", response.data);
+        if (response.data > 0) {
+          alert("회원가입이 완료되었습니다!");
+          window.location.href = "http://localhost:3000/";
+        } else {
+          alert("회원가입에 실패하였습니다...!!!");
+        }
       })
       .catch((error) => {
         console.log("failed", error);
@@ -183,13 +192,14 @@ const IndividualForm = ({ isIndividual = true }) => {
       <Form
         id="individual_form"
         onSubmit={onSubmitForm}
+        onReset={onResetForm}
         encType="multipart/form-data"
       >
         <TopSection>
           <LeftSection>
             <ItemContainer>
               <Label htmlFor="userId">아이디</Label>
-              <Input
+              <FormInput
                 type="text"
                 name="userId"
                 id="userId"
@@ -207,17 +217,17 @@ const IndividualForm = ({ isIndividual = true }) => {
               </ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userPwd">비밀번호</Label>
-              <Input
+              <Label htmlFor="pwd">비밀번호</Label>
+              <FormInput
                 type="password"
-                name="userPwd"
-                id="userPwd"
+                name="pwd"
+                id="pwd"
                 required
                 minLength="8"
                 maxLength="16"
                 pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$"
                 placeholder=" "
-                onKeyDown={(e) => setUserPwd(e.target.value)}
+                onKeyDown={(e) => setPwd(e.target.value)}
               />
               <ErrorMsg>
                 비밀번호는 8자 이상이어야 하며, 숫자, 영문 대소문자, 특수문자를
@@ -226,7 +236,7 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
             <ItemContainer>
               <Label htmlFor="userPwd2">비밀번호 확인</Label>
-              <Input
+              <FormInput
                 type="password"
                 name="userPwd2"
                 id="userPwd2"
@@ -237,135 +247,136 @@ const IndividualForm = ({ isIndividual = true }) => {
                 className="check"
                 isSame={isSame}
                 autoComplete="new-password"
-                onKeyDown={(e) => setUserName(e.target.value)}
               />
               <ErrorMsg>비밀번호가 일치하지 않습니다.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userName">이름</Label>
-              <Input
+              <Label htmlFor="name">이름</Label>
+              <FormInput
                 type="text"
-                name="userName"
-                id="userName"
+                name="name"
+                id="name"
                 required
                 minLength="2"
                 maxLength="8"
                 placeholder=" "
                 pattern="^[가-힣]{2,8}$"
+                onKeyDown={(e) => setName(e.target.value)}
               />
               <ErrorMsg>올바른 이름을 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userNum">주민등록번호</Label>
+              <Label htmlFor="num">주민등록번호</Label>
               {/* length가 6이 되면 밸류에 하이픈이 자동으로 입력됨 */}
-              <Input
+              <FormInput
                 type="text"
-                name="userNum"
-                id="userNum"
+                name="num"
+                id="num"
                 required
                 maxLength="14"
                 placeholder="-"
                 pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
                 onKeyUp={(e) => insertHyphen(e, 6)}
-                onKeyDown={(e) => setUserNum(e.target.value)}
+                onKeyDown={(e) => setNum(e.target.value)}
               />
               <ErrorMsg>올바른 주민등록번호를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userTel">연락처</Label>
-              <Input
+              <Label htmlFor="tel">연락처</Label>
+              <FormInput
                 type="text"
-                name="userTel"
-                id="userTel"
+                name="tel"
+                id="tel"
                 required
                 minLength="9"
                 maxLength="11"
                 placeholder="'-' 없이 입력해 주세요"
                 pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
-                onKeyDown={(e) => setUserTel(e.target.value)}
+                onKeyDown={(e) => setTel(e.target.value)}
               />
+              <Button type="button">본인 인증</Button>
               <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
 
             {/* 여기부터 유효성 검사 재개 */}
             <ItemContainer>
-              <Label htmlFor="userEmail">이메일</Label>
-              <Input
+              <Label htmlFor="email">이메일</Label>
+              <FormInput
                 type="email"
-                name="userEmail"
-                id="userEmail"
+                name="email"
+                id="email"
                 width="20em"
                 required
                 placeholder="@"
                 pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-                onKeyDown={(e) => setUserEmail(e.target.value)}
+                onKeyDown={(e) => setEmail(e.target.value)}
               />
               <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userZipcode">우편번호</Label>
-              <Input
+              <Label htmlFor="zip">우편번호</Label>
+              <FormInput
                 type="text"
-                name="userZipcode"
-                id="userZipcode"
+                name="zip"
+                id="zip"
                 width="5em"
                 className="optional"
                 disabled
                 // 임시 value
-                value={userZipcode}
+                value={zip}
               />
               {/* 임시로 클릭시 설정 */}
               <Button type="button">우편번호 검색</Button>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userAddr">주소</Label>
-              <Input
+              <Label htmlFor="addr">주소</Label>
+              <FormInput
                 type="text"
-                name="userAddr"
-                id="userAddr"
+                name="addr"
+                id="addr"
                 width="20em"
                 className="optional"
-                onKeyDown={(e) => setUserAddr(e.target.value)}
+                onKeyUp={(e) => setAddr(e.target.value)}
               />
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userAddrDetail">상세주소</Label>
-              <Input
+              <Label htmlFor="addrDetail">상세주소</Label>
+              <FormInput
                 type="text"
-                name="userAddrDetail"
-                id="userAddrDetail"
+                name="addrDetail"
+                id="addrDetail"
                 width="24em"
                 className="optional"
-                onKeyDown={(e) => setUserAddrDetail(e.target.value)}
+                onKeyUp={(e) => setAddrDetail(e.target.value)}
               />
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userDate">기념일</Label>
-              <Input
+              <Label htmlFor="startdate">기념일</Label>
+              <FormInput
                 type="date"
-                name="userDate"
-                id="userDate"
+                name="startdate"
+                id="startdate"
                 width="12em"
                 className="optional"
-                onChange={(e) => setUserDate(e.target.value)}
+                onChange={(e) => setStartdate(e.target.value)}
               />
             </ItemContainer>
           </LeftSection>
           <RightSection>
             <UserImgContainer>
-              {userPhoto === null ? (
+              {photo === null ? (
                 <i className="far fa-user"></i>
               ) : (
-                <img src={userPhotoUrl} alt="preview" />
+                <img src={photoUrl} alt="preview" />
               )}
             </UserImgContainer>
-            <Button as="Label" htmlFor="userPhoto" weight="600">
+            <Button as="Label" htmlFor="photo" weight="600">
               파일 선택
             </Button>
-            <Input
+            <FormInput
               type="file"
-              id="userPhoto"
-              name="userPhoto"
+              id="photo"
+              name="photo"
               accept="image/*"
               onChange={onChangePhoto}
             />
@@ -382,7 +393,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="임시"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 임시
               </CheckboxLabel>
@@ -391,7 +402,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="로"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 로
               </CheckboxLabel>
@@ -401,7 +412,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   name="user_option"
                   value="다양한 값을
                 입력하여"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 다양한 값을 입력하여
               </CheckboxLabel>
@@ -410,7 +421,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="박스의 크기가 예쁘게 늘어나는지 확인하기 위한"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 박스의 크기가 예쁘게 늘어나는지 확인하기 위한
               </CheckboxLabel>
@@ -419,7 +430,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="체크박스입니다."
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 체크박스입니다.
               </CheckboxLabel>
@@ -428,7 +439,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="아직"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 아직
               </CheckboxLabel>
@@ -437,7 +448,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="전달되지 않는다는 사실을 부디 명심하시고"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 전달되지 않는다는 사실을 부디 명심하시고
               </CheckboxLabel>
@@ -446,7 +457,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="전달되지 않는다고 엄한 노트북에 샷건을 치지 않기를"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 전달되지 않는다고 엄한 노트북에 샷건을 치지 않기를
               </CheckboxLabel>
@@ -455,7 +466,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="간절하게 바랍니다."
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 간절하게 바랍니다.
               </CheckboxLabel>
@@ -464,7 +475,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="넌 왜 없니?"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 넌 왜 없니?
               </CheckboxLabel>
@@ -473,7 +484,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="아직도 있나?"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 아직도 있나?
               </CheckboxLabel>
@@ -482,7 +493,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="그만하자"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 그만하자
               </CheckboxLabel>
@@ -491,7 +502,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="이정도면 됐지"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 이정도면 됐지
               </CheckboxLabel>
@@ -500,7 +511,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                   type="checkbox"
                   name="user_option"
                   value="나중엔 DB에 있는거 가져와서 map으로 반복을 하겟쥬?"
-                  onClick={setUserOptionList}
+                  onClick={setOptList}
                 />
                 나중엔 DB에 있는거 가져와서 map으로 반복을 하겟쥬?
               </CheckboxLabel>
@@ -508,8 +519,8 @@ const IndividualForm = ({ isIndividual = true }) => {
           </ItemContainer>
         </BottomSection>
         <SubmitSection>
-          <SubmitButton as="input" type="reset" value="초기화" />
-          <SubmitButton as="input" type="submit" value="회원가입" />
+          <SubmitButton as="FormInput" type="reset" value="초기화" />
+          <SubmitButton as="FormInput" type="submit" value="회원가입" />
         </SubmitSection>
       </Form>
     </Container>

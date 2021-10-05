@@ -16,10 +16,10 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+
 	<resources mapping="/css_js/**" location="/css_js/" />
 	<resources mapping="/imgs/**" location="/imgs/" />
 	<resources mapping="/inc/**" location="/inc/" />
-
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -30,10 +30,10 @@
 	<context:component-scan base-package="com.bit5.wherewego" />
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="${spring.datasource.driverClassName}"></beans:property>
-		<beans:property name="url" value="${spring.datasource.url}"></beans:property>
-		<beans:property name="username" value="${spring.datasource.username}"></beans:property>
-		<beans:property name="password" value="${spring.datasource.password}"></beans:property>
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE"></beans:property>
+		<beans:property name="username" value="c##Bit05"></beans:property>
+		<beans:property name="password" value="Bit05"></beans:property>
 	</beans:bean>
 	
 </beans:beans>
