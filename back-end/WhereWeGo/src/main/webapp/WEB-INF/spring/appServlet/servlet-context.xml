@@ -27,6 +27,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
 	<context:component-scan base-package="com.bit5.wherewego" />
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
