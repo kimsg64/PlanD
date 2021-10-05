@@ -52,3 +52,4 @@
 - axios
 - sfcookies
 - react-calendar
+- KakaoMap(services)

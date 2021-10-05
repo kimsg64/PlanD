@@ -46,52 +46,6 @@ const Article = styled.article`
   align-items: center;
 `;
 
-const CustomCalendarWrapper = styled(Article)`
-  /* 캘릭더 틀 */
-  .react-calendar {
-    height: 372px;
-    background-color: inherit;
-    font-family: inherit;
-    border: none;
-  }
-
-  /* 공통 */
-  button[disabled],
-  button:enabled:hover,
-  button:enabled:focus {
-    background-color: inherit;
-  }
-  button:not(.react-calendar__navigation__arrow) {
-    font-family: inherit;
-  }
-
-  /* 네비게이션 */
-  .react-calendar__navigation {
-    margin: 0;
-  }
-  /* 화살표 버튼 */
-  .react-calendar__navigation__arrow {
-    font-size: var(--font-size-normal);
-  }
-
-  /* 요일 */
-  abbr[title] {
-    text-decoration: none;
-  }
-  /* 네비게이션 라벨 */
-  .react-calendar__navigation__label__labelText {
-    font-size: var(--font-size-normal);
-  }
-
-  /* 타일 버튼 */
-  .react-calendar__tile {
-    font-size: var(--font-size-small);
-    padding: 1em 0.5em;
-    font-family: inherit;
-  }
-  }
-`;
-
 const ArticleItem = styled.div`
   margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
 `;
@@ -120,9 +74,8 @@ const MemberHome = () => {
           <Container>
             <SubHeading>플랜</SubHeading>
             {/* 예약시에는(예약일) minDate 오늘, 가입시에는(시작일) maxDate 오늘 */}
-            <CustomCalendarWrapper>
-              <CustomCalerdar />
-            </CustomCalendarWrapper>
+
+            <CustomCalerdar />
           </Container>
           <Container>
             <SubHeading>예약</SubHeading>
