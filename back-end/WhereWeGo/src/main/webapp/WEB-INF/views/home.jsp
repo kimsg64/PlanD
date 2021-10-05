@@ -11,15 +11,17 @@
       /*background-color:pink;*/
       width:72%;
       margin : 0 auto;
+      color: #553a31;
    }
    
    #profileDiv {
       width:100%;
       height : 150px;
-      border: 3px dotted #553a31;
+      border: 1px solid #553a31;
       margin-top:50px;
       text-align : center;
       line-height:50px;
+      background-color : #eaded9;
    }
    
 
