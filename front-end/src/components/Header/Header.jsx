@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { read_cookie, delete_cookie } from "sfcookies";
 import { YellowD } from "../body/mixin/Mixin";
+import BorderEffect from "../body/mixin/BorderEffect";
 
 const HeaderContainer = styled.header`
   width: calc(100% - 16px);
@@ -19,9 +20,9 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderSizeController = styled.div`
-  width: 72%;
+  width: 64%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const LogoContainer = styled.div`
@@ -36,14 +37,14 @@ const LogoContainer = styled.div`
 `;
 
 const MenuSection = styled.section`
-  width: 40%;
+  width: 52%;
   display: flex;
   justify-content: flex-end;
 `;
 
 const MenuContainer = styled.ul`
   width: 72%;
-  min-width: 392px;
+  min-width: 460px;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -57,8 +58,8 @@ const MenuContainer = styled.ul`
   }
 `;
 
-const LoginBtnContainer = styled.div`
-  width: 28%;
+const LoginButtonContainer = styled.div`
+  width: 24%;
   min-width: 152px;
   height: 100%;
   display: flex;
@@ -97,6 +98,7 @@ const SubMenuItem = styled.li`
   justify-content: center;
   align-items: center;
   color: white;
+  position: relative;
   &:hover {
     cursor: pointer;
     color: var(--color-yellow);
@@ -105,7 +107,12 @@ const SubMenuItem = styled.li`
 
 const Header = () => {
   const [heightOfSub, setHeightOfSub] = useState("0");
-
+  const [homeWidth, setHomeWidth] = useState("0");
+  const [profileWidth, setProfileWidth] = useState("0");
+  const [recommendWidth, setRecommendWidth] = useState("0");
+  const [reviewWidth, setReviewWidth] = useState("0");
+  const [likeWidth, setLikeWidth] = useState("0");
+  const [pointWidth, setPointWidth] = useState("0");
   const onClickLogout = () => {
     delete_cookie("userId");
   };
@@ -122,36 +129,85 @@ const Header = () => {
           {read_cookie("userId").length > 0 ? (
             <MenuContainer>
               <li>
-                <Link to={`/Memberhome`}>홈</Link>
+                <Link to={`/memberhome`}>홈</Link>
               </li>
               <li>
-                <Link to={`/Planning`}>플랜</Link>
+                <Link to={`/planning`}>코스검색</Link>
               </li>
               <li>
-                <Link to={`/Reviews2`}>후기</Link>
+                <Link to={`/searchplace`}>장소검색</Link>
+              </li>
+              <li>
+                <Link to={`/reviews2`}>후기</Link>
               </li>
               <li>
                 <Link to={`/userrecommendation`}>제안</Link>
               </li>
-              <li>
-                <Link to={`/`}>장소</Link>
-              </li>
             </MenuContainer>
           ) : null}
-          <LoginBtnContainer>
+          <LoginButtonContainer>
             <SubMenuContainer
-              onMouseOver={() => setHeightOfSub("300px")}
+              onMouseOver={() => setHeightOfSub("360px")}
               onMouseOut={() => setHeightOfSub("0")}
             >
               {read_cookie("userId").length > 0 ? (
                 <>
-                  <Link to={`/mypage`}>마이페이지</Link>
+                  <div>마이페이지</div>
                   <SubMenu heightOfSub={heightOfSub}>
-                    <SubMenuItem>프로필 수정</SubMenuItem>
-                    <SubMenuItem>나의 추천 코스</SubMenuItem>
-                    <SubMenuItem>나의 후기</SubMenuItem>
-                    <SubMenuItem>찜</SubMenuItem>
-                    <SubMenuItem>포인트샵</SubMenuItem>
+                    <Link to={"/mypage"}>
+                      <SubMenuItem
+                        onMouseOver={() => setHomeWidth("150px")}
+                        onMouseOut={() => setHomeWidth("0")}
+                      >
+                        마이 홈
+                        <BorderEffect spanWidth={homeWidth} />
+                      </SubMenuItem>
+                    </Link>
+                    <Link to={"/editprofile"}>
+                      <SubMenuItem
+                        onMouseOver={() => setProfileWidth("150px")}
+                        onMouseOut={() => setProfileWidth("0")}
+                      >
+                        프로필 수정
+                        <BorderEffect spanWidth={profileWidth} />
+                      </SubMenuItem>
+                    </Link>
+                    <Link to={"/myhistory"}>
+                      <SubMenuItem
+                        onMouseOver={() => setReviewWidth("150px")}
+                        onMouseOut={() => setReviewWidth("0")}
+                      >
+                        나의 기록
+                        <BorderEffect spanWidth={reviewWidth} />
+                      </SubMenuItem>
+                    </Link>
+                    <Link to={"/myrecommendation"}>
+                      <SubMenuItem
+                        onMouseOver={() => setRecommendWidth("150px")}
+                        onMouseOut={() => setRecommendWidth("0")}
+                      >
+                        나의 추천 코스
+                        <BorderEffect spanWidth={recommendWidth} />
+                      </SubMenuItem>
+                    </Link>
+                    <Link to={"/mydibs"}>
+                      <SubMenuItem
+                        onMouseOver={() => setLikeWidth("150px")}
+                        onMouseOut={() => setLikeWidth("0")}
+                      >
+                        찜한 코스
+                        <BorderEffect spanWidth={likeWidth} />
+                      </SubMenuItem>
+                    </Link>
+                    <Link to={"/pointshop"}>
+                      <SubMenuItem
+                        onMouseOver={() => setPointWidth("150px")}
+                        onMouseOut={() => setPointWidth("0")}
+                      >
+                        포인트샵
+                        <BorderEffect spanWidth={pointWidth} />
+                      </SubMenuItem>
+                    </Link>
                   </SubMenu>
                 </>
               ) : (
@@ -167,7 +223,7 @@ const Header = () => {
                 <Link to={`/login`}>로그인</Link>
               )}
             </div>
-          </LoginBtnContainer>
+          </LoginButtonContainer>
         </MenuSection>
       </HeaderSizeController>
     </HeaderContainer>
