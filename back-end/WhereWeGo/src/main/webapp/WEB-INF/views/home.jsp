@@ -1,34 +1,77 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+#whitetop {
+	width: 100%;
+	height: 80px;
+	/*background-color:red;*/
+}
+
+#mainDiv {
+	/*background-color:pink;*/
+	width: 72%;
+	margin: 0 auto;
+	color: #553a31;
+	text-align:center;
+}
+
+#profileDiv {
+	width: 100%;
+	height: 150px;
+	border: 1px solid #553a31;
+	margin-top: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #eaded9;
+	margin-bottom: 50px;
+}
 
 
+#adminMenu img {
+	width:100px;
+	height:100px;
+}
 
-<!-- 
+#adminMenu {
+	width: 100%;
+	border-spacing: 0 20px;
+}
 
-1. Servers > Tomcat... > server.xml 수정
+td:hover {
+	color:#fde511;
+}
 
-프로젝트용	    
-<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" axWait="-1" name="jdbc/myoracle" password="Bit05" type="javax.sql.DataSource" url="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE" username="c##Bit05"/>
+</style>
 
-수업용
-<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="c##scott"/>
+<div id="whitetop"></div>
 
-2. src > main > webapp > WEB-INF > spring > appServlet > servlet-context.xml 수정
+<div id="mainDiv">
+	<h1>My Page</h1>
 
-프로젝트용
-	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE"></beans:property>
-		<beans:property name="username" value="c##Bit05"></beans:property>
-		<beans:property name="password" value="Bit05"></beans:property>
-	</beans:bean>
+	<!-- < c : if test="${logid=='admin'}"> -->
+	<div id="profileDiv">
+		admin 님의 마이페이지<br />
+		<!-- ${logid } -->
+		<h2>Plan.D</h2>
+		사업자번호 : 555555555
+	</div>
 
-수업용
-	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></beans:property>
-		<beans:property name="username" value="c##scott"></beans:property>
-		<beans:property name="password" value="tiger"></beans:property>
-	</beans:bean>
+	<!-- 링크 이름은 임시로 제가 넣어둠! -->
+	<table id="adminMenu">
+		<tr>
+			<td><a href="/wherewego/userMenu"><img src="imgs/adminMenu/user.png" /><br/>회원 관리</a></td>
+			<td><a href="/wherewego/noticeMenu"><img src="imgs/adminMenu/notice.png" /><br/>공지 관리</a></td>
+			<td><a href="/wherewego/reservationMenu"><img src="imgs/adminMenu/reservation.png" /><br/>예약 관리</a></td>
+			<td><a href="/wherewego/reviewMenu"><img src="imgs/adminMenu/review.png" /><br/>후기 관리</a></td>
+		</tr>
+		<tr>
+			<td><a href="/wherewego/courseMenu"><img src="imgs/adminMenu/location.png" /><br/>코스 관리</a></td>
+			<td><a href="/wherewego/newCourseMenu"><img src="imgs/adminMenu/new.png" /><br/>신규 코스 관리</a></td>
+			<td><a href="/wherewego/adMenu"><img src="imgs/adminMenu/ad.png" /><br/>광고 관리</a></td>
+			<td><a href="/wherewego/pointshopMenu"><img src="imgs/adminMenu/pointshop.png" /><br/>상품 관리</a></td>
+		</tr>
+	</table>
+	<!--  < / c:if> -->
 
- -->
+</div>
