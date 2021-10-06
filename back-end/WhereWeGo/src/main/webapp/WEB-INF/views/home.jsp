@@ -53,7 +53,7 @@ td:hover {
 <div id="mainDiv">
 	<h1>My Page</h1>
 
-	<!-- < c : if test="${logid=='admin'}"> -->
+	<!-- 여긴 관리자 화면!!!!!!!!!!!< c : if test="${logid=='admin'}"> -->
 	<div id="adminProfileDiv">
 		admin 님의 마이페이지<br />
 		<!-- ${logid } -->
@@ -78,7 +78,7 @@ td:hover {
 	</table>
 	<!--  < / c:if> adminDiv끝-->
 	
-	<!-- < c : if test!="${logid=='admin'}"> -->
+	<!--여긴 광고주 화면!!!!!!!!!!!< c : if test="${logid!='admin'}"> -->
 	<div id="businessProfileDiv">
 		Starbucks 님의 마이페이지<br />
 		<!-- ${logid } -->
