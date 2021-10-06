@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit5.wherewego.res.ResDAOImp">
+	<!-- 추상클래스 이름 담아줄형태(?) -->
+	<select id="resAllSelect" resultType="com.bit5.wherewego.res.ResVO">
+		select r_num, userid, r.c_num, to_char(resdate,'MM-DD') resdate, c.name 
+		from res r join course c on r.c_num=c.c_num order by r_num desc
+	</select>
+</mapper>
