@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+// 바디 레이아웃
+export const BodyLayout = styled.div`
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) + 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: ${(props) => props.padding || "var(--header-height)"} 0;
+`;
+
+// 바디 레이아웃(이미지, 비디오 겹치게)
+
+// 메뉴 타이틀
 export const MenuTitle = styled.div`
   width: 60vw;
   margin-top: var(--margin-header-to-body);

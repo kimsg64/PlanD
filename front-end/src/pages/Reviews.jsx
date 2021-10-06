@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 
 const Stage = styled.div`

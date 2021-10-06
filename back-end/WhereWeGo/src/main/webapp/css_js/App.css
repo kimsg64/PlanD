@@ -13,8 +13,8 @@
   --color-lightbrown: #786352;
   --color-black: #2c3e50;
 
-  --color-brown: #32221d;
-  --color-yellow: #fed16c;
+  --color-brown: #553a31;
+  --color-yellow: #fde511;
   --color-line1: #263c96;
   --color-line2: #3cb44a;
   --color-line3: #ff7300;
@@ -51,7 +51,7 @@
   --font-size-3d: 10px;
 }
 
-/* frame */팀원을 챙기기보다는 다소 솔직함을 드러냈던 리버스 감독의 발언은 여론의 화살을 더욱 시몬스 쪽으로 부추기는 모양새가 됐다. 그러면서 시몬스는 리버스 감독이 자신을 비판의 장으로 내몬 것에 화가 난 것으로 알려졌다.
+/* frame */
 #root,
 html,
 body {
@@ -62,17 +62,8 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
   color: var(--color-black);
-}
-
-body {
-  /* Nanum Gothic weight 400, 700, 800 */
-  margin: 0;
-  font-family: "Jua", -apple-system, BlinkMacSystemFont, "Nanum Gothic",
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
+  font-family: "Jua";
+  font-weight: 500;
 }
 
 * {

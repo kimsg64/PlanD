@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import {
+  BodyLayout,
   Button,
   Input,
   MenuTitle,

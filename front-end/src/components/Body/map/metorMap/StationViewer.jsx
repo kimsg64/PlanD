@@ -15,7 +15,7 @@ const ViewerContainer = styled.div`
 
 const Liner = styled.span`
   background-color: var(--color-line8);
-  width: calc((100vw - 300px) / 2);
+  width: calc((100vw - 240px) / 2);
   height: 20px;
   position: relative;
 `;
@@ -35,8 +35,8 @@ const NextButton = styled(Button)`
 `;
 
 const LineViewer = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 240px;
   border: 20px solid var(--color-line8);
   border-radius: 100%;
   display: flex;
@@ -52,7 +52,7 @@ const Line = styled.div`
 
 const Station = styled.div`
   font-size: var(--font-size-title-normal);
-  visibility: hidden;
+  /* visibility: hidden; */
 `;
 
 const StationViewer = () => {

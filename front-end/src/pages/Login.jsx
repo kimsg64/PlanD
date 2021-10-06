@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
-import { Checkbox, CheckboxLabel } from "../components/body/mixin/Mixin";
+import {
+  BodyLayout,
+  Checkbox,
+  CheckboxLabel,
+} from "../components/body/mixin/Mixin";
 import { bake_cookie } from "sfcookies";
 import axios from "axios";
 
@@ -124,9 +127,9 @@ const Login = () => {
           // 로그인 성공시 쿠키 설정 후 다시 백으로 보내서 세션에 등록
           bake_cookie("userId", userId);
           axios.get("/wherewego/user/checkSession").then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
             res.data
-              ? (window.location.href = "http://localhost:3000/memberhome/")
+              ? (window.location.href = "http://localhost:3000/#/memberhome")
               : alert("로그인 실패...");
           });
         } else {

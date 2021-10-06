@@ -27,7 +27,7 @@ const Image = styled.img`
   width: 100%;
   position: relative;
   /* 이미지 위치 조절 */
-  top: ${(props) => props.fromTop};
+  /* top: ${(props) => props.fromTop}; */
   filter: brightness(0.7);
 `;
 
@@ -93,7 +93,7 @@ const LinkedContents = () => {
           <Image
             src={`${process.env.PUBLIC_URL}/images/img_main2.jpg`}
             alt="img_main2"
-            fromTop="-16vh"
+            // fromTop="-16vh"
           />
         </ImageBox>
         <TextInImage>
@@ -108,10 +108,12 @@ const LinkedContents = () => {
           <Image
             src={`${process.env.PUBLIC_URL}/images/img_main3.jpg`}
             alt="img_main3"
-            fromTop="-24vh"
+            // fromTop="-24vh"
           />
         </ImageBox>
-        <TextInImage fromTop="-76vh">
+        <TextInImage
+        //  fromTop="-76vh"
+        >
           <h1>비가 오는 날에도 오붓하게</h1>
           <h1>
             <YellowD>실내</YellowD> 데이트!
