@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import styled from "styled-components";
 import IndividualForm from "../components/body/registrationForm/IndividualForm";

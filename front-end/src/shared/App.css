@@ -12,8 +12,8 @@
   --color-lightbrown: #786352;
   --color-black: #2c3e50;
 
-  --color-brown: #32221d;
-  --color-yellow: #fed16c;
+  --color-brown: #553a31;
+  --color-yellow: #fde511;
   --color-line1: #263c96;
   --color-line2: #3cb44a;
   --color-line3: #ff7300;
@@ -33,8 +33,8 @@
   --padding-tiny: 4px;
   --margin-default: 40px;
   --margin-line-space: 10px;
-  --margin-header-to-body: 160px;
-  --margin-body-to-footer: 200px;
+  --margin-header-to-body: 40px;
+  --margin-body-to-footer: 20px;
 
   /* title font size */
   --font-size-huge: 160px;

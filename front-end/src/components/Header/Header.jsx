@@ -37,13 +37,13 @@ const LogoContainer = styled.div`
 `;
 
 const MenuSection = styled.section`
-  width: 52%;
+  width: 64%;
   display: flex;
   justify-content: flex-end;
 `;
 
 const MenuContainer = styled.ul`
-  width: 72%;
+  width: 80%;
   min-width: 460px;
   height: 100%;
   display: flex;
@@ -51,7 +51,7 @@ const MenuContainer = styled.ul`
   align-items: center;
   font-size: var(--font-size-large);
   & > li {
-    margin-left: var(--margin-default);
+    margin-right: var(--margin-default);
   }
   & > li:hover {
     color: var(--color-yellow);
@@ -59,7 +59,7 @@ const MenuContainer = styled.ul`
 `;
 
 const LoginButtonContainer = styled.div`
-  width: 24%;
+  width: 20%;
   min-width: 152px;
   height: 100%;
   display: flex;
@@ -129,19 +129,19 @@ const Header = () => {
           {read_cookie("userId").length > 0 ? (
             <MenuContainer>
               <li>
-                <Link to={`/memberhome`}>홈</Link>
+                <Link to={`/memberhome`}>Home</Link>
               </li>
               <li>
-                <Link to={`/planning`}>코스검색</Link>
+                <Link to={`/planning`}>Course</Link>
               </li>
               <li>
-                <Link to={`/searchplace`}>장소검색</Link>
+                <Link to={`/searchplace`}>Place</Link>
               </li>
               <li>
-                <Link to={`/reviews2`}>후기</Link>
+                <Link to={`/reviews2`}>Reviews</Link>
               </li>
               <li>
-                <Link to={`/userrecommendation`}>제안</Link>
+                <Link to={`/userrecommendation`}>Recommendation</Link>
               </li>
             </MenuContainer>
           ) : null}
@@ -152,14 +152,14 @@ const Header = () => {
             >
               {read_cookie("userId").length > 0 ? (
                 <>
-                  <div>마이페이지</div>
+                  <div>Mypage</div>
                   <SubMenu heightOfSub={heightOfSub}>
                     <Link to={"/mypage"}>
                       <SubMenuItem
                         onMouseOver={() => setHomeWidth("150px")}
                         onMouseOut={() => setHomeWidth("0")}
                       >
-                        마이 홈
+                        MyHome
                         <BorderEffect spanWidth={homeWidth} />
                       </SubMenuItem>
                     </Link>
@@ -168,7 +168,7 @@ const Header = () => {
                         onMouseOver={() => setProfileWidth("150px")}
                         onMouseOut={() => setProfileWidth("0")}
                       >
-                        프로필 수정
+                        Profile
                         <BorderEffect spanWidth={profileWidth} />
                       </SubMenuItem>
                     </Link>
@@ -177,7 +177,7 @@ const Header = () => {
                         onMouseOver={() => setReviewWidth("150px")}
                         onMouseOut={() => setReviewWidth("0")}
                       >
-                        나의 기록
+                        History
                         <BorderEffect spanWidth={reviewWidth} />
                       </SubMenuItem>
                     </Link>
@@ -186,7 +186,7 @@ const Header = () => {
                         onMouseOver={() => setRecommendWidth("150px")}
                         onMouseOut={() => setRecommendWidth("0")}
                       >
-                        나의 추천 코스
+                        MyRecommendation
                         <BorderEffect spanWidth={recommendWidth} />
                       </SubMenuItem>
                     </Link>
@@ -195,7 +195,7 @@ const Header = () => {
                         onMouseOver={() => setLikeWidth("150px")}
                         onMouseOut={() => setLikeWidth("0")}
                       >
-                        찜한 코스
+                        Dibs
                         <BorderEffect spanWidth={likeWidth} />
                       </SubMenuItem>
                     </Link>
@@ -204,23 +204,23 @@ const Header = () => {
                         onMouseOver={() => setPointWidth("150px")}
                         onMouseOut={() => setPointWidth("0")}
                       >
-                        포인트샵
+                        PointShop
                         <BorderEffect spanWidth={pointWidth} />
                       </SubMenuItem>
                     </Link>
                   </SubMenu>
                 </>
               ) : (
-                <Link to={`/registration`}>회원가입</Link>
+                <Link to={`/registration`}>Sign up</Link>
               )}
             </SubMenuContainer>
             <div>
               {read_cookie("userId").length > 0 ? (
                 <Link to={`/`} onClick={onClickLogout}>
-                  로그아웃
+                  LogOut
                 </Link>
               ) : (
-                <Link to={`/login`}>로그인</Link>
+                <Link to={`/login`}>Sign in</Link>
               )}
             </div>
           </LoginButtonContainer>

@@ -8,6 +8,7 @@ const SignUpForm = styled.form`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 40px;
 `;
 
 // Form 컴포넌트가 form 역할을 하지 못하므로 ...props를 통해 submit 함수도 전달해야 함

@@ -19,7 +19,7 @@ import {
   SubmitButton,
   ItemContainer,
   ErrorMsg,
-} from "../registrationForm/FormMixin";
+} from "./FormMixin";
 import {
   Button,
   Checkbox,

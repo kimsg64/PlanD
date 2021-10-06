@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Stars from "../components/body/mixin/Stars";
 
@@ -17,7 +17,7 @@ const ReviewsContainer = styled.ul`
   user-select: none;
   transition: all 0.2s;
   will-change: transform;
-  perspective: 800px;
+  /* perspective: 800px; */
   /* background: -webkit-linear-gradient(
     left,
     rgba(0, 0, 0, 0.65) 0%,
@@ -28,8 +28,7 @@ const ReviewsContainer = styled.ul`
 `;
 
 const ReviewItem = styled.li`
-  height: 88%;
-  min-height: 660px;
+  max-height: 560px;
   margin: 0 calc(var(--margin-default) / 1.4);
   padding: var(--padding-default);
   border-radius: 8px;
@@ -42,7 +41,7 @@ const ReviewItem = styled.li`
   }
 
   /* 체크용 > 색깔 변경예정 */
-  border: 2px solid var(--color-lightpink);
+  border: 2px solid var(--color-brown);
 `;
 
 const ImageBox = styled.div`
@@ -58,18 +57,20 @@ const ImageBox = styled.div`
 
 const TextBox = styled.div`
   width: 100%;
-  max-height: 192px;
+  max-height: 116px;
   margin-top: calc(var(--margin-default) / 2);
   padding: var(--padding-default);
   border: 2px solid var(--color-brown);
   border-radius: 8px;
   font-size: var(--font-size-normal);
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
-  overflow: hidden;
-  white-space: pre-wrap;
-  text-overflow: ellipsis;
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+  }
   /* after로 말풍선 툴팁 주기? */
 `;
 
@@ -143,7 +144,7 @@ const Reviews = () => {
   return (
     <>
       <Header />
-      <BodyLayout>
+      <BodyLayout padding="0">
         <ReviewsContainer
           ref={sliderRef}
           onMouseDown={startDraging}
@@ -151,6 +152,7 @@ const Reviews = () => {
           onMouseUp={stopDraging}
         >
           <ReviewItem onClick={showDetailItem}>
+            <div>코스명</div>
             <ImageBox>
               <img
                 src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
@@ -158,14 +160,11 @@ const Reviews = () => {
               />
             </ImageBox>
             <TextBox>
-              제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
-              진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
-              취재하고 제가 그 머~ 어~ 대통령이 된 기분이였어요 그런데 17일만에
-              17일만에 마이너리그로 떨어졌어요 못던져서 그만두고 그냥 확
-              한국으로 가버리고 싶었어요 그래서 집에 가는길에 그 맥주6개 달린거
-              있잖아요 맥주6개 그걸 사가지고 집으로 갔어요 그전에는 술먹으면
-              야구 못하는줄 알았어요 그냥 한국으로 가버릴려구.... 그리고 맥주
-              6개먹고 확 죽어버릴려고 그랬어요 야구 못하게 되니깐
+              <p>
+                제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
+                진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
+                취재하고 제가 그 머~ 어~ 대통령이 된 기분이었어요
+              </p>
             </TextBox>
             <ProfileBox>
               <Icon>
@@ -182,7 +181,6 @@ const Reviews = () => {
                 <UserHistory>코스A, 1992.09.12 방문</UserHistory>
               </UserInfo>
             </ProfileBox>
-            아래쪽에 자세히 보기 등 버튼 추가, 누가 디자인좀 해줬으면
           </ReviewItem>
           <ReviewItem onClick={showDetailItem}>
             <ProfileBox>1</ProfileBox>

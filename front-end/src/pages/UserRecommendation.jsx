@@ -1,9 +1,13 @@
 import React from "react";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import Form from "../components/body/mixin/Form";
-import { Button, Input, SearchBar } from "../components/body/mixin/Mixin";
+import {
+  BodyLayout,
+  Button,
+  Input,
+  SearchBar,
+} from "../components/body/mixin/Mixin";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 

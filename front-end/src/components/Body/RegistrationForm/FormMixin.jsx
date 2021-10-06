@@ -4,6 +4,7 @@ import { Button, Input } from "../mixin/Mixin";
 // 제출 버튼
 export const SubmitButton = styled(Button)`
   width: 200px;
+  height: 60px;
   margin: var(--margin-default) var(--margin-default) 0 0;
 `;
 

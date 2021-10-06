@@ -3,15 +3,15 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import ImageSlider from "../components/body/imageSlider/ImageSlider";
-import { YellowD } from "../components/body/mixin/Mixin";
+import Dots from "../components/body/imageSlider/Dots";
+import { YellowD, BodyLayout } from "../components/body/mixin/Mixin";
 import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
 
 const MenuSection = styled.section`
   width: 60vw;
-  height: 100vh;
+  height: 120vh;
   margin: var(--margin-default);
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ const MenuSection = styled.section`
 const Container = styled.div`
   width: 40%;
   min-width: 360px;
-  height: 48%;
+  height: 40%;
   margin: var(--margin-default);
   display: flex;
   flex-direction: column;
@@ -54,8 +54,9 @@ const MemberHome = () => {
   return (
     <>
       <Header />
-      <BodyLayout>
+      <BodyLayout padding="0">
         <ImageSlider />
+        <Dots />
         <MenuSection>
           <Container>
             <SubHeading>

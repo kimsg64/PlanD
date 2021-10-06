@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Line8 from "../components/body/map/metorMap/line8/Line8";
 import StationViewer from "../components/body/map/metorMap/StationViewer";

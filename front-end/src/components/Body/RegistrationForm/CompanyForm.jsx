@@ -8,7 +8,7 @@ import {
   ItemContainer,
   FormInput,
   Hyphen,
-} from "../registrationForm/FormMixin";
+} from "./FormMixin";
 import { Button } from "../mixin/Mixin";
 
 const Container = styled.div`

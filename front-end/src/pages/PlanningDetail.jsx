@@ -1,9 +1,9 @@
 import React from "react";
-import BodyLayout from "../components/body/BodyLayout";
 import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
 import StationViewer from "../components/body/map/metorMap/StationViewer";
 import Form from "../components/body/mixin/Form";
 import {
+  BodyLayout,
   Checkbox,
   CheckboxLabel,
   OptionsContainer,
