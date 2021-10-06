@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bit5.wherewego.notice.NoticeDAOImp">
 	<select id="noticeAllSelect" resultType="com.bit5.wherewego.notice.NoticeVO">
-		select n_num, title, content photo, hit, to_char(writedate,'MM-DD') writedate, pop 
-		from notice
+		select n_num, title, content, photo, hit, to_char(writedate,'MM/DD') writedate, pop 
+		from notice order by n_num desc
 	</select>
 </mapper>
