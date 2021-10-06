@@ -73,7 +73,7 @@ td:hover {
 			<td><a href="/wherewego/courseList"><img src="imgs/adminMenu/location.png" /><br/>코스 관리</a></td> <!-- 유나님 파일 연결하기 -->
 			<td><a href="/wherewego/newCourseList"><img src="imgs/adminMenu/new.png" /><br/>신규 코스 관리</a></td> <!-- 유나님 파일 연결하기 -->
 			<td><a href="/wherewego/adList"><img src="imgs/adminMenu/ad.png" /><br/>광고 관리</a></td> <!-- 도훈님 파일 연결하기 -->
-			<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointshop.png" /><br/>상품 관리</a></td>
+			<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointshop.png" /><br/>포인트샵 관리</a></td>
 		</tr>
 	</table>
 	<!--  < / c:if> adminDiv끝-->

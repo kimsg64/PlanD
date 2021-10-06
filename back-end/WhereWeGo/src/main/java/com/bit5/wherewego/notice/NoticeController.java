@@ -21,11 +21,27 @@ public class NoticeController {
 	
 	//공지사항 목록
 	@RequestMapping("/noticeList")
-	public ModelAndView list() {
+	public ModelAndView list(PagingVO pVo) {
 
 		ModelAndView mav = new ModelAndView();
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
-		mav.addObject("list",dao.noticeAllSelect());
+		NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
+		
+		int total = dao2.totalRecordCount();
+		pVo.setTotalRecord(total);
+		
+		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
+		int num2;
+		
+		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
+		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
+			num2 = lastPageRecord;
+		} else {
+			num2 = pVo.getOnePageRecord();
+		}
+		
+		mav.addObject("list",dao.noticeAllSelect(num1,num2));
+		mav.addObject("pVo",pVo);
 		mav.setViewName("notice/noticeList");
 
 		return mav;

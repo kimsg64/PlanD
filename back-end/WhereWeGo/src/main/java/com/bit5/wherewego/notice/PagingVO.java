@@ -4,7 +4,7 @@ public class PagingVO {
 	private int totalRecord; // 총레코드수
 	private int nowPage = 1; // 현재페이지
 	private int totalPage; // 총페이지수
-	private int onePageRecord = 5; // 한페이지당 레코드수
+	private int onePageRecord = 10; // 한페이지당 레코드수
 
 	// 검색어
 	private String searchKey;
