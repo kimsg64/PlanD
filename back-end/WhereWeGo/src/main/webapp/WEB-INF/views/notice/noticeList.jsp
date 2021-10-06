@@ -83,83 +83,17 @@
 			<li>시간대</li>
 
 			<c:forEach var="vo" items="${list}">
-				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="list.jsp?num=1">${vo.name}</a></li>
-				<li>${vo.userid }</li>
-				<li>${vo.resdate }</li>
-				<li>${vo.time }</li>
+				<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
+				<li>${vo.n_num }</li>
+				<li class="wordCut"><a href="list.jsp?num=1">${vo.title}</a></li>
+				<li>${vo.writedate }</li>
+				<li>
+					<c:if test="${vo.photo}!=null">
+						<img src="/imgs/disk.png"/>
+					</c:if>
+				</li>
 			</c:forEach>
-
-			<li><input type="checkbox"></li>
-			<li>1</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>2</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>3</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>4</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>5</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>6</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>7</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>8</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>9</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>10</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
+			
 		</ul>
 	</div>
 
