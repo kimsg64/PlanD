@@ -14,35 +14,43 @@
 	width: 72%;
 	margin: 0 auto;
 	color: #553a31;
+	text-align:center;
 }
-
 
 #mainDiv>h1 {
-	margin-bottom:30px;
+	margin-bottom: 30px;
 }
 
-#list ul, #list li {
+#mainDiv button {
+	float:right;
+	margin : 20px;
+}
+
+#reslist ul, #reslist li {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-#list {
+#reslist {
 	width: 100%;
 	height: 400px;
-	margin: 0 auto;
 }
 
 #boardList>li {
 	float: left;
-	width: 10%;
+	width: 12.5%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #ddd;
 }
 
 #boardList>li:nth-child(6n+3) {
-	width: 50%;
+	width: 45%;
+}
+
+#boardList>li:nth-child(6n+1) {
+	width: 5%;
 }
 
 .wordCut {
@@ -51,7 +59,6 @@
 	text-overflow: ellipsis;
 }
 
-}
 </style>
 
 <script>
@@ -70,7 +77,7 @@
 <div id="mainDiv">
 	<h1>예약 관리</h1>
 
-	<div id="list">	
+	<div id="reslist">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
@@ -78,98 +85,87 @@
 			<li>예약자</li>
 			<li>날짜</li>
 			<li>시간대</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<c:forEach var="vo" items="${list}">
+				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
+				<li>${vo.r_num }</li>
+				<li class="wordCut"><a href="list.jsp?num=1">${vo.name}</a></li>
+				<li>${vo.userid }</li>
+				<li>${vo.resdate }</li>
+				<li>${vo.time }</li>
+			</c:forEach>
+
+			<li><input type="checkbox"></li>
 			<li>1</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>2</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>3</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>4</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>5</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>6</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>7</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>8</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>9</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
+
+			<li><input type="checkbox"></li>
 			<li>10</li>
 			<li class="wordCut">덕수궁 돌담길 어때</li>
 			<li>user01</li>
 			<li>03/21</li>
 			<li>12:00</li>
-		</ul>
-		
-		
 	</div>
+	
+	<button type="button" class="btn btn-outline-warning">취소</button>
+
 </div>
