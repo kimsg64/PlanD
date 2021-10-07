@@ -3,57 +3,116 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
-#whitetop { width: 100%; height: 80px; }
+#whitetop {
+	width: 100%;
+	height: 80px;
+}
 
-#mainDiv { width: 72%; margin: 0 auto; color: #553a31; }
+#mainDiv {
+	width: 72%;
+	margin: 0 auto;
+	color: #00282e;
+	text-align: center;
+}
 
-#mainDiv>h1 { margin-bottom: 30px; }
+#mainDiv>h1 {
+	margin-bottom: 30px;
+	text-align: left;
+}
 
-#mainDiv .button { float:right; margin : 20px; }
+#bottomdiv {
+	width:100%;
+	height: 50px;
+	margin : 10px 0px;
+}
+#count {
+	font-size: 0.7em;
+	color: #f5ebe3;
+	text-align:left;
+	float:left;
+}
+#count:hover {
+	color: #efcac3;
+}
 
-#reslist ul, #reslist li { margin: 0; padding: 0; list-style: none; }
+#buttonMenu {
+	float:right;
+}
 
-#reslist { width: 100%; height: 400px; }
+#list ul, #list li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 
-#boardList>li { float: left; width: 12.5%; height: 40px; line-height: 40px; border-bottom: 1px solid #ddd; }
+#list {
+	width: 100%;
+	height: 450px;
+}
 
-#boardList>li:nth-child(6n+3) { width: 45%; }
+#boardList>li { float: left; width: 12.5%; height: 40px; line-height: 40px; border-bottom: 1px solid #f5ebe3; }
+
+#boardList>li:nth-child(6n+3) { width: 45%; text-align: left;}
+
+#boardList>li:nth-child(3) { width: 45%; text-align: center;}
 
 #boardList>li:nth-child(6n+1) { width: 5%; }
 
-.wordCut { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wordCut a:hover {
+	color:#fd7d73;
+}
 
 .button {
-	display: inline-block;
-	width: 50px;
-	height: 30px;
+	background-color: #fd7d73;
+	border: none;
+	color: #f5ebe3;
+	padding: 10px 20px;
+	margin: 10px 0px;
 	text-align: center;
 	text-decoration: none;
-	line-height: 30px;
-	outline: none;
+	display: inline-block;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+	font-size: 13px;
+	width: 70px;
+	text-align: center;
 }
-.button::before,
-.button::after {
-	position: absolute;
-	z-index: -1;
-	display: block;
-	content: '';
-}
-.button,
-.button::before,
-.button::after {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-transition: all .3s;
-	transition: all .3s;
-}
-.button {
-	background-color: #553a31;
-	color: #fff;
-}
+
 .button:hover {
-	color: #fde511;
+	color: #81bbaf;
+}
+
+ul.pagination {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+ul.pagination li {
+	display: inline;
+}
+
+ul.pagination li a {
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+ul.pagination li a.active {
+	background-color: #fd7d73;
+	color: #f5ebe3;
+	border-radius: 5px;
+}
+
+ul.pagination li a:hover:not(.active) {
+	background-color: #f5ebe3;
 }
 </style>
 
@@ -73,7 +132,7 @@
 <div id="mainDiv">
 	<h1>예약 관리</h1>
 
-	<div id="reslist">
+	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
@@ -85,84 +144,66 @@
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="list.jsp?num=1">${vo.name}</a></li>
+				<li class="wordCut"><a href="/wherewego/resView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
 				<li>${vo.time }</li>
 			</c:forEach>
-
-			<li><input type="checkbox"></li>
-			<li>1</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>2</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>3</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>4</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>5</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>6</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>7</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>8</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>9</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
-
-			<li><input type="checkbox"></li>
-			<li>10</li>
-			<li class="wordCut">덕수궁 돌담길 어때</li>
-			<li>user01</li>
-			<li>03/21</li>
-			<li>12:00</li>
 		</ul>
 	</div>
 
-	<a class="button" href="#">취소</a>
+		
+	<div id="bottomdiv">
+		<div id="count">
+			<div>총 레코드 수 : ${pVo.totalRecord }</div>
+			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
+		</div>
+		
+		<div id="buttonMenu">
+			<a class="button" href="#">삭제</a>
+		</div>
+	</div>
 
+	<!-- 페이징 -->
+	<div id="paging">
+		<ul class="pagination">
+			<!-- 이전페이지 -->
+			<c:if test="${pVo.nowPage>1}">
+				<li class='page-item'><a
+					href="/wherewego/resList?nowPage=${pVo.nowPage-1}"
+					class='page-link'>«</a></li>
+			</c:if>
+
+			<c:if test="${pVo.nowPage==1}">
+				<li class='page-item'><a href='#'>«</a></li>
+			</c:if>
+
+			<!-- 시작페이지부터 5개의 페이지 출력 -->
+			<c:forEach var="i" begin="${pVo.startPage}"
+				end="${pVo.startPage+pVo.onePageNumberCount-1}">
+
+				<c:if test="${i<=pVo.totalPage}">
+
+					<c:if test="${i==pVo.nowPage}">
+						<li><a class="active"
+							href="/wherewego/resList?nowPage=${i}">${i}</a>
+					</c:if>
+
+					<c:if test="${i!=pVo.nowPage}">
+						<li><a href="/wherewego/resList?nowPage=${i}">${i}</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+
+			<!-- 다음페이지-->
+			<c:if test="${pVo.nowPage<pVo.totalPage}">
+				<li class='page-item'><a
+					href="/wherewego/resList?nowPage=${pVo.nowPage+1}">»</a></li>
+			</c:if>
+			
+			<c:if test="${pVo.nowPage==pVo.totalPage}">
+				<li class='page-item'><a href='#'>»</a></li>
+			</c:if>
+		</ul>
+	</div>
 </div>
