@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 
 const Stage = styled.div`
@@ -114,6 +114,7 @@ const Reviews = () => {
               {testReivew.map((reviewNum) => {
                 return (
                   <ReviewItem
+                    key={reviewNum}
                     yRotate={posterAngle * reviewNum}
                     className={
                       posterAngle * Math.abs(reviewNum - posterNum) ===
@@ -123,7 +124,7 @@ const Reviews = () => {
                     }
                   >
                     <ProfileBox>
-                      <img src="images/temp2.jpg" alt="temp" />
+                      <img src="/images/temp2.jpg" alt="temp" />
                     </ProfileBox>
                     <ReviewTitle>베스트 리뷰의 제목입니다.</ReviewTitle>
                     <ReviewContent>

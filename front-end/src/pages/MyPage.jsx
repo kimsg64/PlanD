@@ -1,10 +1,8 @@
 import React from "react";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
 import styled from "styled-components";
-import { MenuTitle } from "../components/body/mixin/Mixin";
-import { Button } from "../components/body/registrationForm/FormMixin";
+import { BodyLayout, MenuTitle, Button } from "../components/body/mixin/Mixin";
 
 // 상단 프로필 섹션
 const ProfileSummary = styled.section`
@@ -36,6 +34,7 @@ const UserImage = styled.div`
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
+  background-color: var(--color-pink);
   img {
     width: 100%;
     height: 100%;
@@ -96,7 +95,10 @@ const MyPage = () => {
           <UserIconSection>
             <UserIcon>
               <UserImage>
-                <img src="images/user.jpg" alt="user" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                  alt="user"
+                />
               </UserImage>
             </UserIcon>
           </UserIconSection>

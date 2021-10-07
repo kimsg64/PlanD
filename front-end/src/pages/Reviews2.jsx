@@ -1,24 +1,23 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
+import Stars from "../components/body/mixin/Stars";
 
 // 여기는 리뷰 상세 페이지로 활용하기
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
-  height: 80vh;
   margin-top: var(--margin-header-to-body);
   display: flex;
   align-items: center;
   overflow-x: hidden;
-  overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s;
   will-change: transform;
-  perspective: 800px;
+  /* perspective: 800px; */
   /* background: -webkit-linear-gradient(
     left,
     rgba(0, 0, 0, 0.65) 0%,
@@ -29,25 +28,87 @@ const ReviewsContainer = styled.ul`
 `;
 
 const ReviewItem = styled.li`
-  width: auto;
-  height: 40%;
+  max-height: 560px;
   margin: 0 calc(var(--margin-default) / 1.4);
+  padding: var(--padding-default);
+  border-radius: 8px;
 
   &:nth-child(even) {
-    transform: scaleX(1.3) rotateY(10deg);
+    /* transform: scaleX(1.16) rotateY(10deg); */
   }
   &:nth-child(odd) {
-    transform: scaleX(1.3) rotateY(-10deg);
+    /* transform: scaleX(1.16) rotateY(-10deg); */
   }
 
-  /* 체크용 > 삭제예정 */
-  border: 1px solid black;
-  background-color: var(--concept-color4);
+  /* 체크용 > 색깔 변경예정 */
+  border: 2px solid var(--color-brown);
+`;
+
+const ImageBox = styled.div`
+  width: 400px;
+  height: 240px;
+  margin: calc(var(--margin-default) / 2) 0;
+  overflow: hidden;
+  background-color: var(--color-brown);
+  img {
+    width: 100%;
+  }
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  max-height: 116px;
+  margin-top: calc(var(--margin-default) / 2);
+  padding: var(--padding-default);
+  border: 2px solid var(--color-brown);
+  border-radius: 8px;
+  font-size: var(--font-size-normal);
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+  }
+  /* after로 말풍선 툴팁 주기? */
 `;
 
 const ProfileBox = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.div`
+  width: 60px;
+  height: 60px;
+  margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
+  overflow: hidden;
+  border-radius: 50%;
+  /* border: 2px solid var(--color-brown); */
+  img {
+    width: 100%;
+  }
+`;
+
+const UserInfo = styled.div`
+  width: calc(100% - 60px);
+`;
+
+const NameAndStar = styled.div`
+  display: flex;
+`;
+
+const UserName = styled.div`
+  width: 48%;
+  min-width: 120px;
+  font-size: var(--font-size-large);
+`;
+
+const UserHistory = styled.div`
+  font-size: var(--font-size-normal);
 `;
 
 const Reviews = () => {
@@ -83,7 +144,7 @@ const Reviews = () => {
   return (
     <>
       <Header />
-      <BodyLayout>
+      <BodyLayout padding="0">
         <ReviewsContainer
           ref={sliderRef}
           onMouseDown={startDraging}
@@ -91,7 +152,35 @@ const Reviews = () => {
           onMouseUp={stopDraging}
         >
           <ReviewItem onClick={showDetailItem}>
-            <ProfileBox>1</ProfileBox>
+            <div>코스명</div>
+            <ImageBox>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                alt="cafe_review"
+              />
+            </ImageBox>
+            <TextBox>
+              <p>
+                제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
+                진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
+                취재하고 제가 그 머~ 어~ 대통령이 된 기분이었어요
+              </p>
+            </TextBox>
+            <ProfileBox>
+              <Icon>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                  alt="user_icon"
+                />
+              </Icon>
+              <UserInfo>
+                <NameAndStar>
+                  <UserName>찬호팍</UserName>
+                  <Stars />
+                </NameAndStar>
+                <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+              </UserInfo>
+            </ProfileBox>
           </ReviewItem>
           <ReviewItem onClick={showDetailItem}>
             <ProfileBox>1</ProfileBox>

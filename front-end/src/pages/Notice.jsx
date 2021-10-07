@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
 import Footer from "../components/footer/Footer";
-import { MenuTitle } from "../components/body/mixin/Mixin";
-import { Button, Input } from "../components/body/registrationForm/FormMixin";
+import {
+  BodyLayout,
+  Button,
+  Input,
+  MenuTitle,
+  SearchBar,
+} from "../components/body/mixin/Mixin";
 
 const NoticeContainer = styled.ul`
   width: 1200px;
@@ -48,23 +52,6 @@ const ItemTitleBox = styled(TitleBox)`
   :hover {
     cursor: pointer;
     color: var(--color-pink);
-  }
-`;
-
-const SearchBar = styled.div`
-  width: 1200px;
-  height: 60px;
-  margin-top: var(--margin-default);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  input {
-    margin-right: calc(var(--margin-default) / 2);
-  }
-  Button {
-    i {
-      font-size: var(--font-size-large);
-    }
   }
 `;
 
@@ -202,7 +189,7 @@ const Notice = () => {
           </NoticeItem>
         </NoticeContainer>
         <SearchBar>
-          <Input type="text" placeholder="배경색 임시임" />
+          <Input type="text" placeholder="검색하세요" />
           <Button>
             <i className="fas fa-search"></i>
           </Button>

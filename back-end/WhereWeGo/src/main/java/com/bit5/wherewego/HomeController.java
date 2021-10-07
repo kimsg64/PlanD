@@ -15,7 +15,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home/");
+		mav.setViewName("home");
+		return mav;
+	}
+
+	@RequestMapping(value = "/dohoon", method = RequestMethod.GET)
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("advermanage");
 		return mav;
 	}
 	

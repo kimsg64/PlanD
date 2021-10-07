@@ -1,6 +1,8 @@
+// ★★★ 미구현 기능
+// 1. 개인 폼이나 회사 폼을 선택시 작성중인 내용이 있다면 삭제해야 함
 import React, { useState } from "react";
 import Header from "../components/header/Header";
-import BodyLayout from "../components/body/BodyLayout";
+import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import styled from "styled-components";
 import IndividualForm from "../components/body/registrationForm/IndividualForm";
