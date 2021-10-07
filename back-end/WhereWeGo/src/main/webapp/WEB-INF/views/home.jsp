@@ -21,7 +21,7 @@
 	margin-bottom: 30px;
 }
 
-#adminProfileDiv, #businessProfileDiv {
+#profileDiv {
 	width: 100%;
 	height: 150px;
 	border: 1px solid #553a31;
@@ -31,12 +31,12 @@
 	margin-bottom: 50px;
 }
 
-#adminMenu img, #businessMenu img {
+#adminMenu img {
 	width: 100px;
 	height: 100px;
 }
 
-#adminMenu, #businessMenu {
+#adminMenu {
 	width: 100%;
 	border-spacing: 0 20px;
 }
@@ -52,11 +52,11 @@ td:hover {
 	<h1>My Page</h1>
 
 	<!-- 여긴 관리자 화면!!!!!!!!!!!< c : if test="${logid=='admin'}"> -->
-	<div id="adminProfileDiv">
-		admin 님의 마이페이지<br />
+	<div id="profileDiv">
+		$ { vo.b_id } 님의 마이페이지<br />
 		<!-- ${logid } -->
-		<h2>Plan.D</h2>
-		사업자번호 : 555555555
+		<h2>$ { vo.name }</h2>
+		사업자번호 : $ { vo.num }
 	</div>
 
 	<!-- 링크 이름은 임시로 제가 넣어둠! -->
@@ -77,8 +77,8 @@ td:hover {
 			<td><a href="/wherewego/courseList"><img
 					src="imgs/adminMenu/location.png" /><br />코스 관리</a></td>
 			<!-- 유나님 파일 연결하기 -->
-			<td><a href="/wherewego/newCourseList"><img
-					src="imgs/adminMenu/new.png" /><br />신규 코스 관리</a></td>
+			<td><a href="/wherewego/placeList"><img
+					src="imgs/adminMenu/place.png" /><br />장소 관리</a></td>
 			<!-- 유나님 파일 연결하기 -->
 			<td><a href="/wherewego/adList"><img
 					src="imgs/adminMenu/ad.png" /><br />광고 관리</a></td>
@@ -90,15 +90,10 @@ td:hover {
 	<!--  < / c:if> adminDiv끝-->
 
 	<!--여긴 광고주 화면!!!!!!!!!!!< c : if test="${logid!='admin'}"> -->
-	<div id="businessProfileDiv">
-		Starbucks 님의 마이페이지<br />
-		<!-- ${logid } -->
-		<h2>스타벅스</h2>
-		사업자번호 : 555555555
-	</div>
 
 	<!-- 링크 이름은 임시로 제가 넣어둠! -->
-	<table id="businessMenu">
+	여기 아래는 광고주 아래가 로그인하면 뜨는 메뉴.
+	<table id="adminMenu">
 		<tr>
 			<td><a href="/wherewego/MyInfo"><img
 					src="imgs/adminMenu/user.png" /><br />내 정보 수정</a></td>
