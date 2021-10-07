@@ -2,7 +2,7 @@ package com.bit5.wherewego.user;
 
 import com.bit5.wherewego.DBConnection;
 
-public class UserDAO extends DBConnection implements UserDAOImpl{
+public class UserDAO extends DBConnection implements UserDAOImp{
 	
 	// 유저 추가(회원가입)
 	@Override

@@ -31,7 +31,7 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderSizeController = styled.div`
-  width: 64%;
+  width: 72%;
   display: flex;
   justify-content: space-between;
 `;

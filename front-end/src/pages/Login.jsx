@@ -110,8 +110,7 @@ const Login = () => {
     console.log(keepSession);
 
     // 사업자 유저인 경우 매핑 주소 설정해야 함
-    const url =
-      classification === "individual" ? "/wherewego/user/userLogin" : "";
+    const url = classification === "individual" ? "/wherewego/userLogin" : "";
     // console.log(url);
     const body = {
       userId: userId,

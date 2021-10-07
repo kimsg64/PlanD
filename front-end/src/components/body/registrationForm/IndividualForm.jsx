@@ -169,7 +169,7 @@ const IndividualForm = ({ isIndividual = true }) => {
 
     axios
       .post(
-        "/wherewego/user/getUserData",
+        "/wherewego/getUserData",
         body
         // , { headers: { "Content-Type": `multipart/form-data` } },
       )

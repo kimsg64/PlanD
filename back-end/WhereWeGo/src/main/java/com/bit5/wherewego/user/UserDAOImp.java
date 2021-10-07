@@ -1,6 +1,6 @@
 package com.bit5.wherewego.user;
 
-public interface UserDAOImpl {
+public interface UserDAOImp {
 	// 유저 추가(회원가입)
 	public int insertUser(UserVO userData);
 	
