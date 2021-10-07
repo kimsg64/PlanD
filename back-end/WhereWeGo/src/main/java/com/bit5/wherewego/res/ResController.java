@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.notice.PagingVO;
+
 @Controller
 public class ResController {
 	SqlSession sqlSession;
@@ -21,11 +23,27 @@ public class ResController {
 
 	//예약 목록
 	@RequestMapping("/resList")
-	public ModelAndView list() {
+	public ModelAndView list(PagingVO pVo) {
 
 		ModelAndView mav = new ModelAndView();
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		mav.addObject("list",dao.resAllSelect());
+		ResDAOImp dao2 = sqlSession.getMapper(ResDAOImp.class);
+		
+		int total = dao2.totalRecordCount();
+		pVo.setTotalRecord(total);
+		
+		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
+		int num2;
+		
+		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
+		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
+			num2 = lastPageRecord;
+		} else {
+			num2 = pVo.getOnePageRecord();
+		}
+		
+		mav.addObject("list",dao.resAllSelect(num1,num2));
+		mav.addObject("pVo",pVo);
 		mav.setViewName("res/resList");
 
 		return mav;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit5.wherewego.res.ResDAOImp">
+	<select id="resAllSelect" resultType="com.bit5.wherewego.res.ResVO">
+		<![CDATA[ 
+		select * from 
+		(select * from 
+		(select r.r_num r_num, r.userid userid, r.c_num c_num, c.name name, to_char(r.resdate, 'MM/DD') resdate, r.time time from res r 
+		join course c on r.c_num=c.c_num 
+		order by r_num desc) 
+		where rownum<=#{param1} order by r_num asc) 
+		where rownum<=#{param2} order by r_num desc
+		]]>
+	</select>
+	
+	<select id="totalRecordCount" resultType="int">
+		select count(r_num) totalRecord from res
+	</select>
+</mapper>

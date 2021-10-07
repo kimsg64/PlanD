@@ -11,7 +11,7 @@
 #mainDiv {
 	width: 72%;
 	margin: 0 auto;
-	color: #553a31;
+	color: #00282e;
 	text-align: center;
 }
 
@@ -27,12 +27,12 @@
 }
 #count {
 	font-size: 0.7em;
-	color: #eaded9;
+	color: #f5ebe3;
 	text-align:left;
 	float:left;
 }
 #count:hover {
-	color: #553a31;
+	color: #efcac3;
 }
 
 #buttonMenu {
@@ -55,12 +55,17 @@
 	width: 9%;
 	height: 40px;
 	line-height: 40px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #f5ebe3;
 }
 
 #boardList>li:nth-child(7n+3) {
 	width: 50%;
 	text-align: left;
+}
+
+#boardList>li:nth-child(3) {
+	width: 50%;
+	text-align: center;
 }
 
 #boardList>li:nth-child(7n+1) {
@@ -74,25 +79,25 @@
 }
 
 .wordCut a:hover {
-	color:#fd7f80;
+	color:#fd7d73;
 }
 
 #popup0 {
-	color: #ddd;
+	color: #f5ebe3;
 }
 
 #popup0:hover {
-	color: #fde511;
+	color: #81bbaf;
 }
 
 #popup1 {
-	color: #fde511;
+	color: #81bbaf;
 }
 
 .button {
-	background-color: #553a31;
+	background-color: #fd7d73;
 	border: none;
-	color: white;
+	color: #f5ebe3;
 	padding: 10px 20px;
 	margin: 10px 0px;
 	text-align: center;
@@ -101,12 +106,12 @@
 	border-radius: 12px;
 	transition-duration: 0.4s;
 	font-size: 13px;
-	width: 26px;
+	width: 70px;
 	text-align: center;
 }
 
 .button:hover {
-	color: #fde511;
+	color: #81bbaf;
 }
 
 ul.pagination {
@@ -127,13 +132,13 @@ ul.pagination li a {
 }
 
 ul.pagination li a.active {
-	background-color: #553a31;
-	color: #fde511;
+	background-color: #fd7d73;
+	color: #f5ebe3;
 	border-radius: 5px;
 }
 
 ul.pagination li a:hover:not(.active) {
-	background-color: #eaded9;
+	background-color: #f5ebe3;
 }
 </style>
 
@@ -173,7 +178,7 @@ ul.pagination li a:hover:not(.active) {
 				<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 				<li>${vo.n_num }</li>
 				<li class="wordCut"><a
-					href="/wherewego/noticeView.jsp?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+					href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
 				<li>${vo.writedate }</li>
 				<li>${vo.hit }</li>
 				<li><c:if test="${vo.photo==null}">
@@ -237,6 +242,10 @@ ul.pagination li a:hover:not(.active) {
 			<c:if test="${pVo.nowPage<pVo.totalPage}">
 				<li class='page-item'><a
 					href="/wherewego/noticeList?nowPage=${pVo.nowPage+1}">»</a></li>
+			</c:if>
+			
+			<c:if test="${pVo.nowPage==pVo.totalPage}">
+				<li class='page-item'><a href='#'>»</a></li>
 			</c:if>
 		</ul>
 	</div>
