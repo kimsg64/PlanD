@@ -179,25 +179,25 @@ const Header = () => {
             </Link>
           </LogoContainer>
           <MenuSection>
-            {read_cookie("userId").length > 0 ? (
-              <MenuContainer>
-                <li>
-                  <Link to={`/memberhome`}>Home</Link>
-                </li>
-                <li>
-                  <Link to={`/planning`}>Course</Link>
-                </li>
-                <li>
-                  <Link to={`/searchplace`}>Place</Link>
-                </li>
-                <li>
-                  <Link to={`/reviews2`}>Reviews</Link>
-                </li>
-                <li>
-                  <Link to={`/userrecommendation`}>Recommendation</Link>
-                </li>
-              </MenuContainer>
-            ) : null}
+            {/* {read_cookie("userId").length > 0 ? ( */}
+            <MenuContainer>
+              <li>
+                <Link to={`/memberhome`}>Home</Link>
+              </li>
+              <li>
+                <Link to={`/planning`}>Course</Link>
+              </li>
+              <li>
+                <Link to={`/searchplace`}>Place</Link>
+              </li>
+              <li>
+                <Link to={`/reviews2`}>Reviews</Link>
+              </li>
+              <li>
+                <Link to={`/userrecommendation`}>Recommendation</Link>
+              </li>
+            </MenuContainer>
+            {/* ) : null} */}
             <LoginButtonContainer>
               <SubMenuContainer
                 onMouseOver={() => setHeightOfSub("360px")}

@@ -10,6 +10,7 @@ import {
 } from "../components/body/mixin/Mixin";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import KakaoMapSearchFormInput from "../components/body/map/KakaoMapSearchFormInput";
 
 const UserRecommendation = () => {
   return (
@@ -31,6 +32,7 @@ const UserRecommendation = () => {
             <Button>
               <i className="fas fa-search"></i>
             </Button>
+            {/* <KakaoMapSearchFormInput /> */}
           </SearchBar>
           <SearchBar width="12em">
             <Input type="text" placeholder="장소2" />

@@ -12,6 +12,14 @@
   --color-lightbrown: #786352;
   --color-black: #2c3e50;
 
+  /* 강사님 피드백 이후 색 */
+  --color-font: #00282e;
+  --color-warning: #fd7d73;
+  --color-blur: #efcac3;
+  --color-bg: #f5ebe3;
+  --color-focus: #81bbaf;
+
+  /* 지하철 색 */
   --color-brown: #553a31;
   --color-yellow: #fde511;
   --color-line1: #263c96;
@@ -50,6 +58,14 @@
   --font-size-3d: 10px;
 }
 
+@font-face {
+  font-family: "TmoneyRoundWindRegular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* frame */
 #root,
 html,
@@ -69,6 +85,7 @@ body {
   box-sizing: inherit;
   color: inherit;
   user-select: none;
+  font-family: inherit;
 }
 
 a {
