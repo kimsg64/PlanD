@@ -72,12 +72,6 @@
 		<li>상호명 :</li>
 		<li>기간 :</li>
 	</ul>
-	<ul>
-		<li><input type="checkbox"/></li>
-		<li><img src="../img/icecream.jpg"/></li>
-		<li>상호명 :</li>
-		<li>기간 :</li>
-	</ul>
 </div>
 <div>
    <ul class="pagination pagination-lg" id="paging" >
