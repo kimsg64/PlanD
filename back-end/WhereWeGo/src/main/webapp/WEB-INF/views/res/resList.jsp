@@ -85,7 +85,7 @@
 }
 
 .button:hover {
-	color: #81bbaf;
+	color: #0e595f;
 }
 
 ul.pagination {
@@ -147,7 +147,7 @@ ul.pagination li a:hover:not(.active) {
 				<li class="wordCut"><a href="/wherewego/resView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
-				<li>${vo.time }</li>
+				<li>${vo.time }:00</li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -160,7 +160,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">삭제</a>
+			<a class="button" href="#">취소</a>
 		</div>
 	</div>
 

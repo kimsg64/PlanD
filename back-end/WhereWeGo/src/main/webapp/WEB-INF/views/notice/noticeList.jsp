@@ -111,7 +111,7 @@
 }
 
 .button:hover {
-	color: #81bbaf;
+	color: #0e595f;
 }
 
 ul.pagination {

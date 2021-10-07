@@ -12,7 +12,7 @@
 	/*background-color:pink;*/
 	width: 72%;
 	margin: 0 auto;
-	color: #553a31;
+	color: #00282e;
 	text-align: center;
 }
 
@@ -44,7 +44,7 @@
 td {padding : 5px;}
 
 td:hover {
-	color: #81bbaf;
+	color: #0e595f;
 	background-color : #f5ebe3;
 	border-radius: 12px;
 }
