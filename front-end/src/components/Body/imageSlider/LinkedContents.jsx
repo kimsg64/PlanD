@@ -97,7 +97,9 @@ const LinkedContents = () => {
           />
         </ImageBox>
         <TextInImage>
-          <h1>5개의 역에서 엄선</h1>
+          <h1>
+            <YellowD>빅데이터</YellowD>를 이용해 엄선된
+          </h1>
           <h1>
             최적의 <YellowD>데이트 코스</YellowD> 안내
           </h1>

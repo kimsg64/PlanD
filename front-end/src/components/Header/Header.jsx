@@ -1,11 +1,22 @@
 // ★★★ 미구현 기능
-// 1. 로고의 D에 스타일 지정하고 컴포넌트로 만들기
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { read_cookie, delete_cookie } from "sfcookies";
 import { YellowD } from "../body/mixin/Mixin";
 import BorderEffect from "../body/mixin/BorderEffect";
+
+const Observer = styled.div`
+  position: relative;
+`;
+
+const Criteria = styled.div`
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  /* background-color: rebeccapurple; */
+`;
 
 const HeaderContainer = styled.header`
   width: calc(100% - 16px);
@@ -113,120 +124,163 @@ const Header = () => {
   const [reviewWidth, setReviewWidth] = useState("0");
   const [likeWidth, setLikeWidth] = useState("0");
   const [pointWidth, setPointWidth] = useState("0");
+  // 헤더 색 변화시키기
+  const [bgColor, setBgColor] = useState("white");
+  const [fontColor, setFontColor] = useState("white");
+  const [opacity, setOpacity] = useState("0.9");
+  const headerRef = useRef(null);
+
+  // 로그아웃
   const onClickLogout = () => {
     delete_cookie("userId");
   };
 
+  // intersection observer로 헤더의 변화에 따라 색깔 변화시키기
+  useEffect(() => {
+    console.log("옵저버 생성(첫 마운트 후)");
+
+    const options = {
+      // null은 뷰포트 기준
+      root: null,
+      rootMargin: "0px",
+      // thresold가 1이면 타겟이 전부 보일때 콜백 호출(전부 보이기 전에는 호출 X)
+      // 0이면 1px이라도 보이면 콜백 호출
+      thresold: [0, 1],
+    };
+    console.log("옵션", options);
+
+    const observer = new IntersectionObserver(() => {
+      setBgColor("var(--color-brown)");
+      setFontColor("var(--color-black)");
+      setOpacity("1");
+    }, options);
+    console.log("옵저버", observer);
+
+    const target = headerRef.current;
+    observer.observe(target);
+    console.log("타겟", target);
+    console.log(bgColor, fontColor, opacity);
+  }, []);
+  console.log("첫 마운트");
+  console.log(bgColor, fontColor, opacity);
+
   return (
-    <HeaderContainer>
-      <HeaderSizeController>
-        <LogoContainer>
-          <Link to={`/`}>
-            Plan.<YellowD>D</YellowD>
-          </Link>
-        </LogoContainer>
-        <MenuSection>
-          {read_cookie("userId").length > 0 ? (
-            <MenuContainer>
-              <li>
-                <Link to={`/memberhome`}>Home</Link>
-              </li>
-              <li>
-                <Link to={`/planning`}>Course</Link>
-              </li>
-              <li>
-                <Link to={`/searchplace`}>Place</Link>
-              </li>
-              <li>
-                <Link to={`/reviews2`}>Reviews</Link>
-              </li>
-              <li>
-                <Link to={`/userrecommendation`}>Recommendation</Link>
-              </li>
-            </MenuContainer>
-          ) : null}
-          <LoginButtonContainer>
-            <SubMenuContainer
-              onMouseOver={() => setHeightOfSub("360px")}
-              onMouseOut={() => setHeightOfSub("0")}
-            >
-              {read_cookie("userId").length > 0 ? (
-                <>
-                  <div>Mypage</div>
-                  <SubMenu heightOfSub={heightOfSub}>
-                    <Link to={"/mypage"}>
-                      <SubMenuItem
-                        onMouseOver={() => setHomeWidth("150px")}
-                        onMouseOut={() => setHomeWidth("0")}
-                      >
-                        MyHome
-                        <BorderEffect spanWidth={homeWidth} />
-                      </SubMenuItem>
-                    </Link>
-                    <Link to={"/editprofile"}>
-                      <SubMenuItem
-                        onMouseOver={() => setProfileWidth("150px")}
-                        onMouseOut={() => setProfileWidth("0")}
-                      >
-                        Profile
-                        <BorderEffect spanWidth={profileWidth} />
-                      </SubMenuItem>
-                    </Link>
-                    <Link to={"/myhistory"}>
-                      <SubMenuItem
-                        onMouseOver={() => setReviewWidth("150px")}
-                        onMouseOut={() => setReviewWidth("0")}
-                      >
-                        History
-                        <BorderEffect spanWidth={reviewWidth} />
-                      </SubMenuItem>
-                    </Link>
-                    <Link to={"/myrecommendation"}>
-                      <SubMenuItem
-                        onMouseOver={() => setRecommendWidth("150px")}
-                        onMouseOut={() => setRecommendWidth("0")}
-                      >
-                        MyRecommendation
-                        <BorderEffect spanWidth={recommendWidth} />
-                      </SubMenuItem>
-                    </Link>
-                    <Link to={"/mydibs"}>
-                      <SubMenuItem
-                        onMouseOver={() => setLikeWidth("150px")}
-                        onMouseOut={() => setLikeWidth("0")}
-                      >
-                        Dibs
-                        <BorderEffect spanWidth={likeWidth} />
-                      </SubMenuItem>
-                    </Link>
-                    <Link to={"/pointshop"}>
-                      <SubMenuItem
-                        onMouseOver={() => setPointWidth("150px")}
-                        onMouseOut={() => setPointWidth("0")}
-                      >
-                        PointShop
-                        <BorderEffect spanWidth={pointWidth} />
-                      </SubMenuItem>
-                    </Link>
-                  </SubMenu>
-                </>
-              ) : (
-                <Link to={`/registration`}>Sign up</Link>
-              )}
-            </SubMenuContainer>
-            <div>
-              {read_cookie("userId").length > 0 ? (
-                <Link to={`/`} onClick={onClickLogout}>
-                  LogOut
-                </Link>
-              ) : (
-                <Link to={`/login`}>Sign in</Link>
-              )}
-            </div>
-          </LoginButtonContainer>
-        </MenuSection>
-      </HeaderSizeController>
-    </HeaderContainer>
+    <Observer>
+      <Criteria id="criteria" ref={headerRef} />
+      <HeaderContainer
+        bgColor={bgColor}
+        fontColor={fontColor}
+        opacity={opacity}
+      >
+        <HeaderSizeController>
+          <LogoContainer>
+            <Link to={`/`}>
+              Plan.<YellowD>D</YellowD>
+            </Link>
+          </LogoContainer>
+          <MenuSection>
+            {read_cookie("userId").length > 0 ? (
+              <MenuContainer>
+                <li>
+                  <Link to={`/memberhome`}>Home</Link>
+                </li>
+                <li>
+                  <Link to={`/planning`}>Course</Link>
+                </li>
+                <li>
+                  <Link to={`/searchplace`}>Place</Link>
+                </li>
+                <li>
+                  <Link to={`/reviews2`}>Reviews</Link>
+                </li>
+                <li>
+                  <Link to={`/userrecommendation`}>Recommendation</Link>
+                </li>
+              </MenuContainer>
+            ) : null}
+            <LoginButtonContainer>
+              <SubMenuContainer
+                onMouseOver={() => setHeightOfSub("360px")}
+                onMouseOut={() => setHeightOfSub("0")}
+              >
+                {read_cookie("userId").length > 0 ? (
+                  <>
+                    <div>Mypage</div>
+                    <SubMenu heightOfSub={heightOfSub}>
+                      <Link to={"/mypage"}>
+                        <SubMenuItem
+                          onMouseOver={() => setHomeWidth("150px")}
+                          onMouseOut={() => setHomeWidth("0")}
+                        >
+                          MyHome
+                          <BorderEffect spanWidth={homeWidth} />
+                        </SubMenuItem>
+                      </Link>
+                      <Link to={"/editprofile"}>
+                        <SubMenuItem
+                          onMouseOver={() => setProfileWidth("150px")}
+                          onMouseOut={() => setProfileWidth("0")}
+                        >
+                          Profile
+                          <BorderEffect spanWidth={profileWidth} />
+                        </SubMenuItem>
+                      </Link>
+                      <Link to={"/myhistory"}>
+                        <SubMenuItem
+                          onMouseOver={() => setReviewWidth("150px")}
+                          onMouseOut={() => setReviewWidth("0")}
+                        >
+                          History
+                          <BorderEffect spanWidth={reviewWidth} />
+                        </SubMenuItem>
+                      </Link>
+                      <Link to={"/myrecommendation"}>
+                        <SubMenuItem
+                          onMouseOver={() => setRecommendWidth("150px")}
+                          onMouseOut={() => setRecommendWidth("0")}
+                        >
+                          MyRecommendation
+                          <BorderEffect spanWidth={recommendWidth} />
+                        </SubMenuItem>
+                      </Link>
+                      <Link to={"/mydibs"}>
+                        <SubMenuItem
+                          onMouseOver={() => setLikeWidth("150px")}
+                          onMouseOut={() => setLikeWidth("0")}
+                        >
+                          Dibs
+                          <BorderEffect spanWidth={likeWidth} />
+                        </SubMenuItem>
+                      </Link>
+                      <Link to={"/pointshop"}>
+                        <SubMenuItem
+                          onMouseOver={() => setPointWidth("150px")}
+                          onMouseOut={() => setPointWidth("0")}
+                        >
+                          PointShop
+                          <BorderEffect spanWidth={pointWidth} />
+                        </SubMenuItem>
+                      </Link>
+                    </SubMenu>
+                  </>
+                ) : (
+                  <Link to={`/registration`}>Sign up</Link>
+                )}
+              </SubMenuContainer>
+              <div>
+                {read_cookie("userId").length > 0 ? (
+                  <Link to={`/`} onClick={onClickLogout}>
+                    LogOut
+                  </Link>
+                ) : (
+                  <Link to={`/login`}>Sign in</Link>
+                )}
+              </div>
+            </LoginButtonContainer>
+          </MenuSection>
+        </HeaderSizeController>
+      </HeaderContainer>
+    </Observer>
   );
 };
 

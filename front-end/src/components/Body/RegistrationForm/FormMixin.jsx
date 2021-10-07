@@ -3,8 +3,9 @@ import { Button, Input } from "../mixin/Mixin";
 
 // 제출 버튼
 export const SubmitButton = styled(Button)`
-  width: 200px;
+  width: 160px;
   height: 60px;
+  font-size: var(--font-size-normal);
   margin: var(--margin-default) var(--margin-default) 0 0;
 `;
 

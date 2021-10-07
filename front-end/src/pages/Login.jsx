@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { bake_cookie } from "sfcookies";
+import axios from "axios";
 import styled from "styled-components";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
@@ -7,8 +10,6 @@ import {
   Checkbox,
   CheckboxLabel,
 } from "../components/body/mixin/Mixin";
-import { bake_cookie } from "sfcookies";
-import axios from "axios";
 
 const LoginForm = styled.form`
   width: 480px;
@@ -201,7 +202,10 @@ const Login = () => {
               로그인 유지하기
             </CheckboxLabelWithoutMargin>
           </InputContainer>
-          <SubmitButton type="submit" value="Sign in" />
+          <SubmitButton type="submit" value="로그인" />
+          <Link to={"/registration"}>
+            <NormalButton type="button" value="회원가입" />
+          </Link>
           <NormalButton type="button" value="ID, 비밀번호 찾기" />
         </LoginForm>
       </BodyLayout>

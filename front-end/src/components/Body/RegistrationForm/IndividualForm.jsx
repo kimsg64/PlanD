@@ -139,10 +139,12 @@ const IndividualForm = ({ isIndividual = true }) => {
     });
   };
 
-  const onResetForm = (e) => {
-    // 리셋 확인 메시지
-    console.log(e);
-  };
+  // const onResetForm = (e) => {
+  //   // 리셋 확인 메시지
+  //   return window.confirm("작성 중인 내용이 삭제됩니다. 계속 진행하시겠습니까?")
+  //     ? true
+  //     : false;
+  // };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
@@ -175,7 +177,7 @@ const IndividualForm = ({ isIndividual = true }) => {
         console.log("response : ", response.data);
         if (response.data > 0) {
           alert("회원가입이 완료되었습니다!");
-          window.location.href = "http://localhost:3000/";
+          window.location.href = "http://localhost:3000/#/login";
         } else {
           alert("회원가입에 실패하였습니다...!!!");
         }
@@ -192,7 +194,7 @@ const IndividualForm = ({ isIndividual = true }) => {
       <Form
         id="individual_form"
         onSubmit={onSubmitForm}
-        onReset={onResetForm}
+        // onReset={onResetForm}
         encType="multipart/form-data"
       >
         <TopSection>
@@ -274,7 +276,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 id="num"
                 required
                 maxLength="14"
-                placeholder="-"
+                placeholder="000000-0000000"
                 pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
                 onKeyUp={(e) => insertHyphen(e, 6)}
                 onKeyDown={(e) => setNum(e.target.value)}
@@ -298,7 +300,6 @@ const IndividualForm = ({ isIndividual = true }) => {
               <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
 
-            {/* 여기부터 유효성 검사 재개 */}
             <ItemContainer>
               <Label htmlFor="email">이메일</Label>
               <FormInput
@@ -370,7 +371,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 <img src={photoUrl} alt="preview" />
               )}
             </UserImgContainer>
-            <Button as="Label" htmlFor="photo" weight="600">
+            <Button as="Label" htmlFor="photo">
               파일 선택
             </Button>
             <FormInput
@@ -519,8 +520,8 @@ const IndividualForm = ({ isIndividual = true }) => {
           </ItemContainer>
         </BottomSection>
         <SubmitSection>
-          <SubmitButton as="FormInput" type="reset" value="초기화" />
-          <SubmitButton as="FormInput" type="submit" value="회원가입" />
+          {/* <SubmitButton type="reset">초기화</SubmitButton> */}
+          <SubmitButton type="submit">회원가입</SubmitButton>
         </SubmitSection>
       </Form>
     </Container>

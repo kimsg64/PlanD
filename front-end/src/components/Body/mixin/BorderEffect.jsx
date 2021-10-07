@@ -12,7 +12,7 @@ const BorderSpan = styled.span`
 `;
 
 const BorderEffect = ({ spanWidth = "0" }) => {
-  console.log(spanWidth);
+  // console.log(spanWidth);
   return <BorderSpan spanWidth={spanWidth} />;
 };
 

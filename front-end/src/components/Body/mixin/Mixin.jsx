@@ -24,7 +24,8 @@ export const MenuTitle = styled.div`
 export const Button = styled.button`
   margin: 0 var(--margin-line-space);
   padding: var(--padding-small);
-  font-weight: ${(props) => props.weight || "800"};
+  /* font-weight: ${(props) => props.weight || "500"}; */
+  font-family: -apple-system;
   font-size: var(--font-size-small);
   background-color: var(--color-brown);
   border: none;

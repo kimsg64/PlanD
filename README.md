@@ -53,3 +53,4 @@
 - sfcookies
 - react-calendar
 - KakaoMap(services)
+- ckeditor
