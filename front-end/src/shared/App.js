@@ -27,6 +27,7 @@ import UserRecommendation from "../pages/UserRecommendation";
 
 // 테스트용
 import Users from "../server/Users";
+import IndividualForm from "../components/body/registrationForm/IndividualForm";
 
 const App = () => {
   return (

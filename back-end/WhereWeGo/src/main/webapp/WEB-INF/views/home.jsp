@@ -1,73 +1,143 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c"%>
+<style>
+  #whitetop {
+    width: 100%;
+    height: 80px;
+    /*background-color:red;*/
+  }
 
+  #mainDiv {
+    /*background-color:pink;*/
+    width: 72%;
+    margin: 0 auto;
+    color: #553a31;
+    text-align: center;
+  }
 
+  #mainDiv > h1 {
+    text-align: left;
+    margin-bottom: 30px;
+  }
 
-<!-- 
+  #adminProfileDiv,
+  #businessProfileDiv {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #553a31;
+    text-align: center;
+    line-height: 50px;
+    background-color: #eaded9;
+    margin-bottom: 50px;
+  }
 
-1. Servers > Tomcat... > server.xml 수정
+  #adminMenu img,
+  #businessMenu img {
+    width: 100px;
+    height: 100px;
+  }
 
-프로젝트용	    
-<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" axWait="-1" name="jdbc/myoracle" password="Bit05" type="javax.sql.DataSource" url="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE" username="c##Bit05"/>
+  #adminMenu,
+  #businessMenu {
+    width: 100%;
+    border-spacing: 0 20px;
+  }
 
-수업용
-<Resource auth="container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="c##scott"/>
-
-2. src > main > webapp > WEB-INF > spring > appServlet > servlet-context.xml 수정
-
-프로젝트용
-	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@bitcamp4.iptime.org:1521:XE"></beans:property>
-		<beans:property name="username" value="c##Bit05"></beans:property>
-		<beans:property name="password" value="Bit05"></beans:property>
-	</beans:bean>
-git a
-수업용
-	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></beans:property>
-		<beans:property name="username" value="c##scott"></beans:property>
-		<beans:property name="password" value="tiger"></beans:property>
-	</beans:bean>
-
- -->
- 
- <style>
-   #whitetop {
-      width:100%;
-      height:80px;
-      /*background-color:red;*/
-      }
-   
-   #mainDiv {
-      /*background-color:pink;*/
-      width:72%;
-      margin : 0 auto;
-      color: #553a31;
-   }
-   
-   #profileDiv {
-      width:100%;
-      height : 150px;
-      border: 1px solid #553a31;
-      margin-top:50px;
-      text-align : center;
-      line-height:50px;
-      background-color : #eaded9;
-   }
-   
+  td:hover {
+    color: #fde511;
+  }
 </style>
 
 <div id="whitetop"></div>
 
 <div id="mainDiv">
-   <h1>My Page</h1>
+  <h1>My Page</h1>
 
-   <div id="profileDiv">
-      admin 님의 마이페이지<br/>
-      <h2>Plan.D</h2>
-      사업자번호 : 555555555
-   </div>
+  <!-- 여긴 관리자 화면!!!!!!!!!!!< c : if test="${logid=='admin'}"> -->
+  <div id="adminProfileDiv">
+    admin 님의 마이페이지<br />
+    <!-- ${logid } -->
+    <h2>Plan.D</h2>
+    사업자번호 : 555555555
+  </div>
 
+  <!-- 링크 이름은 임시로 제가 넣어둠! -->
+  <table id="adminMenu">
+    <tr>
+      <td>
+        <a href="/wherewego/userList"
+          ><img src="imgs/adminMenu/user.png" /><br />회원 관리</a
+        >
+      </td>
+      <!-- 병철님 파일 연결하기 -->
+      <td>
+        <a href="/wherewego/noticeList"
+          ><img src="imgs/adminMenu/notice.png" /><br />공지 관리</a
+        >
+      </td>
+      <td>
+        <a href="/wherewego/resList"
+          ><img src="imgs/adminMenu/reservation.png" /><br />예약 관리</a
+        >
+      </td>
+      <td>
+        <a href="/wherewego/reviewList"
+          ><img src="imgs/adminMenu/review.png" /><br />후기 관리</a
+        >
+      </td>
+      <!-- 유나님 파일 연결하기 -->
+    </tr>
+    <tr>
+      <td>
+        <a href="/wherewego/courseList"
+          ><img src="imgs/adminMenu/location.png" /><br />코스 관리</a
+        >
+      </td>
+      <!-- 유나님 파일 연결하기 -->
+      <td>
+        <a href="/wherewego/newCourseList"
+          ><img src="imgs/adminMenu/new.png" /><br />신규 코스 관리</a
+        >
+      </td>
+      <!-- 유나님 파일 연결하기 -->
+      <td>
+        <a href="/wherewego/adList"
+          ><img src="imgs/adminMenu/ad.png" /><br />광고 관리</a
+        >
+      </td>
+      <!-- 도훈님 파일 연결하기 -->
+      <td>
+        <a href="/wherewego/pointshopList"
+          ><img src="imgs/adminMenu/pointshop.png" /><br />포인트샵 관리</a
+        >
+      </td>
+    </tr>
+  </table>
+  <!--  < / c:if> adminDiv끝-->
+
+  <!--여긴 광고주 화면!!!!!!!!!!!< c : if test="${logid!='admin'}"> -->
+  <div id="businessProfileDiv">
+    Starbucks 님의 마이페이지<br />
+    <!-- ${logid } -->
+    <h2>스타벅스</h2>
+    사업자번호 : 555555555
+  </div>
+
+  <!-- 링크 이름은 임시로 제가 넣어둠! -->
+  <table id="businessMenu">
+    <tr>
+      <td>
+        <a href="/wherewego/MyInfo"
+          ><img src="imgs/adminMenu/user.png" /><br />내 정보 수정</a
+        >
+      </td>
+      <td>
+        <a href="/wherewego/adMenu"
+          ><img src="imgs/adminMenu/ad.png" /><br />광고 관리</a
+        >
+      </td>
+    </tr>
+  </table>
+  <!--  < / c:if> adminDiv끝-->
 </div>

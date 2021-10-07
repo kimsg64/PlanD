@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit5.wherewego.notice.NoticeDAOImp">
+	<select id="noticeAllSelect" resultType="com.bit5.wherewego.notice.NoticeVO">
+		<![CDATA[ 
+		select * from 
+		(select * from 
+		(select n_num, title, content, photo, hit, to_char(writedate, 'MM/DD') writedate, pop from notice 
+		order by n_num desc) 
+		where rownum<=#{param1} order by n_num asc) 
+		where rownum<=#{param2} order by n_num desc
+		]]>
+	</select>
+	
+	<select id="totalRecordCount" resultType="int">
+		select count(n_num) totalRecord from notice
+	</select>
+</mapper>
