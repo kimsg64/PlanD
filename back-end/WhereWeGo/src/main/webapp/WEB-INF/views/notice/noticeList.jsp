@@ -224,11 +224,11 @@ ul.pagination li a:hover:not(.active) {
 
 					<c:if test="${i==pVo.nowPage}">
 						<li><a class="active"
-							href="/wherewego//noticeList?nowPage=${i}">${i}</a>
+							href="/wherewego/noticeList?nowPage=${i}">${i}</a>
 					</c:if>
 
 					<c:if test="${i!=pVo.nowPage}">
-						<li><a href="/wherewego//noticeList?nowPage=${i}">${i}</a>
+						<li><a href="/wherewego/noticeList?nowPage=${i}">${i}</a>
 					</c:if>
 				</c:if>
 			</c:forEach>
@@ -236,7 +236,7 @@ ul.pagination li a:hover:not(.active) {
 			<!-- 다음페이지-->
 			<c:if test="${pVo.nowPage<pVo.totalPage}">
 				<li class='page-item'><a
-					href="/wherewego//noticeList?nowPage=${pVo.nowPage+1}">»</a></li>
+					href="/wherewego/noticeList?nowPage=${pVo.nowPage+1}">»</a></li>
 			</c:if>
 		</ul>
 	</div>
