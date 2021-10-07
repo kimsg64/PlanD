@@ -24,10 +24,10 @@
 #profileDiv {
 	width: 100%;
 	height: 150px;
-	border: 1px solid #553a31;
+	border: 2px dotted #efcac3;
 	text-align: center;
 	line-height: 50px;
-	background-color: #eaded9;
+	background-color: #f5ebe3;
 	margin-bottom: 50px;
 }
 
@@ -41,8 +41,12 @@
 	border-spacing: 0 20px;
 }
 
+td {padding : 5px;}
+
 td:hover {
-	color: #fde511;
+	color: #81bbaf;
+	background-color : #f5ebe3;
+	border-radius: 12px;
 }
 </style>
 
