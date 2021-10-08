@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.bit5.wherewego.review.ReviewDAOImp">
+	<select id="reviewAllSelect" resultType="com.bit5.wherewego.review.ReviewVO">
+	<![CDATA[ 
+		 select * from 
+		(select * from 
+		(select r_num, c_num, userid, score, info, hit, to_char(writedate, 'MM/DD') writedate from review 
+		order by r_num desc) 
+		where rownum<=#{param1} order by r_num asc) 
+		where rownum<=#{param2} order by r_num desc
+		]]>
+	</select>
+	
+	<select id="totalRecordCount" resultType="int">
+		select count(r_num) totalRecord from review
+	</select>
+</mapper>
