@@ -110,7 +110,10 @@ const Login = () => {
     console.log(keepSession);
 
     // 사업자 유저인 경우 매핑 주소 설정해야 함
-    const url = classification === "individual" ? "/wherewego/userLogin" : "";
+    const url =
+      classification === "individual"
+        ? "/wherewego/user/userLogin"
+        : "/wherewego/business/businessLogin";
     // console.log(url);
     const body = {
       userId: userId,
@@ -129,7 +132,9 @@ const Login = () => {
           axios.get("/wherewego/user/checkSession").then((res) => {
             console.log(res.data);
             res.data
-              ? (window.location.href = "http://localhost:3000/#/memberhome")
+              ? classification === "individual"
+                ? (window.location.href = "http://localhost:3000/#/memberhome")
+                : (window.location.href = "http://localhost:9090/wherewego/")
               : alert("로그인 실패...");
           });
         } else {

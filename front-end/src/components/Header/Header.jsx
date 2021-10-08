@@ -137,7 +137,7 @@ const Header = () => {
 
   // intersection observer로 헤더의 변화에 따라 색깔 변화시키기
   useEffect(() => {
-    console.log("옵저버 생성(첫 마운트 후)");
+    // console.log("옵저버 생성(첫 마운트 후)");
 
     const options = {
       // null은 뷰포트 기준
@@ -147,22 +147,22 @@ const Header = () => {
       // 0이면 1px이라도 보이면 콜백 호출
       thresold: [0, 1],
     };
-    console.log("옵션", options);
+    // console.log("옵션", options);
 
     const observer = new IntersectionObserver(() => {
       setBgColor("var(--color-brown)");
       setFontColor("var(--color-black)");
       setOpacity("1");
     }, options);
-    console.log("옵저버", observer);
+    // console.log("옵저버", observer);
 
     const target = headerRef.current;
     observer.observe(target);
-    console.log("타겟", target);
-    console.log(bgColor, fontColor, opacity);
+    // console.log("타겟", target);
+    // console.log(bgColor, fontColor, opacity);
   }, []);
-  console.log("첫 마운트");
-  console.log(bgColor, fontColor, opacity);
+  // console.log("첫 마운트");
+  // console.log(bgColor, fontColor, opacity);
 
   return (
     <Observer>
