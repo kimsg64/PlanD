@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit5.wherewego.ad.AdDAOImp">
+	<select id="adAllSelect" resultType="com.bit5.wherewego.ad.AdVO">
+		select b.name, a.photo, to_char(a.startdate,'MM-DD') startdate,
+		from ad a join business b on b.b_id=a.b_id	
+	</select>
+</mapper>

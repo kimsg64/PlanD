@@ -19,11 +19,4 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/dohoon", method = RequestMethod.GET)
-	public ModelAndView home() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("advermanage");
-		return mav;
-	}
-	
 }

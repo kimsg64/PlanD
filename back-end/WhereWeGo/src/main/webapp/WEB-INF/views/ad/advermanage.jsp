@@ -46,35 +46,37 @@
 </style>
 </head>
 <body>
-<h1>광고 관리</h1>
 <div id="list">
+<h1>광고 관리</h1>
 	<ul>
-		<li><input type="checkbox"/><li>
-		<li><img src="imgs/icecream.jpg"/></li>
+		<c:forEach var="vo" items="${list}">
+			<li><input type="checkbox" name="chk" value="${vo.b_id }"/><li>
+			<li>${vo.photo }</li>
+			<li>상호명 : ${vo.name }</li>
+			<li>기간 : ${vo.startdate },${vo.enddate } </li>
+		</c:forEach>
+	</ul>
+	<ul>
+		<li><input type="checkbox"/></li>
+		<li><img src="../img/icecream.jpg"/></li>
 		<li>상호명 :</li>
 		<li>기간 :</li>
 	</ul>
 	<ul>
 		<li><input type="checkbox"/></li>
-		<li><img src="imgs/icecream.jpg"/></li>
+		<li><img src="../img/icecream.jpg"/></li>
 		<li>상호명 :</li>
 		<li>기간 :</li>
 	</ul>
 	<ul>
 		<li><input type="checkbox"/></li>
-		<li><img src="imgs/icecream.jpg"/></li>
+		<li><img src="../img/icecream.jpg"/></li>
 		<li>상호명 :</li>
 		<li>기간 :</li>
 	</ul>
 	<ul>
 		<li><input type="checkbox"/></li>
-		<li><img src="imgs/icecream.jpg"/></li>
-		<li>상호명 :</li>
-		<li>기간 :</li>
-	</ul>
-	<ul>
-		<li><input type="checkbox"/></li>
-		<li><img src="imgs/icecream.jpg"/></li>
+		<li><img src="../img/icecream.jpg"/></li>
 		<li>상호명 :</li>
 		<li>기간 :</li>
 	</ul>

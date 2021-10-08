@@ -25,7 +25,7 @@ prefix="c"%>
   #businessProfileDiv {
     width: 100%;
     height: 150px;
-    border: 1px solid #553a31;
+    border: 1px solid #003a31;
     text-align: center;
     line-height: 50px;
     background-color: #eaded9;
@@ -102,7 +102,7 @@ prefix="c"%>
       </td>
       <!-- 유나님 파일 연결하기 -->
       <td>
-        <a href="/wherewego/adList"
+        <a href="/wherewego/advermanage"
           ><img src="imgs/adminMenu/ad.png" /><br />광고 관리</a
         >
       </td>
