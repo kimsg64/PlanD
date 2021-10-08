@@ -2,21 +2,62 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
 <style>
 	#top{display: flex; margin-top:80px; margin-left:50px;}
 	select{height: 30px;}
 	#search{margin-left:810px;}
-	#bottom{display: flex;}
-	#paging{margin-left:440px;}
-	#button{margin-left:1160px;}
-	#button1{color:white; background-color:pink; border-radius:5px; border:1px solid white;}
-	#button2{color:white; background-color:brown; border-radius:5px; border:1px solid white;}
 	img{margin-left:50px; padding-top:6%; padding-bottom:6%;}
+
+#buttonMenu {
+	float:right;
+}
+
+.button {
+	background-color: #fd7d73;
+	border: none;
+	color: #f5ebe3;
+	padding: 10px 10px;
+	margin: 10px 0px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+	font-size: 13px;
+	width: 70px;
+	text-align: center;
+}
+
+.button:hover {
+	color: #0e595f;
+}
+	
+	ul.pagination {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+ul.pagination li {
+	display: inline;
+}
+
+ul.pagination li a {
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+ul.pagination li a.active {
+	background-color: #fd7d73;
+	color: #f5ebe3;
+	border-radius: 5px;
+}
+
+ul.pagination li a:hover:not(.active) {
+	background-color: #f5ebe3;
+}
 </style>
 </head>
 <body>
@@ -35,23 +76,57 @@
 </div>
 <div>
 	<img src="../img/review.png" width="300px"/>
-</div>
-<div>
-		<div id="button">
-		<button id="button1">공개</button>
-		<button id="button2">취소</button>
+</div>                        
+	
+	<div id="bottomdiv">
+		
+		<div id="buttonMenu">
+			<a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
+		</div>
 	</div>
+	
 </div>
-<div>
-	<ul class="pagination pagination-lg" id="paging">
-		<li class="page-item"><a href="#" class="page-link"><</a></li>
-		<li class="page-item"><a href="#" class="page-link">1</a></li>
-		<li class="page-item"><a href="#" class="page-link">2</a></li>
-		<li class="page-item"><a href="#" class="page-link">3</a></li>
-		<li class="page-item"><a href="#" class="page-link">4</a></li>
-		<li class="page-item"><a href="#" class="page-link">5</a></li>
-		<li class="page-item"><a href="#" class="page-link">></a></li>
-	</ul>
-</div>
+<!-- 페이징 -->
+	<div id="paging">
+		<ul class="pagination">
+			<!-- 이전페이지 -->
+			<c:if test="${pVo.nowPage>1}">
+				<li class='page-item'><a
+					href="/wherewego/reviewList?nowPage=${pVo.nowPage-1}"
+					class='page-link'>«</a></li>
+			</c:if>
+
+			<c:if test="${pVo.nowPage==1}">
+				<li class='page-item'><a href='#'>«</a></li>
+			</c:if>
+
+			<!-- 시작페이지부터 5개의 페이지 출력 -->
+			<c:forEach var="i" begin="${pVo.startPage}"
+				end="${pVo.startPage+pVo.onePageNumberCount-1}">
+
+				<c:if test="${i<=pVo.totalPage}">
+
+					<c:if test="${i==pVo.nowPage}">
+						<li><a class="active"
+							href="/wherewego/reviewList?nowPage=${i}">${i}</a>
+					</c:if>
+
+					<c:if test="${i!=pVo.nowPage}">
+						<li><a href="/wherewego/reviewList?nowPage=${i}">${i}</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+
+			<!-- 다음페이지-->
+			<c:if test="${pVo.nowPage<pVo.totalPage}">
+				<li class='page-item'><a
+					href="/wherewego/reviewList?nowPage=${pVo.nowPage+1}">»</a></li>
+			</c:if>
+			
+			<c:if test="${pVo.nowPage==pVo.totalPage}">
+				<li class='page-item'><a href='#'>»</a></li>
+			</c:if>
+		</ul>
+	</div>
 </body>
 </html>
