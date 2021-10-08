@@ -3,6 +3,7 @@ package com.bit5.wherewego.business;
 public class BusinessVO {
 	private String b_id;
 	private String pwd;
+	private String name;
 	private String num;
 	private String tel;
 	private int zip;
@@ -20,6 +21,12 @@ public class BusinessVO {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getNum() {
 		return num;
@@ -51,7 +58,6 @@ public class BusinessVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
 	
 	
 
