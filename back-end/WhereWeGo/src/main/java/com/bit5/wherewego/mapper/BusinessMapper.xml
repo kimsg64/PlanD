@@ -6,7 +6,7 @@
 <mapper namespace="com.bit5.wherewego.business.BusinessDAOImp">
 
 	<!-- 로그인 -->
-	<select id="loginCheck" resultType="com.bit5.wherewego.business.businessVO">
+	<select id="loginCheck" resultType="com.bit5.wherewego.business.BusinessVO">
 		select b_id, name from business where b_id=#{param1} and pwd=#{param2}
 	</select>
 </mapper>
