@@ -1,13 +1,12 @@
 @charset "UTF-8";
 
 footer {
-	width: calc(100% - 16px);
-	height: var(--footer-height);
-	background-color: var(--color-black);
-	margin-top: var(--margin-default);
-	display: flex;
-	justify-content: center;
-	color: white;
+  width: 100%;
+  height: var(--footer-height);
+  background-color: var(--color-bg);
+  color: var(--color-font);
+  display: flex;
+  justify-content: center;
 }
 
 nav {
@@ -17,19 +16,18 @@ nav {
 }
 
 .nav-container {
-	font-size: var(--font-size-title-small);
-}
+  margin: var(--margin-default) 0;}
 .nav-container ul {
-	font-size: var(--font-size-title-small);
+  font-size: var(--font-size-small-title);
 }
 .nav-container li {
-	margin-top: calc(var(--margin-default)/4);
-	font-size: var(--font-size-small);
+  margin-top: calc(var(--margin-default) / 4);
+  font-size: var(--font-size-small);
 }
 .nav-container li:first-child {
-	margin-top: calc(var(--margin-default)/2);
+    margin-top: calc(var(--margin-default) / 2);
 }
 .nav-container li:hover {
-	cursor: pointer;
-	color: var(--color-yellow);
+    cursor: pointer;
+    color: var(--color-focus);
 }

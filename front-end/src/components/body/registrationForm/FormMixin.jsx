@@ -3,32 +3,32 @@ import { Button, Input } from "../mixin/Mixin";
 
 // 제출 버튼
 export const SubmitButton = styled(Button)`
-  width: 160px;
-  height: 60px;
+  width: 120px;
+  height: 40px;
   font-size: var(--font-size-normal);
   margin: var(--margin-default) var(--margin-default) 0 0;
 `;
 
 // 인풋 라벨
 export const Label = styled.label`
-  width: 8vw;
-  font-size: var(--font-size-normal);
-  margin-right: var(--margin-default);
+  width: 24em;
+  font-size: var(--font-size-small);
+  margin-bottom: calc(var(--margin-default) / 4);
 `;
 
 // 인풋 상자(입력칸 디폴트)
 export const FormInput = styled(Input)`
-  width: ${(props) => props.width || "12em"};
-  padding: var(--padding-small);
-  font-size: var(--font-size-normal);
+  width: ${(props) => props.width || "24em"};
+  padding: calc(var(--padding-small) * 2) calc(var(--padding-default) * 2);
+  font-size: var(--font-size-small);
   position: relative;
-  text-align: center;
-  border: none;
-  border-bottom: 2px solid var(--color-black);
+  text-align: left;
+  border: 2px solid var(--color-blur);
+  /* border-bottom: 2px solid var(--color-font); */
   transition-duration: 0.2s;
-
+  background-color: var(--color-blur);
   &:disabled {
-    background-color: white;
+    /* background-color: white; */
   }
 
   /* 필수 사항 유효성 체크(비밀번호 체크 외) */
@@ -40,10 +40,9 @@ export const FormInput = styled(Input)`
   }
   /* 유효성 체크 경고문구 표시 */
   &:invalid:not(:focus):not(:placeholder-shown):not(.check) {
-    border-bottom: 2px solid var(--color-pink);
+    border: 2px solid var(--color-warning);
     /* 에러 메시지 표시 */
     & ~ div {
-      max-width: 12vw;
       display: block;
     }
   }
@@ -62,9 +61,9 @@ export const FormInput = styled(Input)`
     }}
   }
   &.check:not(:focus):not(:placeholder-shown) {
-    border-bottom: 2px solid
+    border: 2px solid
       ${(props) => {
-        return props.isSame ? "var(--color-black)" : "var(--color-pink)";
+        return props.isSame ? "var(--color-font)" : "var(--color-warning)";
       }};
   }
   &.check:not(:focus):not(:placeholder-shown) ~ div {
@@ -80,19 +79,12 @@ export const FormInput = styled(Input)`
 `;
 
 export const ErrorMsg = styled.div`
-  margin-left: calc(var(--margin-default) / 4);
-  color: var(--color-pink);
+  width: ${(props) => props.width || "24em"};
+  color: var(--color-warning);
   font-size: var(--font-size-tiny);
   font-style: italic;
   transition-duration: 0.2s;
   display: none;
-`;
-
-// 하이픈
-export const Hyphen = styled.p`
-  margin: 0 calc(var(--margin-default) / 4);
-  font-size: var(--font-size-large);
-  color: var(--color-black);
 `;
 
 // 각 항목의 컨테이너
@@ -100,6 +92,11 @@ export const ItemContainer = styled.div`
   width: auto;
   margin-top: calc(var(--margin-default) / 2);
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+`;
+
+export const LineWrapper = styled.div`
+  display: flex;
 `;

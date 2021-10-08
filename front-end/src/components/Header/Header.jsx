@@ -12,7 +12,7 @@ const Observer = styled.div`
 
 const Criteria = styled.div`
   width: 100%;
-  height: 60px;
+  height: 2px;
   position: absolute;
   top: 0;
   /* background-color: rebeccapurple; */
@@ -23,11 +23,10 @@ const HeaderContainer = styled.header`
   height: var(--header-height);
   display: flex;
   justify-content: center;
-  background-color: var(--color-brown);
+  background-color: white;
   position: fixed;
   z-index: 2;
-  opacity: 0.9;
-  color: white;
+  color: var(--color-font);
 `;
 
 const HeaderSizeController = styled.div`
@@ -39,6 +38,7 @@ const HeaderSizeController = styled.div`
 const LogoContainer = styled.div`
   position: relative;
   font-size: var(--font-size-title-large);
+  font-weight: bold;
   a {
     height: 100%;
     display: flex;
@@ -48,7 +48,7 @@ const LogoContainer = styled.div`
 `;
 
 const MenuSection = styled.section`
-  width: 64%;
+  width: 54%;
   display: flex;
   justify-content: flex-end;
 `;
@@ -60,12 +60,12 @@ const MenuContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-normal);
   & > li {
     margin-right: var(--margin-default);
   }
   & > li:hover {
-    color: var(--color-yellow);
+    color: var(--color-focus);
   }
 `;
 
@@ -77,12 +77,12 @@ const LoginButtonContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   font-size: var(--font-size-small);
-  color: grey;
+  color: var(--color-font);
   & > div {
     position: relative;
   }
   & > div:hover {
-    color: var(--color-yellow);
+    color: var(--color-blur);
   }
 `;
 
@@ -97,7 +97,7 @@ const SubMenu = styled.ul`
   height: ${(props) => props.heightOfSub};
   transition-duration: 0.3s;
   overflow: hidden;
-  background-color: var(--color-brown);
+  background-color: white;
   position: absolute;
   top: 60px;
   left: -48px;
@@ -112,7 +112,7 @@ const SubMenuItem = styled.li`
   position: relative;
   &:hover {
     cursor: pointer;
-    color: var(--color-yellow);
+    color: var(--color-focus);
   }
 `;
 

@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const SignUpForm = styled.form`
-  width: 56vw;
+  width: 72vw;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   margin-bottom: 40px;
+  background-color: var(--color-bg);
 `;
 
 // Form 컴포넌트가 form 역할을 하지 못하므로 ...props를 통해 submit 함수도 전달해야 함

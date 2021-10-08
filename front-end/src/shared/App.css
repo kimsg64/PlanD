@@ -11,17 +11,18 @@
   --color-pink: #fd7f80;
   --color-lightbrown: #786352;
   --color-black: #2c3e50;
-
-  /* 강사님 피드백 이후 색 */
-  --color-font: #00282e;
-  --color-warning: #fd7d73;
-  --color-blur: #efcac3;
-  --color-bg: #f5ebe3;
-  --color-focus: #81bbaf;
-
   /* 지하철 색 */
   --color-brown: #553a31;
   --color-yellow: #fde511;
+
+  /* 강사님 피드백 이후 색 */
+  --color-font: #00282e;
+  --color-focus: #fd7d73;
+  --color-blur: #efcac3;
+  --color-bg: #f5ebe3;
+  --color-green: #0e595f;
+  --color-light-green: #81bbaf;
+
   --color-line1: #263c96;
   --color-line2: #3cb44a;
   --color-line3: #ff7300;
@@ -69,14 +70,15 @@
 /* frame */
 #root,
 html,
-body {
+body,
+#page-layout {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  color: var(--color-black);
+  color: var(--color-font);
 }
 
 * {

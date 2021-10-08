@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+// 스크롤이 없으면 바텀 너비랑 상단 너비가 달라짐
+
 const FooterContainer = styled.footer`
   width: 100%;
   height: var(--footer-height);
-  background-color: var(--color-brown);
-  margin-top: var(--margin-body-to-footer);
+  background-color: var(--color-bg);
+  color: var(--color-font);
   display: flex;
   justify-content: center;
-  color: white;
 `;
 
 const NavList = styled.nav`
@@ -34,7 +35,7 @@ const NavItems = styled.li`
   }
   :hover {
     cursor: pointer;
-    color: var(--color-yellow);
+    color: var(--color-focus);
   }
 `;
 

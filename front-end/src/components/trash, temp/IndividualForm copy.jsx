@@ -3,6 +3,7 @@
 // 2. 우편번호 검색
 // 3. 이미지 파일 업로드(이미지 파일용 formData 전송 or 수업시간 URL 추적방법 조사)
 // 4. DB에 저장된 관심사 데이터 표시하기
+// 5. 사진등록 - 회원가입시에 빼고 프로필에서 등록하게 하기
 
 // ★★★ 발견된 에러
 // [해결] FormInput창 한글 받아갈 때 마지막 받침을 인식하지 못함 ★ keyDown => keyUp ★
@@ -12,28 +13,28 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Form from "../mixin/Form";
+import Form from "../body/mixin/Form";
 import {
   Label,
   FormInput,
   SubmitButton,
   ItemContainer,
   ErrorMsg,
-} from "./FormMixin";
+} from "../body/registrationForm/FormMixin";
 import {
   Button,
   Checkbox,
   CheckboxLabel,
   OptionsContainer,
-} from "../mixin/Mixin";
+} from "../body/mixin/Mixin";
 
 const Container = styled.div`
   overflow: hidden;
   transition-delay: ${(props) => {
-    return props.isVisible ? "0.5s" : "0";
+    return props.isVisible ? "0.7s" : "0";
   }};
   // auto에는 트랜지션 속도가 적용되지 않는 듯
-  transition-duration: 0.5s;
+  transition-duration: 0.7s;
   height: ${(props) => {
     return props.isVisible ? "120vh" : "0";
   }};
@@ -45,10 +46,10 @@ const TopSection = styled.section`
 `;
 
 const LeftSection = styled.section`
-  width: 72%;
+  width: 50%;
 `;
 const RightSection = styled.section`
-  width: 28%;
+  width: 50%;
   padding: var(--padding-default);
   display: flex;
   flex-direction: column;
@@ -71,7 +72,7 @@ const UserImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: var(--font-size-huge);
-  background-color: var(--color-lightpink);
+  background-color: var(--color-blur);
   img {
     height: 100%;
   }
@@ -200,7 +201,6 @@ const IndividualForm = ({ isIndividual = true }) => {
         <TopSection>
           <LeftSection>
             <ItemContainer>
-              <Label htmlFor="userId">아이디</Label>
               <FormInput
                 type="text"
                 name="userId"
@@ -209,7 +209,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 minLenght="6"
                 maxLength="14"
                 pattern="[A-Za-z]{1}\w{5,14}"
-                placeholder=" "
+                placeholder="아이디"
                 onKeyDown={(e) => setUserId(e.target.value)}
               />
               <Button type="button">중복 확인</Button>
@@ -219,7 +219,6 @@ const IndividualForm = ({ isIndividual = true }) => {
               </ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="pwd">비밀번호</Label>
               <FormInput
                 type="password"
                 name="pwd"
@@ -228,7 +227,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 minLength="8"
                 maxLength="16"
                 pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$"
-                placeholder=" "
+                placeholder="비밀번호"
                 onKeyDown={(e) => setPwd(e.target.value)}
               />
               <ErrorMsg>
@@ -237,14 +236,13 @@ const IndividualForm = ({ isIndividual = true }) => {
               </ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="userPwd2">비밀번호 확인</Label>
               <FormInput
                 type="password"
                 name="userPwd2"
                 id="userPwd2"
                 required
                 maxLength="16"
-                placeholder=" "
+                placeholder="비밀번호 확인"
                 onKeyUp={checkPwd}
                 className="check"
                 isSame={isSame}
@@ -253,7 +251,6 @@ const IndividualForm = ({ isIndividual = true }) => {
               <ErrorMsg>비밀번호가 일치하지 않습니다.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="name">이름</Label>
               <FormInput
                 type="text"
                 name="name"
@@ -261,22 +258,20 @@ const IndividualForm = ({ isIndividual = true }) => {
                 required
                 minLength="2"
                 maxLength="8"
-                placeholder=" "
+                placeholder="이름"
                 pattern="^[가-힣]{2,8}$"
                 onKeyDown={(e) => setName(e.target.value)}
               />
               <ErrorMsg>올바른 이름을 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="num">주민등록번호</Label>
-              {/* length가 6이 되면 밸류에 하이픈이 자동으로 입력됨 */}
               <FormInput
                 type="text"
                 name="num"
                 id="num"
                 required
                 maxLength="14"
-                placeholder="000000-0000000"
+                placeholder="주민등록번호   ex) 000000-0000000"
                 pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
                 onKeyUp={(e) => insertHyphen(e, 6)}
                 onKeyDown={(e) => setNum(e.target.value)}
@@ -284,7 +279,6 @@ const IndividualForm = ({ isIndividual = true }) => {
               <ErrorMsg>올바른 주민등록번호를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="tel">연락처</Label>
               <FormInput
                 type="text"
                 name="tel"
@@ -292,7 +286,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 required
                 minLength="9"
                 maxLength="11"
-                placeholder="'-' 없이 입력해 주세요"
+                placeholder="연락처   ex) 01012349874"
                 pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
                 onKeyDown={(e) => setTel(e.target.value)}
               />
@@ -301,21 +295,18 @@ const IndividualForm = ({ isIndividual = true }) => {
             </ItemContainer>
 
             <ItemContainer>
-              <Label htmlFor="email">이메일</Label>
               <FormInput
                 type="email"
                 name="email"
                 id="email"
-                width="20em"
                 required
-                placeholder="@"
+                placeholder="이메일   ex) abc@naver.com"
                 pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
                 onKeyDown={(e) => setEmail(e.target.value)}
               />
               <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
             </ItemContainer>
             <ItemContainer>
-              <Label htmlFor="zip">우편번호</Label>
               <FormInput
                 type="text"
                 name="zip"
@@ -323,6 +314,7 @@ const IndividualForm = ({ isIndividual = true }) => {
                 width="5em"
                 className="optional"
                 disabled
+                placeholder="우편번호"
                 // 임시 value
                 value={zip}
               />

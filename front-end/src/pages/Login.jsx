@@ -16,7 +16,7 @@ const LoginForm = styled.form`
   height: auto;
   padding: calc(var(--padding-default) * 2);
   margin-top: var(--margin-header-to-body);
-  background-color: var(--color-yellow);
+  background-color: var(--color-bg);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ const InputContainer = styled.div`
   ::after {
     content: "로그인 정보가 일치하지 않습니다!";
     font-size: var(--font-size-normal);
-    color: var(--color-pink);
+    color: var(--color-warning);
     font-weight: 800;
     position: relative;
     top: 40px;
@@ -50,7 +50,7 @@ const InputBox = styled.input`
   border-radius: 4px;
   &:focus {
     outline: none;
-    border: 2px solid var(--color-black);
+    border: 2px solid var(--color-font);
     /* 잘못된 입력 발생시 pink */
   }
 `;
@@ -72,19 +72,19 @@ const CheckboxWithoutMargin = styled(Checkbox)`
 
 const SubmitButton = styled(InputBox)`
   margin-top: calc(var(--margin-default) * 1.5);
-  background-color: var(--color-black);
-  border: 2px solid var(--color-black);
+  background-color: var(--color-font);
+  border: 2px solid var(--color-font);
   border-radius: 4px;
-  color: white;
+  color: var(--color-bg);
   transition-duration: 0.2s;
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-    color: var(--color-pink);
+    color: var(--color-blur);
   }
   &:focus {
     outline: none;
-    border: 2px solid var(--color-black);
+    border: 2px solid var(--color-font);
   }
 `;
 

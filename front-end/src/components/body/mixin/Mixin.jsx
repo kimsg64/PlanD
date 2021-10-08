@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 // 바디 레이아웃
 export const BodyLayout = styled.div`
-  min-height: calc(100vh - var(--header-height) - var(--footer-height) + 40px);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) + 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: ${(props) => props.padding || "var(--header-height)"} 0;
+  padding: ${(props) => props.padding || "var(--header-height) 0"};
+  /* background-color: var(--color-bg); */
 `;
 
 // 바디 레이아웃(이미지, 비디오 겹치게)
@@ -22,6 +23,7 @@ export const MenuTitle = styled.div`
 
 // 버튼
 export const Button = styled.button`
+  height: 40px;
   margin: 0 var(--margin-line-space);
   padding: var(--padding-small);
   /* font-weight: ${(props) => props.weight || "500"}; */
@@ -54,11 +56,11 @@ export const Input = styled.input`
   position: relative;
   text-align: center;
   border: none;
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid var(--color-font);
   transition-duration: 0.2s;
   &:focus {
     outline: none;
-    border-bottom: 2px solid var(--color-yellow);
+    /* border-bottom: 2px solid var(--color-yellow); */
   }
 `;
 
@@ -82,7 +84,7 @@ export const SearchBar = styled.div`
 
 // 노란색 글자
 export const YellowD = styled.span`
-  color: var(--color-yellow);
+  color: var(--color-focus);
 `;
 
 // 옵션 컨테이너
@@ -90,7 +92,7 @@ export const OptionsContainer = styled.div`
   max-width: 44vw;
   height: auto;
   margin-top: var(--margin-default);
-  border: 2px solid var(--color-brown);
+  border: 2px solid var(--color-font);
   border-radius: 4px;
   display: flex;
   flex-wrap: wrap;

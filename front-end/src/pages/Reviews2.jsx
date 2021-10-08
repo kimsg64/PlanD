@@ -87,7 +87,7 @@ const Icon = styled.div`
   margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
   overflow: hidden;
   border-radius: 50%;
-  /* border: 2px solid var(--color-brown); */
+  background-color: var(--color-bg);
   img {
     width: 100%;
   }
