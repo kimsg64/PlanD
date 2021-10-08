@@ -50,9 +50,9 @@
 <div id="list">
 	<ul>
 		<li><input type="checkbox"/><li>
-		<li><img src="imgs/icecream.jpg"/></li>
-		<li>상호명 :</li>
-		<li>기간 :</li>
+		<li> ${vo.photo } </li>
+		<li>상호명 : ${vo.name }</li>
+		<li>기간 : ${vo.startdate }, ~${vo.enddate }</li>
 	</ul>
 	<ul>
 		<li><input type="checkbox"/></li>

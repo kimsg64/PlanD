@@ -84,7 +84,7 @@ td:hover {
 			<td><a href="/wherewego/placeList"><img
 					src="imgs/adminMenu/place.png" /><br />장소 관리</a></td>
 			<!-- 유나님 파일 연결하기 -->
-			<td><a href="/wherewego/adList"><img
+			<td><a href="/wherewego/advermanage"><img
 					src="imgs/adminMenu/ad.png" /><br />광고 관리</a></td>
 			<!-- 도훈님 파일 연결하기 -->
 			<td><a href="/wherewego/pointshopList"><img
