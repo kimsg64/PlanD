@@ -37,6 +37,7 @@ public class BusinessController {
 			ses.setAttribute("logid", logVo.getB_id());	
 			
 			mav.setViewName("/");
+			//홈으로 이동해서 session에 있는 logid값에 따라 홈화면 다르게 보임
 		} else {
 			mav.setViewName("/business/loginResult");
 		}
