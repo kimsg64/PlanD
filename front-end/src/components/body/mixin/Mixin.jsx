@@ -23,26 +23,34 @@ export const MenuTitle = styled.div`
 
 // 버튼
 export const Button = styled.button`
-  height: 40px;
+  width: ${(props) => props.width || "auto"};
+  height: 32px;
   margin: 0 var(--margin-line-space);
-  padding: var(--padding-small);
+  padding: var(--padding-tiny) var(--padding-small);
   /* font-weight: ${(props) => props.weight || "500"}; */
   font-family: -apple-system;
   font-size: var(--font-size-small);
-  background-color: var(--color-brown);
+  background-color: var(--color-light-green);
   border: none;
   border-radius: 4px;
   color: white;
   transition-duration: 0.2s;
+  position: ${(props) => props.position || "static"};
+  top: ${(props) => props.fromTop};
+  left: ${(props) => props.fromLeft};
   :hover {
     cursor: pointer;
     transform: scale(1.02);
     color: var(--color-yellow);
   }
+  :active {
+    background-color: var(--color-green);
+  }
 `;
 
 // 시작용 큰 버튼
 export const StartButton = styled(Button)`
+  height: 60px;
   margin-top: calc(var(--margin-default));
   padding: calc(var(--padding-default) / 2) var(--padding-default);
   font-size: var(--font-size-large);
@@ -56,7 +64,7 @@ export const Input = styled.input`
   position: relative;
   text-align: center;
   border: none;
-  border-bottom: 2px solid var(--color-font);
+  /* border-bottom: 2px solid var(--color-font); */
   transition-duration: 0.2s;
   &:focus {
     outline: none;
@@ -73,7 +81,9 @@ export const SearchBar = styled.div`
   justify-content: flex-end;
   align-items: center;
   Input {
+    background-color: inherit;
     margin-right: calc(var(--margin-default) / 2);
+    font-size: var(--font-size-normal);
   }
   Button {
     i {
@@ -83,15 +93,14 @@ export const SearchBar = styled.div`
 `;
 
 // 노란색 글자
-export const YellowD = styled.span`
+export const PointLetter = styled.span`
   color: var(--color-focus);
 `;
 
 // 옵션 컨테이너
 export const OptionsContainer = styled.div`
-  max-width: 44vw;
+  width: calc(42em + var(--margin-default));
   height: auto;
-  margin-top: var(--margin-default);
   border: 2px solid var(--color-font);
   border-radius: 4px;
   display: flex;
@@ -114,5 +123,36 @@ export const CheckboxLabel = styled.label`
   margin: 1vh 1vw;
   :hover {
     cursor: pointer;
+  }
+`;
+
+// 원
+export const Circle = styled.div`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: relative;
+  background-color: inherit;
+  top: ${(props) => props.fromTop};
+  left: ${(props) => props.fromLeft};
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-focus);
+  }
+`;
+
+// 사각형 > 앱솔루트?
+export const Square = styled.div`
+  width: 140px;
+  height: 172px;
+  position: relative;
+  background-color: inherit;
+  top: ${(props) => props.fromTop};
+  left: ${(props) => props.fromLeft};
+  &:hover {
+    cursor: pointer;
+    & > Circle {
+      background-color: var(--color-focus);
+    }
   }
 `;

@@ -8,7 +8,7 @@ const LineContainer = styled.div`
   font-size: var(--font-size-normal);
   position: relative;
   top: -52px;
-  left: 24%;
+  left: 220px;
 `;
 
 const LineCircle = styled.div`

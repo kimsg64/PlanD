@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { YellowD } from "../mixin/Mixin";
+import { PointLetter } from "../mixin/Mixin";
 
 const Container = styled.div`
   width: auto;
@@ -48,9 +48,6 @@ const TextInImage = styled.div`
     color: white;
     line-height: 2;
   }
-  span {
-    color: var(--color-yellow);
-  }
 `;
 
 const LinkedContents = () => {
@@ -84,7 +81,7 @@ const LinkedContents = () => {
         <TextInImage>
           <h1>데이트의 시작-</h1>
           <h1>
-            Plan.<YellowD>D</YellowD>와 함께하세요
+            Plan.<PointLetter>D</PointLetter>와 함께하세요
           </h1>
         </TextInImage>
       </div>
@@ -98,10 +95,10 @@ const LinkedContents = () => {
         </ImageBox>
         <TextInImage>
           <h1>
-            <YellowD>빅데이터</YellowD>를 이용해 엄선된
+            <PointLetter>빅데이터</PointLetter>를 이용해 엄선된
           </h1>
           <h1>
-            최적의 <YellowD>데이트 코스</YellowD> 안내
+            최적의 <PointLetter>데이트 코스</PointLetter> 안내
           </h1>
         </TextInImage>
       </div>
@@ -118,7 +115,7 @@ const LinkedContents = () => {
         >
           <h1>비가 오는 날에도 오붓하게</h1>
           <h1>
-            <YellowD>실내</YellowD> 데이트!
+            <PointLetter>실내</PointLetter> 데이트!
           </h1>
         </TextInImage>
       </div>

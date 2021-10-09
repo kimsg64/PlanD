@@ -6,7 +6,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import ImageSlider from "../components/body/imageSlider/ImageSlider";
 import Dots from "../components/body/imageSlider/Dots";
-import { YellowD, BodyLayout } from "../components/body/mixin/Mixin";
+import { PointLetter, BodyLayout } from "../components/body/mixin/Mixin";
 import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
 
 const MenuSection = styled.section`
@@ -27,7 +27,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-lightpink);
+  background-color: var(--color-bg);
   border-radius: 8px;
 `;
 
@@ -40,7 +40,7 @@ const Article = styled.article`
   width: 100%;
   height: calc(100% - var(--margin-default) - var(--font-size-title-normal));
   padding: var(--padding-default);
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-title-small);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,7 @@ const MemberHome = () => {
         <MenuSection>
           <Container>
             <SubHeading>
-              <YellowD>D</YellowD>+ 36,500
+              <PointLetter>D</PointLetter>+ 36,500
             </SubHeading>
             <Article>
               {/* 시작일 받아서 반복문 */}
@@ -82,7 +82,7 @@ const MemberHome = () => {
             <SubHeading>예약</SubHeading>
             <Article>
               <ArticleItem>
-                다음 예약 요약해서 보여주고 클릭하면 넘어가기
+                잠실역 데이트(2031/12/10) 14:00~18:00(코스 요약 추가)
               </ArticleItem>
             </Article>
           </Container>

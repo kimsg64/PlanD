@@ -7,7 +7,6 @@ import Line8 from "../components/body/map/metorMap/line8/Line8";
 import StationViewer from "../components/body/map/metorMap/StationViewer";
 
 const PlannerContainer = styled.div`
-  margin-top: calc(var(--margin-header-to-body) / 2);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import BorderEffect from "../../mixin/BorderEffect";
 import { Button, Input, SearchBar } from "../../mixin/Mixin";
 import LineSelector from "./LineSelector";
 
@@ -11,6 +12,7 @@ const ViewerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--color-bg);
 `;
 
 const Liner = styled.span`
@@ -24,7 +26,7 @@ const RelativeSearchBar = styled(SearchBar)`
   margin: 0;
   position: relative;
   top: -60px;
-  left: 4%;
+  left: 40px;
 `;
 
 const NextButton = styled(Button)`
@@ -46,12 +48,12 @@ const LineViewer = styled.div`
 `;
 
 const Line = styled.div`
-  margin-top: var(--margin-default);
-  font-size: var(--font-size-title-large);
+  margin-top: calc(var(--margin-default) / 2);
+  font-size: var(--font-size-title-normal);
 `;
 
 const Station = styled.div`
-  font-size: var(--font-size-title-normal);
+  font-size: var(--font-size-large);
   /* visibility: hidden; */
 `;
 
@@ -67,13 +69,14 @@ const StationViewer = () => {
       </LineViewer>
       <Liner>
         <RelativeSearchBar width="300px">
-          <Input type="text" placeholder="역 이름으로 검색하세요" />
           <Button>
             <i className="fas fa-search"></i>
           </Button>
+          <Input type="text" placeholder="역 이름으로 검색하세요" />
+          <BorderEffect spanWidth="200px" />
         </RelativeSearchBar>
         <Link to={"/planningDetail"}>
-          <NextButton>선택 완료</NextButton>
+          <NextButton>다음</NextButton>
         </Link>
       </Liner>
     </ViewerContainer>

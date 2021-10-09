@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { read_cookie, delete_cookie } from "sfcookies";
-import { YellowD } from "../body/mixin/Mixin";
+import { PointLetter } from "../body/mixin/Mixin";
 import BorderEffect from "../body/mixin/BorderEffect";
 
 const Observer = styled.div`
@@ -175,7 +175,7 @@ const Header = () => {
         <HeaderSizeController>
           <LogoContainer>
             <Link to={`/`}>
-              Plan.<YellowD>D</YellowD>
+              Plan.<PointLetter>D</PointLetter>
             </Link>
           </LogoContainer>
           <MenuSection>

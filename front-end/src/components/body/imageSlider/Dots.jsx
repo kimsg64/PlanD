@@ -13,13 +13,13 @@ const Dot = styled.div`
   height: 20px;
   margin: calc(var(--margin-default) / 4);
   border-radius: 50%;
-  background-color: ${(props) => props.bgColor || "var(--color-brown)"};
+  background-color: ${(props) => props.bgColor || "var(--color-light-green)"};
 `;
 
 const Dots = () => {
   return (
     <DotsBox>
-      <Dot bgColor="var(--color-yellow)"></Dot>
+      <Dot bgColor="var(--color-green)"></Dot>
       <Dot></Dot>
       <Dot></Dot>
     </DotsBox>

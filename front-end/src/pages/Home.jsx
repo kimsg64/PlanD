@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <>
       <Header />
-      <BodyLayout padding="0">
+      <BodyLayout>
         <VideoPlayer />
-        <StartButton>
-          <Link to={`/login`}>Get Started!</Link>
-        </StartButton>
+        <Link to={`/login`}>
+          <StartButton>Get Started!</StartButton>
+        </Link>
       </BodyLayout>
       <Footer />
     </>

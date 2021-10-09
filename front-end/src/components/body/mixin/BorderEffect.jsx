@@ -4,7 +4,7 @@ import styled from "styled-components";
 const BorderSpan = styled.span`
   width: ${(props) => props.spanWidth || "0"};
   height: 2px;
-  background-color: var(--color-yellow);
+  background-color: var(--color-focus);
   position: absolute;
   top: 58px;
   transition-duration: 0.3s;
