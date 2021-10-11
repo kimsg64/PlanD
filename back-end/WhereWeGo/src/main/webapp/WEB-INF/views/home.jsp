@@ -44,7 +44,7 @@
 td {padding : 5px;}
 
 td:hover {
-	color: #0e595f;
+	color: #fd7d73;
 	background-color : #f5ebe3;
 	border-radius: 12px;
 }
@@ -67,28 +67,23 @@ td:hover {
 	<table id="adminMenu">
 		<tr>
 			<td><a href="/wherewego/userList"><img
-					src="imgs/adminMenu/user.png" /><br />회원 관리</a></td>
-			<!-- 병철님 파일 연결하기 -->
+					src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
 			<td><a href="/wherewego/noticeList"><img
-					src="imgs/adminMenu/notice.png" /><br />공지 관리</a></td>
+					src="imgs/adminMenu/notiB.png" /><br />공지 관리</a></td>
 			<td><a href="/wherewego/resList"><img
-					src="imgs/adminMenu/reservation.png" /><br />예약 관리</a></td>
+					src="imgs/adminMenu/resB.png" /><br />예약 관리</a></td>
 			<td><a href="/wherewego/reviewList"><img
-					src="imgs/adminMenu/review.png" /><br />후기 관리</a></td>
-			<!-- 유나님 파일 연결하기 -->
+					src="imgs/adminMenu/reviewB.png" /><br />후기 관리</a></td>
 		</tr>
 		<tr>
 			<td><a href="/wherewego/courseList"><img
-					src="imgs/adminMenu/location.png" /><br />코스 관리</a></td>
-			<!-- 유나님 파일 연결하기 -->
+					src="imgs/adminMenu/locaB.png" /><br />코스 관리</a></td>
 			<td><a href="/wherewego/placeList"><img
-					src="imgs/adminMenu/place.png" /><br />장소 관리</a></td>
-			<!-- 유나님 파일 연결하기 -->
+					src="imgs/adminMenu/placeB.png" /><br />장소 관리</a></td>
 			<td><a href="/wherewego/advermanage"><img
-					src="imgs/adminMenu/ad.png" /><br />광고 관리</a></td>
-			<!-- 도훈님 파일 연결하기 -->
+					src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
 			<td><a href="/wherewego/pointshopList"><img
-					src="imgs/adminMenu/pointshop.png" /><br />포인트샵 관리</a></td>
+					src="imgs/adminMenu/pointB.png" /><br />포인트샵 관리</a></td>
 		</tr>
 	</table>
 	<!--  < / c:if> adminDiv끝-->
@@ -100,11 +95,11 @@ td:hover {
 	<table id="adminMenu">
 		<tr>
 			<td><a href="/wherewego/MyInfo"><img
-					src="imgs/adminMenu/user.png" /><br />내 정보 수정</a></td>
+					src="imgs/adminMenu/userB.png" /><br />내 정보 수정</a></td>
+			<td><a href="/wherewego/adRegister"><img
+					src="imgs/adminMenu/clickB.png" /><br />광고 신청</a></td>
 			<td><a href="/wherewego/adMenu"><img
-					src="imgs/adminMenu/click.png" /><br />광고 신청</a></td>
-			<td><a href="/wherewego/adMenu"><img
-					src="imgs/adminMenu/ad.png" /><br />광고 관리</a></td>
+					src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
 		</tr>
 	</table>
 	<!--  < / c:if> adminDiv끝-->
