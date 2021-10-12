@@ -16,6 +16,7 @@ public class UserVO {
 	private String zzim;
 	private String history;
 	private String regdate;
+	private String point;
 	
 	public String getUserId() {
 		return userId;
@@ -100,6 +101,12 @@ public class UserVO {
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	public String getPoint() {
+		return point;
+	}
+	public void setPoint(String point) {
+		this.point = point;
 	}
 	
 }

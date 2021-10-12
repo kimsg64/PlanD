@@ -9,7 +9,8 @@ public class AdVO {
 	private String link;
 	private int price;
 	private String grade;
-	private String name;
+	
+	private String name; //상호명
 	
 	public String getStartdate() {
 		return startdate;

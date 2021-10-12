@@ -9,6 +9,7 @@ public class ReviewVO {
 	private int hit;
 	private String writedate;
 	private String grade;
+	private String photo;
 	
 	public int getR_num() {
 		return r_num;
@@ -58,6 +59,11 @@ public class ReviewVO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	
 }
