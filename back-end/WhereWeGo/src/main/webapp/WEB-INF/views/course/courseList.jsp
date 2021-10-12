@@ -11,6 +11,8 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
+#search{margin-left:720px; margin-bottom:30px;}
+
 #mainDiv {
 	width: 72%;
 	margin: 0 auto;
@@ -101,7 +103,7 @@
 	background-color: #fd7d73;
 	border: none;
 	color: #f5ebe3;
-	padding: 10px 20px;
+	padding: 10px 10px;
 	margin: 10px 0px;
 	text-align: center;
 	text-decoration: none;
@@ -164,13 +166,14 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="whitetop"></div>
 
-<div id="search">	
-	<input type="text" placeholder="검색어 입력">
-	<button>검색</button>
-</div>		
+
 
 <div id="mainDiv">
 	<h1>코스 관리</h1>
+
+<div id="search">	
+	<input type="text" placeholder="검색어 입력"><button>검색</button>
+</div>		
 
 	<div id="list">
 		<ul id="boardList">
