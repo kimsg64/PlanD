@@ -55,23 +55,23 @@
 
 #boardList>li {
 	float: left;
-	width: 9%;
+	width: 12.5%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
-#boardList>li:nth-child(7n+3) {
-	width: 50%;
+#boardList>li:nth-child(6n+3) {
+	width: 45%;
 	text-align: left;
 }
 
 #boardList>li:nth-child(3) {
-	width: 50%;
+	width: 45%;
 	text-align: center;
 }
 
-#boardList>li:nth-child(7n+1) {
+#boardList>li:nth-child(6n+1) {
 	width: 5%;
 }
 
