@@ -13,5 +13,9 @@
 	<!-- 아이디로 모든 정보 다 가져오기 -->
 	<select id="allselect" resultType="com.bit5.wherewego.business.BusinessVO">
 		select b_id, pwd, name, num, tel, zip, addr, regdate from business where b_id=#{param1}
+		
+	<!-- 홈으로 이동 -->
+	<select id="goHome" resultType="com.bit5.wherewego.business.BusinessVO">
+		select b_id, name from business where b_id=#{param1}
 	</select>
 </mapper>

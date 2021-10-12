@@ -31,9 +31,7 @@ public class UserController {
 	@PostMapping(path = "/user/userLogin")
 	public int userLogin(@RequestBody UserVO userData) {
 		int result = dao.selectUser(userData);
-		ModelAndView mav = new ModelAndView();
 		if(result > 0) {
-			mav.addObject(userData);
 			System.out.println("you did it!!");
 		} else {
 			System.out.println("fail");
@@ -46,7 +44,7 @@ public class UserController {
 	public boolean setSession(@CookieValue(name = "userId") String loginId, HttpSession session) {
 		// 어차피 로그인 성공한 애들이 들어올 곳이므로... 그냥 설정하면 된다.
 		// front 쿠키에 저장된 userId = back 세션에 저장된 userId면 로그인된 것으로 간주하면 됨! 
-		System.out.print(loginId);
+		System.out.println(loginId);
 		session.setAttribute("loginId", loginId);
 		System.out.println(session.getAttribute("loginId"));
 		return true;

@@ -1,9 +1,13 @@
 package com.bit5.wherewego.review;
 
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,5 +49,14 @@ public class ReviewController {
 		mav.setViewName("review/reviewList");
 
 		return mav;
+	}
+	
+	// 사용자 리뷰 목록 페이지 > sql문 변경해야 함
+	@RequestMapping("/user/bestReviews")
+	@ResponseBody
+	public List<ReviewVO> showBestReviews() {
+		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
+		List<ReviewVO> list = dao.selectBestReviews();
+		return list;
 	}
 }
