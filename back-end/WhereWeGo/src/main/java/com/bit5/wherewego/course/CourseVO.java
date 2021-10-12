@@ -5,8 +5,8 @@ public class CourseVO {
 	private String name;
 	private String userid;
 	private int stcode;
-	private int score;
 	private String stname; //역이름
+	private String grade;
 	
 	public int getC_num() {
 		return c_num;
@@ -34,17 +34,17 @@ public class CourseVO {
 		this.stcode = stcode;
 	}
 	
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
 	public String getStname() {
 		return stname;
 	}
 	public void setStname(String stname) {
 		this.stname = stname;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	
 	
