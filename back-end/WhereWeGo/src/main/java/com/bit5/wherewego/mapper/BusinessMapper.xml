@@ -7,7 +7,7 @@
 
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="com.bit5.wherewego.business.BusinessVO">
-		select b_id, name from business where b_id=#{param1} and pwd=#{param2}
+		select b_id, name, num from business where b_id=#{param1} and pwd=#{param2}
 	</select>
 	
 	<!-- 아이디로 모든 정보 다 가져오기 -->

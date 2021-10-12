@@ -42,7 +42,9 @@ public class BusinessController {
 		//세션저장
 		if(logVo!=null) { //로그인 성공
 			System.out.println("you did it!!");
+			ses.setAttribute("logid", logVo.getB_id());
 			ses.setAttribute("logname", logVo.getName());
+			ses.setAttribute("lognum",logVo.getNum());
 			result = 1;
 		}
 		// 프론트로 로그인 성공 정보 보냄
