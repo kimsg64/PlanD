@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit5.wherewego.course.CourseDAOImp">
+	<select id="courseAllSelect" resultType="com.bit5.wherewego.course.CourseVO">
+		<![CDATA[ 
+		select * from 
+		(select * from 
+		(select c.c_num c_num, c.name name, s.stname stname, c.userid userid, c.grade grade from course c
+		join station s on c.stcode=s.stcode
+		order by c_num desc) 
+		where rownum<=#{param1} order by c_num asc) 
+		where rownum<=#{param2} order by c_num desc
+		]]>
+	</select>
+	
+	<select id="totalRecordCount" resultType="int">
+		select count(c_num) totalRecord from course
+	</select>
+</mapper>
