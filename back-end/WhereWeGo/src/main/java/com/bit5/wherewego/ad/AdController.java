@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.business.BusinessDAOImp;
+import com.bit5.wherewego.business.BusinessVO;
+
 
 @Controller
 public class AdController {
@@ -26,6 +29,21 @@ public class AdController {
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		mav.addObject("list",dao.adAllSelect());
 		mav.setViewName("ad/advermanage");
+		
+		return mav;
+	}
+	
+	//광고 신청
+	@RequestMapping("/adRegister")
+	public ModelAndView adRegister(BusinessVO vo) { //원래 세션값 아이디 받아야함 HttpSession session
+		ModelAndView mav = new ModelAndView();
+		
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		//원래 logid값 받아서 여기에 넣어여함
+		//(String)session.getAttribute("logid");
+		//하지만 임시로 b_id 값을 starbuck로 둠
+		mav.addObject("bVo",dao.allselect("starbucks"));
+		mav.setViewName("ad/adRegister");
 		
 		return mav;
 	}

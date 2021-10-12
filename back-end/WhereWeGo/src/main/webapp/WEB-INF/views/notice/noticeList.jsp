@@ -91,7 +91,7 @@
 }
 
 #popup1 {
-	color: #81bbaf;
+	color: #fd7d73;
 }
 
 .button {
@@ -143,7 +143,7 @@ ul.pagination li a:hover:not(.active) {
 </style>
 
 <script>
-//전체선택 이거 왜 안되냐......는 제이쿼리가 없다 두둥
+//전체선택 이거 왜 안되냐..
    $(()=>{
       $('#allChk').on('change',function(){
             $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
