@@ -32,7 +32,7 @@ const InputContainer = styled.div`
   ::after {
     content: "로그인 정보가 일치하지 않습니다!";
     font-size: var(--font-size-normal);
-    color: var(--color-warning);
+    color: var(--color-focus);
     font-weight: 800;
     position: relative;
     top: 40px;
@@ -109,40 +109,57 @@ const Login = () => {
     console.log(classification);
     console.log(keepSession);
 
-    // 사업자 유저인 경우 매핑 주소 설정해야 함
     const url =
       classification === "individual"
         ? "/wherewego/user/userLogin"
         : "/wherewego/business/businessLogin";
     // console.log(url);
-    const body = {
-      userId: userId,
-      pwd: pwd,
-    };
-    // console.log(body);
+    const body =
+      classification === "individual"
+        ? {
+            userId: userId,
+            pwd: pwd,
+          }
+        : {
+            b_id: userId,
+            pwd: pwd,
+          };
+    console.log(body);
 
     axios
       .post(url, body)
       .then((response) => {
-        // console.log("response : ", response.data);
+        console.log("response : ", response.data);
         if (response.data > 0) {
+          // 그냥 경고 띄우기용
           setIsSucceeded(true);
           // 로그인 성공시 쿠키 설정 후 다시 백으로 보내서 세션에 등록
-          bake_cookie("userId", userId);
-          axios.get("/wherewego/user/checkSession").then((res) => {
-            console.log(res.data);
-            res.data
-              ? classification === "individual"
+          if (classification === "individual") {
+            // 일반 사용자
+            bake_cookie("userId", userId);
+            axios.get("/wherewego/user/checkSession").then((res) => {
+              console.log(res.data);
+              res.data
                 ? (window.location.href = "http://localhost:3000/#/memberhome")
-                : (window.location.href = "http://localhost:9090/wherewego/")
-              : alert("로그인 실패...");
-          });
+                : alert("로그인 실패...");
+            });
+          } else {
+            // 사업자
+            bake_cookie("b_id", userId);
+            axios.get("/wherewego/business/checkSession").then((res) => {
+              console.log(res.data);
+              res.data
+                ? (window.location.href =
+                    "http://localhost:9090/wherewego/business/gohome")
+                : alert("로그인 실패...");
+            });
+          }
         } else {
           setIsSucceeded(false);
         }
       })
       .catch((error) => {
-        // console.log("failed", error);
+        console.log("failed", error);
         setIsSucceeded(false);
       });
   };
@@ -161,7 +178,7 @@ const Login = () => {
                   name="classification"
                   required
                   value="individual"
-                  onClick={(e) => setClassification(e.target.value)}
+                  onChange={(e) => setClassification(e.target.value)}
                   checked={classification === "individual" ? true : false}
                 />
                 개인
@@ -172,7 +189,7 @@ const Login = () => {
                   name="classification"
                   required
                   value="company"
-                  onClick={(e) => setClassification(e.target.value)}
+                  onChange={(e) => setClassification(e.target.value)}
                   checked={classification === "company" ? true : false}
                 />
                 사업자

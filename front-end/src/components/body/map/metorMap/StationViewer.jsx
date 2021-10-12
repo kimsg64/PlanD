@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import BorderEffect from "../../mixin/BorderEffect";
 import { Button, Input, SearchBar } from "../../mixin/Mixin";
@@ -16,7 +15,7 @@ const ViewerContainer = styled.div`
 `;
 
 const Liner = styled.span`
-  background-color: var(--color-line8);
+  background-color: ${(props) => props.lineColor || "var(--color-line8)"};
   width: calc((100vw - 240px) / 2);
   height: 20px;
   position: relative;
@@ -39,7 +38,7 @@ const NextButton = styled(Button)`
 const LineViewer = styled.div`
   width: 240px;
   height: 240px;
-  border: 20px solid var(--color-line8);
+  border: 20px solid ${(props) => props.lineColor || "var(--color-line8)"};
   border-radius: 100%;
   display: flex;
   flex-direction: column;
@@ -57,27 +56,46 @@ const Station = styled.div`
   /* visibility: hidden; */
 `;
 
-const StationViewer = () => {
+const StationViewer = ({ idx = 0, setIdx = () => {} }) => {
+  const [lineNum, setLineNum] = useState("8");
+  const [lineColor, setLineColor] = useState("");
+  const [searchBarWidth, setSearchBarWidth] = useState("0");
+  // console.log(lineNum);
+  // console.log(lineColor);
+  const onClickNext = () => {
+    // console.log(idx);
+    return idx === 0 ? setIdx(1) : setIdx(0);
+  };
+
   return (
     <ViewerContainer>
-      <Liner>
-        <LineSelector />
+      <Liner lineColor={lineColor}>
+        <LineSelector setLineColor={setLineColor} setLineNum={setLineNum} />
       </Liner>
-      <LineViewer>
-        <Line>8호선</Line>
+      <LineViewer lineColor={lineColor}>
+        <Line>{lineNum}호선</Line>
         <Station>천호</Station>
       </LineViewer>
-      <Liner>
+      <Liner lineColor={lineColor}>
         <RelativeSearchBar width="300px">
+          <Input
+            type="text"
+            placeholder="역 이름으로 검색하세요"
+            onFocus={() => setSearchBarWidth("240px")}
+            onBlur={() => setSearchBarWidth("0")}
+          />
+          <BorderEffect
+            spanWidth={searchBarWidth}
+            fromTop="48px"
+            fromLeft="0"
+          />
           <Button>
             <i className="fas fa-search"></i>
           </Button>
-          <Input type="text" placeholder="역 이름으로 검색하세요" />
-          <BorderEffect spanWidth="200px" />
         </RelativeSearchBar>
-        <Link to={"/planningDetail"}>
-          <NextButton>다음</NextButton>
-        </Link>
+        <NextButton onClick={onClickNext} idx={idx}>
+          {idx === 0 ? "다음" : "이전"}
+        </NextButton>
       </Liner>
     </ViewerContainer>
   );

@@ -19,15 +19,16 @@ const Score = styled.div`
   margin: 0 calc(var(--margin-default) / 2);
 `;
 
-const Stars = () => {
+const Stars = ({ score = 0 }) => {
+  // console.log(score);
   return (
     <StarsBox>
-      <Score>4.0</Score>
-      <i className="far fa-star"></i>
-      <i className="fas fa-star"></i>
-      <i className="fas fa-star"></i>
-      <i className="fas fa-star"></i>
-      <i className="fas fa-star"></i>
+      <Score>{score}</Score>
+      <i className="far fa-star eightToTen"></i>
+      <i className="fas fa-star sixToEight"></i>
+      <i className="fas fa-star fourToSix"></i>
+      <i className="fas fa-star twoToFour"></i>
+      <i className="fas fa-star zeroToTwo"></i>
     </StarsBox>
   );
 };

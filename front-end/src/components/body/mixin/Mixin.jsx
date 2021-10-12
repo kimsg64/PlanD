@@ -41,10 +41,11 @@ export const Button = styled.button`
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-    color: var(--color-yellow);
+    color: var(--color-green);
   }
   :active {
     background-color: var(--color-green);
+    color: var(--color-light-green);
   }
 `;
 
@@ -80,6 +81,7 @@ export const SearchBar = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
   Input {
     background-color: inherit;
     margin-right: calc(var(--margin-default) / 2);
@@ -132,26 +134,22 @@ export const Circle = styled.div`
   height: 25px;
   border-radius: 50%;
   position: relative;
-  background-color: inherit;
-  top: ${(props) => props.fromTop};
-  left: ${(props) => props.fromLeft};
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color-focus);
-  }
+  background-color: ${(props) => props.bgColor};
+  top: 130px;
+  left: 34px;
 `;
 
-// 사각형 > 앱솔루트?
+// 사각형
 export const Square = styled.div`
   width: 140px;
   height: 172px;
-  position: relative;
+  position: absolute;
   background-color: inherit;
   top: ${(props) => props.fromTop};
   left: ${(props) => props.fromLeft};
   &:hover {
     cursor: pointer;
-    & > Circle {
+    div {
       background-color: var(--color-focus);
     }
   }

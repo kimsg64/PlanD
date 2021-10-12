@@ -1,6 +1,6 @@
 // 달력 스타일링 마무리
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -8,10 +8,11 @@ import ImageSlider from "../components/body/imageSlider/ImageSlider";
 import Dots from "../components/body/imageSlider/Dots";
 import { PointLetter, BodyLayout } from "../components/body/mixin/Mixin";
 import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
+import { Link } from "react-router-dom";
 
 const MenuSection = styled.section`
   width: 60vw;
-  height: 120vh;
+  height: 132vh;
   margin: var(--margin-default);
   display: flex;
   justify-content: center;
@@ -51,6 +52,10 @@ const ArticleItem = styled.div`
 `;
 
 const MemberHome = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  // 날짜 선택하고 course로 넘어가게 하기
+  console.log("멤버홈", selectedDate);
+
   return (
     <>
       <Header />
@@ -76,7 +81,8 @@ const MemberHome = () => {
             <SubHeading>플랜</SubHeading>
             {/* 예약시에는(예약일) minDate 오늘, 가입시에는(시작일) maxDate 오늘 */}
 
-            <CustomCalerdar />
+            <CustomCalerdar setSelectedDate={setSelectedDate} />
+            <Link to={`/planning/${selectedDate}`}>예약하러 가기</Link>
           </Container>
           <Container>
             <SubHeading>예약</SubHeading>

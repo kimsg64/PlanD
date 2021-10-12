@@ -1,143 +1,227 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import { BodyLayout } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
+import Stars from "../components/body/mixin/Stars";
+import ReviewsData from "../server/ReviewsData";
 
-const Stage = styled.div`
-  width: auto;
-  height: auto;
-  margin-top: var(--margin-header-to-body);
-  perspective: 800px;
-  overflow: hidden;
-`;
+// 여기는 리뷰 상세 페이지로 활용하기
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
-  height: 80vh;
+  margin-top: var(--margin-header-to-body);
+  display: flex;
   align-items: center;
+  overflow-x: hidden;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.2s;
   will-change: transform;
-  transform-style: preserve-3d;
-  transition-duration: 1s;
-  transform: rotateY(
-    ${(props) => {
-      return props.deg + "deg";
-    }}
-  );
+  /* perspective: 800px; */
+  /* background: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0.65) 100%
+  ); */
 `;
 
 const ReviewItem = styled.li`
-  width: 160px;
-  min-height: 16%;
+  height: 560px;
+  margin: 0 calc(var(--margin-default) / 1.4);
+  padding: var(--padding-default);
+  border-radius: 8px;
 
-  position: absolute;
-  top: 280px;
-  left: 688px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--color-black);
-  transition-delay: 0.2s;
-  transition-duration: 0.4s;
-
-  /* for ring poster */
-  opacity: 0.7;
-  transform: rotateY(
-      ${(props) => {
-        return props.yRotate + "deg";
-      }}
-    )
-    translateZ(560px);
-  :hover {
-    cursor: pointer;
-    opacity: 1;
+  &:nth-child(even) {
+    /* transform: scaleX(1.16) rotateY(10deg); */
   }
+  &:nth-child(odd) {
+    /* transform: scaleX(1.16) rotateY(-10deg); */
+  }
+
+  /* 체크용 > 색깔 변경예정 */
+  border: 2px solid var(--color-brown);
+`;
+
+const ImageBox = styled.div`
+  width: 400px;
+  height: 240px;
+  margin: calc(var(--margin-default) / 2) 0;
+  overflow: hidden;
+  background-color: var(--color-brown);
+  img {
+    width: 100%;
+  }
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  height: 112px;
+  margin-top: calc(var(--margin-default) / 2);
+  padding: var(--padding-default);
+  border: 2px solid var(--color-brown);
+  border-radius: 8px;
+  font-size: var(--font-size-normal);
   p {
-    margin: 4%;
-    color: var(--color-yellow);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
   }
-  &.selected {
-    opacity: 1;
-  }
+  /* after로 말풍선 툴팁 주기? */
 `;
 
 const ProfileBox = styled.div`
-  width: 80%;
-  height: 40%;
-  margin: 4% 0;
+  width: 400px;
+  height: 100px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+`;
+
+const Icon = styled.div`
+  width: 60px;
+  height: 60px;
+  margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color-bg);
   img {
-    height: 80px;
+    width: 100%;
   }
 `;
 
-const ReviewTitle = styled.p`
-  font-size: var(--font-size-tiny);
+const UserInfo = styled.div`
+  width: calc(100% - 60px);
 `;
 
-const ReviewContent = styled.p`
-  font-size: var(--font-size-3d);
-  transition-duration: 0.5s;
-  overflow: hidden;
-  /* 가운데 요소만 높이 픽셀로 지정해서 내용 보여주기 */
-  /* 클릭한 요소 가운데로 옮기기 */
-  height: 0;
-  /* height: 100px; */
+const NameAndStar = styled.div`
+  display: flex;
+`;
+
+const UserName = styled.div`
+  width: 48%;
+  min-width: 120px;
+  font-size: var(--font-size-large);
+`;
+
+const UserHistory = styled.div`
+  font-size: var(--font-size-normal);
 `;
 
 const Reviews = () => {
-  const [deg, setDeg] = useState(0);
-  // 링 포스터 셋업
-  const testReivew = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
-  const posterNum = testReivew.length;
-  const posterAngle = 360 / posterNum;
-  const ringRef = useRef();
-  // let deg = 0;
+  // 슬라이더 이펙트
+  const isDown = useRef(false);
+  const sliderRef = useRef();
+  // 리뷰 데이터
+  const reviewsData = ReviewsData();
+  const reviewsList = reviewsData[2];
+  console.log(reviewsList);
+  // 슬라이더 이펙트 기준
+  let startX;
+  let scrollL;
 
-  // 링 포스터 이동
-  const spinRing = () => {
-    // deg += posterAngle;
-    setDeg((prevDeg) => prevDeg + posterAngle);
-    console.log("deg 체크!", deg % 360);
+  // 클릭 & 드래그 이벤트
+  const startDraging = (e) => {
+    // console.log("start~!");
+    isDown.current = true;
+    startX = e.pageX - sliderRef.current.offsetLeft;
+    scrollL = sliderRef.current.scrollLeft;
   };
+
+  const slideReviews = (e) => {
+    // console.log("moving!", isDown);
+    if (!isDown.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    sliderRef.current.scrollLeft = scrollL - walk;
+  };
+
+  const stopDraging = () => {
+    // console.log("stop...", isDown);
+    isDown.current = false;
+  };
+
+  const showDetailItem = () => {};
 
   return (
     <>
       <Header />
-      <BodyLayout>
-        <Stage>
-          <ReviewsContainer ref={ringRef} deg={deg}>
-            <div>
-              {testReivew.map((reviewNum) => {
-                return (
-                  <ReviewItem
-                    key={reviewNum}
-                    yRotate={posterAngle * reviewNum}
-                    className={
-                      posterAngle * Math.abs(reviewNum - posterNum) ===
-                      deg % 360
-                        ? "selected"
-                        : ""
-                    }
-                  >
-                    <ProfileBox>
-                      <img src="/images/temp2.jpg" alt="temp" />
-                    </ProfileBox>
-                    <ReviewTitle>베스트 리뷰의 제목입니다.</ReviewTitle>
-                    <ReviewContent>
-                      그리고 이것은 내용입니다. 내용이 길어지면 또 할게 많은데
-                      어휴 이걸 또 어쩐담
-                    </ReviewContent>
-                  </ReviewItem>
-                );
-              })}
-            </div>
-          </ReviewsContainer>
-        </Stage>
-        <button onClick={spinRing}>테스트 버튼</button>
+      <BodyLayout padding="0">
+        <ReviewsContainer
+          ref={sliderRef}
+          onMouseDown={startDraging}
+          onMouseMove={slideReviews}
+          onMouseUp={stopDraging}
+        >
+          <ReviewItem onClick={showDetailItem}>
+            <div>코스명</div>
+            <ImageBox>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                alt="cafe_review"
+              />
+            </ImageBox>
+            <TextBox>
+              <p>
+                제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
+                진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
+                취재하고 제가 그 머~ 어~ 대통령이 된 기분이었어요
+              </p>
+            </TextBox>
+            <ProfileBox>
+              <Icon>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                  alt="user_icon"
+                />
+              </Icon>
+              <UserInfo>
+                <NameAndStar>
+                  <UserName>찬호팍</UserName>
+                  <Stars />
+                </NameAndStar>
+                <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+              </UserInfo>
+            </ProfileBox>
+          </ReviewItem>
+
+          {reviewsList.map((review) => {
+            return (
+              <ReviewItem onClick={showDetailItem}>
+                <div>코스명</div>
+                <ImageBox>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                    alt="cafe_review"
+                  />
+                </ImageBox>
+                <TextBox>
+                  <p>{review.info}</p>
+                </TextBox>
+                <ProfileBox>
+                  <Icon>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                      alt="user_icon"
+                    />
+                  </Icon>
+                  <UserInfo>
+                    <NameAndStar>
+                      <UserName>{review.userid}</UserName>
+                      <Stars score={review.score} />
+                    </NameAndStar>
+                    <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+                  </UserInfo>
+                </ProfileBox>
+              </ReviewItem>
+            );
+          })}
+        </ReviewsContainer>
       </BodyLayout>
       <Footer />
     </>

@@ -48,7 +48,7 @@ const LogoContainer = styled.div`
 `;
 
 const MenuSection = styled.section`
-  width: 54%;
+  width: 72%;
   display: flex;
   justify-content: flex-end;
 `;
@@ -108,8 +108,10 @@ const SubMenuItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--color-font);
   position: relative;
+  border: 1px solid var(--color-font);
+  border-top: none;
   &:hover {
     cursor: pointer;
     color: var(--color-focus);
@@ -123,7 +125,6 @@ const Header = () => {
   const [recommendWidth, setRecommendWidth] = useState("0");
   const [reviewWidth, setReviewWidth] = useState("0");
   const [likeWidth, setLikeWidth] = useState("0");
-  const [pointWidth, setPointWidth] = useState("0");
   // 헤더 색 변화시키기
   const [bgColor, setBgColor] = useState("white");
   const [fontColor, setFontColor] = useState("white");
@@ -179,28 +180,31 @@ const Header = () => {
             </Link>
           </LogoContainer>
           <MenuSection>
-            {/* {read_cookie("userId").length > 0 ? ( */}
-            <MenuContainer>
-              <li>
-                <Link to={`/memberhome`}>Home</Link>
-              </li>
-              <li>
-                <Link to={`/planning`}>Course</Link>
-              </li>
-              <li>
-                <Link to={`/searchplace`}>Place</Link>
-              </li>
-              <li>
-                <Link to={`/reviews2`}>Reviews</Link>
-              </li>
-              <li>
-                <Link to={`/userrecommendation`}>Recommendation</Link>
-              </li>
-            </MenuContainer>
-            {/* ) : null} */}
+            {read_cookie("userId").length > 0 ? (
+              <MenuContainer>
+                <li>
+                  <Link to={`/memberhome`}>Home</Link>
+                </li>
+                <li>
+                  <Link to={`/planning`}>Course</Link>
+                </li>
+                <li>
+                  <Link to={`/searchplace`}>Place</Link>
+                </li>
+                <li>
+                  <Link to={`/reviews`}>Reviews</Link>
+                </li>
+                <li>
+                  <Link to={`/userrecommendation`}>Recommendation</Link>
+                </li>
+                <li>
+                  <Link to={`/`}>PointShop</Link>
+                </li>
+              </MenuContainer>
+            ) : null}
             <LoginButtonContainer>
               <SubMenuContainer
-                onMouseOver={() => setHeightOfSub("360px")}
+                onMouseOver={() => setHeightOfSub("300px")}
                 onMouseOut={() => setHeightOfSub("0")}
               >
                 {read_cookie("userId").length > 0 ? (
@@ -209,7 +213,7 @@ const Header = () => {
                     <SubMenu heightOfSub={heightOfSub}>
                       <Link to={"/mypage"}>
                         <SubMenuItem
-                          onMouseOver={() => setHomeWidth("150px")}
+                          onMouseOver={() => setHomeWidth("152px")}
                           onMouseOut={() => setHomeWidth("0")}
                         >
                           MyHome
@@ -218,7 +222,7 @@ const Header = () => {
                       </Link>
                       <Link to={"/editprofile"}>
                         <SubMenuItem
-                          onMouseOver={() => setProfileWidth("150px")}
+                          onMouseOver={() => setProfileWidth("152px")}
                           onMouseOut={() => setProfileWidth("0")}
                         >
                           Profile
@@ -227,7 +231,7 @@ const Header = () => {
                       </Link>
                       <Link to={"/myhistory"}>
                         <SubMenuItem
-                          onMouseOver={() => setReviewWidth("150px")}
+                          onMouseOver={() => setReviewWidth("152px")}
                           onMouseOut={() => setReviewWidth("0")}
                         >
                           History
@@ -236,7 +240,7 @@ const Header = () => {
                       </Link>
                       <Link to={"/myrecommendation"}>
                         <SubMenuItem
-                          onMouseOver={() => setRecommendWidth("150px")}
+                          onMouseOver={() => setRecommendWidth("152px")}
                           onMouseOut={() => setRecommendWidth("0")}
                         >
                           MyRecommendation
@@ -245,20 +249,11 @@ const Header = () => {
                       </Link>
                       <Link to={"/mydibs"}>
                         <SubMenuItem
-                          onMouseOver={() => setLikeWidth("150px")}
+                          onMouseOver={() => setLikeWidth("152px")}
                           onMouseOut={() => setLikeWidth("0")}
                         >
                           Dibs
                           <BorderEffect spanWidth={likeWidth} />
-                        </SubMenuItem>
-                      </Link>
-                      <Link to={"/pointshop"}>
-                        <SubMenuItem
-                          onMouseOver={() => setPointWidth("150px")}
-                          onMouseOut={() => setPointWidth("0")}
-                        >
-                          PointShop
-                          <BorderEffect spanWidth={pointWidth} />
                         </SubMenuItem>
                       </Link>
                     </SubMenu>

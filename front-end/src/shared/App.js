@@ -16,14 +16,10 @@ import MyPage from "../pages/MyPage";
 import MyRecommendation from "../pages/MyRecommendation";
 import Notice from "../pages/Notice";
 import Planning from "../pages/Planning";
-import PlanningDetail from "../pages/PlanningDetail";
 import PointShop from "../pages/PointShop";
 import Registration from "../pages/Registration";
-import Result1 from "../pages/Result1";
-import Result2 from "../pages/Result2";
-import Result3 from "../pages/Result3";
+import Result from "../pages/Result";
 import Reviews from "../pages/Reviews";
-import Reviews2 from "../pages/Reviews2";
 import SearchPlace from "../pages/SearchPlace";
 import UserRecommendation from "../pages/UserRecommendation";
 
@@ -47,15 +43,12 @@ const App = () => {
       <Route path="/mypage" component={MyPage} />
       <Route path="/myrecommendation" component={MyRecommendation} />
       <Route path="/notice" component={Notice} />
-      <Route path="/planning" component={Planning} />
-      <Route path="/planningdetail" component={PlanningDetail} />
+      <Route exact path="/planning" component={Planning} />
+      <Route path="/planning/:date" component={Planning} />
       <Route path="/pointshop" component={PointShop} />
       <Route path="/registration" component={Registration} />
-      <Route path="/result1" component={Result1} />
-      <Route path="/result2" component={Result2} />
-      <Route path="/result3" component={Result3} />
+      <Route path="/result" component={Result} />
       <Route path="/reviews" component={Reviews} />
-      <Route path="/reviews2" component={Reviews2} />
       <Route path="/searchplace" component={SearchPlace} />
       <Route path="/userrecommendation" component={UserRecommendation} />
       {/* for test */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const LineContainer = styled.div`
@@ -27,18 +27,43 @@ const LineCircle = styled.div`
   }
 `;
 
-const LineSelector = () => {
+const LineSelector = ({ setLineColor = () => {}, setLineNum = () => {} }) => {
+  const onClickNum = (e) => {
+    // console.log(e);
+    // console.log(e.target);
+    // console.log(e.target.innerText);
+    setLineNum(e.target.innerText);
+    setLineColor(`var(--color-line${e.target.innerText})`);
+  };
   return (
     <LineContainer>
-      <LineCircle bgColor="var(--color-line1)">1</LineCircle>
-      <LineCircle bgColor="var(--color-line2)">2</LineCircle>
-      <LineCircle bgColor="var(--color-line3)">3</LineCircle>
-      <LineCircle bgColor="var(--color-line4)">4</LineCircle>
-      <LineCircle bgColor="var(--color-line5)">5</LineCircle>
-      <LineCircle bgColor="var(--color-line6)">6</LineCircle>
-      <LineCircle bgColor="var(--color-line7)">7</LineCircle>
-      <LineCircle bgColor="var(--color-line8)">8</LineCircle>
-      <LineCircle bgColor="var(--color-line9)">9</LineCircle>
+      <LineCircle bgColor="var(--color-line1)" onClick={onClickNum}>
+        1
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line2)" onClick={onClickNum}>
+        2
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line3)" onClick={onClickNum}>
+        3
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line4)" onClick={onClickNum}>
+        4
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line5)" onClick={onClickNum}>
+        5
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line6)" onClick={onClickNum}>
+        6
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line7)" onClick={onClickNum}>
+        7
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line8)" onClick={onClickNum}>
+        8
+      </LineCircle>
+      <LineCircle bgColor="var(--color-line9)" onClick={onClickNum}>
+        9
+      </LineCircle>
     </LineContainer>
   );
 };

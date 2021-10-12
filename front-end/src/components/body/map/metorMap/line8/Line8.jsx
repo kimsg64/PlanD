@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Square, Circle } from "../../../mixin/Mixin";
 
+const Container = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`;
+
 const MapContainer = styled.div`
-  width: auto;
-  height: auto;
   position: relative;
+  img {
+    object-fit: none;
+  }
 `;
 
 const SmallCircle = styled(Circle)`
@@ -14,15 +21,38 @@ const SmallCircle = styled(Circle)`
 `;
 
 const Line8 = () => {
+  const [bgColor, setBgColor] = useState("inherit");
+
+  const makeCircleFocused = () => {
+    // setBgColor("var(--color-focus)");
+    setBgColor("inherit");
+  };
+
+  const makeCircleUnFocused = () => {
+    setBgColor("inherit");
+  };
+
   return (
-    <MapContainer>
-      <img src={`${process.env.PUBLIC_URL}/images/line8.jpg`} alt="line8" />
-      <Circle fromTop="-385px" fromLeft="358px" />
-      <Circle fromTop="-410px" fromLeft="839px" />
-      <Circle fromTop="-435px" fromLeft="999px" />
-      <SmallCircle fromTop="-134px" fromLeft="499px" />
-      <Circle fromTop="-157px" fromLeft="819px" />
-    </MapContainer>
+    <Container>
+      <MapContainer>
+        <img src={`${process.env.PUBLIC_URL}/images/line8.jpg`} alt="line8" />
+        <Square fromTop="32px" fromLeft="324px">
+          <Circle bgColor={bgColor} />
+        </Square>
+        <Square fromTop="32px" fromLeft="805px">
+          <Circle bgColor={bgColor} />
+        </Square>
+        <Square fromTop="32px" fromLeft="965px">
+          <Circle bgColor={bgColor} />
+        </Square>
+        <Square fromTop="358px" fromLeft="465px">
+          <SmallCircle bgColor={bgColor} />
+        </Square>
+        <Square fromTop="356px" fromLeft="785px">
+          <Circle bgColor={bgColor} />
+        </Square>
+      </MapContainer>
+    </Container>
   );
 };
 
