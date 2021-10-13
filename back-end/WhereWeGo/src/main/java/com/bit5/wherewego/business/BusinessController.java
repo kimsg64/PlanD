@@ -76,4 +76,13 @@ public class BusinessController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("logoutOk");
+		return mav;
+	}
 }

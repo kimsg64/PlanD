@@ -1,7 +1,5 @@
 package com.bit5.wherewego;
 
-import java.util.Locale;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +11,11 @@ public class HomeController {
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model) {
+	public ModelAndView home(Model model) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
+
+		
 		return mav;
 	}
 

@@ -134,7 +134,7 @@ ul.pagination li a:hover:not(.active) {
 	<h1>예약 관리</h1>
 
 	<div id="list">
-		<ul id="list">
+		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
 			<li class="wordCut">코스명</li>
