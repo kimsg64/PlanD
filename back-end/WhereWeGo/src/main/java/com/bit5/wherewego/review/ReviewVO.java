@@ -5,11 +5,8 @@ public class ReviewVO {
 	private int c_num;
 	private String userid;
 	private int score;
-	private String info;
-	private int hit;
 	private String writedate;
 	private String grade;
-	private String photo;
 	
 	private String name; //코스명
 	
@@ -37,18 +34,6 @@ public class ReviewVO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
-	public int getHit() {
-		return hit;
-	}
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
 	public String getWritedate() {
 		return writedate;
 	}
@@ -60,12 +45,6 @@ public class ReviewVO {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 	public String getName() {
 		return name;

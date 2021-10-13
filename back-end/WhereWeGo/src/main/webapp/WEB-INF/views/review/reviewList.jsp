@@ -2,14 +2,70 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-	#top{display: flex; margin-top:80px; margin-left:50px;}
-	select{height: 30px;}
-	#search{margin-left:810px;}
-	img{margin-left:50px; padding-top:6%; padding-bottom:6%;}
+#whitetop {
+	width: 100%;
+	height: 80px;
+}
+
+#top {display: flex; margin-top:80px; margin-left:50px;}
+
+#search{margin-left:720px; margin-bottom:30px;}
+
+#mainDiv {
+	width: 72%;
+	margin: 0 auto;
+	color: #00282e;
+	text-align: center;
+}
+
+#mainDiv>h1 {
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+#bottomdiv {
+	width:100%;
+	height: 50px;
+	margin : 10px 0px;
+}
+#count {
+	font-size: 0.7em;
+	color: #f5ebe3;
+	text-align:left;
+	float:left;
+}
+#count:hover {
+	color: #efcac3;
+}
 
 #buttonMenu {
 	float:right;
+}
+
+#list ul, #list li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#list {
+	width: 100%;
+	height: 450px;
+}
+
+#boardList>li {
+	float: left;
+	width: 15%;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f5ebe3;
+}
+
+
+#boardList>li:nth-child(7n+1) {
+	width: 10%;
 }
 
 .button {
@@ -31,8 +87,8 @@
 .button:hover {
 	color: #0e595f;
 }
-	
-	ul.pagination {
+
+ul.pagination {
 	display: inline-block;
 	padding: 0;
 	margin: 0;
@@ -59,34 +115,69 @@ ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
 </style>
-</head>
-<body>
-<div id="top">
-	<div><input type="checkbox" name="selectall" value="전체선택">전체선택</div>
-	<form>
-		<select name="search" id="search">
-			<option value="all">전체</option>
-			<option value="courseNo">코스번호</option>
-			<option value="id">아이디</option>
-			<option value="content">내용</option>
-		</select>
-	</form>
-		<input type="text" placeholder="검색어 입력">
-		<button>검색</button>
-</div>
-<div>
-	<img src="../img/review.png" width="300px"/>
-</div>                        
+
+<script>
+//전체선택
+   $(()=>{
+      $('#allChk').on('change',function(){
+            $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+      });
+      
+      $('#searchFrm').submit(function(){
+			if($('#searchWord').val()==''){
+				alert('검색어를 입력 후 검색하세요');
+				return false;
+			}
+			return true;
+		});
+   });
+</script>
+
+<div id="whitetop"></div>
+
+
+
+<div id="mainDiv">
+	<h1>리뷰 관리</h1>
+
+<div id="search">	
+	<input type="text" placeholder="검색어 입력"><button>검색</button>
+</div>		
+
+	<div id="list">
+		<ul id="boardList">
+			<li><input type="checkbox" id="allChk"></li>
+			<li>No.</li>
+			<li>코스번호</li>
+			<li>아이디</li>
+			<li>점수</li>
+			<li>작성일</li>
+			<li>공개여부</li>
+
+			<c:forEach var="vo" items="${list}">
+				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
+				<li>${vo.r_num }</li>
+				<li>${vo.c_num }</li>
+				<li><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.userid}</a></li>
+				<li>${vo.score }</li>
+				<li>${vo.writedate }</li>
+				<li>${vo.grade }</li>
+			</c:forEach>
+		</ul>
+	</div>
 	
 	<div id="bottomdiv">
+		<div id="count">
+			<div>총 레코드 수 : ${pVo.totalRecord }</div>
+			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
+		</div>
 		
 		<div id="buttonMenu">
 			<a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
 		</div>
 	</div>
-	
-</div>
-<!-- 페이징 -->
+
+	<!-- 페이징 -->
 	<div id="paging">
 		<ul class="pagination">
 			<!-- 이전페이지 -->
@@ -128,5 +219,3 @@ ul.pagination li a:hover:not(.active) {
 			</c:if>
 		</ul>
 	</div>
-</body>
-</html>
