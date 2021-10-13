@@ -203,7 +203,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">수정</a> <a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
+			<a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
 		</div>
 	</div>
 

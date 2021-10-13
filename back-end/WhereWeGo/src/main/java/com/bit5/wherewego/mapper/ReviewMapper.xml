@@ -8,7 +8,7 @@
 	<![CDATA[ 
 		 select * from 
 		(select * from 
-		(select r_num, c_num, userid, score, info, hit, to_char(writedate, 'MM/DD') writedate from review 
+		(select r_num, c_num, userid, score, to_char(writedate, 'MM/DD') writedate, grade from review 
 		order by r_num desc) 
 		where rownum<=#{param1} order by r_num asc) 
 		where rownum<=#{param2} order by r_num desc
