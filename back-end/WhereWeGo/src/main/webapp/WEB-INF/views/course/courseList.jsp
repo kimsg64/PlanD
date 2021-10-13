@@ -249,3 +249,4 @@ ul.pagination li a:hover:not(.active) {
 			</c:if>
 		</ul>
 	</div>
+</div>

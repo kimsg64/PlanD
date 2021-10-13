@@ -52,7 +52,7 @@
 	height: 450px;
 }
 
-#boardList>li {
+#adminboardList>li {
 	float: left;
 	width: 9%;
 	height: 40px;
@@ -60,17 +60,39 @@
 	border-bottom: 1px solid #f5ebe3;
 }
 
-#boardList>li:nth-child(7n+3) {
+#adminboardList>li:nth-child(7n+3) {
 	width: 50%;
 	text-align: left;
 }
 
-#boardList>li:nth-child(3) {
+#adminboardList>li:nth-child(3) {
 	width: 50%;
 	text-align: center;
 }
 
-#boardList>li:nth-child(7n+1) {
+#adminboardList>li:nth-child(7n+1) {
+	width: 5%;
+}
+
+#userboardList>li {
+	float: left;
+	width: 11.25%;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f5ebe3;
+}
+
+#userboardList>li:nth-child(6n+3) {
+	width: 50%;
+	text-align: left;
+}
+
+#userboardList>li:nth-child(3) {
+	width: 50%;
+	text-align: center;
+}
+
+#userboardList>li:nth-child(6n+1) {
 	width: 5%;
 }
 
@@ -145,19 +167,13 @@ ul.pagination li a:hover:not(.active) {
 </style>
 
 <script>
-//전체선택 이거 왜 안되냐..
    $(()=>{
+	   //전체선택
       $('#allChk').on('change',function(){
-            $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      });
+    	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+    	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+      }); 
       
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
    });
 </script>
 
@@ -165,49 +181,88 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>공지사항 관리</h1>
+	
+	<div id="search">	
+		<input type="text" placeholder="검색어 입력"><button>검색</button>
+	</div>	
 
 	<div id="list">
-		<ul id="boardList">
-			<li><input type="checkbox" id="allChk"></li>
-			<li>No.</li>
-			<li class="wordCut">제목</li>
-			<li>작성일</li>
-			<li>조회수</li>
-			<li>첨부파일</li>
-			<li>팝업</li>
-
-			<c:forEach var="vo" items="${list}">
-				<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
-				<li>${vo.n_num }</li>
-				<li class="wordCut"><a
-					href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
-				<li>${vo.writedate }</li>
-				<li>${vo.hit }</li>
-				<li><c:if test="${vo.photo==null}">
-						<img src="imgs/disk0.png" />
-					</c:if> <c:if test="${vo.photo!=null}">
-						<!-- 첨부파일 다운받는 링크 연결하기 -->
-						<a href="#"><img src="imgs/disk.png" /></a>
-					</c:if></li>
-				<li><c:if test="${vo.pop==1}">
-						<a href="#" id="popup1">on</a>
-					</c:if> <c:if test="${vo.pop==0}">
-						<a href="#" id="popup0">off</a>
-					</c:if></li>
-			</c:forEach>
-		</ul>
+	
+		<!-- 관리자 모드 -->
+		<c:if test="${logid=='admin'}">
+			<ul id="adminboardList">
+				<li><input type="checkbox" id="allChk"></li>
+				<li>No.</li>
+				<li class="wordCut">제목</li>
+				<li>작성일</li>
+				<li>조회수</li>
+				<li>첨부파일</li>
+				<li>팝업</li>
+	
+				<c:forEach var="vo" items="${list}">
+					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
+					<li>${vo.n_num }</li>
+					<li class="wordCut"><a
+						href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+					<li>${vo.writedate }</li>
+					<li>${vo.hit }</li>
+					<li><c:if test="${vo.photo==null}">
+							<img src="imgs/disk0.png" />
+						</c:if> <c:if test="${vo.photo!=null}">
+							<!-- 첨부파일 다운받는 링크 연결하기 -->
+							<a href="#"><img src="imgs/disk.png" /></a>
+						</c:if></li>
+					<li><c:if test="${vo.pop==1}">
+							<a href="#" id="popup1">on</a>
+						</c:if> <c:if test="${vo.pop==0}">
+							<a href="#" id="popup0">off</a>
+						</c:if></li>
+				</c:forEach>
+			</ul>
+		</c:if>
+		
+		<!-- 일반 사용자 모드 -->
+		<c:if test="${logid!='admin'}">
+			<ul id="userboardList">
+				<li><input type="checkbox" id="allChk"></li>
+				<li>No.</li>
+				<li class="wordCut">제목</li>
+				<li>작성일</li>
+				<li>조회수</li>
+				<li>첨부파일</li>
+	
+				<c:forEach var="vo" items="${list}">
+					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
+					<li>${vo.n_num }</li>
+					<li class="wordCut"><a
+						href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+					<li>${vo.writedate }</li>
+					<li>${vo.hit }</li>
+					<li><c:if test="${vo.photo==null}">
+							<img src="imgs/disk0.png" />
+						</c:if> <c:if test="${vo.photo!=null}">
+							<!-- 첨부파일 다운받는 링크 연결하기 -->
+							<a href="#"><img src="imgs/disk.png" /></a>
+						</c:if></li>
+				</c:forEach>
+			</ul>
+		</c:if>
 	</div>
 	
-	<div id="bottomdiv">
-		<div id="count">
-			<div>총 레코드 수 : ${pVo.totalRecord }</div>
-			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
+	
+	<!-- 버튼 -->
+	<c:if test="${logid=='admin'}">
+		<div id="bottomdiv">
+			<div id="count">
+				<div>총 레코드 수 : ${pVo.totalRecord }</div>
+				<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
+			</div>
+			
+			<div id="buttonMenu">
+				<a class="button" href="#">작성</a> <a class="button" href="#">삭제</a>
+			</div>
 		</div>
-		
-		<div id="buttonMenu">
-			<a class="button" href="#">작성</a> <a class="button" href="#">삭제</a>
-		</div>
-	</div>
+	</c:if>
 
 	<!-- 페이징 -->
 	<div id="paging">
