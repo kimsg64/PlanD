@@ -16,7 +16,7 @@
 		<div class="size-controller">
 			<!-- 로고 -->
 			<div class="logo">
-				<a href="http://localhost:3000/">Plan.<span class="yellow-span">D</span></a>
+				<a href="http://localhost:9090/wherewego/">Plan.<span class="yellow-span">D</span></a>
 			</div>
 			<!-- 우측 메뉴 -->
 			<section class="menu-section">
@@ -55,7 +55,7 @@
 					</div>
 					
 				<div>
-					<a href="http://localhost:3000/">로그아웃</a>
+					<a href="/wherewego/logout">로그아웃</a>
 	            </div>
 	          </div>
 			</section>

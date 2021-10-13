@@ -21,7 +21,7 @@ public class CourseController {
 		this.sqlSession = sqlSession;
 	}
 	
-	//공지사항 목록
+	//목록
 	@RequestMapping("/courseList")
 	public ModelAndView list(PagingVO pVo) {
 
