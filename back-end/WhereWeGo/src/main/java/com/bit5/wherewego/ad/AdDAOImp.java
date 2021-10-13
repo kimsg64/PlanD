@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface AdDAOImp {
 	public List<AdVO> adAllSelect();
+
+	public int totalRecordCount();
 }

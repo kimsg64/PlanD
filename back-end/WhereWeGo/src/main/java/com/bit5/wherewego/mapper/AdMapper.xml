@@ -5,17 +5,18 @@
 
 <mapper namespace="com.bit5.wherewego.ad.AdDAOImp">
 	<select id="adAllSelect" resultType="com.bit5.wherewego.ad.AdVO">
-		<![CDATA[ 
-		select * from 
-		(select * from 
-		(select	b.b_id, b.name name, to_char(a.startdate, 'MM/DD') startdate, to_char(a.enddate, 'MM/DD') enddate, a.photo photo, a.link link, a.price price, a.grade grade 
-		from ad a join business b on a.b_id=b.b_id)) 
-		where rownum<=#{param1} order by startdate asc )  
-		where rownum<=#{param2} order by startdate desc
-		]]>
+	<![CDATA[ 
+      select * from 
+      (select * from 
+      (select   b.b_id, b.name name, to_char(a.startdate, 'MM/DD') startdate, to_char(a.enddate, 'MM/DD') enddate, a.photo photo, a.link link, a.price price, a.grade grade 
+      from ad a 
+      join business b on a.b_id=b.b_id 
+      order by startdate desc)
+      where rownum<=#{param1} order by startdate asc )  
+      where rownum<=#{param2} order by startdate desc
+      ]]>
 	</select>
-	
 	<select id="totalRecordCount" resultType="int">
-		select count(n_num) totalRecord from ad
+		select count(startdate) totalRecord from ad
 	</select>
 </mapper>
