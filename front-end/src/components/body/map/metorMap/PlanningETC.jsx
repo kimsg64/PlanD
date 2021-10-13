@@ -11,6 +11,16 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const SearchForm = styled(Form)`
+  & > div {
+    padding: calc(var(--padding-default) * 2);
+  }
+  label {
+    font-size: var(--font-size-normal);
+    margin-bottom: var(--margin-default);
+  }
+`;
+
 const DatePicker = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,9 +50,13 @@ const TextIndicator = styled.div`
 
 const ETCSelector = styled.div`
   width: 480px;
-  margin: var(--margin-default) 0 var(--margin-default) 0;
+  /* margin: var(--margin-default) 0 var(--margin-default) 0; */
   display: flex;
   justify-content: space-between;
+`;
+
+const SearchButton = styled(Button)`
+  margin-top: var(--margin-default);
 `;
 
 const PlanningETC = ({
@@ -55,7 +69,7 @@ const PlanningETC = ({
   // console.log("ETC", selectedDate);
   return (
     <Container>
-      <Form>
+      <SearchForm>
         <DatePicker>
           <Caption>
             <label>데이트 날짜를 선택하세요.</label>
@@ -74,17 +88,19 @@ const PlanningETC = ({
           <input type="hidden" name="resdate" value={selectedDate} />
         </DatePicker>
         <ETCSelector>
-          <label>데이트를 시작할 시간을 선택하세요.</label>
-          <select name="start">
-            <option value="10:00 ~ 12:00">10:00 ~ 12:00</option>
-            <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
-            <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
-            <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
-            <option value="18:00 ~ 20:00">18:00 ~ 20:00</option>
-          </select>
+          <label>데이트 시작할 시간을 선택하세요.</label>
+          <div>
+            <select name="start">
+              <option value="10:00 ~ 12:00">10:00 ~ 12:00</option>
+              <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
+              <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
+              <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
+              <option value="18:00 ~ 20:00">18:00 ~ 20:00</option>
+            </select>
+          </div>
         </ETCSelector>
         <ETCSelector>
-          데이트 순서를 선택하세요.
+          <label>데이트 순서를 선택하세요.</label>
           <div>
             <label name="first">
               <select name="first">
@@ -116,8 +132,8 @@ const PlanningETC = ({
         <CheckBoxSet setOpt={setOpt} />
         {/* 앞에서 선택해둔 역 히든으로 가져가기 */}
         <input type="hidden" name="stname" value={selectedStation} />
-        <Button>코스 검색</Button>
-      </Form>
+        <SearchButton>코스 검색</SearchButton>
+      </SearchForm>
     </Container>
   );
 };

@@ -103,6 +103,8 @@ const SubMenu = styled.ul`
   position: absolute;
   top: 60px;
   left: -48px;
+  box-shadow: ${(props) =>
+    props.heightOfSub === "0" ? "none" : "0px 2px 4px 2px grey"};
 `;
 
 const SubMenuItem = styled.li`
@@ -112,7 +114,7 @@ const SubMenuItem = styled.li`
   align-items: center;
   color: var(--color-font);
   position: relative;
-  border: 1px solid var(--color-font);
+  /* border: 1px solid var(--color-font); */
   border-top: none;
   &:hover {
     cursor: pointer;

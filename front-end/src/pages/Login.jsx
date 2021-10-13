@@ -22,6 +22,7 @@ const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  box-shadow: 0px 2px 4px 2px grey;
   h1 {
     margin-top: var(--margin-default);
     font-weight: 800;
