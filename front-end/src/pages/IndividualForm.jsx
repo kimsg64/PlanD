@@ -2,13 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../components/body/mixin/Form";
-import {
-  BodyLayout,
-  Button,
-  Checkbox,
-  CheckboxLabel,
-  OptionsContainer,
-} from "../components/body/mixin/Mixin";
+import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
+import { BodyLayout, Button } from "../components/body/mixin/Mixin";
 import {
   ErrorMsg,
   FormInput,
@@ -68,16 +63,6 @@ const IndividualForm = () => {
       : e.target.value;
   };
 
-  // 체크박스 리스트 만들기
-  const setOptList = (e) => {
-    setOpt((prevState) => {
-      console.log(prevState);
-      return prevState.includes(e.target.value)
-        ? prevState.filter((opt) => opt !== e.target.value)
-        : [...prevState, e.target.value];
-    });
-  };
-
   const onSubmitForm = (e) => {
     e.preventDefault();
     const body = {
@@ -90,7 +75,7 @@ const IndividualForm = () => {
       zip: zip,
       addr: addr + " " + addrDetail,
       startdate: startdate,
-      opt: opt.join("/"),
+      opt: opt.join("#"),
     };
     console.log("바디", body);
 
@@ -284,6 +269,7 @@ const IndividualForm = () => {
               <Button
                 type="button"
                 position="absolute"
+                fromTop="60px"
                 fromLeft="640px"
                 width="54px"
               >
@@ -318,135 +304,7 @@ const IndividualForm = () => {
           <BottomSection>
             <ItemContainer margin="calc(var(--margin-default) / 2) 84px 0 0">
               <Label>관심사</Label>
-              <OptionsContainer>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="임시"
-                    onClick={setOptList}
-                  />
-                  임시
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="로"
-                    onClick={setOptList}
-                  />
-                  로
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="다양한 값을
-                입력하여"
-                    onClick={setOptList}
-                  />
-                  다양한 값을 입력하여
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="박스의 크기가 예쁘게 늘어나는지 확인하기 위한"
-                    onClick={setOptList}
-                  />
-                  박스의 크기가 예쁘게 늘어나는지 확인하기 위한
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="체크박스입니다."
-                    onClick={setOptList}
-                  />
-                  체크박스입니다.
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="아직"
-                    onClick={setOptList}
-                  />
-                  아직
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="전달되지 않는다는 사실을 부디 명심하시고"
-                    onClick={setOptList}
-                  />
-                  전달되지 않는다는 사실을 부디 명심하시고
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="전달되지 않는다고 엄한 노트북에 샷건을 치지 않기를"
-                    onClick={setOptList}
-                  />
-                  전달되지 않는다고 엄한 노트북에 샷건을 치지 않기를
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="간절하게 바랍니다."
-                    onClick={setOptList}
-                  />
-                  간절하게 바랍니다.
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="넌 왜 없니?"
-                    onClick={setOptList}
-                  />
-                  넌 왜 없니?
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="아직도 있나?"
-                    onClick={setOptList}
-                  />
-                  아직도 있나?
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="그만하자"
-                    onClick={setOptList}
-                  />
-                  그만하자
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="이정도면 됐지"
-                    onClick={setOptList}
-                  />
-                  이정도면 됐지
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="checkbox"
-                    name="user_option"
-                    value="나중엔 DB에 있는거 가져와서 map으로 반복을 하겟쥬?"
-                    onClick={setOptList}
-                  />
-                  나중엔 DB에 있는거 가져와서 map으로 반복을 하겟쥬?
-                </CheckboxLabel>
-              </OptionsContainer>
+              <CheckBoxSet setOpt={setOpt} />
             </ItemContainer>
             <SubmitSection>
               <SubmitButton type="submit">회원가입</SubmitButton>

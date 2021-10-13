@@ -82,7 +82,20 @@ const MemberHome = () => {
             {/* 예약시에는(예약일) minDate 오늘, 가입시에는(시작일) maxDate 오늘 */}
 
             <CustomCalerdar setSelectedDate={setSelectedDate} />
-            <Link to={`/planning/${selectedDate}`}>예약하러 가기</Link>
+            {selectedDate !== null ? (
+              <Link to={`/planning/${selectedDate}`}>
+                <div>
+                  {`${selectedDate.getFullYear()}/${
+                    selectedDate.getMonth() + 1
+                  }/${selectedDate.getDate()} 데이트 `}
+                  예약하러 가기
+                </div>
+              </Link>
+            ) : (
+              <Link to={`/planning/`}>
+                <div>예약하러 가기</div>
+              </Link>
+            )}
           </Container>
           <Container>
             <SubHeading>예약</SubHeading>

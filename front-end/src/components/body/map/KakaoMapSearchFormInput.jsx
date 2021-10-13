@@ -6,7 +6,7 @@ import KakaoMapSearchForm from "./KakaoMapSearchForm";
 
 const KakaoMapSearchFormInput = () => {
   const [inputText, setInputText] = useState("");
-  const [place, setPlace] = useState("비트캠프 신촌");
+  const [place, setPlace] = useState("송파구청 정문");
   const [searchBarWidth, setSearchBarWidth] = useState("0");
   const onSubmitKeyword = (e) => {
     e.preventDefault();

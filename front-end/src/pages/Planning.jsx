@@ -24,22 +24,32 @@ const Slider = styled.div`
 const Planning = ({ match }) => {
   const [idx, setIdx] = useState(0);
   const [selectedDate, setSelectedDate] = useState(match.params.date);
+  const [selectedStation, setSelectedStation] = useState("천호");
   // console.log("부모", idx);
   // console.log(match);
   // console.log(match.params);
   // console.log(match.params.date);
   // console.log(selectedDate);
+  // console.log(selectedStation);
 
   return (
     <>
       <Header />
       <BodyLayout>
         <PlannerContainer>
-          <StationViewer idx={idx} setIdx={setIdx} />
+          <StationViewer
+            idx={idx}
+            setIdx={setIdx}
+            selectedStation={selectedStation}
+          />
           <Slider>
             <PageSlider idx={idx} rate={-50}>
-              <Line8 />
-              <PlanningETC selectedDate={selectedDate} />
+              <Line8 setSelectedStation={setSelectedStation} />
+              <PlanningETC
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                selectedStation={selectedStation}
+              />
             </PageSlider>
           </Slider>
         </PlannerContainer>

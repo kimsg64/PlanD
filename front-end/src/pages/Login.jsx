@@ -10,6 +10,7 @@ import {
   Checkbox,
   CheckboxLabel,
 } from "../components/body/mixin/Mixin";
+import ToggleButton from "../components/body/mixin/ToggleButton";
 
 const LoginForm = styled.form`
   width: 480px;
@@ -72,19 +73,19 @@ const CheckboxWithoutMargin = styled(Checkbox)`
 
 const SubmitButton = styled(InputBox)`
   margin-top: calc(var(--margin-default) * 1.5);
-  background-color: var(--color-font);
-  border: 2px solid var(--color-font);
+  background-color: var(--color-green);
+  border: 2px solid var(--color-green);
   border-radius: 4px;
-  color: var(--color-bg);
+  color: white;
   transition-duration: 0.2s;
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-    color: var(--color-blur);
+    color: var(--color-light-green);
   }
-  &:focus {
-    outline: none;
-    border: 2px solid var(--color-font);
+  &:active {
+    background-color: var(--color-dark-green);
+    color: var(--color-green);
   }
 `;
 
@@ -106,8 +107,8 @@ const Login = () => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    console.log(classification);
-    console.log(keepSession);
+    // console.log(classification);
+    // console.log(keepSession);
 
     const url =
       classification === "individual"
@@ -124,7 +125,7 @@ const Login = () => {
             b_id: userId,
             pwd: pwd,
           };
-    console.log(body);
+    // console.log(body);
 
     axios
       .post(url, body)
@@ -138,7 +139,7 @@ const Login = () => {
             // 일반 사용자
             bake_cookie("userId", userId);
             axios.get("/wherewego/user/checkSession").then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               res.data
                 ? (window.location.href = "http://localhost:3000/#/memberhome")
                 : alert("로그인 실패...");
@@ -147,7 +148,7 @@ const Login = () => {
             // 사업자
             bake_cookie("b_id", userId);
             axios.get("/wherewego/business/checkSession").then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               res.data
                 ? (window.location.href =
                     "http://localhost:9090/wherewego/business/gohome")
@@ -159,7 +160,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.log("failed", error);
+        // console.log("failed", error);
         setIsSucceeded(false);
       });
   };
@@ -222,6 +223,7 @@ const Login = () => {
               />
               로그인 유지하기
             </CheckboxLabelWithoutMargin>
+            <ToggleButton />
           </InputContainer>
           <SubmitButton type="submit" value="로그인" />
           <Link to={"/registration"}>

@@ -228,6 +228,7 @@ const CompanyForm = () => {
               <Button
                 type="button"
                 position="absolute"
+                fromTop="60px"
                 fromLeft="640px"
                 width="54px"
               >

@@ -20,8 +20,11 @@
   --color-focus: #fd7d73;
   --color-blur: #efcac3;
   --color-bg: #f5ebe3;
+  --color-light-bg: #f7f7f7;
+  --color-dark-green: #052629;
   --color-green: #0e595f;
   --color-light-green: #81bbaf;
+  --color-super-light-green: #b9cfcb;
 
   --color-line1: #263c96;
   --color-line2: #3cb44a;

@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CustomCalerdar from "../../calendar/CustomCalerdar";
+import CheckBoxSet from "../../mixin/CheckBoxSet";
 import Form from "../../mixin/Form";
-import {
-  Checkbox,
-  CheckboxLabel,
-  OptionsContainer,
-  StartButton,
-} from "../../mixin/Mixin";
+import { Button } from "../../mixin/Mixin";
 
 const Container = styled.div`
   width: 100vw;
@@ -49,8 +45,14 @@ const ETCSelector = styled.div`
   justify-content: space-between;
 `;
 
-const PlanningETC = ({ selectedDate = null }) => {
+const PlanningETC = ({
+  selectedDate = null,
+  setSelectedDate = () => {},
+  selectedStation = "",
+}) => {
+  const [opt, setOpt] = useState([]);
   // console.log("ETC 페이지", selectedDate);
+  // console.log("ETC", selectedDate);
   return (
     <Container>
       <Form>
@@ -64,9 +66,12 @@ const PlanningETC = ({ selectedDate = null }) => {
               <TextIndicator>예정</TextIndicator>
             </Indicator>
           </Caption>
-          <CustomCalerdar selectedDate={selectedDate} />
+          <CustomCalerdar
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
           {/* 선택된 날짜 히든으로 가져가기 */}
-          <input type="hidden" name="" value={selectedDate} />
+          <input type="hidden" name="resdate" value={selectedDate} />
         </DatePicker>
         <ETCSelector>
           <label>데이트를 시작할 시간을 선택하세요.</label>
@@ -108,34 +113,10 @@ const PlanningETC = ({ selectedDate = null }) => {
           </div>
         </ETCSelector>
         <label>관심사를 선택하세요 </label>
-        <OptionsContainer>
-          <CheckboxLabel>
-            <Checkbox type="checkbox" value="일단 그냥 모양만 낸건데" />
-            일단 그냥 모양만 낸건데
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox type="checkbox" value="가만 생각해보면" />
-            가만 생각해보면
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox type="checkbox" value="나중에" />
-            나중에
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              value="어차피 로그인할때 있었던거 비슷하게 가져올거같기는"
-            />
-            어차피 로그인할때 있었던거 비슷하게 가져올거같기는
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox type="checkbox" value="한듯" />
-            한듯
-          </CheckboxLabel>
-        </OptionsContainer>
+        <CheckBoxSet setOpt={setOpt} />
         {/* 앞에서 선택해둔 역 히든으로 가져가기 */}
-        <input type="hidden" name="" value="" />
-        <StartButton>코스 검색</StartButton>
+        <input type="hidden" name="stname" value={selectedStation} />
+        <Button>코스 검색</Button>
       </Form>
     </Container>
   );

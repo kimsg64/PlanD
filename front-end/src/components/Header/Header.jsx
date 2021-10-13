@@ -27,10 +27,12 @@ const HeaderContainer = styled.header`
   position: fixed;
   z-index: 2;
   color: var(--color-font);
+  border-bottom: 1px solid hsl(0, 0%, 90%);
 `;
 
 const HeaderSizeController = styled.div`
   width: 72%;
+  min-width: 1080px;
   display: flex;
   justify-content: space-between;
 `;
@@ -134,6 +136,7 @@ const Header = () => {
   // 로그아웃
   const onClickLogout = () => {
     delete_cookie("userId");
+    delete_cookie("b_id");
   };
 
   // intersection observer로 헤더의 변화에 따라 색깔 변화시키기
@@ -195,7 +198,7 @@ const Header = () => {
                   <Link to={`/reviews`}>Reviews</Link>
                 </li>
                 <li>
-                  <Link to={`/userrecommendation`}>Recommendation</Link>
+                  <Link to={`/userrecommendation`}>Recommend</Link>
                 </li>
                 <li>
                   <Link to={`/`}>PointShop</Link>

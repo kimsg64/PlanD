@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const PageSlider = ({ children, ...props }) => {
-  console.log(props.rate);
+  // console.log(props.rate);
   return (
     <Container idx={props.idx} rate={props.rate}>
       {children}

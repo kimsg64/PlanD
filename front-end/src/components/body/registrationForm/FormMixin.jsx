@@ -7,7 +7,8 @@ import { Button, Input } from "../mixin/Mixin";
 export const SubmitButton = styled(Button)`
   width: 120px;
   height: 40px;
-  margin-left: 40px;
+  margin-right: 6px;
+  margin-bottom: calc(var(--margin-default) / 2);
   font-size: var(--font-size-normal);
 `;
 
@@ -26,10 +27,10 @@ export const FormInput = styled(Input)`
   font-size: var(--font-size-small);
   position: relative;
   text-align: left;
-  border: 2px solid var(--color-blur);
+  border: 2px solid var(--color-light-bg);
   /* border-bottom: 2px solid var(--color-font); */
   transition-duration: 0.2s;
-  background-color: var(--color-blur);
+  background-color: var(--color-light-bg);
   &:disabled {
     /* background-color: white; */
   }
