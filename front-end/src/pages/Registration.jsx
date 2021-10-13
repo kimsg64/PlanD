@@ -33,6 +33,7 @@ const IconContainer = styled.div`
   font-size: var(--font-size-huge);
   border: 2px solid var(--color-font);
   border-radius: 12px;
+  background-color: var(--color-light-bg);
   /* border: 2px solid
     ${(props) => {
     return props.color === "focused"
@@ -47,11 +48,8 @@ const IconContainer = styled.div`
     margin-top: calc(var(--margin-default) / 2);
     font-size: var(--font-size-title-small);
   }
-  :hover {
+  &:hover {
     cursor: pointer;
-  }
-  :focus {
-    background-color: var(--color-blur);
   }
 `;
 

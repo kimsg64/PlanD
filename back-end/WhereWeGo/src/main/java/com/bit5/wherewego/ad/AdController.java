@@ -1,5 +1,7 @@
 package com.bit5.wherewego.ad;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,14 +37,14 @@ public class AdController {
 	
 	//광고 신청
 	@RequestMapping("/adRegister")
-	public ModelAndView adRegister(BusinessVO vo) { //원래 세션값 아이디 받아야함 HttpSession session
+	public ModelAndView adRegister(BusinessVO vo,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
 		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
-		//원래 logid값 받아서 여기에 넣어여함
-		//(String)session.getAttribute("logid");
-		//하지만 임시로 b_id 값을 starbuck로 둠
-		mav.addObject("bVo",dao.allselect("starbucks"));
+		
+		String b_id = (String)session.getAttribute("logid");
+
+		mav.addObject("bVo",dao.allselect(b_id));
 		mav.setViewName("ad/adRegister");
 		
 		return mav;

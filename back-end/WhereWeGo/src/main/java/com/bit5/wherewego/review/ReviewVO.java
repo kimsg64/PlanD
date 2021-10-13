@@ -11,6 +11,8 @@ public class ReviewVO {
 	private String grade;
 	private String photo;
 	
+	private String name; //코스명
+	
 	public int getR_num() {
 		return r_num;
 	}
@@ -64,6 +66,12 @@ public class ReviewVO {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

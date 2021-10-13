@@ -23,9 +23,6 @@ import Reviews from "../pages/Reviews";
 import SearchPlace from "../pages/SearchPlace";
 import UserRecommendation from "../pages/UserRecommendation";
 
-// 테스트용
-import Users from "../server/Users";
-
 const App = () => {
   return (
     <div id="page-layout">
@@ -51,8 +48,6 @@ const App = () => {
       <Route path="/reviews" component={Reviews} />
       <Route path="/searchplace" component={SearchPlace} />
       <Route path="/userrecommendation" component={UserRecommendation} />
-      {/* for test */}
-      <Route path="/users" component={Users} />
     </div>
   );
 };

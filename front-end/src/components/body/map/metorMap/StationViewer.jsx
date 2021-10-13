@@ -56,12 +56,18 @@ const Station = styled.div`
   /* visibility: hidden; */
 `;
 
-const StationViewer = ({ idx = 0, setIdx = () => {} }) => {
+const StationViewer = ({
+  idx = 0,
+  setIdx = () => {},
+  selectedStation = "",
+}) => {
   const [lineNum, setLineNum] = useState("8");
   const [lineColor, setLineColor] = useState("");
   const [searchBarWidth, setSearchBarWidth] = useState("0");
   // console.log(lineNum);
   // console.log(lineColor);
+  // console.log(selectedStation);
+
   const onClickNext = () => {
     // console.log(idx);
     return idx === 0 ? setIdx(1) : setIdx(0);
@@ -74,7 +80,7 @@ const StationViewer = ({ idx = 0, setIdx = () => {} }) => {
       </Liner>
       <LineViewer lineColor={lineColor}>
         <Line>{lineNum}호선</Line>
-        <Station>천호</Station>
+        <Station>{selectedStation}</Station>
       </LineViewer>
       <Liner lineColor={lineColor}>
         <RelativeSearchBar width="300px">

@@ -51,10 +51,23 @@ export const Button = styled.button`
 
 // 시작용 큰 버튼
 export const StartButton = styled(Button)`
+  width: 180px;
   height: 60px;
   margin-top: calc(var(--margin-default));
   padding: calc(var(--padding-default) / 2) var(--padding-default);
+  position: absolute;
+  top: 800px;
+  left: calc(50% - 180px / 2);
+  z-index: 2;
   font-size: var(--font-size-large);
+  background-color: var(--color-green);
+  :hover {
+    color: var(--color-light-green);
+  }
+  :active {
+    background-color: var(--color-dark-green);
+    color: var(--color-green);
+  }
 `;
 
 // input 디폴트
@@ -94,20 +107,9 @@ export const SearchBar = styled.div`
   }
 `;
 
-// 노란색 글자
+// 강조 글자
 export const PointLetter = styled.span`
   color: var(--color-focus);
-`;
-
-// 옵션 컨테이너
-export const OptionsContainer = styled.div`
-  width: calc(42em + var(--margin-default));
-  height: auto;
-  border: 2px solid var(--color-font);
-  border-radius: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--padding-default);
 `;
 
 // 체크박스
@@ -121,8 +123,8 @@ export const Checkbox = styled.input`
 export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  min-width: 4vw;
-  margin: 1vh 1vw;
+  min-width: 120px;
+  height: 40px;
   :hover {
     cursor: pointer;
   }

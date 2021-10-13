@@ -166,8 +166,6 @@ const CustomCalerdar = ({
     today.getDate()
   );
 
-  useEffect(() => {}, []);
-
   return (
     <CustomCalendarWrapper>
       <Calendar

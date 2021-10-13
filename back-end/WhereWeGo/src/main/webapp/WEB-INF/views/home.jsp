@@ -41,7 +41,7 @@
 	border-spacing: 0 20px;
 }
 
-td {padding : 5px;}
+td {padding : 40px;}
 
 td:hover {
 	color: #fd7d73;
