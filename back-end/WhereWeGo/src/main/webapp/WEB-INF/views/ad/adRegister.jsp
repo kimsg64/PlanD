@@ -80,6 +80,13 @@
 <div id="whitetop"></div>
 
 <div id="mainDiv">
+<form method="post" action="/wherewego/dataUpload" enctype="multipart/form-data">
+	첨부파일 : <input type="file" name="filename"/><br/>
+			<input type="file" name="filename"/><br/>
+			<input type="file" name="filename"/><br/>
+			<input type="file" name="filename"/><br/>
+	<input type="submit" value="업로드하기"/>
+</form>
 	
 	<h1>광고 신청</h1>
 
@@ -87,6 +94,7 @@
 		<div id="adDiv">
 			<input type="hidden" name="b_id" id="b_id" value="${logid}">
 			<input type="hidden" name="price" id="price" value="100">
+			<input type="hidden" name="grade" id="grade" value="검토중">
 
 			<h3>상호명</h3> <input type="text" name="name" id="name" value="${bVo.name}" readonly><br />
 			
@@ -106,7 +114,7 @@
 			
 			<h3>내용</h3> <textarea name="info" id="info" rows="5"></textarea> <br />
 			
-			<h3>첨부파일</h3> <input type="file" id="photo" name="photo" required><br />
+			<h3>첨부파일</h3> <input type="file" id="uploadFile" name="uploadFile" required><br />
 		</div>
 		
 		<div id="buttonMenu">
