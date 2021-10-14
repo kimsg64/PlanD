@@ -57,15 +57,34 @@
 
 #boardList>li {
 	float: left;
-	width: 15%;
+	width: 10%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
+#boardList>li:nth-child(7n+3) {
+	width: 45%;
+	text-align: left;
+}
+
+#boardList>li:nth-child(3) {
+	width: 45%;
+	text-align: center;
+}
 
 #boardList>li:nth-child(7n+1) {
-	width: 10%;
+	width: 5%;
+}
+
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wordCut a:hover {
+	color:#fd7d73;
 }
 
 .button {
@@ -148,7 +167,7 @@ ul.pagination li a:hover:not(.active) {
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
-			<li>코스번호</li>
+			<li class="wordCut">코스명</li>
 			<li>아이디</li>
 			<li>점수</li>
 			<li>작성일</li>
@@ -156,9 +175,10 @@ ul.pagination li a:hover:not(.active) {
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num }</li>
-				<li>${vo.c_num }</li>
-				<li><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.userid}</a></li>
+				<li>${vo.r_num}</li>
+				<li class="wordCut"><a
+					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
 				<li>${vo.grade }</li>
@@ -219,3 +239,4 @@ ul.pagination li a:hover:not(.active) {
 			</c:if>
 		</ul>
 	</div>
+</div>
