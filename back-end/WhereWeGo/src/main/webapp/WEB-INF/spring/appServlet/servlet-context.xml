@@ -24,7 +24,7 @@
 	<resources mapping="/imgs/**" location="/imgs/" />
 	<resources mapping="/inc/**" location="/inc/" />
 	<resources mapping="/upload/**" location="/upload/" />
-
+	<resources mapping="/ckeditor/**" location="/ckeditor/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
