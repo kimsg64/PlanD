@@ -25,16 +25,31 @@ public class AdController {
 	}
 	//광고 관리
 	@RequestMapping("/advermanage")
-	public ModelAndView list() {
-		
-		ModelAndView mav = new ModelAndView();
-		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
-		mav.addObject("list",dao.adAllSelect());
-		mav.setViewName("ad/advermanage");
-		
-		return mav;
-	}
-	
+	public ModelAndView list(PagingVO pVo) {
+			
+			ModelAndView mav = new ModelAndView();
+			AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+			AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
+			
+			int total = dao2.totalRecordCount();
+			pVo.setTotalRecord(total);
+			
+			int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
+			int num2;
+			
+			int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
+			if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
+				num2 = lastPageRecord;
+			} else {
+				num2 = pVo.getOnePageRecord();
+			}
+			
+			mav.addObject("list",dao.adAllSelect(num1,num2));
+			mav.addObject("pVo",pVo);
+			mav.setViewName("ad/advermanage");
+			
+			return mav;
+		}
 	//광고 신청
 	@RequestMapping("/adRegister")
 	public ModelAndView adRegister(BusinessVO vo,HttpSession session) {
