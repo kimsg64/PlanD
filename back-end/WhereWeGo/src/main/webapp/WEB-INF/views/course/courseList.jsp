@@ -87,18 +87,6 @@
 	color:#fd7d73;
 }
 
-#popup0 {
-	color: #f5ebe3;
-}
-
-#popup0:hover {
-	color: #81bbaf;
-}
-
-#popup1 {
-	color: #81bbaf;
-}
-
 .button {
 	background-color: #fd7d73;
 	border: none;
