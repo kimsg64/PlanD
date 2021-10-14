@@ -16,7 +16,12 @@
       where rownum<=#{param2} order by startdate desc
       ]]>
 	</select>
+	
 	<select id="totalRecordCount" resultType="int">
 		select count(startdate) totalRecord from ad
 	</select>
+	
+	<insert id="insertAd" parameterType="com.bit5.wherewego.ad.AdVO">
+		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade})
+	</insert>
 </mapper>
