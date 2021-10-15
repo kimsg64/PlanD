@@ -29,7 +29,7 @@ public class CourseController {
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
 		
-		int total = dao2.totalRecordCount();
+		int total = dao2.totalRecordCount(pVo);
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();

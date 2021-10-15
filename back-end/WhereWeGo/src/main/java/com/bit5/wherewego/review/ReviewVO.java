@@ -5,6 +5,8 @@ public class ReviewVO {
 	private int c_num;
 	private String userid;
 	private int score;
+	private String info;
+	private int num;
 	private String writedate;
 	private String grade;
 	
@@ -33,6 +35,19 @@ public class ReviewVO {
 	}
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public String getWritedate() {
 		return writedate;

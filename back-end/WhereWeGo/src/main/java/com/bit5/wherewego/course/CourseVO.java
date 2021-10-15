@@ -4,6 +4,7 @@ public class CourseVO {
 	private int c_num;
 	private String name;
 	private String userid;
+	private String time;
 	private int stcode;
 	private String info;
 	private String grade;
@@ -38,6 +39,14 @@ public class CourseVO {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 	public int getStcode() {
