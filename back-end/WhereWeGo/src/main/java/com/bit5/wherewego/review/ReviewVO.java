@@ -55,5 +55,11 @@ public class ReviewVO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }
