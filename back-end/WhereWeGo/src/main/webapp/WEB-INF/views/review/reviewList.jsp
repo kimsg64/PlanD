@@ -11,7 +11,7 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:1150px; margin-bottom:30px; margin-top:30px;}
+#search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
 
 #mainDiv {
 	width: 72%;

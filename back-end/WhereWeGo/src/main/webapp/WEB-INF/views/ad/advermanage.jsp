@@ -86,6 +86,10 @@
 <div id="whitetop"></div>
 <div class="container">
 <h1>광고 관리</h1> <!-- 페이징처리시 높이를 주고 하세요. -->
+<div>
+	<img src="img/banner/ad.jpg"/>
+</div>
+
    	  <ul class="admenu">
          <c:forEach var="vo" items="${list}">
          <li class="adlist">

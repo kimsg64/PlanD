@@ -132,7 +132,9 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>예약 관리</h1>
-
+<div>
+	<img src="imgs/banner/res.jpg"/>
+</div>
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
