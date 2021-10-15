@@ -42,12 +42,7 @@ public class ReviewVO {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+	
 	public String getWritedate() {
 		return writedate;
 	}
