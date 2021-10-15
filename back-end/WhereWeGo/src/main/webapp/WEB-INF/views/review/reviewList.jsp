@@ -59,6 +59,7 @@ ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
 </style>
+<<<<<<< Updated upstream
 </head>
 <body>
 <div id="top">
@@ -77,6 +78,71 @@ ul.pagination li a:hover:not(.active) {
 <div>
 	<img src="../img/review.png" width="300px"/>
 </div>                        
+=======
+
+<script>
+//전체선택
+   $(()=>{
+      $('#allChk').on('change',function(){
+            $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+      });
+      
+      $('#searchFrm').submit(function(){
+			if($('#searchWord').val()==''){
+				alert('검색어를 입력 후 검색하세요');
+				return false;
+			}
+			return true;
+		});
+   });
+</script>
+<script>
+//체크 설정
+$(document).ready(function(){
+    $("#button").click(function(){
+        if($("checkbox").is("checked")){
+            $()
+        }else{
+            alert("체크박스 체크 해제!");
+        }
+    });
+});
+
+</script>
+<div id="whitetop"></div>
+
+
+
+<div id="mainDiv">
+	<h1>리뷰 관리</h1>
+
+<div id="search">	
+	<input type="text" placeholder="검색어 입력"><button>검색</button>
+</div>		
+
+	<div id="list">
+		<ul id="boardList">
+			<li><input type="checkbox" id="allChk"></li>
+			<li>No.</li>
+			<li class="wordCut">코스명</li>
+			<li>아이디</li>
+			<li>점수</li>
+			<li>작성일</li>
+			<li>공개여부</li>
+
+			<c:forEach var="vo" items="${list}">
+				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
+				<li>${vo.r_num}</li>
+				<li class="wordCut"><a
+					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li>${vo.userid }</li>
+				<li>${vo.score }</li>
+				<li>${vo.writedate }</li>
+				<li>${vo.grade }</li>
+			</c:forEach>
+		</ul>
+	</div>
+<!--  >>>>>>> Stashed changes-->
 	
 	<div id="bottomdiv">
 		
