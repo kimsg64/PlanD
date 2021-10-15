@@ -6,7 +6,6 @@ public class ReviewVO {
 	private String userid;
 	private int score;
 	private String info;
-	private int num;
 	private String writedate;
 	private String grade;
 	
@@ -60,12 +59,6 @@ public class ReviewVO {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 }
