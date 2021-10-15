@@ -11,7 +11,7 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:720px; margin-bottom:30px;}
+#searchFrm{margin-left:1080px; margin-bottom:30px; margin-top:20px;}
 
 #mainDiv {
 	width: 72%;
@@ -158,15 +158,16 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>코스 관리</h1>
-
+<div>
+	<img src="imgs/banner/course.jpg"/>
+</div>
 <div>
 <form method="get" id="searchFrm" action="/wherewego/courseList">
 	<select name="searchKey">
 		<option value="name">코스명</option>
 		<option value="userid">작성자</option>
 	</select>
-	<input type="text" name="searchWord" id="searchWord"/>
-	<input type="submit" value="Search"/>
+	<input type="text" name="searchWord" id="searchWord"/><input type="submit" value="Search"/>
 </form>
 </div>	
 
