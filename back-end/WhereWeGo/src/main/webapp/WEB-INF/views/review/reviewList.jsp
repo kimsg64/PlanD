@@ -11,7 +11,7 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:720px; margin-bottom:30px;}
+#search{margin-left:1150px; margin-bottom:30px; margin-top:30px;}
 
 #mainDiv {
 	width: 72%;
@@ -159,6 +159,9 @@ ul.pagination li a:hover:not(.active) {
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
 	<!-- 유나 언니!!! 이쪽에 div 만들어서 상단에 이미지 넣고 제목 넣는거 부탁드려요!!!!! 각 메뉴마다 적당히 어울리는 이미지 찾아서.....? -->
+	<div id="reviewbanner">
+		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
+	</div>
 
 <div id="search">	
 	<input type="text" placeholder="검색어 입력"><button>검색</button>
