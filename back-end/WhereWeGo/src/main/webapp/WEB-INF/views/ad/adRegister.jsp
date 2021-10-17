@@ -80,6 +80,7 @@
 <div id="whitetop"></div>
 
 <div id="mainDiv">
+<!-- 
 <form method="post" action="/wherewego/dataUpload" enctype="multipart/form-data">
 	첨부파일 : <input type="file" name="filename"/><br/>
 			<input type="file" name="filename"/><br/>
@@ -87,6 +88,7 @@
 			<input type="file" name="filename"/><br/>
 	<input type="submit" value="업로드하기"/>
 </form>
+ -->
 	
 	<h1>광고 신청</h1>
 
@@ -114,7 +116,7 @@
 			
 			<h3>내용</h3> <textarea name="info" id="info" rows="5"></textarea> <br />
 			
-			<h3>첨부파일</h3> <input type="file" id="uploadFile" name="uploadFile" required><br />
+			<h3>첨부파일</h3> <input type="file" id="filename" name="filename"/><br/>
 		</div>
 		
 		<div id="buttonMenu">

@@ -75,13 +75,13 @@ public class AdController {
 		return mav;
 	}
 
-	@RequestMapping(value="/dataUpload",method=RequestMethod.POST)
+	@RequestMapping(value="/adRegisterOk",method=RequestMethod.POST)
 	public ModelAndView fileUploadTest(AdVO vo,HttpServletRequest req) {
 		//vo->작성자,제목
 
 		//업로드 위치
 		String path = req.getSession().getServletContext().getRealPath("/");
-		System.out.println(path);
+		System.out.println("저장경로 : "+path);
 
 		//파일업로드를 위해서는 HttpServletRequest객체를 이용하여 MultipartHttpServletRequest 객체를 구하여야 한다.
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
@@ -131,13 +131,18 @@ public class AdController {
 		}
 		int point2 = photo.lastIndexOf("]");
 		String photo2 = photo.substring(1,point2);
-		vo.setPhoto(photo2);
-		System.out.println(photo);
+		vo.setPhoto(photo2); //저장되는 파일명
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",vo);
-		mav.setViewName("result");
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		int cnt = dao.adRegisterOk(vo);
+		
+		if(cnt>0) {//글등록
+			mav.setViewName("redirect:advermanage"); //목록으로 감
+		}else {//등록실패
+			mav.setViewName("ad/adResult"); //jsp
+		}
+		
 		return mav;
-
 	}
 }

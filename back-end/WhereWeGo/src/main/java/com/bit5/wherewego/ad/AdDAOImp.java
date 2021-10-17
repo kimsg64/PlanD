@@ -7,4 +7,5 @@ public interface AdDAOImp {
 
 	public int totalRecordCount();
 	public int insertAd(AdVO vo);
+	public int adRegisterOk(AdVO vo);
 }

@@ -97,7 +97,7 @@ td:hover {
 						src="imgs/adminMenu/userB.png" /><br />내 정보 수정</a></td>
 				<td><a href="/wherewego/adRegister"><img
 						src="imgs/adminMenu/clickB.png" /><br />광고 신청</a></td>
-				<td><a href="/wherewego/adMenu"><img
+				<td><a href="/wherewego/advermanage"><img
 						src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
 			</tr>
 		</table>

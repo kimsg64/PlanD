@@ -21,7 +21,7 @@
 		select count(startdate) totalRecord from ad
 	</select>
 	
-	<insert id="insertAd" parameterType="com.bit5.wherewego.ad.AdVO">
+	<insert id="adRegisterOk" parameterType="com.bit5.wherewego.ad.AdVO">
 		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade})
 	</insert>
 </mapper>
