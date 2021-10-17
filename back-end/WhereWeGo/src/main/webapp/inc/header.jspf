@@ -126,11 +126,15 @@ header {
   left: -48px;
   
 }
-.full-height {
-	height: 300px;
+.full-height1 {
+	height: 480px;
 	box-shadow: 0px 2px 4px 2px grey;
 }
-.no-height {
+.full-height2 {
+	height: 180px;
+	box-shadow: 0px 2px 4px 2px grey;
+}
+.no-height1, .no-height2 {
 	height: 0;
 	box-shadow: none;
 }
@@ -195,40 +199,51 @@ nav {
 		<div class="size-controller">
 			<!-- 로고 -->
 			<div class="logo">
-				<a href="http://localhost:9090/wherewego/">Plan.<span class="point_letter">D</span></a>
+				<a href="/wherewego/">Plan.<span class="point_letter">D</span></a>
 			</div>
 			<!-- 우측 메뉴 -->
 			<section class="menu-section">
 				<!-- 메인 메뉴 -->
-				<ul class="menu">
-	              <li>
-	                <a href="http://localhost:3000/memberhome">홈</a>
-	              </li>
-	              <li>
-	                <a href="http://localhost:3000/planning">플랜</a>
-	              </li>
-	              <li>
-	                <a href="http://localhost:3000/reviews2">후기</a>
-	              </li>
-	              <li>
-	                <a href="http://localhost:3000/userrecommendation">제안</a>
-	              </li>
-	              <li>
-	                <a href="http://localhost:3000/">장소</a>
-	              </li>
+				<ul class="menu">						
+					<c:if test="${logid!='admin'}">
+						<li>
+	                		<a href="/wherewego/MyInfo">내 정보 수정</a>
+	              		</li>
+	             		 <li>
+	                		<a href="/wherewego/adRegister">광고 신청</a>
+	              		</li>
+	              		<li>
+	                		<a href="/wherewego/advermanage">광고 관리</a>
+	              		</li>
+					</c:if>
 				</ul>
 				<!-- 미니 로그인 메뉴-->
 				<div class="login-container">
 					<!-- 서브메뉴 -->
 					<div class="submenu-container">
-						<a href="http://localhost:3000/">마이페이지</a>
-						<ul class="submenu no-height">
-							<li class="submenu-item">프로필 수정 <span class="border-effect"></span></li>
-							<li class="submenu-item">나의 추천 코스 <span class="border-effect"></span></li> 
-							<li class="submenu-item">나의 후기 <span class="border-effect"></span></li>
-							<li class="submenu-item">찜<span class="border-effect"></span></li>
-							<li class="submenu-item">포인트샵<span class="border-effect"></span></li>
-						</ul>
+						<a href="/wherewego/">마이페이지</a>
+						
+						<c:if test="${logid=='admin'}">
+							<ul class="submenu no-height1">
+								<li class="submenu-item"><a href="/wherewego/userList">회원 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/noticeList">공지 관리</a><span class="border-effect"></span></li> 
+								<li class="submenu-item"><a href="/wherewego/resList">예약 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/reviewList">후기 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/courseList">코스 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/placeList">장소 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/advermanage">광고 관리</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/pointshopList">포인트샵 관리</a><span class="border-effect"></span></li>
+							</ul>
+						</c:if>
+						
+												
+						<c:if test="${logid!='admin'}">
+							<ul class="submenu no-height2">
+								<li class="submenu-item"><a href="/wherewego/MyInfo">내 정보 수정</a><span class="border-effect"></span></li>
+								<li class="submenu-item"><a href="/wherewego/adRegister">광고 신청</a><span class="border-effect"></span></li> 
+								<li class="submenu-item"><a href="/wherewego/advermanage">광고 관리</a><span class="border-effect"></span></li>
+							</ul>
+						</c:if>
 					</div>
 					
 				<div>
@@ -238,11 +253,39 @@ nav {
 			</section>
 		</div>
 	</header>
+	
+<c:if test="${logid=='admin'}">
+	<script defer>
+		function showSubmenu(e) {
+			submenu.classList.add("full-height1");
+			submenu.classList.remove("no-height1");
+		}
+		function hideSubmenu(e) {
+			submenu.classList.add("no-height1");
+			submenu.classList.remove("full-height1");
+		}
+	</script>
+</c:if>
+
+<c:if test="${logid!='admin'}">
+	<script defer>
+		function showSubmenu(e) {
+			submenu.classList.add("full-height2");
+			submenu.classList.remove("no-height2");
+		}
+		function hideSubmenu(e) {
+			submenu.classList.add("no-height2");
+			submenu.classList.remove("full-height2");
+		}
+	</script>
+</c:if>
+
 <script defer>
 	const container = document.querySelector(".submenu-container");
 	const submenu = document.querySelector(".submenu");
 	console.log(container);
 	console.log(submenu);
+	/*
 	function showSubmenu(e) {
 		submenu.classList.add("full-height");
 		submenu.classList.remove("no-height");
@@ -251,6 +294,7 @@ nav {
 		submenu.classList.add("no-height");
 		submenu.classList.remove("full-height");
 	}
+	*/
 	container.addEventListener('mouseover', showSubmenu);
 	container.addEventListener('mouseout', hideSubmenu);
 </script>
