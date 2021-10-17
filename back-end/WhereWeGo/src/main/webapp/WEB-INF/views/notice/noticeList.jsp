@@ -5,6 +5,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
+#search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
+
 #whitetop {
 	width: 100%;
 	height: 80px;
@@ -181,7 +183,9 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>공지사항 관리</h1>
-	
+	<div>
+		<img src="imgs/banner/notice.jpg"/>
+	</div>
 	<div id="search">	
 		<input type="text" placeholder="검색어 입력"><button>검색</button>
 	</div>	
@@ -259,7 +263,7 @@ ul.pagination li a:hover:not(.active) {
 			</div>
 			
 			<div id="buttonMenu">
-				<a class="button" href="#">작성</a> <a class="button" href="#">삭제</a>
+				<a class="button" href="noticewrite">작성</a> <a class="button" href="#">삭제</a>
 			</div>
 		</div>
 	</c:if>

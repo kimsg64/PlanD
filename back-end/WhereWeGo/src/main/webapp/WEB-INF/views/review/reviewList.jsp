@@ -11,7 +11,7 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:720px; margin-bottom:30px;}
+#search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
 
 #mainDiv {
 	width: 72%;
@@ -57,15 +57,34 @@
 
 #boardList>li {
 	float: left;
-	width: 15%;
+	width: 10%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
+#boardList>li:nth-child(7n+3) {
+	width: 45%;
+	text-align: left;
+}
+
+#boardList>li:nth-child(3) {
+	width: 45%;
+	text-align: center;
+}
 
 #boardList>li:nth-child(7n+1) {
-	width: 10%;
+	width: 5%;
+}
+
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wordCut a:hover {
+	color:#fd7d73;
 }
 
 .button {
@@ -139,6 +158,10 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
+	<!-- 유나 언니!!! 이쪽에 div 만들어서 상단에 이미지 넣고 제목 넣는거 부탁드려요!!!!! 각 메뉴마다 적당히 어울리는 이미지 찾아서.....? -->
+	<div id="reviewbanner">
+		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
+	</div>
 
 <div id="search">	
 	<input type="text" placeholder="검색어 입력"><button>검색</button>
@@ -148,7 +171,7 @@ ul.pagination li a:hover:not(.active) {
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
-			<li>코스번호</li>
+			<li class="wordCut">코스명</li>
 			<li>아이디</li>
 			<li>점수</li>
 			<li>작성일</li>
@@ -156,9 +179,10 @@ ul.pagination li a:hover:not(.active) {
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num }</li>
-				<li>${vo.c_num }</li>
-				<li><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.userid}</a></li>
+				<li>${vo.r_num}</li>
+				<li class="wordCut"><a
+					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
 				<li>${vo.grade }</li>
@@ -219,3 +243,4 @@ ul.pagination li a:hover:not(.active) {
 			</c:if>
 		</ul>
 	</div>
+</div>

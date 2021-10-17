@@ -15,6 +15,12 @@
 		]]>
 	</select>
 	
+	
+	  <insert id="noticeWriteOk"  parameterType="com.bit5.wherewego.notice.NoticeVO">
+  		insert into board(n_num, title, content, photo, hit, writedate, pop) values(noticesq.nextval, #{n_num}, #{title}, #{content}, #{photo}, #{hit}, #{writedate}, #{pop})
+	</insert>
+	 
+	
 	<select id="totalRecordCount" resultType="int">
 		select count(n_num) totalRecord from notice
 	</select>

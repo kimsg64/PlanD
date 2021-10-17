@@ -11,7 +11,7 @@
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:720px; margin-bottom:30px;}
+#searchFrm{margin-left:1080px; margin-bottom:30px; margin-top:20px;}
 
 #mainDiv {
 	width: 72%;
@@ -87,18 +87,6 @@
 	color:#fd7d73;
 }
 
-#popup0 {
-	color: #f5ebe3;
-}
-
-#popup0:hover {
-	color: #81bbaf;
-}
-
-#popup1 {
-	color: #81bbaf;
-}
-
 .button {
 	background-color: #fd7d73;
 	border: none;
@@ -170,10 +158,18 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>코스 관리</h1>
-
-<div id="search">	
-	<input type="text" placeholder="검색어 입력"><button>검색</button>
-</div>		
+<div>
+	<img src="imgs/banner/course.jpg"/>
+</div>
+<div>
+<form method="get" id="searchFrm" action="/wherewego/courseList">
+	<select name="searchKey">
+		<option value="name">코스명</option>
+		<option value="userid">작성자</option>
+	</select>
+	<input type="text" name="searchWord" id="searchWord"/><input type="submit" value="Search"/>
+</form>
+</div>	
 
 	<div id="list">
 		<ul id="boardList">
@@ -203,50 +199,38 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
+			<a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
 		</div>
 	</div>
 
 	<!-- 페이징 -->
 	<div id="paging">
-		<ul class="pagination">
-			<!-- 이전페이지 -->
-			<c:if test="${pVo.nowPage>1}">
-				<li class='page-item'><a
-					href="/wherewego/courseList?nowPage=${pVo.nowPage-1}"
-					class='page-link'>«</a></li>
-			</c:if>
-
-			<c:if test="${pVo.nowPage==1}">
-				<li class='page-item'><a href='#'>«</a></li>
-			</c:if>
-
-			<!-- 시작페이지부터 5개의 페이지 출력 -->
-			<c:forEach var="i" begin="${pVo.startPage}"
-				end="${pVo.startPage+pVo.onePageNumberCount-1}">
-
-				<c:if test="${i<=pVo.totalPage}">
-
-					<c:if test="${i==pVo.nowPage}">
-						<li><a class="active"
-							href="/wherewego/courseList?nowPage=${i}">${i}</a>
-					</c:if>
-
-					<c:if test="${i!=pVo.nowPage}">
-						<li><a href="/wherewego/courseList?nowPage=${i}">${i}</a>
-					</c:if>
+		<!-- 이전 페이지는 현재 페이지가 1페이지보다 클 때만 표시한다. -->
+		<c:if test="${pVo.nowPage>1}">
+			<li class="page-item"><a href="/wherewego/courseList?nowPage=${pVo.nowPage-1}<c:if test='${pVo.searchWord!=null && pVo.searchKey!=null}'>&searchKey=${pVo.searchKey }&searchWord=${pVo.searchWord }</c:if>" class="page-link">«</a></li>
+		</c:if>
+		<c:if test="${pVo.nowPage==1}">
+			<li class="page-item"><a href="#" class="page-link">«</a></li>
+		</c:if>
+		<!-- 시작 페이지부터 5개의 페이지를 출력한다. -->
+		<!-- 6,7,8,9,10 -->
+		<c:forEach var="i" begin="${pVo.startPage }" end="${pVo.startPage+pVo.onePageNumberCount-1 }">
+			<!-- 출력할 페이지 번호가 총 페이지 수보다 작을 때만 출력한다. -->
+			<c:if test="${i<=pVo.totalPage }">
+				<c:if test="${i==pVo.nowPage }">
+					<li class='page-item active'>
 				</c:if>
-			</c:forEach>
-
-			<!-- 다음페이지-->
-			<c:if test="${pVo.nowPage<pVo.totalPage}">
-				<li class='page-item'><a
-					href="/wherewego/courseList?nowPage=${pVo.nowPage+1}">»</a></li>
+				<c:if test="${i!=pVo.nowPage }">
+					<li class='page-item'>
+				</c:if>	
+				<a href="/wherewego/courseList?nowPage=${i }<c:if test='${pVo.searchWord!=null && pVo.searchKey!=null}'>&searchKey=${pVo.searchKey }&searchWord=${pVo.searchWord }</c:if>" class="page-link">${i }</a></li>
 			</c:if>
-			
-			<c:if test="${pVo.nowPage==pVo.totalPage}">
-				<li class='page-item'><a href='#'>»</a></li>
-			</c:if>
-		</ul>
-	</div>
+		</c:forEach>
+		
+		<!-- 다음 페이지는 현재 페이지가 총 페이지 수 보다 작으면 다음 페이지가 있다. -->
+		<c:if test="${pVo.nowPage<pVo.totalPage }">
+			<li class="page-item"><a href="/wherewego/courseList?nowPage=${pVo.nowPage+1 }<c:if test='${pVo.searchWord!=null && pVo.searchKey!=null}'>&searchKey=${pVo.searchKey }&searchWord=${pVo.searchWord }</c:if>" class="page-link">»</a></li>
+		</c:if>	
+	</ul>
 </div>
+<!-- 검색 -->
