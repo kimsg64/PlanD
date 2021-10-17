@@ -6,17 +6,196 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="css_js/App.css">
-<link rel="stylesheet" href="css_js/header.css">
-<link rel="stylesheet" href="css_js/footer.css">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"/>
 <title>Plan.D</title>
+<style>
+
+/* 서체 및 공통 */
+@font-face {
+  font-family: "TmoneyRoundWindRegular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  color: var(--color-font);
+  font-family: "TmoneyRoundWindRegular";
+}
+
+/* header style */
+/* 헤더 틀 */
+header {
+  width: calc(100% - 16px);
+  height: var(--header-height);
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  position: fixed;
+  z-index: 2;
+  color: var(--color-font);
+  border-bottom: 1px solid hsl(0, 0%, 90%);
+}
+
+/* 헤더 크기 조절 */
+.size-controller {
+  width: 72%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.point_letter {
+  color: var(--color-focus);
+}
+
+/* 로고 및 로고 링크 */
+.logo {
+  position: relative;
+  font-size: var(--font-size-title-large);
+}
+.logo > a {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* 센터 메뉴 */
+/* 센터 메뉴 틀 */
+.menu-section {
+  width: 54%;
+  display: flex;
+  justify-content: flex-end;
+}
+/* 메인 메뉴 */
+.menu {
+  width: 80%;
+  min-width: 460px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: var(--font-size-normal);
+}
+.menu li {
+  margin-left: var(--margin-default);
+}
+.menu li:hover {
+  color: var(--color-focus);
+}
+
+/* 미니 로그인 메뉴 */
+.login-container {
+  width: 20%;
+  min-width: 152px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: var(--font-size-small);
+  color: var(--color-font);
+}
+.login div {
+  position: relative;
+}
+.login div:hover {
+  color: var(--color-blur);
+}
+
+/* 마이페이지 서브메뉴 */
+.submenu-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+/* 서브메뉴 */
+.submenu {
+  min-width: 152px;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  background-color: white;
+  position: absolute;
+  top: 60px;
+  left: -48px;
+  
+}
+.full-height {
+	height: 300px;
+	box-shadow: 0px 2px 4px 2px grey;
+}
+.no-height {
+	height: 0;
+	box-shadow: none;
+}
+/* 서브메뉴 항목 */
+.submenu-item {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-font);
+  position: relative;
+  border: 1px solid var(--color-font);
+  border-top: none;
+}
+.submenu-item:hover {
+  cursor: pointer;
+  color: var(--color-focus);
+}
+
+
+
+
+/* footer style */
+footer {
+  width: 100%;
+  height: var(--footer-height);
+  background-color: var(--color-bg);
+  color: var(--color-font);
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-container {
+  margin: var(--margin-default) 0;
+}
+.nav-container ul {
+  font-size: var(--font-size-small-title);
+}
+.nav-container li {
+  margin-top: calc(var(--margin-default) / 4);
+  font-size: var(--font-size-small);
+}
+.nav-container li:first-child {
+  margin-top: calc(var(--margin-default) / 2);
+}
+.nav-container li:hover {
+  cursor: pointer;
+  color: var(--color-focus);
+}
+
+
+</style>
 </head>
 <body>
 	<header>
 		<div class="size-controller">
 			<!-- 로고 -->
 			<div class="logo">
-				<a href="http://localhost:9090/wherewego/">Plan.<span class="yellow-span">D</span></a>
+				<a href="http://localhost:9090/wherewego/">Plan.<span class="point_letter">D</span></a>
 			</div>
 			<!-- 우측 메뉴 -->
 			<section class="menu-section">
@@ -43,15 +222,13 @@
 					<!-- 서브메뉴 -->
 					<div class="submenu-container">
 						<a href="http://localhost:3000/">마이페이지</a>
-						<!-- 
-						<ul class="submenu">
-							<li class="submenu-item">프로필 수정 <span></span></li>
-							<li class="submenu-item">나의 추천 코스 <span></span></li> 
-							<li class="submenu-item">나의 후기 <span></span></li> 
-							<li class="submenu-item">찜<span></span></li>
-							<li class="submenu-item">포인트샵<span></span></li>
+						<ul class="submenu no-height">
+							<li class="submenu-item">프로필 수정 <span class="border-effect"></span></li>
+							<li class="submenu-item">나의 추천 코스 <span class="border-effect"></span></li> 
+							<li class="submenu-item">나의 후기 <span class="border-effect"></span></li>
+							<li class="submenu-item">찜<span class="border-effect"></span></li>
+							<li class="submenu-item">포인트샵<span class="border-effect"></span></li>
 						</ul>
-						 -->
 					</div>
 					
 				<div>
@@ -61,3 +238,19 @@
 			</section>
 		</div>
 	</header>
+<script defer>
+	const container = document.querySelector(".submenu-container");
+	const submenu = document.querySelector(".submenu");
+	console.log(container);
+	console.log(submenu);
+	function showSubmenu(e) {
+		submenu.classList.add("full-height");
+		submenu.classList.remove("no-height");
+	}
+	function hideSubmenu(e) {
+		submenu.classList.add("no-height");
+		submenu.classList.remove("full-height");
+	}
+	container.addEventListener('mouseover', showSubmenu);
+	container.addEventListener('mouseout', hideSubmenu);
+</script>

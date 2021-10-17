@@ -1,6 +1,6 @@
-/* style ë³€ìˆ˜ ì„¤ì • */
+/* style º¯¼ö ¼³Á¤ */
 :root {
-  /* ì§¤ë¦° ìƒ‰ê¹”ë“¤ */
+  /* Â©¸° »ö±òµé */
   --color1: hsl(174, 53%, 73%);
   --color2: hsl(163, 48%, 68%);
   --color3: hsl(151, 53%, 79%);
@@ -11,17 +11,20 @@
   --color-pink: #fd7f80;
   --color-lightbrown: #786352;
   --color-black: #2c3e50;
-  /* ì§€í•˜ì²  ìƒ‰ */
+  /* ÁöÇÏÃ¶ »ö */
   --color-brown: #553a31;
   --color-yellow: #fde511;
 
-  /* ê°•ì‚¬ë‹˜ í”¼ë“œë°± ì´í›„ ìƒ‰ */
+  /* °­»ç´Ô ÇÇµå¹é ÀÌÈÄ »ö */
   --color-font: #00282e;
   --color-focus: #fd7d73;
   --color-blur: #efcac3;
   --color-bg: #f5ebe3;
+  --color-light-bg: #f7f7f7;
+  --color-dark-green: #052629;
   --color-green: #0e595f;
   --color-light-green: #81bbaf;
+  --color-super-light-green: #b9cfcb;
 
   --color-line1: #263c96;
   --color-line2: #3cb44a;
@@ -59,35 +62,14 @@
   --font-size-3d: 10px;
 }
 
-@font-face {
-  font-family: "TmoneyRoundWindRegular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 
 /* frame */
-#root,
-html,
-body,
-#page-layout {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  color: var(--color-font);
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
   color: inherit;
   user-select: none;
-  font-family: inherit;
 }
 
 a {
