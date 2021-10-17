@@ -202,7 +202,7 @@ ul.pagination li a:hover:not(.active) {
 	<div id="search">
 		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/noticeList">
 			<select name="searchKey">
-				<option value="subject">제목</option>
+				<option value="title">제목</option>
 				<option value="content">글내용</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>

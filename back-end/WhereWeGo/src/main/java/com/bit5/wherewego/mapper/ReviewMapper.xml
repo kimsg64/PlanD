@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.bit5.wherewego.review.ReviewDAOImp">
+  
+  	<!-- 리뷰리스트 -->
 	<select id="reviewAllSelect" resultType="com.bit5.wherewego.review.ReviewVO">
 	<![CDATA[ 
 		 select * from 
@@ -16,15 +18,31 @@
 		]]>
 	</select>
 	
+	<!-- 리뷰리스트 페이징 -->
 	<select id="totalRecordCount" resultType="int">
 		select count(r_num) totalRecord from review
 	</select>
 	
+	<!-- 베스트리뷰 -->
 	<select id="selectBestReviews" resultType="com.bit5.wherewego.review.ReviewVO">
 		select * from review where score=10 and grade='공개'
 	</select>
 	
+	<!-- 새로운리뷰카운트 -->
 	<select id="newReviewCount" resultType="int">
 		select count(r_num) newReview from review where to_char(writedate,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+	</select>
+	
+	<!-- 리뷰리스트 검색 -->
+	<select id="reviewAllSelect" resultType="com.bit5.wherewego.review.ReviewVO">
+	<![CDATA[ 
+		 select * from 
+		(select * from 
+		(select r.r_num r_num, c.name name, r.userid userid, r.score score, to_char(writedate, 'MM/DD') writedate, r.grade grade from review r 
+		join course c on r.c_num=c.c_num and c.#{param3} like '%#{param4}%' 
+		order by r_num desc) 
+		where rownum<=#{param1} order by r_num asc) 
+		where rownum<=#{param2} order by r_num desc
+		]]>
 	</select>
 </mapper>

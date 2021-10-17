@@ -46,7 +46,17 @@ public class ReviewController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		mav.addObject("list",dao.reviewAllSelect(num1,num2));
+		//검색어가 있으면
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) {
+			String sKey = pVo.getSearchKey();
+			String sWord = pVo.getSearchWord();
+			mav.addObject("list",dao.reviewSearchSelect(num1,num2,sKey,sWord));
+				
+		} else { //검색어가 없으면
+			mav.addObject("list",dao.reviewAllSelect(num1,num2));
+		}
+		
+		//mav.addObject("list",dao.reviewAllSelect(num1,num2));
 		mav.addObject("pVo",pVo);
 		mav.setViewName("review/reviewList");
 

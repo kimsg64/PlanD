@@ -158,14 +158,22 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
-	<!-- 유나 언니!!! 이쪽에 div 만들어서 상단에 이미지 넣고 제목 넣는거 부탁드려요!!!!! 각 메뉴마다 적당히 어울리는 이미지 찾아서.....? -->
+	
 	<div id="reviewbanner">
 		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
 	</div>
 
-<div id="search">	
-	<input type="text" placeholder="검색어 입력"><button>검색</button>
-</div>		
+	<!-- 검색 -->
+	<div id="search">
+		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reivewList">
+			<select name="searchKey">
+				<option value="name">코스명</option>
+				<option value="userid">아이디</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
+			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
+		</form>
+	</div>
 
 	<div id="list">
 		<ul id="boardList">
@@ -180,8 +188,7 @@ ul.pagination li a:hover:not(.active) {
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num}</li>
-				<li class="wordCut"><a
-					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li class="wordCut"><a href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>

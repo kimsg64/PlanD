@@ -7,4 +7,5 @@ public interface ReviewDAOImp {
 	public int totalRecordCount(); //페이징
 	public List<ReviewVO> selectBestReviews();
 	public int newReviewCount();
+	public List<ReviewVO> reviewSearchSelect(int num1, int num2, String sKey, String sWord);
 }
