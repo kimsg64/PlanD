@@ -19,4 +19,8 @@
 	<select id="totalRecordCount" resultType="int">
 		select count(c_num) totalRecord from course
 	</select>
+	
+	<select id="newCourseCount" resultType="int">
+		select count(c_num) newCourseCount from course where grade='검토중'
+	</select>
 </mapper>

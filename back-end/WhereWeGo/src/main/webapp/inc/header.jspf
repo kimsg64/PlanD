@@ -190,7 +190,10 @@ nav {
   cursor: pointer;
   color: var(--color-focus);
 }
-
+#whitetop {
+		width: 100%;
+		height: 120px;
+}
 
 </style>
 </head>
@@ -298,3 +301,5 @@ nav {
 	container.addEventListener('mouseover', showSubmenu);
 	container.addEventListener('mouseout', hideSubmenu);
 </script>
+
+<div id="whitetop"></div>
