@@ -27,10 +27,10 @@ export const Button = styled.button`
   height: 32px;
   margin: 0 var(--margin-line-space);
   padding: var(--padding-tiny) var(--padding-small);
-  /* font-weight: ${(props) => props.weight || "500"}; */
   font-family: -apple-system;
   font-size: var(--font-size-small);
-  background-color: var(--color-light-green);
+  /* background-color: var(--color-light-green); */
+  background-color: var(--color-green);
   border: none;
   border-radius: 4px;
   color: white;
@@ -41,11 +41,14 @@ export const Button = styled.button`
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-    color: var(--color-green);
+    /* color: var(--color-green); */
+    color: var(--color-light-green);
   }
   :active {
-    background-color: var(--color-green);
-    color: var(--color-light-green);
+    /* background-color: var(--color-green);
+    color: var(--color-light-green); */
+    background-color: var(--color-dark-green);
+    color: var(--color-green);
   }
 `;
 
@@ -60,14 +63,14 @@ export const StartButton = styled(Button)`
   left: calc(50% - 180px / 2);
   z-index: 2;
   font-size: var(--font-size-large);
-  background-color: var(--color-green);
-  :hover {
+  /* background-color: var(--color-green); */
+  /* :hover {
     color: var(--color-light-green);
   }
   :active {
     background-color: var(--color-dark-green);
     color: var(--color-green);
-  }
+  } */
 `;
 
 // input 디폴트

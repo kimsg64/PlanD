@@ -6,92 +6,16 @@ import styled from "styled-components";
 const MapContainer = styled.div`
   width: 800px;
   height: 400px;
+  font-size: var(--font-size-tiny);
 `;
 
 const { kakao } = window;
 const KakaoMapSearchForm = ({ place = "" }) => {
   useEffect(() => {
-    // const container = document.getElementById("map");
-    // const options = {
-    //   // center: 지도의 중심
-    //   center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
-    //   // level: 확대/축소 정도
-    //   level: 3,
-    // };
-    // const map = new kakao.maps.Map(container, options);
-    // let markers = [];
-    // // 장소 검색기
-    // const places = new kakao.maps.services.Places();
-    // // 클릭시 표시될 인포윈도우
-    // const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
-    // // 검색이 완료되었을 때
-    // const completeSearching = (data, status, pagination) => {
-    //   if (status === kakao.maps.services.Status.OK) {
-    //     displayPlaces(data);
-    //     displayPagination(pagination);
-    //   } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-    //     alert("검색결과가 없어용...");
-    //     return;
-    //   } else if (status === kakao.maps.services.Status.ERROR) {
-    //     alert("오류가 생겼어용...");
-    //     return;
-    //   }
-    // };
-
-    // // 키워드가 입력되어 검색이 실행되었을 떄
-    // const searchPlaces = () => {
-    //   if (!place.replace(/^\s+|\s+$/g, "")) {
-    //     alert("키워드 입력하시죠");
-    //     return false;
-    //   }
-    //   places.keywordSearch(place, completeSearching);
-    // };
-    // searchPlaces();
-
-    // // 검색 결과 장소를 표시
-    // const displayPlaces = (data) => {
-    //   const list = document.getElementById("placesList"),
-    //     menu = document.getElementById("menu-wrap"),
-    //     fragment = document.createDocumentFragment(),
-    //     bounds = new kakao.maps.LatLngBounds(),
-    //     listStr = "";
-
-    //   removeAllChildNods(list);
-    //   removeMarker();
-
-    //   for (let i = 0; i < data.length; i++) {
-    //     const placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-    //       marker = addMarker(placePosition, i),
-    //       item = getListItem(i, places[i]);
-    //     bounds.extend(placePosition);
-    //     (function (marker, title) {
-    //       kakao.maps.event.addListener(marker, "mouseover", function () {
-    //         displayInfowindow(marker, title);
-    //       });
-    //       kakao.maps.event.addListener(marker, "mouseout", function () {
-    //         infoWindow.close();
-    //       });
-    //       item.onmouseover = function () {
-    //         displayInfowindow(marker, title);
-    //       };
-    //       item.onmouseout = function () {
-    //         infoWindow.close();
-    //       };
-    //     })(marker, places[i].place_name);
-    //     fragment.appendChild(item);
-    //   }
-    //   list.appendChild(fragment);
-    //   menu.scrollTop = 0;
-    //   map.setBounds(bounds);
-    // };
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 그대로 복붙
     // 마커를 담을 배열입니다
     var markers = [];
 
-    var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+    var mapContainer = document.getElementById("kakaoMap"), // 지도를 표시할 div
       mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 3, // 지도의 확대 레벨
@@ -318,7 +242,7 @@ const KakaoMapSearchForm = ({ place = "" }) => {
     }
   }, [place]);
 
-  return <MapContainer id="map"></MapContainer>;
+  return <MapContainer id="kakaoMap"></MapContainer>;
 };
 
 export default KakaoMapSearchForm;

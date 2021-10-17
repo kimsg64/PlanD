@@ -104,7 +104,7 @@ const SubMenu = styled.ul`
   top: 60px;
   left: -48px;
   box-shadow: ${(props) =>
-    props.heightOfSub === "0" ? "none" : "0px 2px 4px 2px grey"};
+    props.heightOfSub === "0" ? "none" : "0px 1px 4px 1px grey"};
 `;
 
 const SubMenuItem = styled.li`

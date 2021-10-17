@@ -48,6 +48,16 @@ const IndividualForm = () => {
   const [startdate, setStartdate] = useState("");
   const [opt, setOpt] = useState([]);
 
+  // 기념일은 최댓값이 오늘
+  const setMaxDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    // console.log(`${year}-${month}-${day}`);
+    return `${year}-${month}-${day}`;
+  };
+
   // 비밀번호 더블체크
   const checkPwd = (e) => {
     if (e.target.value === "") return;
@@ -77,7 +87,7 @@ const IndividualForm = () => {
       startdate: startdate,
       opt: opt.join("#"),
     };
-    console.log("바디", body);
+    // console.log("바디", body);
 
     axios
       .post("/wherewego/getUserData", body)
@@ -100,19 +110,13 @@ const IndividualForm = () => {
     <>
       <Header />
       <BodyLayout>
-        <Form
-          id="individual_form"
-          onSubmit={onSubmitForm}
-          encType="multipart/form-data"
-        >
+        <Form onSubmit={onSubmitForm} encType="multipart/form-data">
           <CenterWrapper>
             <LineWrapper>
               <ItemContainer>
                 <Label htmlFor="userId">아이디</Label>
                 <FormInput
                   type="text"
-                  name="userId"
-                  id="userId"
                   required
                   minLenght="6"
                   maxLength="14"
@@ -139,8 +143,6 @@ const IndividualForm = () => {
                 <Label htmlFor="pwd">비밀번호</Label>
                 <FormInput
                   type="password"
-                  name="pwd"
-                  id="pwd"
                   required
                   minLength="8"
                   maxLength="16"
@@ -157,8 +159,6 @@ const IndividualForm = () => {
                 <Label htmlFor="userPwd2">비밀번호 확인</Label>
                 <FormInput
                   type="password"
-                  name="userPwd2"
-                  id="userPwd2"
                   required
                   maxLength="16"
                   placeholder="비밀번호 확인"
@@ -175,8 +175,6 @@ const IndividualForm = () => {
                 <Label htmlFor="name">이름</Label>
                 <FormInput
                   type="text"
-                  name="name"
-                  id="name"
                   required
                   minLength="2"
                   maxLength="8"
@@ -190,8 +188,6 @@ const IndividualForm = () => {
                 <Label htmlFor="num">주민등록번호</Label>
                 <FormInput
                   type="text"
-                  name="num"
-                  id="num"
                   required
                   maxLength="14"
                   placeholder="ex) 000000-0000000"
@@ -207,8 +203,6 @@ const IndividualForm = () => {
                 <Label htmlFor="tel">연락처</Label>
                 <FormInput
                   type="text"
-                  name="tel"
-                  id="tel"
                   required
                   minLength="9"
                   maxLength="11"
@@ -230,8 +224,6 @@ const IndividualForm = () => {
                 <Label htmlFor="email">이메일</Label>
                 <FormInput
                   type="email"
-                  name="email"
-                  id="email"
                   required
                   placeholder="ex) abc@naver.com"
                   pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
@@ -245,8 +237,6 @@ const IndividualForm = () => {
                 <Label htmlFor="addr">주소</Label>
                 <FormInput
                   type="text"
-                  name="addr"
-                  id="addr"
                   width="32em"
                   className="optional"
                   onKeyUp={(e) => setAddr(e.target.value)}
@@ -256,8 +246,6 @@ const IndividualForm = () => {
                 <Label htmlFor="zip">우편번호</Label>
                 <FormInput
                   type="text"
-                  name="zip"
-                  id="zip"
                   width="16em"
                   className="optional"
                   disabled
@@ -281,8 +269,6 @@ const IndividualForm = () => {
                 <Label htmlFor="addrDetail">상세주소</Label>
                 <FormInput
                   type="text"
-                  name="addrDetail"
-                  id="addrDetail"
                   width="28em"
                   className="optional"
                   onKeyUp={(e) => setAddrDetail(e.target.value)}
@@ -292,8 +278,7 @@ const IndividualForm = () => {
                 <Label htmlFor="startdate">기념일</Label>
                 <FormInput
                   type="date"
-                  name="startdate"
-                  id="startdate"
+                  max={setMaxDate()}
                   width="20em"
                   className="optional"
                   onChange={(e) => setStartdate(e.target.value)}
