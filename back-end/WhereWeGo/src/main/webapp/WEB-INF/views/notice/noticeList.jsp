@@ -2,10 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
-#search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
+#search {
+	margin-left: 1150px;
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
 
 #mainDiv {
 	width: 72%;
@@ -20,22 +27,24 @@
 }
 
 #bottomdiv {
-	width:100%;
+	width: 100%;
 	height: 50px;
-	margin : 10px 0px;
+	margin: 10px 0px;
 }
+
 #count {
 	font-size: 0.7em;
 	color: #f5ebe3;
-	text-align:left;
-	float:left;
+	text-align: left;
+	float: left;
 }
+
 #count:hover {
 	color: #efcac3;
 }
 
 #buttonMenu {
-	float:right;
+	float: right;
 }
 
 #list ul, #list li {
@@ -100,7 +109,7 @@
 }
 
 .wordCut a:hover {
-	color:#fd7d73;
+	color: #fd7d73;
 }
 
 #popup0 {
@@ -170,6 +179,15 @@ ul.pagination li a:hover:not(.active) {
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       }); 
+	  
+	   //검색
+      $('#searchFrm').submit(function(){
+			if($('#searchWord').val()==''){
+				alert('검색어를 입력 후 검색하세요');
+				return false;
+			}
+			return true;
+		});
       
    });
 </script>
@@ -177,14 +195,23 @@ ul.pagination li a:hover:not(.active) {
 <div id="mainDiv">
 	<h1>공지사항 관리</h1>
 	<div>
-		<img src="imgs/banner/notice.jpg"/>
+		<img src="imgs/banner/notice.jpg" />
 	</div>
-	<div id="search">	
-		<input type="text" placeholder="검색어 입력"><button>검색</button>
-	</div>	
+	
+	<!-- 검색 -->
+	<div id="search">
+		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/noticeList">
+			<select name="searchKey">
+				<option value="subject">제목</option>
+				<option value="content">글내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
+			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
+		</form>
+	</div>
 
 	<div id="list">
-	
+
 		<!-- 관리자 모드 -->
 		<c:if test="${logid=='admin'}">
 			<ul id="adminboardList">
@@ -195,7 +222,7 @@ ul.pagination li a:hover:not(.active) {
 				<li>조회수</li>
 				<li>첨부파일</li>
 				<li>팝업</li>
-	
+
 				<c:forEach var="vo" items="${list}">
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 					<li>${vo.n_num }</li>
@@ -217,7 +244,7 @@ ul.pagination li a:hover:not(.active) {
 				</c:forEach>
 			</ul>
 		</c:if>
-		
+
 		<!-- 일반 사용자 모드 -->
 		<c:if test="${logid!='admin'}">
 			<ul id="userboardList">
@@ -227,7 +254,7 @@ ul.pagination li a:hover:not(.active) {
 				<li>작성일</li>
 				<li>조회수</li>
 				<li>첨부파일</li>
-	
+
 				<c:forEach var="vo" items="${list}">
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 					<li>${vo.n_num }</li>
@@ -245,8 +272,8 @@ ul.pagination li a:hover:not(.active) {
 			</ul>
 		</c:if>
 	</div>
-	
-	
+
+
 	<!-- 버튼 -->
 	<c:if test="${logid=='admin'}">
 		<div id="bottomdiv">
@@ -254,9 +281,10 @@ ul.pagination li a:hover:not(.active) {
 				<div>총 레코드 수 : ${pVo.totalRecord }</div>
 				<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 			</div>
-			
+
 			<div id="buttonMenu">
-				<a class="button" href="noticewrite">작성</a> <a class="button" href="#">삭제</a>
+				<a class="button" href="noticewrite">작성</a>
+				<a class="button" href="#">삭제</a>
 			</div>
 		</div>
 	</c:if>
@@ -297,7 +325,7 @@ ul.pagination li a:hover:not(.active) {
 				<li class='page-item'><a
 					href="/wherewego/noticeList?nowPage=${pVo.nowPage+1}">»</a></li>
 			</c:if>
-			
+
 			<c:if test="${pVo.nowPage==pVo.totalPage}">
 				<li class='page-item'><a href='#'>»</a></li>
 			</c:if>

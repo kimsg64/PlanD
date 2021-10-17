@@ -24,4 +24,16 @@
 	<select id="totalRecordCount" resultType="int">
 		select count(n_num) totalRecord from notice
 	</select>
+	
+	<select id="noticeSearchSelect" resultType="com.bit5.wherewego.notice.NoticeVO">
+		<![CDATA[ 
+		select * from 
+		(select * from 
+		(select n_num, title, content, photo, hit, to_char(writedate, 'MM/DD') writedate, pop from notice 
+		where #{param3} like '%#{param4}%' 
+		order by n_num desc) 
+		where rownum<=#{param1} order by n_num asc) 
+		where rownum<=#{param2} order by n_num desc
+		]]>
+	</select>
 </mapper>

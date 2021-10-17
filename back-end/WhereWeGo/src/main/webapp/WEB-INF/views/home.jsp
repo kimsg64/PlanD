@@ -95,24 +95,16 @@
 		<!-- 링크 이름은 임시로 제가 넣어둠! -->
 		<table id="adminMenu">
 			<tr>
-				<td><a href="/wherewego/userList"><img
-						src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
-				<td><a href="/wherewego/noticeList"><img
-						src="imgs/adminMenu/notiB.png" /><br />공지 관리</a></td>
-				<td><a href="/wherewego/resList"><img
-						src="imgs/adminMenu/resB.png" /><br />예약 관리</a></td>
-				<td><a href="/wherewego/reviewList"><img
-						src="imgs/adminMenu/reviewB.png" /><br />후기 관리</a></td>
+				<td><a href="/wherewego/userList"><img src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
+				<td><a href="/wherewego/noticeList"><img src="imgs/adminMenu/notiB.png" /><br />공지 관리</a></td>
+				<td><a href="/wherewego/resList"><img src="imgs/adminMenu/resB.png" /><br />예약 관리</a></td>
+				<td><a href="/wherewego/reviewList"><img src="imgs/adminMenu/reviewB.png" /><br />후기 관리</a></td>
 			</tr>
 			<tr>
-				<td><a href="/wherewego/courseList"><img
-						src="imgs/adminMenu/locaB.png" /><br />코스 관리</a></td>
-				<td><a href="/wherewego/placeList"><img
-						src="imgs/adminMenu/placeB.png" /><br />장소 관리</a></td>
-				<td><a href="/wherewego/advermanage"><img
-						src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
-				<td><a href="/wherewego/pointshopList"><img
-						src="imgs/adminMenu/pointB.png" /><br />포인트샵 관리</a></td>
+				<td><a href="/wherewego/courseList"><img src="imgs/adminMenu/locaB.png" /><br />코스 관리</a></td>
+				<td><a href="/wherewego/placeList"><img src="imgs/adminMenu/placeB.png" /><br />장소 관리</a></td>
+				<td><a href="/wherewego/advermanage"><img src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
+				<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointB.png" /><br />포인트샵 관리</a></td>
 			</tr>
 		</table>
 	</c:if>
