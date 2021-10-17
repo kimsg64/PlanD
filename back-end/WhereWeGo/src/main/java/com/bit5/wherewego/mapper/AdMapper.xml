@@ -17,11 +17,38 @@
       ]]>
 	</select>
 	
+	<!-- 광고리스트페이징 -->
 	<select id="totalRecordCount" resultType="int">
 		select count(startdate) totalRecord from ad
 	</select>
 	
+	<!-- 광고신청(전송) -->
 	<insert id="adRegisterOk" parameterType="com.bit5.wherewego.ad.AdVO">
 		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade})
 	</insert>
+	
+	<!-- 신규광고카운트 -->
+	<select id="newAdCount" resultType="int">
+		select count(b_id) newAd from ad where grade='검토중'
+	</select>
+	
+	<!-- 진행중인광고 카운트 -->
+	<select id="ingAdCount" resultType="int">
+	<![CDATA[
+		select count(b_id) ingAd from ad where b_id=#{param1} and grade='승인' and to_char(startdate,'YY/MM/DD') <= to_char(sysdate,'YY/MM/DD') and to_char(enddate,'YY/MM/DD') >= to_char(sysdate,'YY/MM/DD')
+	]]>
+	</select>
+	
+	<!-- 검토중광고 카운트 -->
+	<select id="yetAdCount" resultType="int">
+		select count(b_id) yetAd from ad where b_id=#{param1} and grade='검토중'
+	</select>
+	
+	<!-- 완료된광고 카운트 -->
+	<select id="edAdCount" resultType="int">
+	<![CDATA[
+		select count(b_id) edAd from ad where b_id=#{param1} and grade='승인' and to_char(enddate,'YY/MM/DD') < to_char(sysdate,'YY/MM/DD')
+	]]>
+	</select>
+	
 </mapper>

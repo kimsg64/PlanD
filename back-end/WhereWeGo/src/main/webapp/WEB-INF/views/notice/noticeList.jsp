@@ -7,11 +7,6 @@
 <style>
 #search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
 
-#whitetop {
-	width: 100%;
-	height: 80px;
-}
-
 #mainDiv {
 	width: 72%;
 	margin: 0 auto;
@@ -178,8 +173,6 @@ ul.pagination li a:hover:not(.active) {
       
    });
 </script>
-
-<div id="whitetop"></div>
 
 <div id="mainDiv">
 	<h1>공지사항 관리</h1>

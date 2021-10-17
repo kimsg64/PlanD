@@ -23,4 +23,8 @@
 	<select id="selectBestReviews" resultType="com.bit5.wherewego.review.ReviewVO">
 		select * from review where score=10 and grade='공개'
 	</select>
+	
+	<select id="newReviewCount" resultType="int">
+		select count(r_num) newReview from review where to_char(writedate,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+	</select>
 </mapper>

@@ -17,10 +17,6 @@
 	
 </script>
 <style>
-	#whitetop {
-		width: 100%;
-		height: 80px;
-	}
 	.container{
 		width:70%;
 		margin:0px auto;
@@ -33,7 +29,7 @@
 	float:right;
 	}
 </style>
-<div id="whitetop"></div>
+
 <div class="container">
 <h1>공지사항 등록</h1>
 <form method="post" action="/noticeWriteOk">

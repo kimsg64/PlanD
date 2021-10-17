@@ -43,4 +43,10 @@ public class CourseDAO extends DBConnection implements CourseDAOImp {
 	
 	}
 
+	@Override
+	public int newCourseCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
