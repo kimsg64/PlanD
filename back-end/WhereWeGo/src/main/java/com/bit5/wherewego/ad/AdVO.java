@@ -9,6 +9,7 @@ public class AdVO {
 	private String link;
 	private int price;
 	private String grade;
+	private String payment;
 	
 	private String name; //상호명
 	
@@ -59,6 +60,12 @@ public class AdVO {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+	public String getPayment() {
+		return payment;
+	}
+	public void setPayment(String payment) {
+		this.payment = payment;
 	}
 	public String getName() {
 		return name;
