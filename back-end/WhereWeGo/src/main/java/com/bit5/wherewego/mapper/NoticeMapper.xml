@@ -23,7 +23,7 @@
 	 
 	<!-- 공지사항 리스트 페이징 -->
 	<select id="totalRecordCount" resultType="int">
-		select count(n_num) totalRecord from notice
+		select count(n_num) totalRecord from notice #{param1}
 	</select>
 	
 	<!-- 공지사항리스트 검색 -->
