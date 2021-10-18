@@ -60,7 +60,7 @@ public class AdController {
 			return mav;
 		}
 
-	//광고 신청
+	//광고 신청(폼)
 	@RequestMapping("/adRegister")
 	public ModelAndView adRegister(BusinessVO vo,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -75,12 +75,13 @@ public class AdController {
 		return mav;
 	}
 
+	//광고신청(전송)
 	@RequestMapping(value="/adRegisterOk",method=RequestMethod.POST)
 	public ModelAndView fileUploadTest(AdVO vo,HttpServletRequest req) {
 		//vo->작성자,제목
 
 		//업로드 위치
-		String path = req.getSession().getServletContext().getRealPath("/");
+		String path = req.getSession().getServletContext().getRealPath("/upload");
 		System.out.println("저장경로 : "+path);
 
 		//파일업로드를 위해서는 HttpServletRequest객체를 이용하여 MultipartHttpServletRequest 객체를 구하여야 한다.

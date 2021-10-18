@@ -165,7 +165,7 @@ ul.pagination li a:hover:not(.active) {
 
 	<!-- 검색 -->
 	<div id="search">
-		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reivewList">
+		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reviewList">
 			<select name="searchKey">
 				<option value="name">코스명</option>
 				<option value="userid">아이디</option>

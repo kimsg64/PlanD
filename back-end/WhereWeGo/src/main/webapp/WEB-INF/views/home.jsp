@@ -85,10 +85,10 @@
 				<td>신규 구매</td>
 			</tr>
 			<tr id="adminnum">
-				<td>0${cnt1 }</td>
-				<td>0${cnt2 }</td>
-				<td>0${cnt3 }</td>
-				<td>0${cnt4 }</td>
+				<td>${cnt1 }</td>
+				<td>${cnt2 }</td>
+				<td>${cnt3 }</td>
+				<td>${cnt4 }</td>
 		</table>
 
 	
@@ -123,11 +123,13 @@
 				<td>진행중인 광고</td>
 				<td>검토중인 광고</td>
 				<td>완료된 광고</td>
+				<td>미결제 광고</td>
 			</tr>
 			<tr id="adminnum">
-				<td>0${cnt5 }</td>
-				<td>0${cnt6 }</td>
-				<td>0${cnt7 }</td>
+				<td>${cnt5 }</td>
+				<td>${cnt6 }</td>
+				<td>${cnt7 }</td>
+				<td>0${cnt8 }</td>
 		</table>
 		
 		<table id="adminMenu">

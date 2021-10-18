@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit5.wherewego.buy.BuyDAOImp">
-	<select id="totalBuyCount" resultType="int">
+	<!-- 새로운구입 카운트 -->
+	<select id="newBuyCount" resultType="int">
 		select count(buynum) newBuy from buy where to_char(buydate,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
 	</select>
 </mapper>

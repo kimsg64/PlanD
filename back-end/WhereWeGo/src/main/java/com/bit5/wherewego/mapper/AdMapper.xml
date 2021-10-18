@@ -51,4 +51,10 @@
 	]]>
 	</select>
 	
+	<!-- 미결제광고 카운트 
+	<select id="yetAdCount" resultType="int">
+		select count(b_id) yetAd from ad where b_id=#{param1} and grade='검토중'
+	</select>
+	-->
+	
 </mapper>

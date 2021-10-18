@@ -1,3 +1,4 @@
+/*
 package com.bit5.wherewego;
 
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,22 @@ public class HomeController {
 
 }
 
-/* 서버 가동되어야 작동 확인 될듯..
+서버 가동되어야 작동 확인 될듯..*/
 package com.bit5.wherewego;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.bit5.wherewego.ad.AdDAOImp;
+import com.bit5.wherewego.buy.BuyDAOImp;
+import com.bit5.wherewego.course.CourseDAOImp;
+import com.bit5.wherewego.review.ReviewDAOImp;
 
 @Controller
 public class HomeController {
@@ -70,6 +80,13 @@ public class HomeController {
 		int cnt6 = dao6.yetAdCount(b_id);
 		AdDAOImp dao7 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt7 = dao7.edAdCount(b_id);
+		//AdDAOImp dao8 = sqlSession.getMapper(AdDAOImp.class);
+		//int cnt8 = dao8.payAdCount(b_id);
+		
+		mav.addObject("cnt5",cnt1);
+		mav.addObject("cnt6",cnt2);
+		mav.addObject("cnt7",cnt3);
+		//mav.addObject("cnt8",cnt4);
 
 		mav.setViewName("home");
 
@@ -77,5 +94,3 @@ public class HomeController {
 	}
 
 }
-
-*/
