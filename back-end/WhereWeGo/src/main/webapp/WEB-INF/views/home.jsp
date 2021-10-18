@@ -129,7 +129,7 @@
 				<td>${cnt5 }</td>
 				<td>${cnt6 }</td>
 				<td>${cnt7 }</td>
-				<td>0${cnt8 }</td>
+				<td>${cnt8 }</td>
 		</table>
 		
 		<table id="adminMenu">
