@@ -34,7 +34,7 @@
 	</select>
 	
 	<!-- 리뷰리스트 검색 -->
-	<select id="reviewAllSelect" resultType="com.bit5.wherewego.review.ReviewVO">
+	<select id="reviewSearchSelect" resultType="com.bit5.wherewego.review.ReviewVO">
 	<![CDATA[ 
 		 select * from 
 		(select * from 
