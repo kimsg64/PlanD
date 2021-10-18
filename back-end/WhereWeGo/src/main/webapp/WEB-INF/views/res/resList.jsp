@@ -124,8 +124,12 @@ ul.pagination li a:hover:not(.active) {
     	  $('#list input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       
       }); 
-      
+	   $("input[name='']").click(function(){
+		  var ___ = $("input[name='']");
+		  for(var i=0; i<)
+	   });
    });
+
 </script>
 
 <div id="whitetop"></div>
@@ -134,7 +138,12 @@ ul.pagination li a:hover:not(.active) {
 	<h1>예약 관리</h1>
 
 	<div id="list">
+
 		<ul id="list">
+
+	<form method="post" id="frm">
+		<ul id="boardList">
+
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
 			<li class="wordCut">코스명</li>
@@ -151,6 +160,7 @@ ul.pagination li a:hover:not(.active) {
 				<li>${vo.time }:00</li>
 			</c:forEach>
 		</ul>
+		</form>
 	</div>
 
 		
@@ -161,7 +171,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">취소</a>
+			<a class="button" name="resDel" href="#">취소</a>
 		</div>
 	</div>
 
