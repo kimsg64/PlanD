@@ -45,11 +45,11 @@
 						<a href="http://localhost:3000/">마이페이지</a>
 						<!-- 
 						<ul class="submenu">
-							<li class="submenu-item">프로필 수정 <span></span></li>
-							<li class="submenu-item">나의 추천 코스 <span></span></li> 
-							<li class="submenu-item">나의 후기 <span></span></li> 
-							<li class="submenu-item">찜<span></span></li>
-							<li class="submenu-item">포인트샵<span></span></li>
+							<a href=""><li class="submenu-item">프로필 수정 </a><span></span></li>
+							<a href=""><li class="submenu-item">나의 추천 코스 </a><span></span></li> 
+							<a href=""><li class="submenu-item">나의 후기 </a><span></span></li> 
+							<a href=""><li class="submenu-item">찜 </a><span></span></li>
+							<a href=""><li class="submenu-item">포인트샵 </a><span></span></li>
 						</ul>
 						 -->
 					</div>
