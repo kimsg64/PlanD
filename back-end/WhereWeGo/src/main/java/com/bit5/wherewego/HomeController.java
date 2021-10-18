@@ -80,13 +80,13 @@ public class HomeController {
 		int cnt6 = dao6.yetAdCount(b_id);
 		AdDAOImp dao7 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt7 = dao7.edAdCount(b_id);
-		//AdDAOImp dao8 = sqlSession.getMapper(AdDAOImp.class);
-		//int cnt8 = dao8.payAdCount(b_id);
+		AdDAOImp dao8 = sqlSession.getMapper(AdDAOImp.class);
+		int cnt8 = dao8.payAdCount(b_id);
 		
 		mav.addObject("cnt5",cnt1);
 		mav.addObject("cnt6",cnt2);
 		mav.addObject("cnt7",cnt3);
-		//mav.addObject("cnt8",cnt4);
+		mav.addObject("cnt8",cnt4);
 
 		mav.setViewName("home");
 
