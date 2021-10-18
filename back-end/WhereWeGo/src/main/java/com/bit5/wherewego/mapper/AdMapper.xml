@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit5.wherewego.ad.AdDAOImp">
+	<!--광고 전체 리스트-->
 	<select id="adAllSelect" resultType="com.bit5.wherewego.ad.AdVO">
 	<![CDATA[ 
       select * from 
@@ -24,7 +25,7 @@
 	
 	<!-- 광고신청(전송) -->
 	<insert id="adRegisterOk" parameterType="com.bit5.wherewego.ad.AdVO">
-		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade})
+		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade},#{payment})
 	</insert>
 	
 	<!-- 신규광고카운트 -->
