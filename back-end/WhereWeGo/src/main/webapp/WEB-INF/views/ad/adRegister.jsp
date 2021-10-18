@@ -88,6 +88,7 @@
 			<input type="hidden" name="b_id" id="b_id" value="${logid}">
 			<input type="hidden" name="price" id="price" value="100">
 			<input type="hidden" name="grade" id="grade" value="검토중">
+			<input type="hidden" name="payment" id="payment" value="미결제">
 
 			<h3>상호명</h3> <input type="text" name="name" id="name" value="${bVo.name}" readonly><br />
 			
