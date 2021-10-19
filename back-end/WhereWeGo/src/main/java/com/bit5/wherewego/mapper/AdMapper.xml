@@ -54,7 +54,7 @@
 	
 	<!-- 미결제광고 카운트 -->
 	<select id="payAdCount" resultType="int">
-		select count(b_id) yetAd from ad where b_id=#{param1} and payment='미결제'
+		select count(b_id) yetAd from ad where b_id=#{param1} and payment='미결제' and grade='승인'
 	</select>
 	
 	
