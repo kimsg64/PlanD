@@ -43,7 +43,7 @@ public class NoticeController {
 		} else {
 			num2 = pVo.getOnePageRecord();
 		}
-		
+		//System.out.println("확인=>"+num1+"/"+num2);
 		NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
 		mav.addObject("list",dao2.noticeAllSelect(num1,num2));
 		mav.addObject("pVo",pVo);
