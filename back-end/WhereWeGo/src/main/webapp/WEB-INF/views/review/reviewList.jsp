@@ -187,7 +187,7 @@ ul.pagination li a:hover:not(.active) {
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
-				<li>${grade }</li>
+				<li>${vo.grade }</li>
 			</c:forEach>
 		</ul>
 	</div>
