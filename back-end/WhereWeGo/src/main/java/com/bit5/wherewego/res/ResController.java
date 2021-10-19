@@ -1,5 +1,7 @@
 package com.bit5.wherewego.res;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,17 @@ public class ResController {
 
 		return mav;
 	}	
+	//게시물 삭제
+	@RequestMapping(value = "/delete")
+	public String ajaxTest(HttpServletRequest request) {
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			service.delete(ajaxMsg[i]);
+		}
+		return "redirect:resList";
+	}
 
 }
 	
