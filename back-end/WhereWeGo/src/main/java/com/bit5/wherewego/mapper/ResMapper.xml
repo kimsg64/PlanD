@@ -8,16 +8,16 @@
 		<![CDATA[ 
 		select * from 
 		(select * from 
-		(select r.r_num r_num, r.userid userid, r.c_num c_num, c.name name, to_char(r.resdate, 'MM/DD') resdate, r.time time from res r 
+		(select r.res_num res_num, r.userid userid, r.c_num c_num, c.name name, to_char(r.resdate, 'MM/DD') resdate, r.time time from res r 
 		join course c on r.c_num=c.c_num 
-		order by r_num desc) 
-		where rownum<=#{param1} order by r_num asc) 
-		where rownum<=#{param2} order by r_num desc
+		order by res_num desc) 
+		where rownum<=#{param1} order by res_num asc) 
+		where rownum<=#{param2} order by res_num desc
 		]]>
 	</select>
 	
 	<select id="totalRecordCount" resultType="int">
-		select count(r_num) totalRecord from res
+		select count(res_num) totalRecord from res
 	</select>
 	<!--  
 	<delete id="deleteList">

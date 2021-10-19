@@ -170,11 +170,7 @@ ul.pagination li a:hover:not(.active) {
 	<img src="imgs/banner/res.jpg"/>
 </div>
 	<div id="list">
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
 		<form method="post" id="frm">
 		<ul id="boardList">
 
@@ -187,9 +183,9 @@ ul.pagination li a:hover:not(.active) {
 			<li>시간대</li>
 
 			<c:forEach var="vo" items="${list}">
-				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="/wherewego/resView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li><input type="checkbox" name="chk" value="${vo.res_num}" /></li>
+				<li>${vo.res_num }</li>
+				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
 				<li>${vo.time }:00</li>
