@@ -133,6 +133,8 @@ public class AdController {
 		int point2 = photo.lastIndexOf("]");
 		String photo2 = photo.substring(1,point2);
 		vo.setPhoto(photo2); //저장되는 파일명
+		
+		System.out.println("확인용:"+vo.getStartdate()+"/"+vo.getEnddate());
 
 		ModelAndView mav = new ModelAndView();
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);

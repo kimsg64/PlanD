@@ -30,7 +30,7 @@
 	<!-- 베스트리뷰 -->
 	<select id="selectBestReviews"
 		resultType="com.bit5.wherewego.review.ReviewVO">
-		select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, n.resdate, r.grade 
+    select r.r_num r_num, r.score score, r.info info, to_char(r.writedate,'YY/MM/DD') writedate, r.photo photo, n.name name, n.userid userid, n.resdate resdate, r.grade grade 
 		from review r 
 		join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
 		on r.res_num=n.res_num and r.grade='공개' order by r.score desc , r.writedate asc
@@ -39,8 +39,15 @@
 	<!-- 새로운리뷰카운트 -->
 	<select id="newReviewCount" resultType="int">
 		select count(r_num)
-		newReview from review where to_char(writedate,'YY/MM/DD') =
-		to_char(sysdate,'YY/MM/DD')
+		newReview from review where to_char(writedate,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+	</select>
+	
+	<!-- 내가 작성한 리뷰 -->
+	<select id="myReviewSelect" resultType="com.bit5.wherewego.review.ReviewVO">
+		select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, n.resdate, r.grade 
+		from review r 
+		join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
+		on r.res_num=n.res_num and userid=#{param1} order by r.writedate asc
 	</select>
 
 </mapper>
