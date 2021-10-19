@@ -175,8 +175,6 @@ ul.pagination li a:hover:not(.active) {
 		<ul id="boardList">
 
 
-		<ul id="boardList">
-
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
 			<li class="wordCut">코스명</li>
