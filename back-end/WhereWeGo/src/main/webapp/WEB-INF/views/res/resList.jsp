@@ -170,12 +170,14 @@ ul.pagination li a:hover:not(.active) {
 	<img src="imgs/banner/res.jpg"/>
 </div>
 	<div id="list">
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
 		<form method="post" id="frm">
 		<ul id="boardList">
 
-
-		<ul id="boardList">
 
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
