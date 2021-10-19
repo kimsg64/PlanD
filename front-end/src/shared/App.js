@@ -14,7 +14,6 @@ import MyDibs from "../pages/MyDibs";
 import MyHistory from "../pages/MyHistory";
 import MyPage from "../pages/MyPage";
 import MyRecommendation from "../pages/MyRecommendation";
-import Notice from "../pages/Notice";
 import Planning from "../pages/Planning";
 import PointShop from "../pages/PointShop";
 import Registration from "../pages/Registration";
@@ -39,7 +38,6 @@ const App = () => {
       <Route path="/myhistory" component={MyHistory} />
       <Route path="/mypage" component={MyPage} />
       <Route path="/myrecommendation" component={MyRecommendation} />
-      <Route path="/notice" component={Notice} />
       <Route exact path="/planning" component={Planning} />
       <Route path="/planning/:date" component={Planning} />
       <Route path="/pointshop" component={PointShop} />

@@ -2,6 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script>
-	alert("로그인 실패");
-	history.back();
+		alert("광고 신청 실패");
+		history.back();
 </script>

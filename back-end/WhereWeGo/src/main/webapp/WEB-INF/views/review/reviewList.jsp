@@ -2,14 +2,89 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-	#top{display: flex; margin-top:80px; margin-left:50px;}
-	select{height: 30px;}
-	#search{margin-left:810px;}
-	img{margin-left:50px; padding-top:6%; padding-bottom:6%;}
+#whitetop {
+	width: 100%;
+	height: 80px;
+}
+
+#top {display: flex; margin-top:80px; margin-left:50px;}
+
+#search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
+
+#mainDiv {
+	width: 72%;
+	margin: 0 auto;
+	color: #00282e;
+	text-align: center;
+}
+
+#mainDiv>h1 {
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+#bottomdiv {
+	width:100%;
+	height: 50px;
+	margin : 10px 0px;
+}
+#count {
+	font-size: 0.7em;
+	color: #f5ebe3;
+	text-align:left;
+	float:left;
+}
+#count:hover {
+	color: #efcac3;
+}
 
 #buttonMenu {
 	float:right;
+}
+
+#list ul, #list li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#list {
+	width: 100%;
+	height: 450px;
+}
+
+#boardList>li {
+	float: left;
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f5ebe3;
+}
+
+#boardList>li:nth-child(7n+3) {
+	width: 45%;
+	text-align: left;
+}
+
+#boardList>li:nth-child(3) {
+	width: 45%;
+	text-align: center;
+}
+
+#boardList>li:nth-child(7n+1) {
+	width: 5%;
+}
+
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wordCut a:hover {
+	color:#fd7d73;
 }
 
 .button {
@@ -31,8 +106,8 @@
 .button:hover {
 	color: #0e595f;
 }
-	
-	ul.pagination {
+
+ul.pagination {
 	display: inline-block;
 	padding: 0;
 	margin: 0;
@@ -59,7 +134,8 @@ ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
 </style>
-<<<<<<< Updated upstream
+
+
 </head>
 <body>
 <div id="top">
@@ -78,7 +154,7 @@ ul.pagination li a:hover:not(.active) {
 <div>
 	<img src="../img/review.png" width="300px"/>
 </div>                        
-=======
+
 
 <script>
 //전체선택
@@ -96,6 +172,7 @@ ul.pagination li a:hover:not(.active) {
 		});
    });
 </script>
+
 <script>
 //체크 설정
 $(document).ready(function(){
@@ -109,6 +186,7 @@ $(document).ready(function(){
 });
 
 </script>
+
 <div id="whitetop"></div>
 
 
@@ -116,10 +194,27 @@ $(document).ready(function(){
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
 
+
 <div id="search">	
 	<input type="text" placeholder="검색어 입력"><button>검색</button>
 </div>		
 
+	
+	<div id="reviewbanner">
+		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
+	</div>
+
+	<!-- 검색 -->
+	<div id="search">
+		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reviewList">
+			<select name="searchKey">
+				<option value="name">코스명</option>
+				<option value="userid">아이디</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
+			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
+		</form>
+	</div>
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
@@ -133,8 +228,12 @@ $(document).ready(function(){
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num}</li>
+
 				<li class="wordCut"><a
 					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+
+				<li class="wordCut"><a href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
@@ -142,17 +241,20 @@ $(document).ready(function(){
 			</c:forEach>
 		</ul>
 	</div>
-<!--  >>>>>>> Stashed changes-->
+
 	
 	<div id="bottomdiv">
+		<div id="count">
+			<div>총 레코드 수 : ${pVo.totalRecord }</div>
+			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
+		</div>
 		
 		<div id="buttonMenu">
 			<a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
 		</div>
 	</div>
-	
-</div>
-<!-- 페이징 -->
+
+	<!-- 페이징 -->
 	<div id="paging">
 		<ul class="pagination">
 			<!-- 이전페이지 -->
@@ -194,5 +296,4 @@ $(document).ready(function(){
 			</c:if>
 		</ul>
 	</div>
-</body>
-</html>
+</div>

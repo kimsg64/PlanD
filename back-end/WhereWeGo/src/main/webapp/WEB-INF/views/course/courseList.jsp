@@ -4,14 +4,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-#whitetop {
-	width: 100%;
-	height: 80px;
-}
 
 #top {display: flex; margin-top:80px; margin-left:50px;}
 
-#search{margin-left:720px; margin-bottom:30px;}
+#searchFrm{margin-left:1080px; margin-bottom:30px; margin-top:20px;}
 
 #mainDiv {
 	width: 72%;
@@ -87,18 +83,6 @@
 	color:#fd7d73;
 }
 
-#popup0 {
-	color: #f5ebe3;
-}
-
-#popup0:hover {
-	color: #81bbaf;
-}
-
-#popup1 {
-	color: #81bbaf;
-}
-
 .button {
 	background-color: #fd7d73;
 	border: none;
@@ -164,16 +148,22 @@ ul.pagination li a:hover:not(.active) {
    });
 </script>
 
-<div id="whitetop"></div>
-
-
-
 <div id="mainDiv">
 	<h1>코스 관리</h1>
+<div>
+	<img src="imgs/banner/course.jpg"/>
+</div>
 
-<div id="search">	
-	<input type="text" placeholder="검색어 입력"><button>검색</button>
-</div>		
+<!-- 검색 -->
+<div>
+	<form method="get" id="searchFrm" action="/wherewego/courseList">
+		<select name="searchKey">
+			<option value="name">코스명</option>
+			<option value="userid">작성자</option>
+		</select>
+		<input type="text" name="searchWord" id="searchWord"/><input type="submit" value="Search"/>
+	</form>
+</div>	
 
 	<div id="list">
 		<ul id="boardList">
@@ -203,7 +193,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">수정</a> <a class="button" href="#">공개</a> <a class="button" href="#">비공개</a>
+			<a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
 		</div>
 	</div>
 

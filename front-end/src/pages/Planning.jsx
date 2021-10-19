@@ -25,6 +25,7 @@ const Planning = ({ match }) => {
   const [idx, setIdx] = useState(0);
   const [selectedDate, setSelectedDate] = useState(match.params.date);
   const [selectedStation, setSelectedStation] = useState("천호");
+  const [lineNum, setLineNum] = useState("8");
   // console.log("부모", idx);
   // console.log(match);
   // console.log(match.params);
@@ -41,6 +42,8 @@ const Planning = ({ match }) => {
             idx={idx}
             setIdx={setIdx}
             selectedStation={selectedStation}
+            lineNum={lineNum}
+            setLineNum={setLineNum}
           />
           <Slider>
             <PageSlider idx={idx} rate={-50}>
@@ -49,6 +52,7 @@ const Planning = ({ match }) => {
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
                 selectedStation={selectedStation}
+                lineNum={lineNum}
               />
             </PageSlider>
           </Slider>

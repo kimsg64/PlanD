@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BorderEffect from "../../mixin/BorderEffect";
+import BorderEffectBox from "../../mixin/BorderEffectBox";
 import { Button, Input, SearchBar } from "../../mixin/Mixin";
 import LineSelector from "./LineSelector";
 
@@ -30,7 +31,7 @@ const RelativeSearchBar = styled(SearchBar)`
 
 const NextButton = styled(Button)`
   position: relative;
-  top: -110px;
+  top: -106px;
   left: 40%;
   font-size: var(--font-size-normal);
 `;
@@ -60,8 +61,9 @@ const StationViewer = ({
   idx = 0,
   setIdx = () => {},
   selectedStation = "",
+  lineNum = "",
+  setLineNum = () => {},
 }) => {
-  const [lineNum, setLineNum] = useState("8");
   const [lineColor, setLineColor] = useState("");
   const [searchBarWidth, setSearchBarWidth] = useState("0");
   // console.log(lineNum);
@@ -87,14 +89,16 @@ const StationViewer = ({
           <Input
             type="text"
             placeholder="역 이름으로 검색하세요"
-            onFocus={() => setSearchBarWidth("240px")}
+            onFocus={() => setSearchBarWidth("216px")}
             onBlur={() => setSearchBarWidth("0")}
           />
-          <BorderEffect
-            spanWidth={searchBarWidth}
-            fromTop="48px"
-            fromLeft="0"
-          />
+          <BorderEffectBox fromLeft="-124px">
+            <BorderEffect
+              spanWidth={searchBarWidth}
+              fromTop="20px"
+              bgColor="var(--color-green)"
+            />
+          </BorderEffectBox>
           <Button>
             <i className="fas fa-search"></i>
           </Button>

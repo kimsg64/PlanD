@@ -8,10 +8,6 @@
         
     </script>
 <style>
-	#whitetop {
-	width: 100%;
-	height: 80px;
-	}
 	.container{
 		width:70%;
 		margin:0px auto;
@@ -83,9 +79,13 @@
 		background-color: #f5ebe3;
 	}
 </style>
-<div id="whitetop"></div>
+
 <div class="container">
 <h1>광고 관리</h1> <!-- 페이징처리시 높이를 주고 하세요. -->
+<div>
+	<img src="img/banner/ad.jpg"/>
+</div>
+
    	  <ul class="admenu">
          <c:forEach var="vo" items="${list}">
          <li class="adlist">

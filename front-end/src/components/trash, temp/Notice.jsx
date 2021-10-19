@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import {
   BodyLayout,
   Button,
   Input,
   MenuTitle,
   SearchBar,
-} from "../components/body/mixin/Mixin";
+} from "../body/mixin/Mixin";
 
 const NoticeContainer = styled.ul`
   width: 1200px;

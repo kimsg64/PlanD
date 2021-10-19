@@ -31,7 +31,19 @@ public class NoticeController {
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
 		NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
 		
-		int total = dao2.totalRecordCount();
+		int total;
+		String paramsql="";
+		
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어 있으면
+			String sKey = pVo.getSearchKey();
+			String sWord = pVo.getSearchWord();
+			paramsql = " where "+sKey+" like '%"+sWord+"%'";
+			System.out.println(paramsql);
+			total = dao2.totalRecordCount(paramsql);
+		}
+		
+		total = dao2.totalRecordCount(paramsql);
+
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -44,7 +56,16 @@ public class NoticeController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		mav.addObject("list",dao.noticeAllSelect(num1,num2));
+		//검색어가 있으면
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) {
+			String sKey = pVo.getSearchKey();
+			String sWord = pVo.getSearchWord();
+			mav.addObject("list",dao.noticeSearchSelect(num1,num2,sKey,sWord));
+		
+		} else { //검색어가 없으면
+			mav.addObject("list",dao.noticeAllSelect(num1,num2));
+		}
+		
 		mav.addObject("pVo",pVo);
 		mav.setViewName("notice/noticeList");
 

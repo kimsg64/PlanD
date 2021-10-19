@@ -54,3 +54,4 @@
 - react-calendar
 - KakaoMap(services)
 - ckeditor
+- react-google-map

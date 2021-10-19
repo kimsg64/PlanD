@@ -54,7 +54,7 @@ const ArticleItem = styled.div`
 const MemberHome = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   // 날짜 선택하고 course로 넘어가게 하기
-  console.log("멤버홈", selectedDate);
+  // console.log("멤버홈", selectedDate);
 
   return (
     <>

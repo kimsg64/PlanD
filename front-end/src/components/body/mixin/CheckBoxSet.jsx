@@ -4,7 +4,8 @@ import { Checkbox, CheckboxLabel } from "./Mixin";
 
 // 옵션 컨테이너
 const OptionsContainer = styled.div`
-  width: calc(42em + var(--margin-default));
+  /* width: calc(42em + var(--margin-default)); */
+  min-width: 712px;
   height: auto;
   display: flex;
   border: 2px solid var(--color-font);

@@ -16,7 +16,7 @@ public class UserController {
 	UserDAO dao = new UserDAO();
 	
 	// 회원가입
-	@PostMapping(path = "/user/getUserData")
+	@PostMapping(path = "/getUserData")
 	public int getUserData(@RequestBody UserVO userData) {
 		int result = dao.insertUser(userData);
 		if(result > 0) {
@@ -45,7 +45,7 @@ public class UserController {
 		// 어차피 로그인 성공한 애들이 들어올 곳이므로... 그냥 설정하면 된다.
 		// front 쿠키에 저장된 userId = back 세션에 저장된 userId면 로그인된 것으로 간주하면 됨! 
 		System.out.println(loginId);
-		session.setAttribute("loginId", loginId);
+		session.setAttribute("logid", loginId);
 		System.out.println(session.getAttribute("loginId"));
 		return true;
 	}

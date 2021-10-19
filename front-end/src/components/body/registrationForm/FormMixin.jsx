@@ -27,10 +27,10 @@ export const FormInput = styled(Input)`
   font-size: var(--font-size-small);
   position: relative;
   text-align: left;
-  border: 2px solid var(--color-light-bg);
+  border: 2px solid var(--color-bg);
   /* border-bottom: 2px solid var(--color-font); */
   transition-duration: 0.2s;
-  background-color: var(--color-light-bg);
+  background-color: var(--color-bg);
   &:disabled {
     /* background-color: white; */
   }
