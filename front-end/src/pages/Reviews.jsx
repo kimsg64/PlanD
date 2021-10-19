@@ -29,6 +29,7 @@ const ReviewsContainer = styled.ul`
 `;
 
 const ReviewItem = styled.li`
+  max-width: 440px;
   height: 560px;
   margin: 0 calc(var(--margin-default) / 1.4);
   padding: var(--padding-default);
@@ -42,7 +43,8 @@ const ReviewItem = styled.li`
   }
 
   /* 체크용 > 색깔 변경예정 */
-  border: 2px solid var(--color-brown);
+  border: 2px solid var(--color-font);
+  box-shadow: 0px 2px 4px 2px grey;
 `;
 
 const ImageBox = styled.div`
@@ -61,7 +63,9 @@ const TextBox = styled.div`
   height: 112px;
   margin-top: calc(var(--margin-default) / 2);
   padding: var(--padding-default);
-  border: 2px solid var(--color-brown);
+  background-color: var(--color-light-bg);
+  box-shadow: 0px 2px 4px 2px grey;
+  /* border: 2px solid var(--color-font); */
   border-radius: 8px;
   font-size: var(--font-size-normal);
   p {
@@ -119,7 +123,7 @@ const Reviews = () => {
   // 리뷰 데이터
   const reviewsData = ReviewsData();
   const reviewsList = reviewsData[2];
-  console.log(reviewsList);
+  // console.log(reviewsList);
   // 슬라이더 이펙트 기준
   let startX;
   let scrollL;

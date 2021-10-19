@@ -225,7 +225,7 @@ const Header = () => {
                           <BorderEffect spanWidth={homeWidth} />
                         </SubMenuItem>
                       </Link>
-                      <Link to={"/editprofile"}>
+                      <Link to={"/individualform"}>
                         <SubMenuItem
                           onMouseOver={() => setProfileWidth("152px")}
                           onMouseOut={() => setProfileWidth("0")}

@@ -29,7 +29,6 @@ export const Button = styled.button`
   padding: var(--padding-tiny) var(--padding-small);
   font-family: -apple-system;
   font-size: var(--font-size-small);
-  /* background-color: var(--color-light-green); */
   background-color: var(--color-green);
   border: none;
   border-radius: 4px;
@@ -38,22 +37,32 @@ export const Button = styled.button`
   position: ${(props) => props.position || "static"};
   top: ${(props) => props.fromTop};
   left: ${(props) => props.fromLeft};
-  :hover {
+  &:hover {
     cursor: pointer;
     transform: scale(1.02);
-    /* color: var(--color-green); */
-    color: var(--color-light-green);
+    /* color: var(--color-light-green); */
   }
-  :active {
-    /* background-color: var(--color-green);
-    color: var(--color-light-green); */
+  &:active {
     background-color: var(--color-dark-green);
     color: var(--color-green);
   }
 `;
 
-// 시작용 큰 버튼
-export const StartButton = styled(Button)`
+// 색 바뀌는 버튼
+export const StyledButton = styled(Button)`
+  transition-duration: 0.5s;
+  &:hover {
+    background-color: var(--color-light-green);
+    color: var(--color-green);
+  }
+  &:active {
+    background-color: var(--color-dark-green);
+    color: var(--color-light-green);
+  }
+`;
+
+// 큰 버튼
+export const StartButton = styled(StyledButton)`
   width: 180px;
   height: 60px;
   margin-top: calc(var(--margin-default));
@@ -128,7 +137,7 @@ export const CheckboxLabel = styled.label`
   align-items: center;
   min-width: 120px;
   height: 40px;
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 `;

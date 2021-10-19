@@ -60,7 +60,7 @@ const Registration = () => {
       <BodyLayout padding="var(--header-height) 0 0 0">
         <Container>
           <Classification>
-            <Link to={"/individualfrom"}>
+            <Link to={"/individualform"}>
               <IconContainer>
                 <i className="fas fa-user-alt"></i>
                 <p>개인회원</p>

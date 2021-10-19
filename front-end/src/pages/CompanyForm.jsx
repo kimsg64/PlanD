@@ -64,7 +64,7 @@ const CompanyForm = () => {
       zip: zip,
       addr: addr + " " + addrDetail,
     };
-    console.log("회사바디", body);
+    // console.log("회사바디", body);
     axios
       .post("/wherewego/registertest", body)
       .then((response) => {

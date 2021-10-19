@@ -4,7 +4,6 @@ import "./App.css";
 import About from "../pages/About";
 import AdForAd from "../pages/AdForAd";
 import CompanyForm from "../pages/CompanyForm";
-import EditProfile from "../pages/EditProfile";
 import FAQ from "../pages/FAQ";
 import Home from "../pages/Home";
 import IndividualForm from "../pages/IndividualForm";
@@ -28,10 +27,9 @@ const App = () => {
       <Route path="/about" component={About} />
       <Route path="/adforad" component={AdForAd} />
       <Route path="/companyform" component={CompanyForm} />
-      <Route path="/editprofile" component={EditProfile} />
       <Route path="/faq" component={FAQ} />
       <Route exact path="/" component={Home} />
-      <Route path="/individualfrom" component={IndividualForm} />
+      <Route path="/individualform" component={IndividualForm} />
       <Route path="/login" component={Login} />
       <Route path="/memberhome" component={MemberHome} />
       <Route path="/mydibs" component={MyDibs} />

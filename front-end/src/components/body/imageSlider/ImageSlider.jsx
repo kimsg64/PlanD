@@ -9,10 +9,10 @@ const ImageSliderContainer = styled.section`
   overflow: hidden;
 `;
 
-const ImageSlider = () => {
+const ImageSlider = ({ idx = "first", setIdx = () => {} }) => {
   return (
     <ImageSliderContainer>
-      <LinkedContents />
+      <LinkedContents idx={idx} setIdx={setIdx} />
     </ImageSliderContainer>
   );
 };

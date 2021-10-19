@@ -65,9 +65,8 @@ const Result = () => {
       <BodyLayout>
         {/* 요약 */}
         <div>
-          <div>잠실역 데이트</div>
+          <h1>코스명</h1>
           <div>10:00~14:00</div>
-          <div>잠실역</div>
         </div>
         {coords.length === 3 ? (
           <CustomTMap
@@ -80,18 +79,11 @@ const Result = () => {
           <PageSlider idx={idx} rate={-25}>
             <Container>
               <div>코스 요약(장소 1, 2, 3)</div>
-
               <div>날씨 소개</div>
               <div>추천 코디</div>
             </Container>
             <Container>
-              <div>장소1 소개</div>
-            </Container>
-            <Container>
-              <div>장소2 소개</div>
-            </Container>
-            <Container>
-              <div>장소3 소개</div>
+              <div>장소1, 2, 3 소개</div>
             </Container>
           </PageSlider>
         </Slider>
@@ -100,16 +92,6 @@ const Result = () => {
             <Button onClick={onClickNext}>다음</Button>
           </ButtonContainer>
         ) : idx === 1 ? (
-          <ButtonContainer>
-            <Button onClick={onClickPrev}>이전</Button>
-            <Button onClick={onClickNext}>다음</Button>
-          </ButtonContainer>
-        ) : idx === 2 ? (
-          <ButtonContainer>
-            <Button onClick={onClickPrev}>이전</Button>
-            <Button onClick={onClickNext}>다음</Button>
-          </ButtonContainer>
-        ) : idx === 3 ? (
           <ButtonContainer>
             <Button onClick={onClickPrev}>이전</Button>
           </ButtonContainer>

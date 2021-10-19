@@ -10,7 +10,7 @@ const MapContainer = styled.div`
 `;
 
 const { kakao } = window;
-const KakaoMapSearchForm = ({ place = "" }) => {
+const KakaoMapSearchForm = ({ place = "", setClickedPlace = () => {} }) => {
   useEffect(() => {
     // 마커를 담을 배열입니다
     var markers = [];
@@ -95,6 +95,17 @@ const KakaoMapSearchForm = ({ place = "" }) => {
           kakao.maps.event.addListener(marker, "mouseover", function () {
             displayInfowindow(marker, title);
           });
+
+          ////////////////////////////////////////////////////////////////
+          // 클릭 이벤트 추가
+          kakao.maps.event.addListener(marker, "click", function () {
+            // console.log(title);
+            setClickedPlace(title);
+          });
+          // console.log(marker);
+          // console.log(title);
+          // console.log("선택 장소: ", searchedWord);
+          ////////////////////////////////////////////////////////////////
 
           kakao.maps.event.addListener(marker, "mouseout", function () {
             infowindow.close();
@@ -242,7 +253,7 @@ const KakaoMapSearchForm = ({ place = "" }) => {
     }
   }, [place]);
 
-  return <MapContainer id="kakaoMap"></MapContainer>;
+  return <MapContainer id="kakaoMap" />;
 };
 
 export default KakaoMapSearchForm;

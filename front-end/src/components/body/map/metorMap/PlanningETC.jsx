@@ -6,6 +6,7 @@ import Form from "../../mixin/Form";
 import { Button } from "../../mixin/Mixin";
 import { read_cookie } from "sfcookies";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -97,7 +98,7 @@ const PlanningETC = ({
     e.preventDefault();
     const body = {
       userId: read_cookie("userId"),
-      line: lineNum,
+      line: lineNum + "호선",
       stname: selectedStation,
       resdate: stringifyResdate(),
       time: parseInt(time),
@@ -112,7 +113,11 @@ const PlanningETC = ({
       .then((response) => {
         console.log("response : ", response.data);
         // 데이터 get 해서 결과 창 띄워야 함 ★★★★★
-        window.location.href = "http://localhost:3000/#/result";
+        // 가져갈 데이터
+        // 1. userid
+        // 2. place1, 2, 3 (이름, 주소, 영업시간, 종류, 전화번호, info, 링크)
+        // 3. course(코스명, opt, sort, score, 승인된것만)
+        // window.location.href = "http://localhost:3000/#/result";
       })
       .catch((error) => {
         console.log("failed", error);
@@ -213,6 +218,7 @@ const PlanningETC = ({
           <Label>관심사를 선택하세요 </Label>
           <CheckBoxSet setOpt={setOpt} />
         </OptionContainer>
+        {/* 사실은 axios로 데이터를 받은 뒤 이동해야 함 */}
         <SearchButton type="submit">코스 검색</SearchButton>
       </SearchForm>
     </Container>

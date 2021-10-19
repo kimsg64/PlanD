@@ -42,8 +42,20 @@ const Title = styled.div`
   padding: calc(var(--margin-default) / 4) 0;
 `;
 
-const CheckBoxSet = ({ setOpt = () => {} }) => {
-  // 체크박스 리스트 만들기
+const CheckBoxSet = ({ opt = [], setOpt = () => {} }) => {
+  const restaurants = ["한식", "일식", "중식", "양식", "그외"];
+  const cafes = ["분위기", "컨셉", "야외"];
+  const others = ["체험", "문화", "익스트림", "이색"];
+  const commons = [
+    "팝업",
+    "기념일",
+    "실외",
+    "실내",
+    "신상",
+    "가성비",
+    "럭셔리",
+  ];
+  // 체크박스 체크된 친구들 리스트 만들기
   const setOptList = (e) => {
     setOpt((prevState) => {
       // console.log(prevState);
@@ -52,6 +64,9 @@ const CheckBoxSet = ({ setOpt = () => {} }) => {
         : [...prevState, e.target.value];
     });
   };
+
+  // 전달 받은 모든 opt에 대해서 체크박스에 값이 있으면 체크박스를 selected
+  // console.log(opt);
 
   return (
     <OptionsContainer>
@@ -63,183 +78,111 @@ const CheckBoxSet = ({ setOpt = () => {} }) => {
       </TitleGroup>
       <OptionsGroup>
         <GroupWrapper>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="한식"
-              onClick={setOptList}
-            />
-            한식
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="일식"
-              onClick={setOptList}
-            />
-            일식
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="중식"
-              onClick={setOptList}
-            />
-            중식
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="양식"
-              onClick={setOptList}
-            />
-            양식
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="그외"
-              onClick={setOptList}
-            />
-            그외
-          </CheckboxLabel>
+          {restaurants.map((restaurant) => {
+            return opt.findIndex((option) => option === restaurant) >= 0 ? (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={restaurant}
+                  onClick={setOptList}
+                  checked
+                />
+                {restaurant}
+              </CheckboxLabel>
+            ) : (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={restaurant}
+                  onClick={setOptList}
+                />
+                {restaurant}
+              </CheckboxLabel>
+            );
+          })}
         </GroupWrapper>
+
         <GroupWrapper>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="분위기"
-              onClick={setOptList}
-            />
-            분위기
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="컨셉"
-              onClick={setOptList}
-            />
-            컨셉
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="야외"
-              onClick={setOptList}
-            />
-            야외
-          </CheckboxLabel>
+          {cafes.map((cafe) => {
+            return opt.findIndex((option) => option === cafe) >= 0 ? (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={cafe}
+                  onClick={setOptList}
+                  checked
+                />
+                {cafe}
+              </CheckboxLabel>
+            ) : (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={cafe}
+                  onClick={setOptList}
+                />
+                {cafe}
+              </CheckboxLabel>
+            );
+          })}
         </GroupWrapper>
+
         <GroupWrapper>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="체험"
-              onClick={setOptList}
-            />
-            체험
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="문화"
-              onClick={setOptList}
-            />
-            문화
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="익스트림"
-              onClick={setOptList}
-            />
-            익스트림
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="이색"
-              onClick={setOptList}
-            />
-            이색
-          </CheckboxLabel>
+          {others.map((other) => {
+            return opt.findIndex((option) => option === other) >= 0 ? (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={other}
+                  onClick={setOptList}
+                  checked
+                />
+                {other}
+              </CheckboxLabel>
+            ) : (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={other}
+                  onClick={setOptList}
+                />
+                {other}
+              </CheckboxLabel>
+            );
+          })}
         </GroupWrapper>
+
         <GroupWrapper>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="팝업"
-              onClick={setOptList}
-            />
-            팝업
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="기념일"
-              onClick={setOptList}
-            />
-            기념일
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="실외"
-              onClick={setOptList}
-            />
-            실외
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="실내"
-              onClick={setOptList}
-            />
-            실내
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="신상"
-              onClick={setOptList}
-            />
-            신상
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="가성비"
-              onClick={setOptList}
-            />
-            가성비
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
-              type="checkbox"
-              name="opt"
-              value="럭셔리"
-              onClick={setOptList}
-            />
-            럭셔리
-          </CheckboxLabel>
+          {commons.map((common) => {
+            return opt.findIndex((option) => option === common) >= 0 ? (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={common}
+                  onClick={setOptList}
+                  checked
+                />
+                {common}
+              </CheckboxLabel>
+            ) : (
+              <CheckboxLabel>
+                <Checkbox
+                  type="checkbox"
+                  name="opt"
+                  value={common}
+                  onClick={setOptList}
+                />
+                {common}
+              </CheckboxLabel>
+            );
+          })}
         </GroupWrapper>
       </OptionsGroup>
     </OptionsContainer>

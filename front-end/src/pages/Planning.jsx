@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import { BodyLayout } from "../components/body/mixin/Mixin";
@@ -24,7 +24,7 @@ const Slider = styled.div`
 const Planning = ({ match }) => {
   const [idx, setIdx] = useState(0);
   const [selectedDate, setSelectedDate] = useState(match.params.date);
-  const [selectedStation, setSelectedStation] = useState("천호");
+  const [selectedStation, setSelectedStation] = useState("역");
   const [lineNum, setLineNum] = useState("8");
   // console.log("부모", idx);
   // console.log(match);
@@ -32,6 +32,9 @@ const Planning = ({ match }) => {
   // console.log(match.params.date);
   // console.log(selectedDate);
   // console.log(selectedStation);
+  useEffect(() => {
+    setSelectedStation("역");
+  }, [lineNum]);
 
   return (
     <>
@@ -42,6 +45,7 @@ const Planning = ({ match }) => {
             idx={idx}
             setIdx={setIdx}
             selectedStation={selectedStation}
+            setSelectedStation={setSelectedStation}
             lineNum={lineNum}
             setLineNum={setLineNum}
           />

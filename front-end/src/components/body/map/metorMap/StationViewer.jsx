@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import StationsData from "../../../../server/StationsData";
 import BorderEffect from "../../mixin/BorderEffect";
 import BorderEffectBox from "../../mixin/BorderEffectBox";
 import { Button, Input, SearchBar } from "../../mixin/Mixin";
@@ -61,11 +62,15 @@ const StationViewer = ({
   idx = 0,
   setIdx = () => {},
   selectedStation = "",
+  setSelectedStation = () => {},
   lineNum = "",
   setLineNum = () => {},
 }) => {
   const [lineColor, setLineColor] = useState("");
   const [searchBarWidth, setSearchBarWidth] = useState("0");
+  const [keyword, setKeyword] = useState("");
+  const stationData = StationsData();
+  const stationsList = stationData[2];
   // console.log(lineNum);
   // console.log(lineColor);
   // console.log(selectedStation);
@@ -73,6 +78,18 @@ const StationViewer = ({
   const onClickNext = () => {
     // console.log(idx);
     return idx === 0 ? setIdx(1) : setIdx(0);
+  };
+
+  const startSearching = (e) => {
+    setSelectedStation("");
+    e.preventDefault();
+    // console.log(stationsList);
+    stationsList.filter((station) => {
+      // console.log("검색어", keyword);
+      // console.log("리스트", station.stname);
+      return station.stname === keyword ? setSelectedStation(keyword) : null;
+    });
+    // setLineNum
   };
 
   return (
@@ -85,12 +102,13 @@ const StationViewer = ({
         <Station>{selectedStation}</Station>
       </LineViewer>
       <Liner lineColor={lineColor}>
-        <RelativeSearchBar width="300px">
+        <RelativeSearchBar width="300px" as="form" onSubmit={startSearching}>
           <Input
             type="text"
             placeholder="역 이름으로 검색하세요"
             onFocus={() => setSearchBarWidth("216px")}
             onBlur={() => setSearchBarWidth("0")}
+            onKeyUp={(e) => setKeyword(e.target.value)}
           />
           <BorderEffectBox fromLeft="-124px">
             <BorderEffect

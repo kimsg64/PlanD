@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ToggleBackground = styled.div`
-  width: 54px;
+  width: 80px;
   height: 32px;
-  background-color: var(--color-green);
+  background-color: var(--color-focus);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -17,22 +17,42 @@ const ToggleBackground = styled.div`
 const ToggleCircle = styled.div`
   width: 28px;
   height: 28px;
-  background-color: hsl(0, 0%, 70%);
+  background-color: white;
   /* border: 1px solid var(--color-dark-green); */
   border-radius: 50%;
-  /* box-shadow: -4px 0px 2px 2px hsl(0, 0%, 20%); */
+  box-shadow: 2px 1px 6px var(--color-dark-focus);
   transition-duration: 0.3s;
-  transform: translateX(${(props) => props.toggleOn * 26 + "px"});
+  transform: translateX(${(props) => props.toggleOn * 52 + "px"});
+  position: relative;
 `;
 
-const ToggleButton = () => {
+const Text = styled.div`
+  color: white;
+  font-size: var(--font-size-tiny);
+  position: relative;
+  top: 6px;
+  right: ${(props) => (props.toggleOn === 0 ? "-40px" : "32px")};
+`;
+
+const ToggleButton = ({ setClassification = () => {} }) => {
   const [toggleOn, setToggleOn] = useState(0);
+
+  useEffect(() => {
+    toggleOn === 0
+      ? setClassification("individual")
+      : setClassification("company");
+  }, [toggleOn]);
+
   const onClickButton = () => {
-    return toggleOn === 0 ? setToggleOn(1) : setToggleOn(0);
+    // 0일때 개인, 1일때 사업자
+    toggleOn === 0 ? setToggleOn(1) : setToggleOn(0);
   };
+
   return (
     <ToggleBackground onClick={onClickButton}>
-      <ToggleCircle toggleOn={toggleOn} />
+      <ToggleCircle toggleOn={toggleOn}>
+        <Text toggleOn={toggleOn}>{toggleOn === 0 ? "개인" : "법인"}</Text>
+      </ToggleCircle>
     </ToggleBackground>
   );
 };

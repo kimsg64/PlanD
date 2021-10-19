@@ -14,14 +14,33 @@ const Dot = styled.div`
   margin: calc(var(--margin-default) / 4);
   border-radius: 50%;
   background-color: ${(props) => props.bgColor || "var(--color-light-green)"};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const Dots = () => {
+const Dots = ({ idx = "first", setIdx = () => {} }) => {
+  // console.log("idx in Dots", idx);
   return (
     <DotsBox>
-      <Dot bgColor="var(--color-green)"></Dot>
-      <Dot></Dot>
-      <Dot></Dot>
+      <Dot
+        bgColor={
+          idx === "first" ? "var(--color-green)" : "var(--color-light-green)"
+        }
+        onClick={() => setIdx("first")}
+      />
+      <Dot
+        bgColor={
+          idx === "second" ? "var(--color-green)" : "var(--color-light-green)"
+        }
+        onClick={() => setIdx("second")}
+      />
+      <Dot
+        bgColor={
+          idx === "third" ? "var(--color-green)" : "var(--color-light-green)"
+        }
+        onClick={() => setIdx("third")}
+      />
     </DotsBox>
   );
 };

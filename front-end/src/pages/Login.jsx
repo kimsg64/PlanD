@@ -58,10 +58,11 @@ const InputBox = styled.input`
 `;
 
 const RadioContainer = styled.div`
-  width: 68%;
+  width: 100%;
+  margin-right: 0;
   margin-top: var(--margin-default);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const CheckboxLabelWithoutMargin = styled(CheckboxLabel)`
@@ -81,7 +82,7 @@ const SubmitButton = styled(InputBox)`
   transition-duration: 0.2s;
   :hover {
     cursor: pointer;
-    transform: scale(1.02);
+    /* transform: scale(1.02); */
     color: var(--color-light-green);
   }
   &:active {
@@ -101,6 +102,8 @@ const Login = () => {
   const [keepSession, setKeepSession] = useState(false);
   // 스타일 변경을 위한 props
   const [isSucceeded, setIsSucceeded] = useState(true);
+
+  // console.log("당신의 상태는?", classification);
 
   const onClickKeepSession = () => {
     setKeepSession(!keepSession);
@@ -131,7 +134,7 @@ const Login = () => {
     axios
       .post(url, body)
       .then((response) => {
-        console.log("response : ", response.data);
+        // console.log("response : ", response.data);
         if (response.data > 0) {
           // 그냥 경고 띄우기용
           setIsSucceeded(true);
@@ -174,7 +177,8 @@ const Login = () => {
           <h1>Sign in</h1>
           <InputContainer visibility={isSucceeded ? "hidden" : "visible"}>
             <RadioContainer>
-              <CheckboxLabelWithoutMargin>
+              <ToggleButton setClassification={setClassification} />
+              {/* <CheckboxLabelWithoutMargin>
                 <CheckboxWithoutMargin
                   type="radio"
                   name="classification"
@@ -195,7 +199,7 @@ const Login = () => {
                   checked={classification === "company" ? true : false}
                 />
                 사업자
-              </CheckboxLabelWithoutMargin>
+              </CheckboxLabelWithoutMargin> */}
             </RadioContainer>
             <InputBox
               type="text"
@@ -224,7 +228,6 @@ const Login = () => {
               />
               로그인 유지하기
             </CheckboxLabelWithoutMargin>
-            <ToggleButton />
           </InputContainer>
           <SubmitButton type="submit" value="로그인" />
           <Link to={"/registration"}>

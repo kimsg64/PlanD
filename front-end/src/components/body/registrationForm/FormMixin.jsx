@@ -1,10 +1,10 @@
 // 유효성 검사용 백그라운드 이미지
 
 import styled, { css } from "styled-components";
-import { Button, Input } from "../mixin/Mixin";
+import { StyledButton, Input } from "../mixin/Mixin";
 
 // 제출 버튼
-export const SubmitButton = styled(Button)`
+export const SubmitButton = styled(StyledButton)`
   width: 120px;
   height: 40px;
   margin-right: 6px;
@@ -32,7 +32,8 @@ export const FormInput = styled(Input)`
   transition-duration: 0.2s;
   background-color: var(--color-bg);
   &:disabled {
-    /* background-color: white; */
+    background-color: var(--color-super-light-green);
+    border: 2px solid var(--color-super-light-green);
   }
 
   /* 필수 사항 유효성 체크(비밀번호 체크 외) */

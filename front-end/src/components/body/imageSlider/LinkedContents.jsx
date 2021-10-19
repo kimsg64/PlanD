@@ -50,8 +50,8 @@ const TextInImage = styled.div`
   }
 `;
 
-const LinkedContents = () => {
-  const [idx, setIdx] = useState("first");
+const LinkedContents = ({ idx = "first", setIdx = () => {} }) => {
+  // const [idx, setIdx] = useState("first");
   const interval = useRef();
   // useCallback을 쓰는 이유???
   const changeIdx = useCallback(() => {
@@ -62,6 +62,7 @@ const LinkedContents = () => {
       : setIdx("first");
     // console.log(idx);
   }, [idx]);
+
   useEffect(() => {
     interval.current = setInterval(changeIdx, 7000);
     return () => {
@@ -95,7 +96,7 @@ const LinkedContents = () => {
         </ImageBox>
         <TextInImage>
           <h1>
-            <PointLetter>빅데이터</PointLetter>를 이용해 엄선된
+            <PointLetter>전문가</PointLetter>를 통해 엄선된
           </h1>
           <h1>
             최적의 <PointLetter>데이트 코스</PointLetter> 안내

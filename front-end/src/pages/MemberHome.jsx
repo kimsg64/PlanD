@@ -6,13 +6,17 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import ImageSlider from "../components/body/imageSlider/ImageSlider";
 import Dots from "../components/body/imageSlider/Dots";
-import { PointLetter, BodyLayout } from "../components/body/mixin/Mixin";
+import {
+  PointLetter,
+  BodyLayout,
+  StyledButton,
+} from "../components/body/mixin/Mixin";
 import CustomCalerdar from "../components/body/calendar/CustomCalerdar";
 import { Link } from "react-router-dom";
 
 const MenuSection = styled.section`
   width: 60vw;
-  height: 132vh;
+  height: 140vh;
   margin: var(--margin-default);
   display: flex;
   justify-content: center;
@@ -44,15 +48,21 @@ const Article = styled.article`
   font-size: var(--font-size-title-small);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const ArticleItem = styled.div`
   margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
 `;
 
+const StyledButtonWidthMargin = styled(StyledButton)`
+  margin-bottom: 20px;
+`;
+
 const MemberHome = () => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [idx, setIdx] = useState("first");
+  // console.log("idx in member home", idx);
   // 날짜 선택하고 course로 넘어가게 하기
   // console.log("멤버홈", selectedDate);
 
@@ -60,8 +70,8 @@ const MemberHome = () => {
     <>
       <Header />
       <BodyLayout padding="0">
-        <ImageSlider />
-        <Dots />
+        <ImageSlider idx={idx} setIdx={setIdx} />
+        <Dots idx={idx} setIdx={setIdx} />
         <MenuSection>
           <Container>
             <SubHeading>
@@ -69,12 +79,24 @@ const MemberHome = () => {
             </SubHeading>
             <Article>
               {/* 시작일 받아서 반복문 */}
-              <ArticleItem>36,600 기념일 D-100 (2031/12/10)</ArticleItem>
-              <ArticleItem>36,700 기념일 D-200 (2032/03/20)</ArticleItem>
-              <ArticleItem>36,800 기념일 D-300 (2032/06/30)</ArticleItem>
-              <ArticleItem>101주년 D-365 (2032/09/05)</ArticleItem>
-              <ArticleItem>36,900 기념일 D-400 (2032/10/10)</ArticleItem>
-              {/* <ArticleItem>37,000 기념일 D-500 (2032/01/10)</ArticleItem> */}
+              <ArticleItem>
+                36,600 기념일 <PointLetter>D-100</PointLetter> (2031/12/10)
+              </ArticleItem>
+              <ArticleItem>
+                36,700 기념일 <PointLetter>D-200</PointLetter> (2032/03/20)
+              </ArticleItem>
+              <ArticleItem>
+                36,800 기념일 <PointLetter>D-300</PointLetter> (2032/06/30)
+              </ArticleItem>
+              <ArticleItem>
+                101주년 <PointLetter>D-365</PointLetter> (2032/09/05)
+              </ArticleItem>
+              <ArticleItem>
+                36,900 기념일 <PointLetter>D-400</PointLetter> (2032/10/10)
+              </ArticleItem>
+              <ArticleItem>
+                37,000 기념일 <PointLetter>D-500</PointLetter> (2032/01/10)
+              </ArticleItem>
             </Article>
           </Container>
           <Container>
@@ -84,16 +106,16 @@ const MemberHome = () => {
             <CustomCalerdar setSelectedDate={setSelectedDate} />
             {selectedDate !== null ? (
               <Link to={`/planning/${selectedDate}`}>
-                <div>
+                <StyledButtonWidthMargin>
                   {`${selectedDate.getFullYear()}/${
                     selectedDate.getMonth() + 1
                   }/${selectedDate.getDate()} 데이트 `}
                   예약하러 가기
-                </div>
+                </StyledButtonWidthMargin>
               </Link>
             ) : (
               <Link to={`/planning/`}>
-                <div>예약하러 가기</div>
+                <StyledButtonWidthMargin>예약하러 가기</StyledButtonWidthMargin>
               </Link>
             )}
           </Container>
