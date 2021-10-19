@@ -69,6 +69,16 @@
 		color: #0e595f;
 	}
 </style>
+<script>
+	const setMaxDate = () => {
+	    const today = new Date();
+	    const year = today.getFullYear();
+	    const month = today.getMonth() + 1;
+	    const day = today.getDate();
+	    // console.log(`${year}-${month}-${day}`);
+	    return `${year}-${month}-${day}`;
+	  };
+</script>
 
 <div id="mainDiv">
 <!-- 
@@ -112,8 +122,10 @@
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="javascript:document.adFrm.reset();">리셋</a>
-			<a class="button" href="javascript:document.adFrm.submit();">신청</a>
+			<button type="reset" class="button">리셋</button>
+			<button type="submit" class="button">신청</button>
+			<!-- <a class="button" href="javascript:document.adFrm.reset();">리셋</a>
+			<a class="button" href="javascript:document.adFrm.submit();">신청</a>  -->
 		</div>
 	</form>
 </div>
