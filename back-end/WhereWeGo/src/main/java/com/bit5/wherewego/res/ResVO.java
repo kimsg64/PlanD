@@ -1,5 +1,7 @@
 package com.bit5.wherewego.res;
 
+import java.util.List;
+
 public class ResVO {
 	private String r_num;
 	private String userid;
@@ -8,6 +10,14 @@ public class ResVO {
 	private int time;
 	private String name; //코스이름
 	
+	private List<Integer> noDelList;
+	
+	public List<Integer> getNoDelList() {
+		return noDelList;
+	}
+	public void setNoDelList(List<Integer> noDelList) {
+		this.noDelList = noDelList;
+	}
 	public String getR_num() {
 		return r_num;
 	}
