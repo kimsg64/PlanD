@@ -6,4 +6,7 @@ public interface UserDAOImp {
 	
 	// 유저 선택(로그인)
 	public int selectUser(UserVO userData);
+	
+	// 유저 선택(로그인된 유저 정보)
+	public UserVO selectUser(String userId);
 }

@@ -1,5 +1,6 @@
 package com.bit5.wherewego.course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,9 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
 import com.bit5.wherewego.res.PlanningVO;
-import com.bit5.wherewego.res.ResVO;
-import com.bit5.wherewego.station.StationVO;
-import com.bit5.wherewego.user.UserVO;
 
 @Controller
 public class CourseController {
@@ -59,14 +57,18 @@ public class CourseController {
 	}
 	
 	
-	// 유저 코스 검색 ★셀렉트해주세용
+	// 유저 코스 검색
 	@RequestMapping(value = "/searchCourse", method = RequestMethod.POST)
 	@ResponseBody
-	public List<CourseVO> searchCourse(@RequestBody PlanningVO vo) {
-		// 리퀘스트바디는 하나밖에 못 받으므로... 1. 자바스크립트에서 {UserVO:{userId: userId}, ...}   2. 새 VO 만들기
+	public List<ResultVO> searchCourse(@RequestBody PlanningVO vo) {
+		List<ResultVO> list = new ArrayList<ResultVO>();
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		
 		System.out.println(vo.getUserId());
+		
 		System.out.println(vo.getLine());
 		System.out.println(vo.getStname());
+		
 		System.out.println(vo.getResdate());
 		System.out.println(vo.getTime());
 		System.out.println(vo.getSort());

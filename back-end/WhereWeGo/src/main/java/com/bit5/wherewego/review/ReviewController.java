@@ -71,4 +71,9 @@ public class ReviewController {
 		List<ReviewVO> list = dao.selectBestReviews();
 		return list;
 	}
+	
+	@RequestMapping("/reviewitem")
+	public String showReviewItem() {
+		return "/review/review";
+	}
 }

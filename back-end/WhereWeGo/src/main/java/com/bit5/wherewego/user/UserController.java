@@ -16,13 +16,13 @@ public class UserController {
 	UserDAO dao = new UserDAO();
 	
 	// 회원가입
-	@PostMapping(path = "/getUserData")
+	@PostMapping(path = "/setUserData")
 	public int getUserData(@RequestBody UserVO userData) {
 		int result = dao.insertUser(userData);
 		if(result > 0) {
 			System.out.println("you did it~!");			
 		} else {
-			System.out.println("fail");			
+			System.out.println("fail");
 		}
 		return result;
 	}
@@ -48,5 +48,19 @@ public class UserController {
 		session.setAttribute("logid", loginId);
 		System.out.println(session.getAttribute("loginId"));
 		return true;
+	}
+	
+	// 유저 데이터 받기
+	@PostMapping(path = "/getUserData")
+	public UserVO selectUserData(@RequestBody UserVO userData) {
+		System.out.println(userData.getUserId());
+		UserVO vo = dao.selectUser(userData.getUserId());
+		System.out.println(vo.getName());
+		System.out.println(vo.getPoint());
+		System.out.println(vo.getStartdate());
+		System.out.println(vo.getRegdate());
+		System.out.println(vo.getZzim());
+		
+		return vo;
 	}
 }

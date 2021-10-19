@@ -68,4 +68,45 @@ public class UserDAO extends DBConnection implements UserDAOImp{
 		
 		return result;
 	};
+	
+	// 유저 선택(로그인된 유저 정보)
+	@Override
+	public UserVO selectUser(String userId) {
+		UserVO userData = new UserVO();
+		System.out.println("in DAO");
+		System.out.println(userId);
+		try {
+			dbConn();
+			sql = "select name, num, tel, email, zip, addr, startdate, photo, opt, zzim, history, regdate, photo, point, userid, pwd from usertbl where userid=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				userData.setName(rs.getString(1));
+				userData.setNum(rs.getString(2));
+				userData.setTel(rs.getString(3));
+				userData.setEmail(rs.getString(4));
+				userData.setZip(Integer.toString(rs.getInt(5)));
+				userData.setAddr(rs.getString(6));
+				userData.setStartdate(rs.getString(7));
+				userData.setPhoto(rs.getString(8));
+				userData.setOpt(rs.getString(9));
+				userData.setZzim(rs.getString(10));
+				userData.setHistory(rs.getString(11));
+				userData.setRegdate(rs.getString(12));
+				userData.setPhoto(rs.getString(13));
+				userData.setPoint(rs.getString(14));
+				userData.setUserId(rs.getString(15));
+				userData.setPwd(rs.getString(16));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return userData;
+	};
 }

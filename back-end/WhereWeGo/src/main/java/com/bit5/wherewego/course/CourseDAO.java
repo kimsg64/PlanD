@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bit5.wherewego.DBConnection;
 import com.bit5.wherewego.notice.PagingVO;
+import com.bit5.wherewego.res.PlanningVO;
 
 public class CourseDAO extends DBConnection implements CourseDAOImp {
 
@@ -48,5 +49,4 @@ public class CourseDAO extends DBConnection implements CourseDAOImp {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }
