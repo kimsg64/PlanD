@@ -19,4 +19,7 @@
 	<select id="totalRecordCount" resultType="int">
 		select count(r_num) totalRecord from res
 	</select>
+	<delete id="deleteList">
+		delete res where r_num = #{r_num}
+	</delete>
 </mapper>

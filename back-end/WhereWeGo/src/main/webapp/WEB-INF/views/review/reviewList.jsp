@@ -135,6 +135,27 @@ ul.pagination li a:hover:not(.active) {
 }
 </style>
 
+
+</head>
+<body>
+<div id="top">
+	<div><input type="checkbox" name="selectall" value="전체선택">전체선택</div>
+	<form>
+		<select name="search" id="search">
+			<option value="all">전체</option>
+			<option value="courseNo">코스번호</option>
+			<option value="id">아이디</option>
+			<option value="content">내용</option>
+		</select>
+	</form>
+		<input type="text" placeholder="검색어 입력">
+		<button>검색</button>
+</div>
+<div>
+	<img src="../img/review.png" width="300px"/>
+</div>                        
+
+
 <script>
 //전체선택
    $(()=>{
@@ -152,12 +173,32 @@ ul.pagination li a:hover:not(.active) {
    });
 </script>
 
+<script>
+//체크 설정
+$(document).ready(function(){
+    $("#button").click(function(){
+        if($("checkbox").is("checked")){
+            $()
+        }else{
+            alert("체크박스 체크 해제!");
+        }
+    });
+});
+
+</script>
+
 <div id="whitetop"></div>
 
 
 
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
+
+
+<div id="search">	
+	<input type="text" placeholder="검색어 입력"><button>검색</button>
+</div>		
+
 	
 	<div id="reviewbanner">
 		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
@@ -174,7 +215,6 @@ ul.pagination li a:hover:not(.active) {
 			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
 		</form>
 	</div>
-
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
@@ -188,7 +228,12 @@ ul.pagination li a:hover:not(.active) {
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num}</li>
+
+				<li class="wordCut"><a
+					href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+
 				<li class="wordCut"><a href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
@@ -196,6 +241,7 @@ ul.pagination li a:hover:not(.active) {
 			</c:forEach>
 		</ul>
 	</div>
+
 	
 	<div id="bottomdiv">
 		<div id="count">
