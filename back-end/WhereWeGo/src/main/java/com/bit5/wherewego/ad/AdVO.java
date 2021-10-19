@@ -10,9 +10,8 @@ public class AdVO {
 	private int price;
 	private String grade;
 	private String payment;
-	
 	private String name; //상호명
-	
+
 	public String getStartdate() {
 		return startdate;
 	}

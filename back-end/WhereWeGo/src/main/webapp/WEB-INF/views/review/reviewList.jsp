@@ -152,10 +152,6 @@ ul.pagination li a:hover:not(.active) {
    });
 </script>
 
-<div id="whitetop"></div>
-
-
-
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
 	
@@ -174,7 +170,6 @@ ul.pagination li a:hover:not(.active) {
 			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
 		</form>
 	</div>
-
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
@@ -187,8 +182,8 @@ ul.pagination li a:hover:not(.active) {
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num}</li>
-				<li class="wordCut"><a href="/wherewego/courseView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li>${vo.r_num }</li>
+				<li class="wordCut"><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>
@@ -196,6 +191,7 @@ ul.pagination li a:hover:not(.active) {
 			</c:forEach>
 		</ul>
 	</div>
+
 	
 	<div id="bottomdiv">
 		<div id="count">

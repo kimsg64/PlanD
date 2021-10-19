@@ -120,8 +120,38 @@ ul.pagination li a:hover:not(.active) {
     	  $('#list input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       
       }); 
-      
    });
+   function deleteValue(){
+	   var url = "delete";
+	   var valueArr = new Array();
+	   var list = $("input[name='chk']");
+	   for(var i = 0; i<list.length; i++){
+		   if(list[i].checked){
+			   valueArr.push(list[i].value);
+		   }
+	   }
+	   if(valueArr.length == 0){
+		   alert("선택된 글이 없습니다.");
+	   }else{
+		   var chk = confirm("정말 삭제하시겠습니까?");
+		   $.ajax({
+			   url : url,
+			   type : 'POST',
+			   traditional : true,
+			   data : {
+				   valueArr : valueArr
+			   },
+			   success: function(jdata){
+				   if(jdata = 1){
+					   alert("삭제 성공");
+					   location.replace("resList")
+				   }else{
+					   alert("삭제 실패");
+				   }
+			   }
+		   });
+	   }
+
 </script>
 
 <div id="mainDiv">
@@ -130,7 +160,11 @@ ul.pagination li a:hover:not(.active) {
 	<img src="imgs/banner/res.jpg"/>
 </div>
 	<div id="list">
+
+		<form method="post" id="frm">
 		<ul id="boardList">
+
+
 			<li><input type="checkbox" id="allChk"></li>
 			<li>No.</li>
 			<li class="wordCut">코스명</li>
@@ -139,14 +173,15 @@ ul.pagination li a:hover:not(.active) {
 			<li>시간대</li>
 
 			<c:forEach var="vo" items="${list}">
-				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
-				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="/wherewego/resView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li><input type="checkbox" name="chk" value="${vo.res_num}" /></li>
+				<li>${vo.res_num }</li>
+				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
 				<li>${vo.time }:00</li>
 			</c:forEach>
 		</ul>
+		</form>
 	</div>
 
 		
@@ -157,7 +192,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		
 		<div id="buttonMenu">
-			<a class="button" href="#">취소</a>
+			<a class="button" name="resDel" href="#">취소</a>
 		</div>
 	</div>
 

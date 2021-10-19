@@ -1,18 +1,29 @@
 package com.bit5.wherewego.res;
 
+import java.util.List;
+
 public class ResVO {
-	private String r_num;
+	private String res_num;
 	private String userid;
 	private int c_num;
 	private String resdate;
 	private int time;
+	
 	private String name; //코스이름
 	
-	public String getR_num() {
-		return r_num;
+	private List<Integer> noDelList;
+	
+	public List<Integer> getNoDelList() {
+		return noDelList;
 	}
-	public void setR_num(String r_num) {
-		this.r_num = r_num;
+	public void setNoDelList(List<Integer> noDelList) {
+		this.noDelList = noDelList;
+	}
+	public String getRes_num() {
+		return res_num;
+	}
+	public void setRes_num(String res_num) {
+		this.res_num = res_num;
 	}
 	public String getUserid() {
 		return userid;

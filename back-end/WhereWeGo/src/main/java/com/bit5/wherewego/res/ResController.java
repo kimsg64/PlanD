@@ -1,5 +1,7 @@
 package com.bit5.wherewego.res;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,7 @@ import com.bit5.wherewego.notice.PagingVO;
 @Controller
 public class ResController {
 	SqlSession sqlSession;
-
+	
 	public SqlSession getSqlSession() {
 		return sqlSession;
 	}
@@ -26,10 +28,10 @@ public class ResController {
 	public ModelAndView list(PagingVO pVo) {
 
 		ModelAndView mav = new ModelAndView();
-		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		ResDAOImp dao2 = sqlSession.getMapper(ResDAOImp.class);
 		
-		int total = dao2.totalRecordCount();
+		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
+		
+		int total = dao.totalRecordCount();
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -42,11 +44,13 @@ public class ResController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		mav.addObject("list",dao.resAllSelect(num1,num2));
+		ResDAOImp dao2 = sqlSession.getMapper(ResDAOImp.class);
+		mav.addObject("list",dao2.resAllSelect(num1,num2));
 		mav.addObject("pVo",pVo);
 		mav.setViewName("res/resList");
 
 		return mav;
-	}
+	}	
 
 }
+	

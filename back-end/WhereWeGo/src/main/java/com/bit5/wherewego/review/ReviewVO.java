@@ -2,15 +2,26 @@ package com.bit5.wherewego.review;
 
 public class ReviewVO {
 	private int r_num;
-	private int c_num;
-	private String userid;
 	private int score;
 	private String info;
 	private String writedate;
 	private String grade;
+	private String photo;
+	private String res_num;
 	
+	private int c_num; //코스번호
 	private String name; //코스명
+	private String userid; //작성자아이디
+	private String resdate; //방문일
 	
+	
+	
+	public String getResdate() {
+		return resdate;
+	}
+	public void setResdate(String visitdate) {
+		this.resdate = visitdate;
+	}
 	public int getR_num() {
 		return r_num;
 	}
@@ -60,6 +71,18 @@ public class ReviewVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getRes_num() {
+		return res_num;
+	}
+	public void setRes_num(String res_num) {
+		this.res_num = res_num;
 	}
 	
 }

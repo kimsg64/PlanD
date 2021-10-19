@@ -31,9 +31,8 @@ public class ReviewController {
 
 		ModelAndView mav = new ModelAndView();
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
-		ReviewDAOImp dao2 = sqlSession.getMapper(ReviewDAOImp.class);
 		
-		int total = dao2.totalRecordCount();
+		int total = dao.totalRecordCount();
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -46,17 +45,10 @@ public class ReviewController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		//검색어가 있으면
-		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) {
-			String sKey = pVo.getSearchKey();
-			String sWord = pVo.getSearchWord();
-			mav.addObject("list",dao.reviewSearchSelect(num1,num2,sKey,sWord));
-				
-		} else { //검색어가 없으면
-			mav.addObject("list",dao.reviewAllSelect(num1,num2));
-		}
+		//System.out.println("확인=>"+num1+"/"+num2);
 		
-		//mav.addObject("list",dao.reviewAllSelect(num1,num2));
+		ReviewDAOImp dao2 = sqlSession.getMapper(ReviewDAOImp.class);
+		mav.addObject("list",dao2.reviewAllSelect(num1,num2));
 		mav.addObject("pVo",pVo);
 		mav.setViewName("review/reviewList");
 
