@@ -120,46 +120,10 @@ ul.pagination li a:hover:not(.active) {
     	  $('#list input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       
       }); 
-	   $("input[name='RowCheck']").click(function(){
-			  if($("input[name='RowCheck']:checked").length == rowCnt){
-				  $("input[name='allCheck']")[0].checked = true;
-			  } 
-			  else{
-				  $("input[name='allCheckt']")[0].checked = false;
-			  }
-		   });
-	   });
-	   function deleteValue(){
-		   var url = "delete";
-		   var valueArr = new Array();
-		   var list = $("input[name='RowCheck']");
-		   for(var i = 0; i<list.length; i++){
-			   if(list[i].checked){
-				   valueArr.push(list[i].value);
-			   }
-		   }
-		   if(valueArr.length == 0){
-			   alert("선택된 글이 없습니다.");
-		   }else{
-			   var chk = confirm("정말 삭제하시겠습니까?");
-			   $.ajax({
-				   url : url,
-				   type : 'POST',
-				   traditional : true,
-				   data : {
-					   valueArr : valueArr
-				   },
-				   success: function(jdata){
-					   if(jdata = 1){
-						   alert("삭제 성공");
-						   location.replace("list")
-					   }else{
-						   alert("삭제 실패");
-					   }
-				   }
-			   });
-		   }
-
+		$("#button").click(()=>{
+			$("#frm").attr("action","/wherewego/resListDel");
+			$("#frm").submit();
+		});
    }
 
 </script>
