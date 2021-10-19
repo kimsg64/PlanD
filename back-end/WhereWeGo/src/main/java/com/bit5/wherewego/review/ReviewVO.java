@@ -12,7 +12,16 @@ public class ReviewVO {
 	private int c_num; //코스번호
 	private String name; //코스명
 	private String userid; //작성자아이디
+	private String resdate; //방문일
 	
+	
+	
+	public String getResdate() {
+		return resdate;
+	}
+	public void setResdate(String visitdate) {
+		this.resdate = visitdate;
+	}
 	public int getR_num() {
 		return r_num;
 	}
