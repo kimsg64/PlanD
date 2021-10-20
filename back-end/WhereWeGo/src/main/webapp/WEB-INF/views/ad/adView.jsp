@@ -56,21 +56,24 @@
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">
-				 ${vo.n_num }
-				<h1> ${vo.title }</h1>
+				 ${vo.adnum }
+				<h1> ${vo.name }</h1>
 				<div class="write_info">
-				  ${vo.writedate }, ${vo.hit }
+				  ${vo.startdate }~${vo.enddate }
 				</div>
 			</div>		
 		</div>
 		<div class="write_story">
 			<div class="write_main">
-				<h5>내용 : ${vo.content }</h5>
+				내용 : <img src="upload/adimg/${vo.photo}" /><br/>
+				<h4>가격 : ${vo.price }</h4>
+				<h4>승인여부 : ${vo.grade }</h4>
+				<h4>결제여부 : ${vo.payment }</h4>
 			</div>			
 		</div>
 	</div>
   	<div id="buttonMenu">
-				<a class="button" href="noticeList">목록</a>
+				<a class="button" href="advermanage">목록</a>
 				<a class="button" href="#">삭제</a>
 			</div>		<!-- 
   			 	<li>사진 : ${vo.photo }</li>
