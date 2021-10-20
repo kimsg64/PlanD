@@ -7,5 +7,6 @@ public interface NoticeDAOImp {
 	public int totalRecordCount(); //페이징
 	public int noticeWriteOk(NoticeVO vo);
 	public NoticeVO noticeView(int n_num);
-	public List<NoticeVO> noticeSearchSelect(int num1, int num2, String sKey, String sWord);
+	public int totalRecordCountSearch(String string, String string2);
+	public List<NoticeVO> noticeAllSelectSearch(int num1, int num2, String string, String string2);
 }

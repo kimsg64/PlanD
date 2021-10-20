@@ -68,6 +68,7 @@ public class ReviewController {
 	public String showReviewItem() {
 		return "/review/review";
 	}
+
 	//글 내용 보기
 	@RequestMapping("/reviewView")
 	public ModelAndView view(int r_num) {
@@ -78,4 +79,5 @@ public class ReviewController {
 		
 		return mav;
 	}
+
 }

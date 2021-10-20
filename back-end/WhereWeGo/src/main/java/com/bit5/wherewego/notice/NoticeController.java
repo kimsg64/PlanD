@@ -31,10 +31,17 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+		int total;
 		
-		int total = dao.totalRecordCount();
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
+			total = dao.totalRecordCountSearch(pVo.getSearchKey(), pVo.getSearchWord());		
+		}
+		else { //검색어 없을때
+			total = dao.totalRecordCount();
+		}
+		
 		pVo.setTotalRecord(total);
-		
+		System.out.println("토탈:"+total);
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
 		int num2;
 		
@@ -44,12 +51,19 @@ public class NoticeController {
 		} else {
 			num2 = pVo.getOnePageRecord();
 		}
-		//System.out.println("확인=>"+num1+"/"+num2);
+		
+		System.out.println("확인"+num2);
 		NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
-		mav.addObject("list",dao2.noticeAllSelect(num1,num2));
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
+			mav.addObject("list",dao2.noticeAllSelectSearch(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));		
+		}
+		else { //검색어 없을때
+			mav.addObject("list",dao2.noticeAllSelect(num1,num2));
+		}
 		mav.addObject("pVo",pVo);
+		
+		
 		mav.setViewName("notice/noticeList");
-
 		return mav;
 	}
 	//글쓰기폼
