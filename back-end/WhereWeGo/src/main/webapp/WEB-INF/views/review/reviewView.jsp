@@ -13,8 +13,8 @@
 	float:right;
 }
 
-.frame { 
-	
+#frame { 
+	margin-left : 720px;
 }
 
 .button {
