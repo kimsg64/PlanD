@@ -227,7 +227,7 @@ ul.pagination li a:hover:not(.active) {
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 					<li>${vo.n_num }</li>
 					<li class="wordCut"><a
-						href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+						href="/wherewego/noticeView?n_num=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
 					<li>${vo.writedate }</li>
 					<li>${vo.hit }</li>
 					<li><c:if test="${vo.photo==null}">
@@ -259,7 +259,7 @@ ul.pagination li a:hover:not(.active) {
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 					<li>${vo.n_num }</li>
 					<li class="wordCut"><a
-						href="/wherewego/noticeView?no=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+						href="/wherewego/noticeView?n_num=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
 					<li>${vo.writedate }</li>
 					<li>${vo.hit }</li>
 					<li><c:if test="${vo.photo==null}">

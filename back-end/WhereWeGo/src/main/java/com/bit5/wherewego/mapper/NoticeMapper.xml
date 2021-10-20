@@ -25,10 +25,13 @@
 	<select id="totalRecordCount" resultType="int">
 		select count(n_num) totalRecord from notice
 	</select>
-	
+	<!--  공지사랑 뷰 -->
+	<select id="noticeView" parameterType="int" resultType="com.bit5.wherewego.notice.NoticeVO">
+		select n_num, title, content, photo, hit, to_char(writedate, 'MM-DD HH:MI') writedate from notice where n_num=#{param1}
+	</select>
 	<!-- 공지사항리스트 검색 -->
 	<select id="noticeSearchSelect" resultType="com.bit5.wherewego.notice.NoticeVO">
-		<![CDATA[ 
+		<![CDATA[
 		select * from 
 		(select * from 
 		(select n_num, title, content, photo, hit, to_char(writedate, 'MM/DD') writedate, pop from notice 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class NoticeController {
 	SqlSession sqlSession;
@@ -71,5 +72,16 @@ public class NoticeController {
 				mav.setViewName("notice/writeResult");
 			}
 			return mav;
-}
+		}
+		//게시판 내용 뷰
+		@RequestMapping("/noticeView")
+		public ModelAndView noticeView(int n_num) {
+			ModelAndView mav = new ModelAndView();
+			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+			mav.addObject("vo", dao.noticeView(n_num));
+			mav.setViewName("/notice/noticeView");
+			
+			return mav;
+		
+	}
 }
