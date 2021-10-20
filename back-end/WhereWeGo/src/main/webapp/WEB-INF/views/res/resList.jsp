@@ -15,6 +15,12 @@
 	text-align: left;
 }
 
+#banner {width:100%;}
+
+#searchDiv {width:100%; text-align:right; margin:20px 0px;}
+
+select, option, input {font-family: "TmoneyRoundWindRegular";}
+
 #bottomdiv {
 	width:100%;
 	height: 50px;
@@ -109,23 +115,25 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
+
+select {border:}
 </style>
 
 <script>
-   $(()=>{
-	   //전체선택
-      $('#allChk').on('change',function(){
-    	  $('#list input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      
-      }); 
-   });
-   function deleteValue(){
+	$(()=>{
+		   //전체선택
+	   $('#allChk').on('change',function(){
+	 	  $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+	   });   
+	});
+   
+/*   function deleteValue(){
 	   var url = "delete";
 	   var valueArr = new Array();
 	   var list = $("input[name='chk']");
 	   for(var i = 0; i<list.length; i++){
 		   if(list[i].checked){
-			   valueArr.push(list[i].value);
+			   valueArr.push(list[i].value); 
 		   }
 	   }
 	   if(valueArr.length == 0){
@@ -148,30 +156,40 @@ ul.pagination li a:hover:not(.active) {
 				   }
 			   }
 		   });
-	   }
+	   } */
 
 </script>
 
 <div id="mainDiv">
 	<h1>예약 관리</h1>
-<div>
-	<img src="imgs/banner/res.jpg"/>
-</div>
+	<img src="imgs/banner/res.jpg" id="banner"/>
+	
+	<!-- 검색 -->
+	<div id="searchDiv">
+		<div>
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/resList">
+				<select name="searchKey">
+					<option value="name">코스명</option>
+					<option value="userid">예약자</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+				<input type="submit" value="검색" class="button"/>
+			</form>
+		</div>
+	</div>
+	
 	<div id="list">
-
-		<form method="post" id="frm">
+		<!-- <form method="post" id="frm">  -->
 		<ul id="boardList">
-
-
 			<li><input type="checkbox" id="allChk"></li>
-			<li>No.</li>
-			<li class="wordCut">코스명</li>
-			<li>예약자</li>
-			<li>날짜</li>
-			<li>시간대</li>
+			<li><b>No.</b></li>
+			<li class="wordCut"><b>코스명</b></li>
+			<li><b>예약자</b></li>
+			<li><b>날짜</b></li>
+			<li><b>시간대</b></li>
 
 			<c:forEach var="vo" items="${list}">
-				<li><input type="checkbox" name="chk" value="${vo.res_num}" /></li>
+				<li><input type="checkbox" id="allChk" value="${vo.res_num}" /></li>
 				<li>${vo.res_num }</li>
 				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
@@ -179,7 +197,7 @@ ul.pagination li a:hover:not(.active) {
 				<li>${vo.time }:00</li>
 			</c:forEach>
 		</ul>
-		</form>
+		<!-- </form> -->
 	</div>
 
 		

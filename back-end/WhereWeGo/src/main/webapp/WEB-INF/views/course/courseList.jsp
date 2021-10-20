@@ -3,11 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
-
-#top {display: flex; margin-top:80px; margin-left:50px;}
-
-#searchFrm{margin-left:1080px; margin-bottom:30px; margin-top:20px;}
-
 #mainDiv {
 	width: 72%;
 	margin: 0 auto;
@@ -19,6 +14,10 @@
 	margin-bottom: 30px;
 	text-align: left;
 }
+
+#banner {width:100%;}
+
+#searchDiv {width:100%; text-align:right; margin:20px 0px;}
 
 #bottomdiv {
 	width:100%;
@@ -89,7 +88,6 @@
 	padding: 10px 10px;
 	margin: 10px 0px;
 	text-align: center;
-	text-decoration: none;
 	display: inline-block;
 	border-radius: 12px;
 	transition-duration: 0.4s;
@@ -128,50 +126,49 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
+
+select, option, input {font-family: "TmoneyRoundWindRegular";}
+
 </style>
 
 <script>
 //전체선택
    $(()=>{
+	   //전체선택
       $('#allChk').on('change',function(){
-            $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      });
-      
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
+    	  $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+      });   
    });
 </script>
 
 <div id="mainDiv">
 	<h1>코스 관리</h1>
-<div>
-	<img src="imgs/banner/course.jpg"/>
-</div>
+	<div>
+		<img src="imgs/banner/course.jpg" id="banner"/>
+	</div>
 
-<!-- 검색 -->
-<div>
-	<form method="get" id="searchFrm" action="/wherewego/courseList">
-		<select name="searchKey">
-			<option value="name">코스명</option>
-			<option value="userid">작성자</option>
-		</select>
-		<input type="text" name="searchWord" id="searchWord"/><input type="submit" value="Search"/>
-	</form>
-</div>	
+	<!-- 검색 -->
+	<div id="searchDiv">
+		<div>
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/courseList">
+				<select name="searchKey">
+					<option value="name">코스명</option>
+					<option value="stname">역이름</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+				<input type="submit" value="검색" class="button"/>
+			</form>
+		</div>
+	</div>
 
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
-			<li>No.</li>
-			<li class="wordCut">코스명</li>
-			<li>역이름</li>
-			<li>작성자</li>
-			<li>승인여부</li>
+			<li><b>No.</b></li>
+			<li class="wordCut"><b>코스명</b></li>
+			<li><b>역이름</b></li>
+			<li><b>작성자</b></li>
+			<li><b>승인여부</b></li>
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.c_num}" /></li>

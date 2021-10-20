@@ -3,11 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
-#search {
-	margin-left: 1150px;
-	margin-bottom: 30px;
-	margin-top: 20px;
-}
 
 #mainDiv {
 	width: 72%;
@@ -20,6 +15,12 @@
 	margin-bottom: 30px;
 	text-align: left;
 }
+
+#banner {width:100%;}
+
+#searchDiv {width:100%; text-align:right; margin:20px 0px;}
+
+select, option, input {font-family: "TmoneyRoundWindRegular";}
 
 #bottomdiv {
 	width: 100%;
@@ -173,27 +174,26 @@ ul.pagination li a:hover:not(.active) {
       $('#allChk').on('change',function(){
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      }); 
-      
+      });   
    });
 </script>
 
 <div id="mainDiv">
 	<h1>공지사항 관리</h1>
-	<div>
-		<img src="imgs/banner/notice.jpg" />
-	</div>
+	<img src="imgs/banner/notice.jpg" id="banner"/>
 	
 	<!-- 검색 -->
-	<div id="search">
-		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/noticeList">
-			<select name="searchKey">
-				<option value="title">제목</option>
-				<option value="content">글내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
-			<input type="submit" value="검색" class="button"/>
-		</form>
+	<div id="searchDiv">
+		<div>
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/noticeList">
+				<select name="searchKey">
+					<option value="title">제목</option>
+					<option value="content">글내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+				<input type="submit" value="검색" class="button"/>
+			</form>
+		</div>
 	</div>
 
 	<div id="list">
