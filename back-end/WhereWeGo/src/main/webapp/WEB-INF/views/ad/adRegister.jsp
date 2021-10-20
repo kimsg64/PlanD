@@ -86,7 +86,6 @@
 	<form method="post" action="/wherewego/adRegisterOk" name="adFrm" enctype="multipart/form-data">
 		<div id="adDiv">
 			<input type="hidden" name="b_id" id="b_id" value="${logid}">
-			<input type="hidden" name="price" id="price" value="100">
 			<input type="hidden" name="grade" id="grade" value="검토중">
 			<input type="hidden" name="payment" id="payment" value="미결제">
 
