@@ -143,7 +143,7 @@ const Login = () => {
             // 일반 사용자
             bake_cookie("userId", userId);
             axios.get("/wherewego/user/checkSession").then((res) => {
-              // console.log(res.data);
+              console.log(res.data);
               res.data
                 ? (window.location.href = "http://localhost:3000/#/memberhome")
                 : alert("로그인 실패...");

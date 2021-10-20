@@ -21,6 +21,9 @@ const ExitIcon = styled.span`
     cursor: pointer;
     color: var(--color-focus);
   }
+  &:active {
+    color: var(--color-dark-focus);
+  }
 `;
 
 const ModalBG = ({ children, setShowModal = () => {} }) => {

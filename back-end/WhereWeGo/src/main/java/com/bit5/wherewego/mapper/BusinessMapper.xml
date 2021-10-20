@@ -19,4 +19,9 @@
 	<select id="goHome" resultType="com.bit5.wherewego.business.BusinessVO">
 		select b_id, name from business where b_id=#{param1}
 	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertBusiness" parameterType="com.bit5.wherewego.business.BusinessVO">
+		insert into business values(#{b_id}, #{pwd}, #{name}, #{num}, #{tel}, #{zip}, #{addr}, sysdate)
+	</insert>
 </mapper>

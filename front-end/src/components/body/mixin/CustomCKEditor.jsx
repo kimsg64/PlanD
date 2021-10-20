@@ -7,6 +7,7 @@ const CKEditorWrapper = styled.div`
   .ck-content {
     height: 400px;
   }
+  margin-bottom: var(--margin-default);
 `;
 
 const CustomCKEditor = () => {

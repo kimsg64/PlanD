@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import { BodyLayout } from "../components/body/mixin/Mixin";
@@ -11,13 +11,18 @@ import ReviewsData from "../server/ReviewsData";
 const ReviewsContainer = styled.ul`
   width: 80vw;
   margin-top: var(--margin-header-to-body);
-  display: flex;
-  align-items: center;
   overflow-x: hidden;
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s;
   will-change: transform;
+  position: relative;
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
+  }
   /* perspective: 800px; */
   /* background: -webkit-linear-gradient(
     left,
@@ -25,9 +30,16 @@ const ReviewsContainer = styled.ul`
     rgba(0, 0, 0, 0) 20%,
     rgba(0, 0, 0, 0) 80%,
     rgba(0, 0, 0, 0.65) 100%
-  ); */
+    ); */
 `;
 
+const Slider = styled.div`
+  display: flex;
+  align-items: center;
+  transition-duration: 0.3s;
+  /* transform: translateX(-32%); */
+  transform: translateX(${(props) => props.index * 32 + "%"});
+`;
 const ReviewItem = styled.li`
   max-width: 440px;
   height: 560px;
@@ -52,7 +64,7 @@ const ImageBox = styled.div`
   height: 240px;
   margin: calc(var(--margin-default) / 2) 0;
   overflow: hidden;
-  background-color: var(--color-brown);
+  background-color: var(--color-green);
   img {
     width: 100%;
   }
@@ -68,6 +80,7 @@ const TextBox = styled.div`
   /* border: 2px solid var(--color-font); */
   border-radius: 8px;
   font-size: var(--font-size-normal);
+  position: relative;
   p {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -76,7 +89,17 @@ const TextBox = styled.div`
     white-space: pre-wrap;
     text-overflow: ellipsis;
   }
-  /* after로 말풍선 툴팁 주기? */
+  /* &:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 20px 20px 0;
+    border-color: var(--color-light-bg) transparent;
+    display: block;
+    width: 0;
+    bottom: -20px;
+    left: 20px;
+  } */
 `;
 
 const ProfileBox = styled.div`
@@ -116,14 +139,36 @@ const UserHistory = styled.div`
   font-size: var(--font-size-normal);
 `;
 
+const ArrowBox = styled.div`
+  font-size: var(--font-size-title-normal);
+  position: absolute;
+  top: 40%;
+  &:hover {
+    cursor: pointer;
+    color: var(--color-focus);
+  }
+  &:active {
+    color: var(--color-dark-focus);
+  }
+`;
+const RightArrow = styled(ArrowBox)`
+  right: 4%;
+`;
+
+const LeftArrow = styled(ArrowBox)`
+  left: 4%;
+`;
+
 const Reviews = () => {
-  // 슬라이더 이펙트
-  const isDown = useRef(false);
-  const sliderRef = useRef();
+  const [index, setIndex] = useState(0);
   // 리뷰 데이터
   const reviewsData = ReviewsData();
   const reviewsList = reviewsData[2];
   // console.log(reviewsList);
+
+  // 슬라이더 이펙트
+  const isDown = useRef(false);
+  const sliderRef = useRef();
   // 슬라이더 이펙트 기준
   let startX;
   let scrollL;
@@ -146,8 +191,20 @@ const Reviews = () => {
   };
 
   const stopDraging = () => {
+    setIndex(0);
     // console.log("stop...", isDown);
     isDown.current = false;
+  };
+
+  const setLeftIndex = () => {
+    return index === 0 ? setIndex(index) : setIndex(index + 1);
+  };
+  const setRightIndex = () => {
+    console.log("인덱스", index);
+    console.log("리뷰수", reviewsList.length);
+    return index <= (reviewsList.length - 3) * -1
+      ? setIndex(index)
+      : setIndex(index - 1);
   };
 
   const showDetailItem = () => {};
@@ -156,13 +213,16 @@ const Reviews = () => {
     <>
       <Header />
       <BodyLayout padding="0">
+        <LeftArrow onClick={setLeftIndex}>
+          <i className="fas fa-chevron-left"></i>
+        </LeftArrow>
         <ReviewsContainer
           ref={sliderRef}
           onMouseDown={startDraging}
           onMouseMove={slideReviews}
           onMouseUp={stopDraging}
         >
-          <ReviewItem onClick={showDetailItem}>
+          {/* <ReviewItem onClick={showDetailItem}>
             <div>코스명</div>
             <ImageBox>
               <img
@@ -192,40 +252,44 @@ const Reviews = () => {
                 <UserHistory>코스A, 1992.09.12 방문</UserHistory>
               </UserInfo>
             </ProfileBox>
-          </ReviewItem>
-
-          {reviewsList.map((review) => {
-            return (
-              <ReviewItem onClick={showDetailItem}>
-                <div>코스명</div>
-                <ImageBox>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
-                    alt="cafe_review"
-                  />
-                </ImageBox>
-                <TextBox>
-                  <p>{review.info}</p>
-                </TextBox>
-                <ProfileBox>
-                  <Icon>
+          </ReviewItem> */}
+          <Slider index={index}>
+            {reviewsList.map((review) => {
+              return (
+                <ReviewItem onClick={showDetailItem}>
+                  <div>코스명</div>
+                  <ImageBox>
                     <img
-                      src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
-                      alt="user_icon"
+                      src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                      alt="cafe_review"
                     />
-                  </Icon>
-                  <UserInfo>
-                    <NameAndStar>
-                      <UserName>{review.userid}</UserName>
-                      <Stars score={review.score} />
-                    </NameAndStar>
-                    <UserHistory>코스A, 1992.09.12 방문</UserHistory>
-                  </UserInfo>
-                </ProfileBox>
-              </ReviewItem>
-            );
-          })}
+                  </ImageBox>
+                  <TextBox>
+                    <p>{review.info}</p>
+                  </TextBox>
+                  <ProfileBox>
+                    <Icon>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                        alt="user_icon"
+                      />
+                    </Icon>
+                    <UserInfo>
+                      <NameAndStar>
+                        <UserName>{review.userid}</UserName>
+                        <Stars score={review.score} />
+                      </NameAndStar>
+                      <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+                    </UserInfo>
+                  </ProfileBox>
+                </ReviewItem>
+              );
+            })}
+          </Slider>
         </ReviewsContainer>
+        <RightArrow onClick={setRightIndex}>
+          <i className="fas fa-chevron-right"></i>
+        </RightArrow>
       </BodyLayout>
       <Footer />
     </>

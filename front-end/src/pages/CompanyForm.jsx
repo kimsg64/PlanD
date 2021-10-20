@@ -64,9 +64,9 @@ const CompanyForm = () => {
       zip: zip,
       addr: addr + " " + addrDetail,
     };
-    // console.log("회사바디", body);
+    console.log("회사바디", body);
     axios
-      .post("/wherewego/registertest", body)
+      .post("/wherewego/businessRegister", body)
       .then((response) => {
         console.log("response : ", response.data);
         if (response.data > 0) {
@@ -179,6 +179,7 @@ const CompanyForm = () => {
                   maxLength="12"
                   pattern="^[0-9]{2}-[0-9]{3}-[0-9]{5}$"
                   onKeyUp={(e) => insertHyphen(e, 2, 6)}
+                  onKeyDown={(e) => setNum(e.target.value)}
                 />
                 <ErrorMsg>올바른 사업자등록번호를 입력해 주세요.</ErrorMsg>
               </ItemContainer>
@@ -218,11 +219,9 @@ const CompanyForm = () => {
                   name="zip"
                   id="zip"
                   width="16em"
+                  minLength="5"
+                  maxLength="5"
                   className="optional"
-                  disabled
-                  // 임시 value
-                  // value={zip}
-                  value="12345"
                 />
               </ItemContainer>
               <Button

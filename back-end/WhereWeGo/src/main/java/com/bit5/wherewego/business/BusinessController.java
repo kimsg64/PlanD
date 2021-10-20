@@ -85,4 +85,13 @@ public class BusinessController {
 		mav.setViewName("logoutOk");
 		return mav;
 	}
+	
+	// 회원가입
+	@RequestMapping(value = "/businessRegister", method = RequestMethod.POST)
+	public int setCompanyData(@RequestBody BusinessVO vo) {
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		System.out.println(vo.getB_id());
+		int result = dao.insertBusiness(vo);
+		return result;
+	}
 }

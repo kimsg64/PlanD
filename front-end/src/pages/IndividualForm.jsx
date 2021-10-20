@@ -81,13 +81,17 @@ const IndividualForm = () => {
       setUserId(userData.userId);
       setName(userData.name);
       setNum(userData.num);
-      // 날짜
-      const year = userData.startdate.substring(0, 4);
-      const month = userData.startdate.substring(5, 7);
-      const date = userData.startdate.substring(8, 10);
-      setStartdate(`${year}-${month}-${date}`);
       setTel(userData.tel);
       setZip(userData.zip);
+      // 날짜
+      if (userData.startdate === null) {
+        return;
+      } else {
+        const year = userData.startdate.substring(0, 4);
+        const month = userData.startdate.substring(5, 7);
+        const date = userData.startdate.substring(8, 10);
+        setStartdate(`${year}-${month}-${date}`);
+      }
       // 로/동을 기준으로 addr, addrDetail로 나누기
       userData.addr.includes("동")
         ? setAddr(userData.addr.split("동")[0] + "동")
@@ -105,8 +109,8 @@ const IndividualForm = () => {
     }
   }, [isLoaded]);
 
-  console.log("시작");
-  console.log(opt);
+  // console.log("시작");
+  // console.log(opt);
 
   // 기념일은 최댓값이 오늘
   const setMaxDate = () => {
@@ -150,7 +154,7 @@ const IndividualForm = () => {
     console.log("바디", body);
 
     axios
-      .post("/wherewego/setUserData", body)
+      .post("/wherewego/registerUser", body)
       .then((response) => {
         console.log("response : ", response.data);
         if (response.data > 0) {
@@ -175,7 +179,7 @@ const IndividualForm = () => {
             <LineWrapper>
               <ItemContainer>
                 <Label htmlFor="userId">아이디</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput type="text" value={userId} disabled />
                 ) : (
                   <FormInput
@@ -193,7 +197,7 @@ const IndividualForm = () => {
                   글자는 영문자만 입력할 수 있습니다.
                 </ErrorMsg>
               </ItemContainer>
-              {userData ? null : (
+              {isLoaded ? null : (
                 <Button
                   type="button"
                   position="absolute"
@@ -239,7 +243,7 @@ const IndividualForm = () => {
             <LineWrapper>
               <ItemContainer>
                 <Label htmlFor="name">이름</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput type="text" value={name} disabled />
                 ) : (
                   <FormInput
@@ -256,7 +260,7 @@ const IndividualForm = () => {
               </ItemContainer>
               <ItemContainer>
                 <Label htmlFor="num">주민등록번호</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput type="password" value={num} disabled />
                 ) : (
                   <FormInput
@@ -275,7 +279,7 @@ const IndividualForm = () => {
             <LineWrapper>
               <ItemContainer>
                 <Label htmlFor="tel">연락처</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput
                     type="text"
                     required
@@ -309,7 +313,7 @@ const IndividualForm = () => {
               </ItemContainer>
               <ItemContainer>
                 <Label htmlFor="email">이메일</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput
                     type="email"
                     required
@@ -333,15 +337,23 @@ const IndividualForm = () => {
             <LineWrapper>
               <ItemContainer width="16.5em">
                 <Label htmlFor="zip">우편번호</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput
                     type="text"
                     width="16em"
                     className="optional"
                     value={zip}
+                    minLength="5"
+                    maxLength="5"
                   />
                 ) : (
-                  <FormInput type="text" width="16em" className="optional" />
+                  <FormInput
+                    type="text"
+                    width="16em"
+                    className="optional"
+                    minLength="5"
+                    maxLength="5"
+                  />
                 )}
               </ItemContainer>
               <Button
@@ -355,7 +367,7 @@ const IndividualForm = () => {
               </Button>
               <ItemContainer>
                 <Label htmlFor="addr">주소</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput
                     type="text"
                     width="32em"
@@ -376,17 +388,26 @@ const IndividualForm = () => {
             <LineWrapper>
               <ItemContainer>
                 <Label htmlFor="addrDetail">상세주소</Label>
-                <FormInput
-                  type="text"
-                  width="28em"
-                  className="optional"
-                  onKeyUp={(e) => setAddrDetail(e.target.value)}
-                  value={addrDetail}
-                />
+                {isLoaded ? (
+                  <FormInput
+                    type="text"
+                    width="28em"
+                    className="optional"
+                    onKeyUp={(e) => setAddrDetail(e.target.value)}
+                    value={addrDetail}
+                  />
+                ) : (
+                  <FormInput
+                    type="text"
+                    width="28em"
+                    className="optional"
+                    onKeyUp={(e) => setAddrDetail(e.target.value)}
+                  />
+                )}
               </ItemContainer>
               <ItemContainer>
                 <Label htmlFor="startdate">기념일</Label>
-                {userData ? (
+                {isLoaded ? (
                   <FormInput
                     type="date"
                     max={setMaxDate()}
