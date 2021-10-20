@@ -69,16 +69,6 @@
 		color: #0e595f;
 	}
 </style>
-<script>
-	const setMaxDate = () => {
-	    const today = new Date();
-	    const year = today.getFullYear();
-	    const month = today.getMonth() + 1;
-	    const day = today.getDate();
-	    // console.log(`${year}-${month}-${day}`);
-	    return `${year}-${month}-${day}`;
-	  };
-</script>
 
 <div id="mainDiv">
 <!-- 
