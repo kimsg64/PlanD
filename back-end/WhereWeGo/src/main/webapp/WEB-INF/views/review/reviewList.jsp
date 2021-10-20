@@ -181,7 +181,7 @@ ul.pagination li a:hover:not(.active) {
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li class="wordCut"><a href="/wherewego/reviewView?r_num=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>

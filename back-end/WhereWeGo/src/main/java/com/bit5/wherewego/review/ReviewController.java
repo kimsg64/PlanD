@@ -68,13 +68,16 @@ public class ReviewController {
 	public String showReviewItem() {
 		return "/review/review";
 	}
-//	//글 내용 보기
-//	@RequestMapping("/reviewView")
-//	public ModelAndView view(int no) {
-//		ModelAndView mav = new ModelAndView();
-//		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
-//		mav.addObject("vo", dao.reviewView(no));
-//		mav.setViewName("review/reviewView");
-//		
-//		return mav;
+
+	//글 내용 보기
+	@RequestMapping("/reviewView")
+	public ModelAndView view(int r_num) {
+		ModelAndView mav = new ModelAndView();
+		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
+		mav.addObject("vo", dao.reviewView(r_num));
+		mav.setViewName("review/reviewView");
+		
+		return mav;
+	}
+
 }
