@@ -9,7 +9,36 @@
 <title>Insert title here</title>
 <style>
 
+#buttonMenu {
+	float:right;
+}
+
+.frame { 
+	
+}
+
+.button {
+	background-color: #fd7d73;
+	border: none;
+	color: #f5ebe3;
+	padding: 10px 10px;
+	margin: 10px 0px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+	font-size: 13px;
+	width: 70px;
+	text-align: center;
+}
+
+.button:hover {
+	color: #0e595f;
+}
+
 	.review_item {
+		
 		max-width: 440px;
 		height: 560px;
 		margin: 0 calc(var(--margin-default) / 1.4);
@@ -102,11 +131,12 @@
 	}
 	
 </style>
+
 </head>
 <body>
-
+<div id="frame">
   <div class="review_item">
-    <div>코스명</div>
+    <div>${vo.c_num }</div>
     <div class="image_box">
       <img
         src=`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`
@@ -114,9 +144,7 @@
       />
     </div>
     <div class="text_box">
-      
-        <p>제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로 진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며 취재하고 제가 그 머~ 어~ 대통령이 된 기분이었어요</p>
-      
+       ${vo.info }
     </div>
     <div class="profile_box">
       <div class="icon">
@@ -127,9 +155,9 @@
       </div>
       <div class="user_info">
         <div class="name_and_start">
-          <div class="user_name">찬호팍</div>
+          <div class="user_name">${vo.userid }</div>
           <div class="star_box">
-          	<div class="score">10.0</div>
+          	<div class="score">${vo.score }</div>
 		      <i class="far fa-star"></i>
 		      <i class="fas fa-star"></i>
 		      <i class="fas fa-star"></i>
@@ -137,10 +165,15 @@
 		      <i class="fas fa-star"></i>
           </div>
         </div>
-        <div class="user_history">코스A, 1992.09.12 방문</div>
+        <div class="user_history">${vo.resdate } 방문</div>
       </div>
     </div>
   </div>
+</div>  
 
+<div id="buttonMenu">
+			<a class="button" href="#">공개</a>
+			<a class="button" href="#">목록</a>
+		</div>
 </body>
 </html>
