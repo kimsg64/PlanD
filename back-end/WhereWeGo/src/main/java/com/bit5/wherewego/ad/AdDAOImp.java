@@ -12,5 +12,6 @@ public interface AdDAOImp {
 	public int ingAdCount(String b_id); //진행중광고카운트
 	public int yetAdCount(String b_id); //검토중광고카운트
 	public int edAdCount(String b_id); //완료된광고카운트
-	public int payAdCount(String b_id);
+	public int payAdCount(String b_id); //미결제광고카운트
+	public String adMoneySelect(String startdate, String enddate); //광고가격측정
 }

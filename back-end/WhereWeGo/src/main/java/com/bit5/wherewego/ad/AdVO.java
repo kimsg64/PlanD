@@ -1,6 +1,7 @@
 package com.bit5.wherewego.ad;
 
 public class AdVO {
+	private int adnum;
 	private	String b_id;
 	private String startdate;
 	private String enddate;
@@ -12,6 +13,13 @@ public class AdVO {
 	private String payment;
 	private String name; //상호명
 
+	
+	public int getAdnum() {
+		return adnum;
+	}
+	public void setAdnum(int adnum) {
+		this.adnum = adnum;
+	}
 	public String getStartdate() {
 		return startdate;
 	}

@@ -83,14 +83,14 @@
 <div class="container">
 <h1>광고 관리</h1> <!-- 페이징처리시 높이를 주고 하세요. -->
 <div>
-	<img src="img/banner/ad.jpg"/>
+	<img src="imgs/banner/ad.jpg"/>
 </div>
 
    	  <ul class="admenu">
          <c:forEach var="vo" items="${list}">
          <li class="adlist">
 	         <div><input type="checkbox" name="chk" value=""/></div>
-	         <div class="image"><img src=${vo.photo} /> </div>
+	         <div class="image"><img src="upload/adimg/${vo.photo}" /> </div>
 	         <div>상호명 : ${vo.name }</div>
 	         <div>기간 : ${vo.startdate }, ~${vo.enddate }</div>
          </li>

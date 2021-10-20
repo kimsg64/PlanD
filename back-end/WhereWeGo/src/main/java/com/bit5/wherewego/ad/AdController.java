@@ -81,7 +81,7 @@ public class AdController {
 		//vo->작성자,제목
 
 		//업로드 위치
-		String path = req.getSession().getServletContext().getRealPath("/upload");
+		String path = req.getSession().getServletContext().getRealPath("/upload/adimg");
 		System.out.println("저장경로 : "+path);
 
 		//파일업로드를 위해서는 HttpServletRequest객체를 이용하여 MultipartHttpServletRequest 객체를 구하여야 한다.
@@ -133,14 +133,18 @@ public class AdController {
 		int point2 = photo.lastIndexOf("]");
 		String photo2 = photo.substring(1,point2);
 		vo.setPhoto(photo2); //저장되는 파일명
-		
-		System.out.println("확인용:"+vo.getStartdate()+"/"+vo.getEnddate());
 
 		ModelAndView mav = new ModelAndView();
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
-		int cnt = dao.adRegisterOk(vo);
 		
-		if(cnt>0) {//글등록
+		System.out.println("확인용:"+vo.getStartdate()+"/"+vo.getEnddate());
+		String cnt = dao.adMoneySelect(vo.getEnddate(),vo.getStartdate()); //하루당 10원이라고 측정
+		vo.setPrice(Integer.parseInt(cnt));
+		
+		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
+		int cnt2 = dao2.adRegisterOk(vo);
+		
+		if(cnt2>0) {//글등록
 			mav.setViewName("redirect:advermanage"); //목록으로 감
 		}else {//등록실패
 			mav.setViewName("ad/adResult"); //jsp

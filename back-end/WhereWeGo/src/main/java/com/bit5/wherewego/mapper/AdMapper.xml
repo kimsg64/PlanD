@@ -23,9 +23,14 @@
 		select count(startdate) totalRecord from ad
 	</select>
 	
+	<!-- 가격 측정 -->
+	<select id="adMoneySelect" resultType="String">
+		SELECT 10*((TO_DATE(#{param1})-TO_DATE(#{param2}))+1) FROM dual
+	</select>
+	
 	<!-- 광고신청(전송) -->
 	<insert id="adRegisterOk" parameterType="com.bit5.wherewego.ad.AdVO">
-		insert into ad values(#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade},#{payment})
+		insert into ad values(ad_sq.nextval, #{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade},#{payment})
 	</insert>
 	
 	<!-- 신규광고카운트 -->
