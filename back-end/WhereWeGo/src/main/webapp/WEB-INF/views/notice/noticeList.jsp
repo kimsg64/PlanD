@@ -174,15 +174,6 @@ ul.pagination li a:hover:not(.active) {
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       }); 
-	  
-	   //검색
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
       
    });
 </script>
@@ -200,23 +191,22 @@ ul.pagination li a:hover:not(.active) {
 				<option value="title">제목</option>
 				<option value="content">글내용</option>
 			</select>
-			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
-			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
+			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+			<input type="submit" value="검색" class="button"/>
 		</form>
 	</div>
 
 	<div id="list">
-
 		<!-- 관리자 모드 -->
 		<c:if test="${logid=='admin'}">
 			<ul id="adminboardList">
 				<li><input type="checkbox" id="allChk"></li>
-				<li>No.</li>
-				<li class="wordCut">제목</li>
-				<li>작성일</li>
-				<li>조회수</li>
-				<li>첨부파일</li>
-				<li>팝업</li>
+				<li><b>No.</b></li>
+				<li class="wordCut"><b>제목</b></li>
+				<li><b>작성일</b></li>
+				<li><b>조회수</b></li>
+				<li><b>첨부파일</b></li>
+				<li><b>팝업</b></li>
 
 				<c:forEach var="vo" items="${list}">
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>

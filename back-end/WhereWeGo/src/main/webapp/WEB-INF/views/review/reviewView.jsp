@@ -13,8 +13,8 @@
 	float:right;
 }
 
-.frame { 
-	
+#frame { 
+	margin-left : 720px;
 }
 
 .button {
@@ -136,10 +136,10 @@
 <body>
 <div id="frame">
   <div class="review_item">
-    <div>${vo.c_num }</div>
+    <div>${vo.name }</div>
     <div class="image_box">
       <img
-        src=`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`
+        src="/imgs/icecream.jpg"
         alt="cafe_review"
       />
     </div>
@@ -149,7 +149,7 @@
     <div class="profile_box">
       <div class="icon">
         <img
-          src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+          src="/imgs/icecream.jpg"
           alt="user_icon"
         />
       </div>

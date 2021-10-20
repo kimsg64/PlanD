@@ -65,7 +65,7 @@
 		</div>
 		<div class="write_story">
 			<div class="write_main">
-				<h5>내용 : ${vo.content }</h5>
+				<h5>${vo.content }</h5>
 			</div>			
 		</div>
 	</div>

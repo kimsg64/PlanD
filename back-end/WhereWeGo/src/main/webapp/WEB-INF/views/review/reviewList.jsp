@@ -61,17 +61,17 @@
 	border-bottom: 1px solid #f5ebe3;
 }
 
-#boardList>li:nth-child(7n+3) {
-	width: 45%;
+#boardList>li:nth-child(8n+3) {
+	width: 35%;
 	text-align: left;
 }
 
 #boardList>li:nth-child(3) {
-	width: 45%;
+	width: 35%;
 	text-align: center;
 }
 
-#boardList>li:nth-child(7n+1) {
+#boardList>li:nth-child(8n+1) {
 	width: 5%;
 }
 
@@ -171,17 +171,19 @@ ul.pagination li a:hover:not(.active) {
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>
-			<li>No.</li>
-			<li class="wordCut">코스명</li>
-			<li>아이디</li>
-			<li>점수</li>
-			<li>작성일</li>
-			<li>공개여부</li>
+			<li><b>No.</b></li>
+			<li class="wordCut"><b>코스명</b></li>
+			<li><b>방문일</b></li>
+			<li><b>작성자</b></li>
+			<li><b>점수</b></li>
+			<li><b>작성일</b></li>
+			<li><b>공개여부</b></li>
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" name="chk" value="${vo.r_num}" /></li>
 				<li>${vo.r_num }</li>
-				<li class="wordCut"><a href="/wherewego/reviewView?no=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li class="wordCut"><a href="/wherewego/reviewView?r_num=${vo.r_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li>${vo.resdate }</li>
 				<li>${vo.userid }</li>
 				<li>${vo.score }</li>
 				<li>${vo.writedate }</li>

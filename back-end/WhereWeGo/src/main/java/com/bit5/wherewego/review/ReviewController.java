@@ -32,7 +32,15 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
 		
-		int total = dao.totalRecordCount();
+		int total;
+		
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
+			total = dao.totalRecordCountSearch(pVo.getSearchKey(), pVo.getSearchWord());		
+		}
+		else { //검색어 없을때
+			total = dao.totalRecordCount();
+		}
+		
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -45,10 +53,13 @@ public class ReviewController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		//System.out.println("확인=>"+num1+"/"+num2);
-		
 		ReviewDAOImp dao2 = sqlSession.getMapper(ReviewDAOImp.class);
-		mav.addObject("list",dao2.reviewAllSelect(num1,num2));
+		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
+			mav.addObject("list",dao2.reviewAllSelectSearch(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));		
+		}
+		else { //검색어 없을때
+			mav.addObject("list",dao2.reviewAllSelect(num1,num2));
+		}
 		mav.addObject("pVo",pVo);
 		mav.setViewName("review/reviewList");
 
@@ -68,14 +79,17 @@ public class ReviewController {
 	public String showReviewItem() {
 		return "/review/review";
 	}
+
+   //글 내용 보기
+   @RequestMapping("/reviewView")
+   public ModelAndView view(int r_num) {
+      ModelAndView mav = new ModelAndView();
+      ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
+      mav.addObject("vo", dao.reviewView(r_num));
+      mav.setViewName("review/reviewView");
+      
+      return mav;
+   }
+
+
 }
-	/*//글 내용 보기
-	@RequestMapping("/reviewView")
-	public ModelAndView view(int no) {
-		ModelAndView mav = new ModelAndView();
-		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
-		mav.addObject("vo", dao.reviewView(no));
-		mav.setViewName("review/reviewView");
-		
-		return mav;
-}*/

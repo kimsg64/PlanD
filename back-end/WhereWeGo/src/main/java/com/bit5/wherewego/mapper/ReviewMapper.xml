@@ -11,11 +11,27 @@
 	<![CDATA[ 
 		 select * from 
 		(select * from 
-		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name
+		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name, to_char(rr.resdate, 'MM/DD') resdate
 		from review r 
-		join (select re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num) rr 
+		join (select re.resdate resdate, re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num) rr 
 		on r.res_num=rr.res_num 
 		order by r_num desc)  
+		where rownum<=#{param1} order by r_num asc) 
+		where rownum<=#{param2} order by r_num desc
+		]]>
+	</select>
+	
+	<!-- 검색어있을때 리뷰리스트 -->
+	<select id="reviewAllSelectSearch"
+		resultType="com.bit5.wherewego.review.ReviewVO">
+	<![CDATA[ 
+		 select * from 
+		(select * from 
+		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name, to_char(rr.resdate, 'MM/DD') resdate
+		from review r 
+		join (select re.resdate resdate, re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num) rr 
+		on r.res_num=rr.res_num 
+		where ${param3} like '%'||#{param4}||'%' order by r_num desc)  
 		where rownum<=#{param1} order by r_num asc) 
 		where rownum<=#{param2} order by r_num desc
 		]]>
@@ -26,11 +42,18 @@
 		select count(r_num)
 		totalRecord from review
 	</select>
+	
+	<!-- 검색어 있을때 페이징 -->
+	<select id="totalRecordCountSearch" resultType="int">
+		select count(r_num)
+		totalRecord from review 
+		where ${param1} like '%'||#{param2}||'%' 
+	</select>
 
 	<!-- 베스트리뷰 -->
 	<select id="selectBestReviews"
 		resultType="com.bit5.wherewego.review.ReviewVO">
-    select r.r_num r_num, r.score score, r.info info, to_char(r.writedate,'YY/MM/DD') writedate, r.photo photo, n.name name, n.userid userid, n.resdate resdate, r.grade grade 
+    select r.r_num r_num, r.score score, r.info info, to_char(r.writedate,'YY/MM/DD') writedate, r.photo photo, n.name name, n.userid userid, to_char(n.resdate,'YY/MM/DD') resdate, r.grade grade 
 		from review r 
 		join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
 		on r.res_num=n.res_num and r.grade='공개' order by r.score desc , r.writedate asc
@@ -44,10 +67,18 @@
 	
 	<!-- 내가 작성한 리뷰 -->
 	<select id="myReviewSelect" resultType="com.bit5.wherewego.review.ReviewVO">
-		select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, n.resdate, r.grade 
+		select r.r_num r_num, r.score score, r.info info, to_char(r.writedate,'YY/MM/DD') writedate, r.photo photo, n.name name, n.userid userid, to_char(n.resdate,'YY/MM/DD') resdate, r.grade grade 
 		from review r 
 		join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
 		on r.res_num=n.res_num and userid=#{param1} order by r.writedate asc
+	</select>
+	
+	<!-- 리뷰 보기 -->
+	<select id="reviewView" resultType="com.bit5.wherewego.review.ReviewVO">
+	  select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, n.resdate, r.grade 
+      from review r 
+      join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
+      on r.res_num=n.res_num and r_num=#{param1} order by r.writedate asc
 	</select>
 
 </mapper>
