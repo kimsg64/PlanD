@@ -16,6 +16,7 @@
 		]]>
 	</select>
 	
+	<!-- 검색어있을때 공지사항 리스트 -->
 	<select id="noticeAllSelectSearch" resultType="com.bit5.wherewego.notice.NoticeVO">
 		<![CDATA[ 
 		select * from 
@@ -36,6 +37,8 @@
 	<select id="totalRecordCount" resultType="int">
 		select count(n_num) totalRecord from notice
 	</select>
+	
+	<!-- 검색어있을때 리스트페이징 -->
 	<select id="totalRecordCountSearch" resultType="int">
 		select count(n_num) totalRecord from notice where ${param1} like '%'||#{param2}||'%' 
 	</select>
