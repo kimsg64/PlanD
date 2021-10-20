@@ -9,13 +9,25 @@
     </script>
 <style>
 	.container{
-		width:70%;
+		width:72%;
 		margin:0px auto;
+		
 		}
 	img{
 		margin-top:1px;
 		width: 100%;
 	}
+	#list {
+	text-align: center;
+	width: 828px;;
+	height: 450px;
+}
+#list ul, #list li {
+	margin-left: 0;
+	padding: 0;
+	list-style: none;
+	
+}
 	.button {
 		background-color: #fd7d73;
 		border: none;
@@ -39,27 +51,48 @@
 		height: 50px;
 		margin : 10px 0px;
 	}
+	#count {
+		font-size: 0.7em;
+		color: #f5ebe3;
+		text-align:left;
+		float:left;
+	}
+	#count:hover {
+		color: #efcac3;
+	}
 	#buttonMenu {
 		float:right;
 	}
+	.allB{
+		margin-top: 10px;
+	}
+	
 	.admenu{	
 		 margin:0 auto; padding:10px;
-		 height:500px;
+		 width:100%;
 		 display: flex;
 		 flex-wrap: wrap;
+		 white-space: nowrap;
+		 overflow: hidden;
+		 
 	}
+
 	.adlist {
-		width: 200px;
-		margin:0 30px 0 0;
+		width: 40%;
+		margin:20px 60px 0 60px;
+	}
+	#paging{
+		text-align: center;
 	}
 	ul.pagination {
 		display: inline-block;
 		padding: 0;
-		margin: 0;
+		margin: 0;		
 	}
 
 	ul.pagination li {
 		display: inline;
+		
 	}
 
 	ul.pagination li a {
@@ -67,45 +100,66 @@
 		padding: 8px 16px;
 		text-decoration: none;
 		border-radius: 5px;
+		
 	}
 
 	ul.pagination li a.active {
 		background-color: #fd7d73;
 		color: #f5ebe3;
 		border-radius: 5px;
+		
 	}
 
 	ul.pagination li a:hover:not(.active) {
 		background-color: #f5ebe3;
+		
 	}
 </style>
+<script>
+   $(()=>{
+	   //전체선택
+      $('#allChk').on('change',function(){
+    	  $('.adlist input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
+      
+      }); 
+   });
+</script>
 
 <div class="container">
 <h1>광고 관리</h1> <!-- 페이징처리시 높이를 주고 하세요. -->
 <div>
 	<img src="imgs/banner/ad.jpg"/>
 </div>
-
+		<div class="allB"><input type="checkbox" id="allChk">  전체선택</div>
+	<div class="list">
    	  <ul class="admenu">
+   	  	
          <c:forEach var="vo" items="${list}">
          <li class="adlist">
-	         <div><input type="checkbox" name="chk" value=""/></div>
-	         <div class="image"><img src="upload/adimg/${vo.photo}" /> </div>
+	         <div><input type="checkbox" name="chk" value=""/>&nbsp;&nbsp;${vo.adnum }</div>
+	         <div class="image">
+	         <a href="/wherewego/adView?adnum=${vo.adnum}&nowPage=${pVo.nowPage}">
+	         <img src="upload/adimg/${vo.photo}" /></a>
+	         </div>
 	         <div>상호명 : ${vo.name }</div>
-	         <div>기간 : ${vo.startdate }, ~${vo.enddate }</div>
+	         <div>기간 : ${vo.startdate } ~ ${vo.enddate }</div>
+	         <div>가격 : ${vo.price }</div>
+	         <div>승인여부 : ${vo.grade }</div>
+	         <div>결제여부 : ${vo.payment }</div>
          </li>
          </c:forEach>
       </ul>
-
+	</div>
 
    <div id="bottomdiv">
    	<div id="count">
 		<div>총 레코드 수 : ${pVo.totalRecord }</div>
 		<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 	</div>
-    <div id="buttonMenu">
-         <a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
-   </div>
+    	<div id="buttonMenu">
+        	 <a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
+   		</div>
+</div>
    
 	<!-- 페이징 -->
 	<div id="paging">
@@ -150,4 +204,4 @@
 		</ul>
 		</div>
 	</div>
-</div>
+

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.business.BusinessDAOImp;
 import com.bit5.wherewego.business.BusinessVO;
+import com.bit5.wherewego.notice.NoticeDAOImp;
 
 
 @Controller
@@ -34,7 +35,7 @@ public class AdController {
 	//광고 관리
 	@RequestMapping("/advermanage")
 
-	public ModelAndView list(PagingVO pVo) {
+	public ModelAndView list(AdPagingVO pVo) {
 			
 			ModelAndView mav = new ModelAndView();
 			AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
@@ -152,4 +153,16 @@ public class AdController {
 		
 		return mav;
 	}
+	//광고 뷰
+	@RequestMapping("/adView")
+	public ModelAndView adView(int adnum) {
+		ModelAndView mav = new ModelAndView();
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		mav.addObject("vo", dao.adView(adnum));
+		mav.setViewName("/ad/adView");
+		
+		return mav;
+	
+}
+	
 }

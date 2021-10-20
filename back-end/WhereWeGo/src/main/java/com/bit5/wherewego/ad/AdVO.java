@@ -12,8 +12,22 @@ public class AdVO {
 	private String grade;
 	private String payment;
 	private String name; //상호명
+	private String num;
+	private String tel;
 
 	
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public int getAdnum() {
 		return adnum;
 	}
