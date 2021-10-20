@@ -14,3 +14,4 @@ public interface NoticeDAOImp {
 	public int noticeWriteOk(NoticeVO vo);
 
 	public NoticeVO noticeView(int n_num);
+}
