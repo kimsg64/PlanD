@@ -38,7 +38,7 @@ public class UserDAO extends DBConnection implements UserDAOImp{
 		int result = 0;
 		try {
 			dbConn();
-			sql = "select name, num, tel, email, zip, addr, startdate, photo, opt, zzim, history, regdate from usertbl where userid=? and pwd=?";
+			sql = "select name, num, tel, email, zip, addr, startdate, photo, opt, zzim, regdate from usertbl where userid=? and pwd=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userData.getUserId());
 			pstmt.setString(2, userData.getPwd());
@@ -55,8 +55,7 @@ public class UserDAO extends DBConnection implements UserDAOImp{
 				userData.setPhoto(rs.getString(8));
 				userData.setOpt(rs.getString(9));
 				userData.setZzim(rs.getString(10));
-				userData.setHistory(rs.getString(11));
-				userData.setRegdate(rs.getString(12));
+				userData.setRegdate(rs.getString(11));
 				result = 1;
 			}
 			
@@ -77,7 +76,7 @@ public class UserDAO extends DBConnection implements UserDAOImp{
 		System.out.println(userId);
 		try {
 			dbConn();
-			sql = "select name, num, tel, email, zip, addr, startdate, photo, opt, zzim, history, regdate, photo, point, userid, pwd from usertbl where userid=?";
+			sql = "select name, num, tel, email, zip, addr, startdate, photo, opt, zzim, regdate, photo, point, userid, pwd from usertbl where userid=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -93,12 +92,11 @@ public class UserDAO extends DBConnection implements UserDAOImp{
 				userData.setPhoto(rs.getString(8));
 				userData.setOpt(rs.getString(9));
 				userData.setZzim(rs.getString(10));
-				userData.setHistory(rs.getString(11));
-				userData.setRegdate(rs.getString(12));
-				userData.setPhoto(rs.getString(13));
-				userData.setPoint(rs.getString(14));
-				userData.setUserId(rs.getString(15));
-				userData.setPwd(rs.getString(16));
+				userData.setRegdate(rs.getString(11));
+				userData.setPhoto(rs.getString(12));
+				userData.setPoint(rs.getString(13));
+				userData.setUserId(rs.getString(14));
+				userData.setPwd(rs.getString(15));
 			}
 			
 		} catch(Exception e) {
