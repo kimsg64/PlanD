@@ -35,7 +35,13 @@ public class ReviewController {
 		int total;
 		
 		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
-			total = dao.totalRecordCountSearch(pVo.getSearchKey(), pVo.getSearchWord());		
+			if(pVo.getSearchKey().equals("코스명")) {
+				total = dao.totalSearchname(pVo.getSearchWord());
+			}
+			else {
+				total = dao.totalSearchid(pVo.getSearchWord());	
+			}
+				
 		}
 		else { //검색어 없을때
 			total = dao.totalRecordCount();
@@ -55,7 +61,12 @@ public class ReviewController {
 		
 		ReviewDAOImp dao2 = sqlSession.getMapper(ReviewDAOImp.class);
 		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
-			mav.addObject("list",dao2.reviewAllSelectSearch(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));		
+			if(pVo.getSearchKey().equals("코스명")) {
+				mav.addObject("list",dao2.allSelectSearchname(num1,num2,pVo.getSearchWord()));
+			}
+			else {
+				mav.addObject("list",dao2.allSelectSearchid(num1,num2,pVo.getSearchWord()));
+			}		
 		}
 		else { //검색어 없을때
 			mav.addObject("list",dao2.reviewAllSelect(num1,num2));
