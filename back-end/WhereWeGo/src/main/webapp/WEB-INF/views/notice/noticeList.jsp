@@ -174,15 +174,6 @@ ul.pagination li a:hover:not(.active) {
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       }); 
-	  
-	   //검색
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
       
    });
 </script>
@@ -200,13 +191,12 @@ ul.pagination li a:hover:not(.active) {
 				<option value="title">제목</option>
 				<option value="content">글내용</option>
 			</select>
-			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
-			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
+			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+			<input type="submit" value="검색" class="button"/>
 		</form>
 	</div>
 
 	<div id="list">
-
 		<!-- 관리자 모드 -->
 		<c:if test="${logid=='admin'}">
 			<ul id="adminboardList">
