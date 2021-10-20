@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { read_cookie } from "sfcookies";
 import styled from "styled-components";
-import { StartButton } from "../mixin/Mixin";
+import { StartButton, PointLetter } from "../mixin/Mixin";
 
 const VideoContainer = styled.div`
   width: 100vw;
@@ -35,8 +35,12 @@ const VideoPlayer = () => {
         // loop="true"
       />
       <TextContainer>
-        <TextInVideo>데이트의 A to Z</TextInVideo>
-        <TextInVideo>Plan.D와 함께</TextInVideo>
+        <TextInVideo>
+          데이트의 <PointLetter>A to Z</PointLetter>
+        </TextInVideo>
+        <TextInVideo>
+          Plan.<PointLetter>D</PointLetter>와 함께
+        </TextInVideo>
       </TextContainer>
       {read_cookie("userId").length <= 0 ? (
         // userid 쿠키가 존재하지 않을 때

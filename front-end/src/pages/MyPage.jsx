@@ -104,7 +104,7 @@ const MyPage = () => {
   const [userData, setUserData] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [startdate, setStartdate] = useState("");
+  const [startdate, setStartdate] = useState("지정된 기념일이 없습니다.");
   const [point, setPoint] = useState("");
   const [photo, setPhoto] = useState(null);
   const [photoUrl, setPhotoUrl] = useState("");
@@ -131,11 +131,15 @@ const MyPage = () => {
     if (isLoaded) {
       setName(userData.name);
       setEmail(userData.email);
-      const year = userData.startdate.substring(0, 4);
-      const month = userData.startdate.substring(5, 7);
-      const date = userData.startdate.substring(8, 10);
-      setStartdate(`${year}년 ${month}월 ${date}일`);
       setPoint(userData.point);
+      if (userData.startdate === null) {
+        return;
+      } else {
+        const year = userData.startdate.substring(0, 4);
+        const month = userData.startdate.substring(5, 7);
+        const date = userData.startdate.substring(8, 10);
+        setStartdate(`${year}년 ${month}월 ${date}일`);
+      }
     }
   }, [isLoaded]);
 

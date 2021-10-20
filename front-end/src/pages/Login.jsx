@@ -103,7 +103,7 @@ const Login = () => {
   // 스타일 변경을 위한 props
   const [isSucceeded, setIsSucceeded] = useState(true);
 
-  // console.log("당신의 상태는?", classification);
+  console.log("당신의 상태는?", classification);
 
   const onClickKeepSession = () => {
     setKeepSession(!keepSession);
@@ -134,7 +134,7 @@ const Login = () => {
     axios
       .post(url, body)
       .then((response) => {
-        // console.log("response : ", response.data);
+        console.log("response : ", response.data);
         if (response.data > 0) {
           // 그냥 경고 띄우기용
           setIsSucceeded(true);
