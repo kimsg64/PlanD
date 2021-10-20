@@ -9,5 +9,5 @@ public interface ReviewDAOImp {
 	public int newReviewCount();
 	public List<ReviewVO> reviewSearchSelect(int num1, int num2, String sKey, String sWord);
 	public List<ReviewVO> myReviewSelect (String userid);
-	
+	public ReviewVO reviewView (int r_num);
 }
