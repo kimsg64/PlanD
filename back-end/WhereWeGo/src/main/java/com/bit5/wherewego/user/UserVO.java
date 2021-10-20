@@ -14,7 +14,6 @@ public class UserVO {
 	private String photo;
 	private String opt;
 	private String zzim;
-	private String history;
 	private String regdate;
 	private String point;
 	
@@ -89,12 +88,6 @@ public class UserVO {
 	}
 	public void setZzim(String zzim) {
 		this.zzim = zzim;
-	}
-	public String getHistory() {
-		return history;
-	}
-	public void setHistory(String history) {
-		this.history = history;
 	}
 	public String getRegdate() {
 		return regdate;
