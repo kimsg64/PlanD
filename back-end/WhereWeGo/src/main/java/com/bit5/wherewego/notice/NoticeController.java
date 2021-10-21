@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,6 +175,38 @@ public class NoticeController {
 			}else {//글 내용 보기
 				mav.addObject("n_num", n_num);
 				mav.setViewName("redirect:noticeView");
+			}
+			return mav;
+		}
+		
+		//글수정 폼
+		@RequestMapping("/noticeEdit")
+		public ModelAndView noticeEdit(int n_num) {
+			ModelAndView mav = new ModelAndView();
+			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+			mav.addObject("vo", dao.noticeView(n_num));
+			mav.setViewName("notice/noticeEdit");
+			
+			return mav;
+		}
+		
+		//글수정
+		@RequestMapping(value="/noticeEditOk", method=RequestMethod.POST)
+		public ModelAndView noticeEditOk(NoticeVO vo , HttpSession session) {
+			
+			
+			ModelAndView mav = new ModelAndView();
+			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+			int cnt =  dao.noticeEditOk(vo);
+			mav.addObject("n_num", vo.getN_num());
+			
+			
+			if(cnt>0) {//글 수정이 되면 글 내용 보기
+				mav.setViewName("redirect:noticeView");
+			}else {//수정 안되면 글수정으로 이동
+				mav.addObject("msg","수정");
+				mav.setViewName("notice/writeResult");
+				
 			}
 			return mav;
 		}

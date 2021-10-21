@@ -24,4 +24,6 @@ public interface NoticeDAOImp {
 
 	public int hitUpdate(int n_num); //조회수
 
+	public int noticeEditOk(NoticeVO vo); //수정
+
 }

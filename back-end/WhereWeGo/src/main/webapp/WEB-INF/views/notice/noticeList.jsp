@@ -274,6 +274,7 @@ ul.pagination li a:hover:not(.active) {
 
 			<div id="buttonMenu">
 				<a class="button" href="noticewrite">작성</a>
+				<a class="button" href="#">수정</a>
 				<a class="button" href="#">삭제</a>
 			</div>
 		</div>

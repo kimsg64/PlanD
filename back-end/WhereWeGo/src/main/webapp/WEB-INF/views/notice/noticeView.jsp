@@ -88,6 +88,7 @@ function delCheck(){
 		</div>
 	</div>
   	<div id="buttonMenu">
+  				<a class="button" href="noticeEdit?n_num=${vo.n_num }">수정</a>
 				<a class="button" href="noticeList">목록</a>
 				<a class="button" href="javascript:delCheck()">삭제</a>
 			</div>		<!-- 
