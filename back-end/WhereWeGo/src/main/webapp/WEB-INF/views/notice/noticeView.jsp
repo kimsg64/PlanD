@@ -21,7 +21,7 @@ function delCheck(){
 	.writeTitle{
 		height : 800px;
 		padding: 29px 29px 29px;;
-		border: 2px solid #FAEBD7;
+		border: 2px solid #ddd;
 		border-radius: 6px;
 	}
 	
@@ -68,8 +68,7 @@ function delCheck(){
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">
-				No. ${vo.n_num }<br/>
-				　
+	
 				<h1> ${vo.title }</h1><br/>
 				<hr>
 				　
