@@ -132,6 +132,7 @@
 	
 </style>
 
+
 </head>
 <body>
 <div id="frame">
@@ -172,8 +173,17 @@
 </div>  
 
 <div id="buttonMenu">
-			<a class="button" href="#">공개</a>
+	<form method="post" action="/wherewego/reViewgradech">
+		<input type="hidden" value="${vo.r_num}"/>
+			<input type="hidden" value="${vo.grade}"/>
+			<c:if test="${vo.grade  == '공개'}">
+				<input type="submit" class="button" value="비공개"/>
+			</c:if>
+			<c:if test="${vo.grade == '비공개' }">
+				<input type="submit" class="button" value="공개"/>
+			</c:if>
 			<a class="button" href="#">목록</a>
+	</form>
 		</div>
 </body>
 </html>
