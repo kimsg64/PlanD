@@ -58,34 +58,34 @@
 		}
 	}
 </script>
+	<form method="post" action="/wherewego/editOk">
 <div class="write-area">
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">
-				 ${vo.adnum }
-				<h1> ${vo.name }</h1>
+				<input type="hidden" name="adnum" value="${vo.adnum }"/>
+				<h1><input type="text" name="name" value="${vo.name }"/></h1>
 				<div class="write_info">
-				  ${vo.startdate }~${vo.enddate }
+				  <input type="date" name="startdate" value="${vo.startdate }"/>
+				  <input type="date" name="enddate" value="${vo.enddate }"/>
 				</div>
 			</div>		
 		</div>
 		<div class="write_story">
 			<div class="write_main">
 				<img src="upload/adimg/${vo.photo}" width=70%; /><br/>
-				<h2>주소 : ${vo.addr }</h2>
-				<h2>사업자번호 : ${vo.num }</h2>
-				<h2>연락처 : ${vo.tel }</h2>
+				<h2>주소 : <input type="text" name="addr" value="${vo.addr }"/></h2>
+				<h2>사업자번호 : <input type="text" name="num" value="${vo.num }"/></h2>
+				<h2>연락처 : <input type="text" name="tel" value="${vo.tel }"/></h2>
 				<h2>승인여부 : ${vo.grade }</h2>
 				<h2>가격 : ${vo.price }</h2>
 				<h2>결제여부 : ${vo.payment }</h2>
 			</div>			
 		</div>
 	</div>
-  	<div id="buttonMenu">
-  				<a class="button" href="adEdit?adnum=${vo.adnum }">수정</a>
-				<a class="button" href="advermanage">목록</a>
-				<a class="button" href="javascript:viewDel()">삭제</a>
-			</div>		<!-- 
-  			 	<li>사진 : ${vo.photo }</li>
-  			 -->
+	<div id="buttonMenu">
+  				<input type="submit" class="button" value="수정"/>
+				<a class="button" href="advermanage">취소</a>
+			</div>
 </div>
+</form>

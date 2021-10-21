@@ -178,5 +178,32 @@ public class AdController {
 		}
 		return mav;
 	}
+	//광고 수정폼
+	@RequestMapping("/adEdit")
+	public ModelAndView adEdit(int adnum) {
+		ModelAndView mav = new ModelAndView();
+		AdDAOImp dao= sqlSession.getMapper(AdDAOImp.class);
+		mav.addObject("vo", dao.adView(adnum));
+		mav.setViewName("ad/adEdit");
+		return mav;
+	}
+	//광고 글수정
+	@RequestMapping(value="/editOk", method=RequestMethod.POST)
+	public ModelAndView editOk(AdVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		int cnt = dao.editOk(vo);
+		mav.addObject("adnum", vo.getAdnum());
+		
+		if(cnt>0){//수정되면
+			mav.setViewName("redirect:adView");			
+		}else {//수정안되면 글수정으로 이동
+			mav.addObject("msg","수정");
+			mav.setViewName("ad/editResult");
+		}
+		return mav;
+		}
+	}
 	
-}
+	
+

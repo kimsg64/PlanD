@@ -82,6 +82,11 @@
 		grade, payment, name, num, tel, addr from ad a join business b
 		on a.b_id = b.b_id and adnum = #{param1}
 	</select>
+	<!-- 광고 수정 -->
+	<update id="editOk" parameterType="com.bit5.wherewego.ad.AdVO">
+		update ad set startdate=#{startdate}, enddate=#{enddate}
+		where adnum=#{adnum}
+	</update>
 	<!-- 게시판 삭제 -->
 	<delete id="adDelete" parameterType="com.bit5.wherewego.ad.AdVO">
 		delete from ad where adnum=#{param1}
