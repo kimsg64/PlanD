@@ -17,4 +17,6 @@ public interface AdDAOImp {
 	public AdVO adView(int adnum);
 
 	public int adDelete(int adnum);
+
+	public int editOk(AdVO vo);
 }
