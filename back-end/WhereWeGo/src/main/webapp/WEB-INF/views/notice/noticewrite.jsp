@@ -80,6 +80,8 @@
 	.button:hover {
 		color: #0e595f;
 	}
+	
+	body::-webkit-scrollbar { display:none; }
 </style>
 
 <div id="mainDiv">
