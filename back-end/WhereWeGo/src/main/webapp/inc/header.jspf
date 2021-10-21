@@ -230,7 +230,7 @@ nav {
 				<div class="login-container">
 					<!-- 서브메뉴 -->
 					<div class="submenu-container">
-						<a href="/wherewego/">마이페이지</a>
+						<a href="/wherewego/">MyPage</a>
 						
 						<c:if test="${logid=='admin'}">
 							<ul class="submenu no-height1">
@@ -256,10 +256,10 @@ nav {
 					
 				<div>
 					<c:if test="${logid!=null}">
-						<a href="/wherewego/logout">로그아웃</a>
+						<a href="/wherewego/logout">Logout</a>
 					</c:if>
 					<c:if test="${logid==null}">
-						<a href="http://localhost:3000/#/login">로그인</a>
+						<a href="http://localhost:3000/#/login">Login</a>
 					</c:if>
 	            </div>
 	          </div>

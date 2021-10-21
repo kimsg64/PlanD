@@ -3,9 +3,6 @@ package com.bit5.wherewego.ad;
 import java.util.List;
 
 public interface AdDAOImp {
-	public List<AdVO> adAllSelect(int num1, int num2);
-
-	public int totalRecordCount(); //광고리스트 페이징
 	public int insertAd(AdVO vo); //광고신청(폼)
 	public int adRegisterOk(AdVO vo); //광고신청(전송)
 	public int newAdCount(); //새로운 광고 카운트
@@ -15,6 +12,7 @@ public interface AdDAOImp {
 	public int payAdCount(String b_id); //미결제광고카운트
 	public String adMoneySelect(String startdate, String enddate); //광고가격측정
 	public AdVO adView(int adnum);
-
 	public int adDelete(int adnum);
+	public int totalAdCount(String searchKey, String searchWord);
+	public List<AdVO> adAllSelect(int num1, int num2, String searchKey, String searchWord);
 }
