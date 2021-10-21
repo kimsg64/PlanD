@@ -176,6 +176,7 @@ ul.pagination li a:hover:not(.active) {
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       });   
    });
+   
 </script>
 
 <div id="mainDiv">

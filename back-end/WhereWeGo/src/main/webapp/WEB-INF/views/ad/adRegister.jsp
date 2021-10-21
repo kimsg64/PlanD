@@ -82,7 +82,9 @@
  -->
 	
 	<h1>광고 신청</h1>
-
+	<div>
+		<img src="imgs/banner/adApplication.jpg"/>
+	</div>
 	<form method="post" action="/wherewego/adRegisterOk" name="adFrm" enctype="multipart/form-data">
 		<div id="adDiv">
 			<input type="hidden" name="b_id" id="b_id" value="${logid}">

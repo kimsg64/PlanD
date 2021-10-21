@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+function delCheck(){
+	if(confirm("글을 삭제하시겠습니까?")){
+		location.href="/wherewego/noticeDel?n_num=${vo.n_num}";
+	}
+}
+
+</script>
 <style>
 
 	.write-area{
@@ -71,7 +80,7 @@
 	</div>
   	<div id="buttonMenu">
 				<a class="button" href="noticeList">목록</a>
-				<a class="button" href="#">삭제</a>
+				<a class="button" href="javascript:delCheck()">삭제</a>
 			</div>		<!-- 
   			 	<li>사진 : ${vo.photo }</li>
   			 -->

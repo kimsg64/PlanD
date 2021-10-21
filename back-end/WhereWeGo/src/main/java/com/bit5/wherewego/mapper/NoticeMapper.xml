@@ -36,7 +36,7 @@
 	<select id="noticeView" parameterType="int" resultType="com.bit5.wherewego.notice.NoticeVO">
 		select n_num, title, content, photo, hit, to_char(writedate, 'MM-DD HH:MI') writedate from notice where n_num=#{param1}
 	</select>
-	
+
 	<!-- 팝업 변경 -->
 	<update id="changePopup0">
 		update notice set pop=0 where pop=1
@@ -52,4 +52,10 @@
 		</if>
 		 where n_num=${param1}
 	</update>
+
+	<!-- 삭제 -->
+	<delete id="noticeDelete">
+  		delete from notice where n_num=#{param1}
+  	</delete>
+
 </mapper>

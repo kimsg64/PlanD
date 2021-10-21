@@ -19,4 +19,7 @@ public interface NoticeDAOImp {
 	public void changePopup1(int n_num, int pop);
 
 	public void changePopup0();
+	
+	public int noticeDelete(int n_num);//글삭제
+
 }
