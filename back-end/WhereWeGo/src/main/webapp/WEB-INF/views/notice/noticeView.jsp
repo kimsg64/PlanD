@@ -19,8 +19,9 @@ function delCheck(){
 	}
 	
 	.writeTitle{
-		padding: 29px 29px 29px;;
-		border: 2px solid #FDE1B4;
+		height : 800px;
+		padding: 45px 45px 45px;;
+		border: 2px solid #ddd;
 		border-radius: 6px;
 	}
 	
@@ -63,14 +64,20 @@ function delCheck(){
 	}
 
 </style>
+
+
 <div class="write-area">
+<h1>공지사항</h1><br/>
+　
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">
-				 ${vo.n_num }
-				<h1> ${vo.title }</h1>
+	
+				<h1> ${vo.title }</h1><br/>
+				<hr>
+				　
 				<div class="write_info">
-				  ${vo.writedate }, ${vo.hit }
+				 등록일 : ${vo.writedate }　|　조회수 : ${vo.hit }
 				</div>
 			</div>		
 		</div>
@@ -81,6 +88,7 @@ function delCheck(){
 		</div>
 	</div>
   	<div id="buttonMenu">
+  				<a class="button" href="noticeEdit?n_num=${vo.n_num }">수정</a>
 				<a class="button" href="noticeList">목록</a>
 				<a class="button" href="javascript:delCheck()">삭제</a>
 			</div>		<!-- 

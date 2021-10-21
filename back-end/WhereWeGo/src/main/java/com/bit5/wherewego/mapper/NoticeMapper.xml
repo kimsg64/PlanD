@@ -57,5 +57,15 @@
 	<delete id="noticeDelete">
   		delete from notice where n_num=#{param1}
   	</delete>
-
+  	
+  	<!-- 조회수 -->
+  	<update id="hitUpdate" parameterType="int"> 
+  	update notice set hit=hit+1 where n_num= #{n_num}
+  	 </update>
+  	 
+  	 <!-- 수정 -->
+ 	<update id="noticeEditOk" parameterType="com.bit5.wherewego.notice.NoticeVO">
+  		update notice set title=#{title}, content=#{content}
+  		where n_num=#{n_num}
+  	</update>
 </mapper>
