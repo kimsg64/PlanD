@@ -24,7 +24,6 @@
 	}
 	.write_main{
 		margin-top:10px;
-		width:100;
 		overflow-x:auto;
 		padding: 15px 15px 15px;
 	}
@@ -52,6 +51,13 @@
 	}
 
 </style>
+<script>
+	function viewDel(){
+		if(confirm("글을 삭제하시겠습니까?")){
+			location.href="/wherewego/adDel?adnum=${vo.adnum}";
+		}
+	}
+</script>
 <div class="write-area">
 	<div class="writeTitle">	
 		<div class="write_header">
@@ -65,16 +71,19 @@
 		</div>
 		<div class="write_story">
 			<div class="write_main">
-				내용 : <img src="upload/adimg/${vo.photo}" /><br/>
-				<h4>가격 : ${vo.price }</h4>
-				<h4>승인여부 : ${vo.grade }</h4>
-				<h4>결제여부 : ${vo.payment }</h4>
+				<img src="upload/adimg/${vo.photo}" width=70%; /><br/>
+				<h2>주소 : ${vo.addr }</h2>
+				<h2>사업자번호 : ${vo.num }</h2>
+				<h2>연락처 : ${vo.tel }</h2>
+				<h2>승인여부 : ${vo.grade }</h2>
+				<h2>가격 : ${vo.price }</h2>
+				<h2>결제여부 : ${vo.payment }</h2>
 			</div>			
 		</div>
 	</div>
   	<div id="buttonMenu">
 				<a class="button" href="advermanage">목록</a>
-				<a class="button" href="#">삭제</a>
+				<a class="button" href="javascript:viewDel()">삭제</a>
 			</div>		<!-- 
   			 	<li>사진 : ${vo.photo }</li>
   			 -->

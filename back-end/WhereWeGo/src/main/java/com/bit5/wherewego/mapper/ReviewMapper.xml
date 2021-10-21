@@ -101,5 +101,13 @@
       join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
       on r.res_num=n.res_num and r_num=#{param1} order by r.writedate asc
 	</select>
+	<!-- 공개 비공개 -->
+	<update id="reViewgradech" parameterType="com.bit5.wherewego.review.ReviewVO">
+		update review set
+		<if test='grade.equals("공개")'>grade='비공개'</if>
+		<if test='grade.equals("비공개")'>grade='공개'</if>
+		where r_num=${r_num} 
+		
+	</update>
 
 </mapper>
