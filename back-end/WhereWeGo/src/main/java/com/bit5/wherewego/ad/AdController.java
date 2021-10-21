@@ -163,6 +163,20 @@ public class AdController {
 		
 		return mav;
 	
-}
-	
+	}
+	//광고 삭제
+	@RequestMapping("/adDel")
+	public ModelAndView adDel(int adnum) {
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		int cnt = dao.adDelete(adnum);
+		
+		ModelAndView mav= new ModelAndView();
+		if(cnt>0) {
+			mav.setViewName("redirect:advermanage");
+		}else {
+			mav.addObject("adnum", adnum);
+			mav.setViewName("redirect:adView");
+		}
+		return mav;
+	}
 }

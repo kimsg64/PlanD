@@ -14,8 +14,15 @@ public class AdVO {
 	private String name; //상호명
 	private String num;
 	private String tel;
+	private String addr;
 
 	
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	public String getNum() {
 		return num;
 	}

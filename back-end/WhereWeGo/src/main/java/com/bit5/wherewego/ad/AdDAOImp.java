@@ -15,4 +15,6 @@ public interface AdDAOImp {
 	public int payAdCount(String b_id); //미결제광고카운트
 	public String adMoneySelect(String startdate, String enddate); //광고가격측정
 	public AdVO adView(int adnum);
+
+	public int adDelete(int adnum);
 }

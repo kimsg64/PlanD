@@ -40,7 +40,7 @@
 		border-radius: 12px;
 		transition-duration: 0.4s;
 		font-size: 13px;
-		width: 70px;
+		width: 80px;
 		text-align: center;
 	}
 	.button:hover {
