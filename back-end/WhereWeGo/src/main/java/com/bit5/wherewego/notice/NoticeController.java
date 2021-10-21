@@ -172,7 +172,7 @@ public class NoticeController {
 			}else {//글 내용 보기
 				mav.addObject("n_num", n_num);
 				mav.setViewName("redirect:noticeView");
-
+			}
 			return mav;
 		}
 }
