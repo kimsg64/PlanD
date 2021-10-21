@@ -19,8 +19,9 @@ function delCheck(){
 	}
 	
 	.writeTitle{
+		height : 800px;
 		padding: 29px 29px 29px;;
-		border: 2px solid #FDE1B4;
+		border: 2px solid #FAEBD7;
 		border-radius: 6px;
 	}
 	
@@ -67,10 +68,13 @@ function delCheck(){
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">
-				 ${vo.n_num }
-				<h1> ${vo.title }</h1>
+				No. ${vo.n_num }<br/>
+				　
+				<h1> ${vo.title }</h1><br/>
+				<hr>
+				　
 				<div class="write_info">
-				  ${vo.writedate }, ${vo.hit }
+				 등록일 : ${vo.writedate }　|　조회수 : ${vo.hit }
 				</div>
 			</div>		
 		</div>
