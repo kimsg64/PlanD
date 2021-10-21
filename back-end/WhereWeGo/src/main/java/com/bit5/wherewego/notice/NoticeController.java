@@ -139,6 +139,8 @@ public class NoticeController {
 		@RequestMapping("/noticeView")
 		public ModelAndView noticeView(int n_num) {
 			ModelAndView mav = new ModelAndView();
+			NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
+			dao2.hitUpdate(n_num);
 			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
 			mav.addObject("vo", dao.noticeView(n_num));
 			mav.setViewName("/notice/noticeView");

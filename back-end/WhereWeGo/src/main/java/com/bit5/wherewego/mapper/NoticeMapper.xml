@@ -57,5 +57,10 @@
 	<delete id="noticeDelete">
   		delete from notice where n_num=#{param1}
   	</delete>
+  	
+  	<!-- 조회수 -->
+  	<update id="hitUpdate" parameterType="int"> 
+  	update notice set hit=hit+1 where n_num= #{n_num}
+  	 </update>
 
 </mapper>

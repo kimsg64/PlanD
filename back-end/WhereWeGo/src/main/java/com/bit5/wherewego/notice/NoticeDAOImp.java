@@ -22,4 +22,6 @@ public interface NoticeDAOImp {
 	
 	public int noticeDelete(int n_num);//글삭제
 
+	public int hitUpdate(int n_num); //조회수
+
 }
