@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.business.BusinessDAOImp;
 import com.bit5.wherewego.business.BusinessVO;
-import com.bit5.wherewego.notice.NoticeDAOImp;
 
 
 @Controller
@@ -153,6 +152,7 @@ public class AdController {
 		
 		return mav;
 	}
+	
 	//광고 뷰
 	@RequestMapping("/adView")
 	public ModelAndView adView(int adnum) {

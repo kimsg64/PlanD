@@ -1,7 +1,5 @@
 package com.bit5.wherewego.res;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +28,7 @@ public class ResController {
 		ModelAndView mav = new ModelAndView();
 		
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		
-		int total = dao.totalRecordCount();
+		int total = dao.totalResCount(pVo.getSearchKey(), pVo.getSearchWord());
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -45,7 +42,7 @@ public class ResController {
 		}
 		
 		ResDAOImp dao2 = sqlSession.getMapper(ResDAOImp.class);
-		mav.addObject("list",dao2.resAllSelect(num1,num2));
+		mav.addObject("list",dao2.resAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
 		mav.addObject("pVo",pVo);
 		mav.setViewName("res/resList");
 

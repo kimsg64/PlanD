@@ -244,9 +244,8 @@ nav {
 								<li class="submenu-item"><a href="/wherewego/pointshopList">포인트샵 관리</a><span class="border-effect"></span></li>
 							</ul>
 						</c:if>
-						
-												
-						<c:if test="${logid!='admin'}">
+											
+						<c:if test="${logid!='admin' and logid!=null}">
 							<ul class="submenu no-height2">
 								<li class="submenu-item"><a href="/wherewego/MyInfo">내 정보 수정</a><span class="border-effect"></span></li>
 								<li class="submenu-item"><a href="/wherewego/adRegister">광고 신청</a><span class="border-effect"></span></li> 
@@ -256,7 +255,12 @@ nav {
 					</div>
 					
 				<div>
-					<a href="/wherewego/logout">로그아웃</a>
+					<c:if test="${logid!=null}">
+						<a href="/wherewego/logout">로그아웃</a>
+					</c:if>
+					<c:if test="${logid==null}">
+						<a href="http://localhost:3000/#/login">로그인</a>
+					</c:if>
 	            </div>
 	          </div>
 			</section>
