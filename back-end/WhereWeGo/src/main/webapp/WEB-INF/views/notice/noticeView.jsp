@@ -17,29 +17,31 @@ function delCheck(){
 		width: 72%;
 		margin:0 auto;
 	}
+	
 	.writeTitle{
 		padding: 29px 29px 29px;;
-		border: 1px solid gray;
+		border: 2px solid #FDE1B4;
 		border-radius: 6px;
 	}
-	.writeTitle.write_header{
-		
-	}
+	
 	.write_title{
 		position: relative;
 		margin-bottom:20px;
 		padding-bottom:20px;
 		border-bottom: 1px solid gray;
 	}
+	
 	.write_main{
 		margin-top:10px;
 		width:100;
 		overflow-x:auto;
 		padding: 15px 15px 15px;
 	}
+	
 	#buttonMenu {
 	float: right;
 	}
+	
 	.button {
 		background-color: #fd7d73;
 		border: none;
