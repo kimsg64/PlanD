@@ -174,7 +174,7 @@ ul.pagination li a:hover:not(.active) {
       $('#allChk').on('change',function(){
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      });   
+      });
    });
    
 </script>
@@ -225,6 +225,7 @@ ul.pagination li a:hover:not(.active) {
 						<form method="post" action="/wherewego/noticePopup" name="Frm${vo.n_num }">	
 							<input type="hidden" name="n_num" id="n_num" value="${vo.n_num}">
 							<input type="hidden" name="pop" id="pop" value="${vo.pop}">
+							<input type="hidden" name="photo" id="photo" value="${vo.photo}">
 							<c:if test="${vo.pop==1}">
 								<a href="javascript:document.Frm${vo.n_num }.submit();" id="popup1">on</a>
 							</c:if>

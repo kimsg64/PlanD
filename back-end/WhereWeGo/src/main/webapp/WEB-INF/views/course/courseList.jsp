@@ -154,6 +154,7 @@ select, option, input {font-family: "TmoneyRoundWindRegular";}
 				<select name="searchKey">
 					<option value="name">코스명</option>
 					<option value="stname">역이름</option>
+					<option value="userid">작성자</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
 				<input type="submit" value="검색" class="button"/>

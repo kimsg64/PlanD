@@ -4,20 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit5.wherewego.course.CourseDAOImp">
-	<select id="courseAllSelect" resultType="com.bit5.wherewego.course.CourseVO">
-		<![CDATA[ 
+	<select id="courseAllSelect" resultType="com.bit5.wherewego.course.CourseVO">	
 		select * from 
 		(select * from 
-		(select c.c_num c_num, c.name name, s.stname stname, c.userid userid, c.grade grade from course c
+		(select c_num, name, stname, userid, grade from course c
 		join station s on c.stcode=s.stcode
+		<if test='param4!=null and !param4.equals("")'>
+		and ${param3} like '%'||#{param4, jdbcType=VARCHAR}||'%' 
+		</if>
 		order by c_num desc) 
+		<![CDATA[ 
 		where rownum<=#{param1} order by c_num asc) 
 		where rownum<=#{param2} order by c_num desc
 		]]>
 	</select>
 	
-	<select id="totalRecordCount" resultType="int">
-		select count(c_num) totalRecord from course
+	<select id="totalCourseCount" resultType="int">
+		select count(c_num) from course c
+		join station s on c.stcode=s.stcode
+		<if test='param2!=null and !param2.equals("")'>
+		and ${param1} like '%'||#{param2}||'%' 
+		</if>	 
 	</select>
 	
 	<select id="newCourseCount" resultType="int">

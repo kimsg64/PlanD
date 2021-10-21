@@ -29,25 +29,10 @@ public class ReviewController {
 	//목록
 	@RequestMapping("/reviewList")
 	public ModelAndView list(PagingVO pVo) {
-
 		ModelAndView mav = new ModelAndView();
+		
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
-		
-		int total;
-		
-		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
-			if(pVo.getSearchKey().equals("코스명")) {
-				total = dao.totalSearchname(pVo.getSearchWord());
-			}
-			else {
-				total = dao.totalSearchid(pVo.getSearchWord());	
-			}
-				
-		}
-		else { //검색어 없을때
-			total = dao.totalRecordCount();
-		}
-		
+		int total= dao.totalReviewCount(pVo.getSearchKey(), pVo.getSearchWord());		
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -61,17 +46,7 @@ public class ReviewController {
 		}
 		
 		ReviewDAOImp dao2 = sqlSession.getMapper(ReviewDAOImp.class);
-		if (pVo.getSearchWord() != null && !pVo.getSearchWord().equals("")) { //검색어있을때
-			if(pVo.getSearchKey().equals("코스명")) {
-				mav.addObject("list",dao2.allSelectSearchname(num1,num2,pVo.getSearchWord()));
-			}
-			else {
-				mav.addObject("list",dao2.allSelectSearchid(num1,num2,pVo.getSearchWord()));
-			}		
-		}
-		else { //검색어 없을때
-			mav.addObject("list",dao2.reviewAllSelect(num1,num2));
-		}
+		mav.addObject("list",dao2.reviewAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
 		mav.addObject("pVo",pVo);
 		mav.setViewName("review/reviewList");
 

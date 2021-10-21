@@ -23,6 +23,12 @@
 	text-align: left;
 }
 
+#banner {width:100%;}
+
+#searchDiv {width:100%; text-align:right; margin:20px 0px;}
+
+select, option, input {font-family: "TmoneyRoundWindRegular";}
+
 #bottomdiv {
 	width:100%;
 	height: 50px;
@@ -140,34 +146,35 @@ ul.pagination li a:hover:not(.active) {
             $('#boardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
       });
       
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
+//      $('#searchFrm').submit(function(){
+//			if($('#searchWord').val()==''){
+//				alert('검색어를 입력 후 검색하세요');
+//				return false;
+//			}
+//			return true;
+//		});
    });
 </script>
 
 <div id="mainDiv">
 	<h1>리뷰 관리</h1>
 	
-	<div id="reviewbanner">
-		<img src="imgs/banner/review.jpg"/> <!-- 1350*300 -->
-	</div>
+	<img src="imgs/banner/review.jpg" id="banner"/>
 
 	<!-- 검색 -->
-	<div id="search">
-		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reviewList">
-			<select name="searchKey">
-				<option value="name">코스명</option>
-				<option value="userid">아이디</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
-			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
-		</form>
+	<div id="searchDiv">
+		<div>
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/reviewList">
+				<select name="searchKey">
+					<option value="name">코스명</option>
+					<option value="userid">작성자</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+				<input type="submit" value="검색" class="button"/>
+			</form>
+		</div>
 	</div>
+	
 	<div id="list">
 		<ul id="boardList">
 			<li><input type="checkbox" id="allChk"></li>

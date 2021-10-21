@@ -21,6 +21,12 @@
 	text-align: left;
 }
 
+#banner {width:100%;}
+
+#searchDiv {width:100%; text-align:right; margin:20px 0px;}
+
+select, option, input {font-family: "TmoneyRoundWindRegular";}
+
 #bottomdiv {
 	width: 100%;
 	height: 50px;
@@ -165,17 +171,7 @@ ul.pagination li a:hover:not(.active) {
       $('#allChk').on('change',function(){
     	  $('#adminboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
     	  $('#userboardList input[type=checkbox]').prop('checked',$('#allChk').prop('checked'));
-      }); 
-	  
-	   //검색
-      $('#searchFrm').submit(function(){
-			if($('#searchWord').val()==''){
-				alert('검색어를 입력 후 검색하세요');
-				return false;
-			}
-			return true;
-		});
-      
+      });
    });
 </script>
 
@@ -183,17 +179,18 @@ ul.pagination li a:hover:not(.active) {
 	<h1>장소 관리</h1>
 	<img src="imgs/banner/place.jpg" id="banner"/>
 
-	
 	<!-- 검색 -->
-	<div id="search">
-		<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/placeList">
-			<select name="searchKey">
-				<option value="title">제목</option>
-				<option value="content">글내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력"/>
-			<a class="button" href="javascript:document.searchFrm.submit();">검색</a>
-		</form>
+	<div id="searchDiv">
+		<div>
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/placeList">
+				<select name="searchKey">
+					<option value="name">장소명</option>
+					<option value="addr">주소</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
+				<input type="submit" value="검색" class="button"/>
+			</form>
+		</div>
 	</div>
 
 	<div id="list">
@@ -212,39 +209,15 @@ ul.pagination li a:hover:not(.active) {
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>
 					<li>${vo.pcode }</li>
 					<li>${vo.sort }</li>
-					<li><a
-						href="/wherewego/placeView?no=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
+					<li><a href="/wherewego/placeView?no=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
 					<li>${vo.time }</li>
 					<li><c:if test="${vo.link==null }">
-						</c:if> <c:if test="${vo.link!=null }">
-						</c:if></li>
-				</c:forEach>
-			</ul>
-		</c:if>
-
-		<!-- 일반 사용자 모드 -->
-		<c:if test="${logid!='admin'}">
-			<ul id="userboardList">
-				<li><input type="checkbox" id="allChk"></li>
-				<li>No.</li>
-				<li>종류</li>
-				<li class="wordCut">장소명</li>
-				<li>영업시간</li>
-
-				<c:forEach var="vo" items="${list}">
-					<li><input type="checkbox" name="chk" value="${vo.pcode}" /></li>
-					<li>${vo.pcode }</li>
-					<li>${vo.sort }</li>
-					<li class="wordCut"><a
-						href="/wherewego/placeView?no=${vo.pcode}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
-					<li>${vo.time }</li>
-		
-					<li><c:if test="${vo.photo==null}">
-							<img src="imgs/disk0.png" />
-						<li><c:if test="${vo.link==null}">
-						</c:if> <c:if test="${vo.link!=null}">
-						</c:if></li>
-						</c:if></li>
+							<img src="imgs/link.png"/>
+						</c:if>
+						<c:if test="${vo.link!=null }">
+							<a href="${vo.link }" target = "_blank"><img src="imgs/linkg.png"/></a>
+						</c:if>
+						</li>
 				</c:forEach>
 			</ul>
 		</c:if>

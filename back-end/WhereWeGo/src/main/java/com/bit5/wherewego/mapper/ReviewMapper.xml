@@ -6,69 +6,38 @@
 <mapper namespace="com.bit5.wherewego.review.ReviewDAOImp">
 
 	<!-- 리뷰리스트 -->
-	<select id="reviewAllSelect"
-		resultType="com.bit5.wherewego.review.ReviewVO">
-	<![CDATA[ 
-		 select * from 
-		(select * from 
-		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name, to_char(rr.resdate, 'MM/DD') resdate
-		from review r 
-		join (select re.resdate resdate, re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num) rr 
-		on r.res_num=rr.res_num 
-		order by r_num desc)  
-		where rownum<=#{param1} order by r_num asc) 
-		where rownum<=#{param2} order by r_num desc
-		]]>
-	</select>
+	<select id="reviewAllSelect" resultType="com.bit5.wherewego.review.ReviewVO">
 	
-	<!-- 코스명 검색 리스트 -->
-	<select id="allSelectSearchname"
-		resultType="com.bit5.wherewego.review.ReviewVO">
-	<![CDATA[ 
 		 select * from 
 		(select * from 
-		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name, to_char(rr.resdate, 'MM/DD') resdate
-		from review r 
-		join (select re.resdate resdate, re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num and name like '%'||#{param3}||'%') rr 
-		on r.res_num=rr.res_num 
-		order by r_num desc)  
-		where rownum<=#{param1} order by r_num asc) 
-		where rownum<=#{param2} order by r_num desc
-		]]>
-	</select>
-	
-	<!-- 작성자 검색 리뷰리스트 -->
-	<select id="allSelectSearchid"
-		resultType="com.bit5.wherewego.review.ReviewVO">
-	<![CDATA[ 
-		 select * from 
-		(select * from 
-		(select r.r_num, r.score, r.info, to_char(r.writedate, 'MM/DD') writedate, r.grade, r.photo, r.res_num, rr.c_num, rr.userid, rr.name, to_char(rr.resdate, 'MM/DD') resdate
-		from review r 
-		join (select re.resdate resdate, re.res_num res_num, re.userid userid, re.c_num c_num, c.name name from res re join course c on re.c_num=c.c_num and userid like '%'||#{param3}||'%') rr 
-		on r.res_num=rr.res_num 
-		order by r_num desc)  
+		(select r.grade, to_char(r.writedate, 'MM/DD') writedate, r.score, r.r_num, r.res_num, n.c_num, n.name, to_char(n.resdate, 'MM/DD') resdate, n.userid from review r join 
+		(select r.res_num, r.c_num, c.name, r.resdate, r.userid from res r join course c on r.c_num=c.c_num
+		<if test='param4!=null and !param4.equals("") and param3.equals("name")'>
+		where c.name like '%'||#{param4, jdbcType=VARCHAR}||'%'
+		</if>
+		<if test='param4!=null and !param4.equals("") and param3.equals("userid")'>
+		where r.userid like '%'||#{param4, jdbcType=VARCHAR}||'%'
+		</if>
+		) n on r.res_num=n.res_num order by r_num desc
+		)
+		<![CDATA[ 
 		where rownum<=#{param1} order by r_num asc) 
 		where rownum<=#{param2} order by r_num desc
 		]]>
 	</select>
 
 	<!-- 리뷰리스트 페이징 -->
-	<select id="totalRecordCount" resultType="int">
-		select count(r_num) totalRecord from review
-	</select>
-	
-	<!-- 코스명 검색 리뷰리스트 페이징 -->
-	<select id="totalSearchname" resultType="int">
-		select count(v.r_num) from review v join 
-		(select r.res_num, r.c_num, c.name from res r join course c on r.c_num=c.c_num) n
-		on v.res_num=n.res_num and name like '%'||#{param1}||'%'
-	</select>
-	
-	<!-- 작성자 검색 리뷰리스트 페이징 -->
-	<select id="totalSearchid" resultType="int">
-		select count(r_num) from review r join res s on r.res_num=s.res_num
-		and userid like '%'||#{param1}||'%'
+	<select id="totalReviewCount" resultType="int">
+		select count(r_num) from review r join 
+		(select r.res_num, r.userid, r.c_num, c.name from res r join course c on r.c_num=c.c_num	
+		<if test='param2!=null and !param2.equals("") and param1.equals("name")'>
+		where c.name like '%'||#{param2, jdbcType=VARCHAR}||'%' 
+		</if>
+		<if test='param2!=null and !param2.equals("") and param1.equals("userid")'>
+		where r.userid like '%'||#{param2, jdbcType=VARCHAR}||'%' 
+		</if>
+		) n
+		on r.res_num=n.res_num order by r_num desc
 	</select>
 
 	<!-- 베스트리뷰 -->
