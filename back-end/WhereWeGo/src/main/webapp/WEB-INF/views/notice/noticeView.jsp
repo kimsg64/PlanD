@@ -20,7 +20,7 @@ function delCheck(){
 	
 	.writeTitle{
 		height : 800px;
-		padding: 29px 29px 29px;;
+		padding: 45px 45px 45px;;
 		border: 2px solid #ddd;
 		border-radius: 6px;
 	}
@@ -64,7 +64,11 @@ function delCheck(){
 	}
 
 </style>
+
+
 <div class="write-area">
+<h1>공지사항</h1><br/>
+　
 	<div class="writeTitle">	
 		<div class="write_header">
 			<div class="write_title">

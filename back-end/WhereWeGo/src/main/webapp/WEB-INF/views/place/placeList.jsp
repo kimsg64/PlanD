@@ -154,6 +154,9 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
+
+#banner {width:100%;}
+
 </style>
 
 <script>
@@ -178,9 +181,8 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>장소 관리</h1>
-	<div>
-		<img src="imgs/banner/place.jpg" />
-	</div>
+	<img src="imgs/banner/place.jpg" id="banner"/>
+
 	
 	<!-- 검색 -->
 	<div id="search">
