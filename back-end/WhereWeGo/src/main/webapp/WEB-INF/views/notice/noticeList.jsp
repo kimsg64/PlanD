@@ -218,14 +218,20 @@ ul.pagination li a:hover:not(.active) {
 					<li><c:if test="${vo.photo==null}">
 							<img src="imgs/disk0.png" />
 						</c:if> <c:if test="${vo.photo!=null}">
-							<!-- 첨부파일 다운받는 링크 연결하기 -->
-							<a href="#"><img src="imgs/disk.png" /></a>
+							<a href="upload/noticefile/${vo.photo }" download><img src="imgs/disk.png" /></a>
 						</c:if></li>
-					<li><c:if test="${vo.pop==1}">
-							<a href="#" id="popup1">on</a>
-						</c:if> <c:if test="${vo.pop==0}">
-							<a href="#" id="popup0">off</a>
-						</c:if></li>
+					<li>
+						<form method="post" action="/wherewego/noticePopup" name="Frm${vo.n_num }">	
+							<input type="hidden" name="n_num" id="n_num" value="${vo.n_num}">
+							<input type="hidden" name="pop" id="pop" value="${vo.pop}">
+							<c:if test="${vo.pop==1}">
+								<a href="javascript:document.Frm${vo.n_num }.submit();" id="popup1">on</a>
+							</c:if>
+							<c:if test="${vo.pop==0}">
+								<a href="javascript:document.Frm${vo.n_num }.submit();" id="popup0">on</a>
+							</c:if>
+						</form>
+					</li>
 				</c:forEach>
 			</ul>
 		</c:if>
@@ -243,15 +249,13 @@ ul.pagination li a:hover:not(.active) {
 				<c:forEach var="vo" items="${list}">
 					<li><input type="checkbox" name="chk" value="${vo.n_num}" /></li>
 					<li>${vo.n_num }</li>
-					<li class="wordCut"><a
-						href="/wherewego/noticeView?n_num=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
+					<li class="wordCut"><a href="/wherewego/noticeView?n_num=${vo.n_num}&nowPage=${pVo.nowPage}">${vo.title}</a></li>
 					<li>${vo.writedate }</li>
 					<li>${vo.hit }</li>
 					<li><c:if test="${vo.photo==null}">
 							<img src="imgs/disk0.png" />
 						</c:if> <c:if test="${vo.photo!=null}">
-							<!-- 첨부파일 다운받는 링크 연결하기 -->
-							<a href="#"><img src="imgs/disk.png" /></a>
+							<a href="upload/noticefile/${vo.photo }" download><img src="imgs/disk.png" /></a>
 						</c:if></li>
 				</c:forEach>
 			</ul>

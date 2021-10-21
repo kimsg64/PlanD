@@ -10,8 +10,13 @@ public interface NoticeDAOImp {
 	//전체목록
 	public List<NoticeVO> noticeAllSelect(int num1, int num2, String string, String string2);
 
-
+	//작성
 	public int noticeWriteOk(NoticeVO vo);
 
+	//뷰
 	public NoticeVO noticeView(int n_num);
+
+	public void changePopup1(int n_num, int pop);
+
+	public void changePopup0();
 }
