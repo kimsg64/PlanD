@@ -83,4 +83,20 @@ public class NoticeController {
 			return mav;
 		
 	}
+		//글 삭제
+		@RequestMapping("/noticeDel")
+		public ModelAndView noticeDel(int n_num) {
+			
+			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+			int cnt = dao.noticeDelete(n_num);
+			
+			ModelAndView mav = new ModelAndView();
+			if(cnt>0) {//글이 삭제 되면 리스트
+				mav.setViewName("redirect:noticeList");
+			}else {//글 내용 보기
+				mav.addObject("n_num", n_num);
+				mav.setViewName("redirect:noticeView");
+			}
+			return mav;
+		}
 }

@@ -14,4 +14,6 @@ public interface NoticeDAOImp {
 	public int noticeWriteOk(NoticeVO vo);
 
 	public NoticeVO noticeView(int n_num);
+	
+	public int noticeDelete(int n_num);//글삭제
 }

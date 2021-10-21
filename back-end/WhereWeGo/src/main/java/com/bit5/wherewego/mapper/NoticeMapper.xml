@@ -36,4 +36,8 @@
 	<select id="noticeView" parameterType="int" resultType="com.bit5.wherewego.notice.NoticeVO">
 		select n_num, title, content, photo, hit, to_char(writedate, 'MM-DD HH:MI') writedate from notice where n_num=#{param1}
 	</select>
+	<!-- 삭제 -->
+	<delete id="noticeDelete">
+  		delete from notice where n_num=#{param1}
+  	</delete>
 </mapper>
