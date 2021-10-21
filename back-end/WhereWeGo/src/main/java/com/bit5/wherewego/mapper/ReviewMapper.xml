@@ -96,7 +96,7 @@
 	
 	<!-- 리뷰 보기 -->
 	<select id="reviewView" resultType="com.bit5.wherewego.review.ReviewVO">
-	  select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, n.resdate, r.grade 
+	  select r.r_num, r.score, r.info, r.writedate, r.photo, n.name, n.userid, to_char(n.resdate,'YY/MM/DD') resdate, r.grade 
       from review r 
       join (select e.res_num, c.name, e.userid, e.resdate from res e join course c on e.c_num=c.c_num) n 
       on r.res_num=n.res_num and r_num=#{param1} order by r.writedate asc
