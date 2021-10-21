@@ -2,12 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-#whitetop {
-	width: 100%;
-	height: 80px;
+#mainDiv {
+	width: 72%;
+	margin: 0 auto;
+	color: #00282e;
+	text-align: center;
 }
 
-#top {display: flex; margin-top:80px; margin-left:50px;}
+#mainDiv>h1 {
+	margin-bottom: 30px;
+	text-align: left;
+}
 
 #search{margin-left:1150px; margin-bottom:30px; margin-top:20px;}
 

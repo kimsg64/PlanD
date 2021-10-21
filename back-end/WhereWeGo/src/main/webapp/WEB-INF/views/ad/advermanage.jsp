@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-        function showPopup(){
-            window.open("popUp.html","미승인 사유","width=317, height=100, top=10, left=10");
-        }
-        
-    </script>
 <style>
 .container {
 	width: 72%;
@@ -40,6 +34,30 @@ img {
 	margin-left: 0;
 	padding: 0;
 	list-style: none;
+}
+
+
+.allB {
+	margin-top: 10px;
+}
+
+.admenu {
+	margin: 0 auto;
+	padding: 10px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.adlist {
+	width: 40%;
+	margin: 5%;
+	border : 1px solid #efcac3;
+	background-color:#fffefd;
+	border-radius: 12px;
+	padding : 15px;
 }
 
 .button {
@@ -81,28 +99,6 @@ img {
 
 #buttonMenu {
 	float: right;
-}
-
-.allB {
-	margin-top: 10px;
-}
-
-.admenu {
-	margin: 0 auto;
-	padding: 10px;
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	white-space: nowrap;
-	overflow: hidden;
-}
-
-.adlist {
-	width: 40%;
-	margin: 5%;
-	border : 2px solid #efcac3;
-	border-radius: 12px;
-	padding : 15px;
 }
 
 #paging {

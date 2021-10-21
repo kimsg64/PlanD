@@ -19,32 +19,31 @@ public class ProductController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	//광고 관리
-	@RequestMapping("/pointshopList")
 
+	//포인트샵 리스트
+	@RequestMapping("/pointshopList")
 	public ModelAndView list(PdPagingVO pVo) {
-			
-			ModelAndView mav = new ModelAndView();
-			ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
-			ProductDAOImp dao2 = sqlSession.getMapper(ProductDAOImp.class);
-			
-			int total = dao2.totalRecordCount();
-			pVo.setTotalRecord(total);
-			
-			int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
-			int num2;
-			
-			int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
-			if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
-				num2 = lastPageRecord;
-			} else {
-				num2 = pVo.getOnePageRecord();
-			}
-			
-			mav.addObject("list",dao.pdAllSelect(num1,num2));
-			mav.addObject("pVo",pVo);
-			mav.setViewName("pointshop/pointshopList");
-			
-			return mav;
+		ModelAndView mav = new ModelAndView();
+		
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		int total= dao.totalProductCount(pVo.getSearchKey(), pVo.getSearchWord());		
+		pVo.setTotalRecord(total);
+		
+		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
+		int num2;
+		
+		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
+		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
+			num2 = lastPageRecord;
+		} else {
+			num2 = pVo.getOnePageRecord();
 		}
+		
+		ProductDAOImp dao2 = sqlSession.getMapper(ProductDAOImp.class);
+		mav.addObject("list",dao2.productAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
+		mav.addObject("pVo",pVo);	
+		mav.setViewName("pointshop/pointshopList");
+		
+		return mav;
+	}
 }
