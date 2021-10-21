@@ -29,15 +29,33 @@
 	
 	<!-- 공지사항 작성(전송) -->
 	<insert id="noticeWriteOk"  parameterType="com.bit5.wherewego.notice.NoticeVO">
-  		insert into board(n_num, title, content, photo, hit, writedate, pop) values(noticesq.nextval, #{n_num}, #{title}, #{content}, #{photo}, #{hit}, #{writedate}, #{pop})
+  		insert into notice(title,content,photo) values(#{title}, #{content}, #{photo})
 	</insert>
 
 	<!--  공지사랑 뷰 -->
 	<select id="noticeView" parameterType="int" resultType="com.bit5.wherewego.notice.NoticeVO">
 		select n_num, title, content, photo, hit, to_char(writedate, 'MM-DD HH:MI') writedate from notice where n_num=#{param1}
 	</select>
+
+	<!-- 팝업 변경 -->
+	<update id="changePopup0">
+		update notice set pop=0 where pop=1
+	</update>
+	
+	<update id="changePopup1">
+		update notice set 
+		<if test="param2==1">
+			pop=0
+		</if>
+		<if test="param2==0">
+			pop=1
+		</if>
+		 where n_num=${param1}
+	</update>
+
 	<!-- 삭제 -->
 	<delete id="noticeDelete">
   		delete from notice where n_num=#{param1}
   	</delete>
+
 </mapper>

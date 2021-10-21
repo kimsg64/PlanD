@@ -85,11 +85,11 @@
 <div id="mainDiv">
 	<h1>공지사항 등록</h1>
 	
-	<form method="post" action="/wherewego/noticeWriteOk">
+	<form method="post" action="/wherewego/noticeWriteOk" name="noticeFrm" enctype="multipart/form-data">
 		<div id="noticeDiv">
 			<b>제목</b> : <input type="text" id="title" name="title" /><br />
 			<textarea name="content" id="content"></textarea><br />
-			<b>파일</b> : <input type="file" id="filename" name="filename" /><br/>
+			<b>파일</b> : <input type="file" id="filename" name="filename"/><br/>
 			
 			<div id="buttonMenu">
 				<a class="button" href="/wherewego/noticeList">목록</a>
