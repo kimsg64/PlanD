@@ -32,7 +32,6 @@ public class NoticeController {
 	//공지사항 목록
 	@RequestMapping("/noticeList")
 	public ModelAndView list(PagingVO pVo) {
-
 		ModelAndView mav = new ModelAndView();
 		
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
@@ -56,6 +55,7 @@ public class NoticeController {
 		
 		return mav;
 	}
+	
 	//글쓰기폼
 	@RequestMapping("/noticewrite")
 	public String write() {

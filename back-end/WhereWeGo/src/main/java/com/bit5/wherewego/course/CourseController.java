@@ -31,12 +31,10 @@ public class CourseController {
 	//목록
 	@RequestMapping("/courseList")
 	public ModelAndView list(PagingVO pVo) {
-
 		ModelAndView mav = new ModelAndView();
-		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
-		CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
 		
-		int total = dao2.totalRecordCount(pVo);
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		int total= dao.totalCourseCount(pVo.getSearchKey(), pVo.getSearchWord());		
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -49,10 +47,11 @@ public class CourseController {
 			num2 = pVo.getOnePageRecord();
 		}
 		
-		mav.addObject("list",dao.courseAllSelect(num1,num2));
-		mav.addObject("pVo",pVo);
+		CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
+		mav.addObject("list",dao2.courseAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
+		mav.addObject("pVo",pVo);	
 		mav.setViewName("course/courseList");
-
+		
 		return mav;
 	}
 	

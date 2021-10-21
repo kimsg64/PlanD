@@ -21,15 +21,13 @@ public class PlaceController {
 		this.sqlSession = sqlSession;
 	}
 	
-	//장소관리 목록
+	//공지사항 목록
 		@RequestMapping("/placeList")
 		public ModelAndView list(PagingVO pVo) {
-
 			ModelAndView mav = new ModelAndView();
-			PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
-			PlaceDAOImp dao2 = sqlSession.getMapper(PlaceDAOImp.class);
 			
-			int total = dao2.totalRecordCount(pVo);
+			PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
+			int total= dao.totalPlaceCount(pVo.getSearchKey(), pVo.getSearchWord());		
 			pVo.setTotalRecord(total);
 			
 			int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -42,12 +40,12 @@ public class PlaceController {
 				num2 = pVo.getOnePageRecord();
 			}
 			
-			mav.addObject("list",dao.placeAllSelect(num1,num2));
-			mav.addObject("pVo",pVo);
+			PlaceDAOImp dao2 = sqlSession.getMapper(PlaceDAOImp.class);
+			mav.addObject("list",dao2.placeAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
+			mav.addObject("pVo",pVo);	
 			mav.setViewName("place/placeList");
-
+			
 			return mav;
 		}
-		
 
 }
