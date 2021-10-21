@@ -4,67 +4,83 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit5.wherewego.ad.AdDAOImp">
-	<!--광고 전체 리스트-->
+	<!--광고 전체 리스트 -->
 	<select id="adAllSelect" resultType="com.bit5.wherewego.ad.AdVO">
-	<![CDATA[ 
-      select * from 
-      (select * from 
-      (select  a.payment payment, a.adnum adnum, b.b_id b_id, b.name name, to_char(a.startdate, 'MM/DD') startdate, to_char(a.enddate, 'MM/DD') enddate, a.photo photo, a.link link, a.price price, a.grade grade 
-      from ad a 
-      join business b on a.b_id=b.b_id 
-      order by startdate desc )
+		select * from
+		(select * from
+		(select payment, adnum, b.b_id, name, to_char(startdate, 'MM/DD') startdate,
+		to_char(enddate, 'MM/DD') enddate, photo, link, price, grade, info
+		from ad a
+		join business b on a.b_id=b.b_id
+		<if test='param4!=null and !param4.equals("")'>
+			and ${param3} like '%'||#{param4, jdbcType=VARCHAR}||'%'
+		</if>
+		order by adnum desc )
+      <![CDATA[ 
       where rownum<=#{param1} order by adnum asc )  
       where rownum<=#{param2} order by adnum desc
       ]]>
 	</select>
-	
+
 	<!-- 광고리스트페이징 -->
-	<select id="totalRecordCount" resultType="int">
-		select count(startdate) totalRecord from ad
+	<select id="totalAdCount" resultType="int">
+		select count(adnum) from ad a
+		join business b on a.b_id=b.b_id
+		<if test='param2!=null and !param2.equals("")'>
+			where ${param1} like '%'||#{param2, jdbcType=VARCHAR}||'%'
+		</if>
 	</select>
-	
+
 	<!-- 가격 측정 -->
 	<select id="adMoneySelect" resultType="String">
-		SELECT 10*((TO_DATE(#{param1})-TO_DATE(#{param2}))+1) FROM dual
+		SELECT
+		10*((TO_DATE(#{param1})-TO_DATE(#{param2}))+1) FROM dual
 	</select>
-	
+
 	<!-- 광고신청(전송) -->
-	<insert id="adRegisterOk" parameterType="com.bit5.wherewego.ad.AdVO">
-		insert into ad values(ad_sq.nextval, #{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade},#{payment})
+	<insert id="adRegisterOk"
+		parameterType="com.bit5.wherewego.ad.AdVO">
+		insert into ad values(ad_sq.nextval,
+		#{b_id},#{startdate},#{enddate},#{photo},#{info},#{link},#{price},#{grade},#{payment})
 	</insert>
-	
+
 	<!-- 신규광고카운트 -->
 	<select id="newAdCount" resultType="int">
-		select count(b_id) newAd from ad where grade='검토중'
+		select count(adnum) newAd from
+		ad where grade='검토중'
 	</select>
-	
+
 	<!-- 진행중인광고 카운트 -->
 	<select id="ingAdCount" resultType="int">
 	<![CDATA[
-		select count(b_id) ingAd from ad where b_id=#{param1} and grade='승인' and to_char(startdate,'YY/MM/DD') <= to_char(sysdate,'YY/MM/DD') and to_char(enddate,'YY/MM/DD') >= to_char(sysdate,'YY/MM/DD')
+		select count(adnum) ingAd from ad where b_id=#{param1} and grade='승인' and to_char(startdate,'YY/MM/DD') <= to_char(sysdate,'YY/MM/DD') and to_char(enddate,'YY/MM/DD') >= to_char(sysdate,'YY/MM/DD')
 	]]>
 	</select>
-	
+
 	<!-- 검토중광고 카운트 -->
 	<select id="yetAdCount" resultType="int">
-		select count(b_id) yetAd from ad where b_id=#{param1} and grade='검토중'
+		select count(adnum) yetAd from
+		ad where b_id=#{param1} and grade='검토중'
 	</select>
-	
+
 	<!-- 완료된광고 카운트 -->
 	<select id="edAdCount" resultType="int">
 	<![CDATA[
 		select count(b_id) edAd from ad where b_id=#{param1} and grade='승인' and to_char(enddate,'YY/MM/DD') < to_char(sysdate,'YY/MM/DD')
 	]]>
 	</select>
-	
+
 	<!-- 미결제광고 카운트 -->
 	<select id="payAdCount" resultType="int">
-		select count(b_id) yetAd from ad where b_id=#{param1} and payment='미결제' and grade='승인'
+		select count(b_id) yetAd from
+		ad where b_id=#{param1} and payment='미결제' and grade='승인'
 	</select>
 	<!-- 광고게시판 뷰 -->
-	<select id="adView" parameterType="int" resultType="com.bit5.wherewego.ad.AdVO">
-	select adnum, a.b_id b_id, startdate, enddate, photo, info, link, price, grade, payment, name, num, tel, addr from ad a join business b
-	on a.b_id = b.b_id and adnum = #{param1}
+	<select id="adView" parameterType="int"
+		resultType="com.bit5.wherewego.ad.AdVO">
+		select adnum, a.b_id b_id, startdate, enddate, photo, info, link, price,
+		grade, payment, name, num, tel, addr from ad a join business b
+		on a.b_id = b.b_id and adnum = #{param1}
 	</select>
 	<!-- 광고 수정 -->
 	<update id="editOk" parameterType="com.bit5.wherewego.ad.AdVO">
@@ -73,6 +89,6 @@
 	</update>
 	<!-- 게시판 삭제 -->
 	<delete id="adDelete" parameterType="com.bit5.wherewego.ad.AdVO">
-	delete from ad where adnum=#{param1}
-	</delete>	
+		delete from ad where adnum=#{param1}
+	</delete>
 </mapper>

@@ -199,11 +199,11 @@ ul.pagination li a:hover:not(.active) {
 		<c:if test="${logid=='admin'}">
 			<ul id="adminboardList">
 				<li><input type="checkbox" id="allChk"></li>
-				<li>No.</li>
-				<li>종류</li>
-				<li class="wordCut">장소명</li>
-				<li>영업시간</li>
-				<li>링크</li>
+				<li><b>No.</b></li>
+				<li><b>종류</b></li>
+				<li class="wordCut"><b>장소명</b></li>
+				<li><b>영업시간</b></li>
+				<li><b>링크</b></li>
 
 				<c:forEach var="vo" items="${list }">
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>

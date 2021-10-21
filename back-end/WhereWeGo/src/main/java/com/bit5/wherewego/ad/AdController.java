@@ -35,29 +35,28 @@ public class AdController {
 	@RequestMapping("/advermanage")
 
 	public ModelAndView list(AdPagingVO pVo) {
+		ModelAndView mav = new ModelAndView();
 			
-			ModelAndView mav = new ModelAndView();
-			AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
-			AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
-			
-			int total = dao2.totalRecordCount();
-			pVo.setTotalRecord(total);
-			
-			int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
-			int num2;
-			
-			int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
-			if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
-				num2 = lastPageRecord;
-			} else {
-				num2 = pVo.getOnePageRecord();
-			}
-			
-			mav.addObject("list",dao.adAllSelect(num1,num2));
-			mav.addObject("pVo",pVo);
-			mav.setViewName("ad/advermanage");
-			
-			return mav;
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		int total= dao.totalAdCount(pVo.getSearchKey(), pVo.getSearchWord());		
+		pVo.setTotalRecord(total);
+		
+		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
+		int num2;
+		
+		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
+		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
+			num2 = lastPageRecord;
+		} else {
+			num2 = pVo.getOnePageRecord();
+		}
+		
+		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
+		mav.addObject("list",dao2.adAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
+		mav.addObject("pVo",pVo);	
+		mav.setViewName("ad/advermanage");
+		
+		return mav;
 		}
 
 	//광고 신청(폼)
