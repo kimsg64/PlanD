@@ -95,6 +95,45 @@ public class CourseController {
 		System.out.println("들어온 유저!: " + vo.getUserId());
 		list = dao.myCourseSelect(vo.getUserId());
 		return list;
+	}
+	
+	//신규코스등록 시, 코스 중복 확인후 등록
+	@RequestMapping(value = "/checkCourse", method = RequestMethod.POST)
+	public ModelAndView inserPlace(CourseVO vo) {
+		ModelAndView mav = new ModelAndView();
+		
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		int cnt = dao.checkCourse(vo); //중복여부 확인
+		System.out.println("중복일까아닐깜"+cnt);
+		
+		if(cnt==0) { //중복없음. 신규
+			String alltime = vo.getStarttime()+"~"+vo.getEndtime();
+			vo.setTime(alltime);
+			System.out.println("올타임:"+alltime);
+			
+			switch(vo.getSortstring()) {
+				case "식당카페기타" : vo.setSort(1); break;
+				case "식당기타카페" : vo.setSort(2); break;
+				case "카페식당기타" : vo.setSort(3); break;
+				case "카페기타식당" : vo.setSort(4); break;
+				case "기타식당카페" : vo.setSort(5); break;
+				case "기타카페식당" : vo.setSort(6); break;
+			}
+			System.out.println("케이스"+vo.getSort());
+			
+			if(vo.getUserid().equals("admin")) {
+				vo.setGrade("승인");
+			} else {vo.setGrade("검토중");}
+			
+			System.out.println("grade=>"+vo.getGrade());
+			
+			CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
+			int result = dao2.insertCourse(vo); //추가
+			System.out.println("추가추가추추가"+result);
+		}
 
+		mav.setViewName("maptest");
+		
+		return mav;
 	}
 }

@@ -35,5 +35,30 @@
 		select c_num, name, userid, time, stcode, info, grade, pcode1, pcode2, pcode3, score, sort, opt 
 		from course where userid=#{param1} order by c_num desc
 	</select>
+
+	<!-- 코스등록 전, 중복 여부 확인 -->
+	<select id="checkCourse" parameterType="com.bit5.wherewego.course.CourseVO" resultType="int">
+		select count(c_num) from course
+		where pcode1=${pcode1} and pcode2=${pcode2} and pcode3=${pcode3}
+	</select>
 	
+	<!-- 새로운 코스 등록 -->
+	<insert id="insertCourse" parameterType="com.bit5.wherewego.course.CourseVO">
+		insert into course(name, userid, time, stcode, grade, pcode1, pcode2, pcode3, sort
+		<if test='info!=null and !info.equals("")'>
+		,info
+		</if>
+		<if test='opt!=null and !opt.equals("")'>
+		,opt
+		</if>
+		) values(#{name}, #{userid}, #{time}, (select stcode from station where stname=#{stname}), #{grade},
+		${pcode1},${pcode2},${pcode3},${sort}
+		<if test='info!=null and !info.equals("")'>
+		,#{info}
+		</if>
+		<if test='opt!=null and !opt.equals("")'>
+		,#{opt}
+		</if>
+		)
+	</insert>
 </mapper>

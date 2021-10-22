@@ -16,6 +16,33 @@ public class CourseVO {
 	private String opt;
 	
 	private String stname; //역이름
+	private String sortstring; //카페기타식당 식당기타카페
+	private String starttime; //데이트 시작 시간대
+	private String endtime; //데이트 시작 시간대마지막
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
+	public String getSortstring() {
+		return sortstring;
+	}
+
+	public void setSortstring(String sortstring) {
+		this.sortstring = sortstring;
+	}
 
 	public int getC_num() {
 		return c_num;
