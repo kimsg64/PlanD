@@ -16,5 +16,7 @@ public interface AdDAOImp {
 	public int totalAdCount(String searchKey, String searchWord, String b_id);
 	public List<AdVO> adAllSelect(int num1, int num2, String searchKey, String searchWord, String b_id);
 	public int editOk(AdVO vo);
+	public int adGradeChange(int adnum, String grade);
+	public int adPaymentChange(int adnum);
 
 }

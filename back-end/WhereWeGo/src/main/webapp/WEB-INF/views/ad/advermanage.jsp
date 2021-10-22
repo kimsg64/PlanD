@@ -181,7 +181,11 @@ ul.pagination li a:hover:not(.active) {
                </div>
                <div id="bname"> ${vo.name }</div>
                <div>광고 기간 : ${vo.startdate } ~ ${vo.enddate }</div>
-               <div>승인 여부 : ${vo.grade }</div>
+               <div>승인 여부 : ${vo.grade } 
+               	<c:if test="${vo.grade=='미결제' }">
+               	( <a href="#">결제하기</a> )
+               	</c:if>
+               </div>
                <div>결제 여부 : ${vo.payment }</div>
                <div>가격 : <b>${vo.price }000원</b></div>
             </li>

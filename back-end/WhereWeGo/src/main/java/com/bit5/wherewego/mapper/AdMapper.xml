@@ -59,7 +59,7 @@
 	<!-- 진행중인광고 카운트 -->
 	<select id="ingAdCount" resultType="int">
 	<![CDATA[
-		select count(adnum) ingAd from ad where b_id=#{param1} and grade='승인' and to_char(startdate,'YY/MM/DD') <= to_char(sysdate,'YY/MM/DD') and to_char(enddate,'YY/MM/DD') >= to_char(sysdate,'YY/MM/DD')
+		select count(adnum) ingAd from ad where b_id=#{param1} and payment='결제완료' and grade='승인' and to_char(startdate,'YY/MM/DD') <= to_char(sysdate,'YY/MM/DD') and to_char(enddate,'YY/MM/DD') >= to_char(sysdate,'YY/MM/DD')
 	]]>
 	</select>
 
@@ -97,4 +97,18 @@
 	<delete id="adDelete" parameterType="com.bit5.wherewego.ad.AdVO">
 		delete from ad where adnum=#{param1}
 	</delete>
+	
+	<!-- 뷰에서 승인미승인 변경 -->
+	<update id="adGradeChange">
+		update ad set 
+		grade=#{param2}
+		where adnum=${param1} 
+	</update>
+	
+	<!-- 결제완료 -->
+	<update id="adPaymentChange">
+		update ad set 
+		payment='결제완료'
+		where adnum=${param1} 
+	</update>
 </mapper>

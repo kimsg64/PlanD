@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <style>
 .write-area {
 	width: 72%;
@@ -69,7 +66,7 @@
 	<div class="writeTitle">
 		<div class="write_header">
 			<div class="write_title">
-				${vo.adnum }
+				No.${vo.adnum }
 				<h1>${vo.name }</h1>
 				<div class="write_info">${vo.startdate }~${vo.enddate }</div>
 			</div>
@@ -81,15 +78,16 @@
 				<h2>사업자번호 : ${vo.num }</h2>
 				<h2>연락처 : ${vo.tel }</h2>
 				<h2>승인여부 : ${vo.grade }</h2>
-				<h2>가격 : ${vo.price }</h2>
+				<h2>가격 : ${vo.price }000원</h2>
 				<h2>결제여부 : ${vo.payment }</h2>
 			</div>
 		</div>
 	</div>
+	
 	<div id="buttonMenu">
 		<c:if test="${logid=='admin' && vo.grade=='검토중'}">
-			<a class="button" href="#?adnum=${vo.adnum }&grade=${vo.grade }">승인</a>
-			<a class="button" href="#?adnum=${vo.adnum }&grade=${vo.grade }">미승인</a>
+			<a class="button" href="/wherewego/adGradeChange?adnum=${vo.adnum }&grade=승인">승인</a>
+			<a class="button" href="/wherewego/adGradeChange?adnum=${vo.adnum }&grade=미승인">미승인</a>
 		</c:if>
 		
 		<c:if test="${logid!='admin' && vo.grade=='검토중'}">
@@ -97,9 +95,11 @@
 			<a class="button" href="javascript:viewDel()">삭제</a>
 		</c:if>
 		
+		<c:if test="${logid!='admin' && vo.grade=='승인' && vo.payment=='미결제'}">
+			<a class="button" href="/wherewego/adPay?adnum=${vo.adnum }&name=${vo.name}&price=${vo.price}">결제</a>
+			<a class="button" href="javascript:viewDel()">삭제</a>
+		</c:if>
+		
 		<a class="button" href="advermanage?nowPage=${pVo.nowPage}">목록</a>
 	</div>
-	<!-- 
-  			 	<li>사진 : ${vo.photo }</li>
-  			 -->
 </div>

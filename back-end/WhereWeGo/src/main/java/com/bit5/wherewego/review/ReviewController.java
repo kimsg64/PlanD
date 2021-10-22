@@ -76,7 +76,7 @@ public class ReviewController {
 
 		return mav;
 	}
-	
+
 	//뷰에서 공개비공개 전환
 	@RequestMapping("/reViewgradech")
 	public ModelAndView reViewgradech(int r_num, String grade) {

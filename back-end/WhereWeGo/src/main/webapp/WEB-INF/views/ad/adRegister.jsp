@@ -15,10 +15,13 @@
 		text-align: left;
 	}
 	
+	#banner {width:100%;}
+	
 	#adDiv {
 		background-color:#f5ebe3;
 		padding : 5% 13%;
 		border-radius: 8px;
+		margin : 20px 0px;
 	}
 	
 	h3 {
@@ -82,9 +85,8 @@
  -->
 	
 	<h1>광고 신청</h1>
-	<div>
-		<img src="imgs/banner/adApplication.jpg"/>
-	</div>
+	<img src="imgs/banner/adApplication.jpg" id="banner"/>
+	
 	<form method="post" action="/wherewego/adRegisterOk" name="adFrm" enctype="multipart/form-data">
 		<div id="adDiv">
 			<input type="hidden" name="b_id" id="b_id" value="${logid}">

@@ -36,30 +36,28 @@ public class AdController {
 	public ModelAndView list(AdPagingVO pVo,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String b_id = (String)session.getAttribute("logid");
-		
-		System.out.println("ㅠㅠㅠㅠ:"+b_id);
-		
+
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		int total= dao.totalAdCount(pVo.getSearchKey(), pVo.getSearchWord(),b_id);		
 		pVo.setTotalRecord(total);
-		
+
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
 		int num2;
-		
+
 		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
 		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
 			num2 = lastPageRecord;
 		} else {
 			num2 = pVo.getOnePageRecord();
 		}
-		
+
 		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
 		mav.addObject("list",dao2.adAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord(),b_id));
 		mav.addObject("pVo",pVo);	
 		mav.setViewName("ad/advermanage");
-		
+
 		return mav;
-		}
+	}
 
 	//광고 신청(폼)
 	@RequestMapping("/adRegister")
@@ -137,23 +135,23 @@ public class AdController {
 
 		ModelAndView mav = new ModelAndView();
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
-		
+
 		System.out.println("확인용:"+vo.getStartdate()+"/"+vo.getEnddate());
 		String cnt = dao.adMoneySelect(vo.getEnddate(),vo.getStartdate()); //하루당 10원이라고 측정
 		vo.setPrice(Integer.parseInt(cnt));
-		
+
 		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt2 = dao2.adRegisterOk(vo);
-		
+
 		if(cnt2>0) {//글등록
 			mav.setViewName("redirect:advermanage"); //목록으로 감
 		}else {//등록실패
 			mav.setViewName("ad/adResult"); //jsp
 		}
-		
+
 		return mav;
 	}
-	
+
 	//광고 뷰
 	@RequestMapping("/adView")
 	public ModelAndView adView(int adnum,AdPagingVO pVo) {
@@ -162,16 +160,16 @@ public class AdController {
 		mav.addObject("vo", dao.adView(adnum));
 		mav.addObject("pVo", pVo);
 		mav.setViewName("/ad/adView");
-		
+
 		return mav;
-	
+
 	}
 	//광고 삭제
 	@RequestMapping("/adDel")
 	public ModelAndView adDel(int adnum) {
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		int cnt = dao.adDelete(adnum);
-		
+
 		ModelAndView mav= new ModelAndView();
 		if(cnt>0) {
 			mav.setViewName("redirect:advermanage");
@@ -197,7 +195,7 @@ public class AdController {
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		int cnt = dao.editOk(vo);
 		mav.addObject("adnum", vo.getAdnum());
-		
+
 		if(cnt>0){//수정되면
 			mav.setViewName("redirect:adView");			
 		}else {//수정안되면 글수정으로 이동
@@ -205,8 +203,45 @@ public class AdController {
 			mav.setViewName("ad/editResult");
 		}
 		return mav;
-		}
 	}
-	
-	
 
+	//뷰화면에서 광고 승인여부 변경
+	@RequestMapping("/adGradeChange")
+	public ModelAndView reViewgradech(int adnum, String grade) {
+		ModelAndView mav = new ModelAndView();
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+
+		int cnt = dao.adGradeChange(adnum, grade);
+		mav.addObject("adnum", adnum);
+		mav.setViewName("redirect:adView");
+		return mav;
+	}
+
+	//결제
+	@RequestMapping("/adPay")
+	public ModelAndView adPay(int adnum,String name,int price) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("adnum",adnum);
+		mav.addObject("name",name);
+		mav.addObject("price",price);
+
+		mav.setViewName("ad/adPay");
+
+		return mav;
+	}
+
+	//미결제 -> 결제완료
+	@RequestMapping("/adPaymentChange")
+	public ModelAndView adPaymentChange(int adnum) {
+		ModelAndView mav = new ModelAndView();
+		
+		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
+		int cnt = dao.adPaymentChange(adnum);
+
+		mav.setViewName("/ad/adPayResult");
+
+		return mav;
+	}
+
+}
