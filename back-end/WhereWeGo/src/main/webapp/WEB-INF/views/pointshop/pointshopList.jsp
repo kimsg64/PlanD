@@ -149,7 +149,7 @@ ul.pagination li a:hover:not(.active) {
 
 <div class="container">
 	<h1>포인트샵 관리</h1>
-	<img src="imgs/banner/notice.jpg" id="banner" />
+	<img src="imgs/banner/pointshop.jpg" id="banner" />
 	
 	<!-- 검색 -->
 	<div id="searchDiv">
