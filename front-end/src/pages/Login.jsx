@@ -103,7 +103,7 @@ const Login = () => {
   // 스타일 변경을 위한 props
   const [isSucceeded, setIsSucceeded] = useState(true);
 
-  console.log("당신의 상태는?", classification);
+  // console.log("당신의 상태는?", classification);
 
   const onClickKeepSession = () => {
     setKeepSession(!keepSession);
@@ -134,16 +134,20 @@ const Login = () => {
     axios
       .post(url, body)
       .then((response) => {
-        console.log("response : ", response.data);
+        // console.log("response : ", response.data);
         if (response.data > 0) {
           // 그냥 경고 띄우기용
           setIsSucceeded(true);
           // 로그인 성공시 쿠키 설정 후 다시 백으로 보내서 세션에 등록
           if (classification === "individual") {
+            // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+            // if (userId === "admin") {
+            //   window.location.href = "http://localhost:9090/wherewego";
+            // }
             // 일반 사용자
             bake_cookie("userId", userId);
             axios.get("/wherewego/user/checkSession").then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               res.data
                 ? (window.location.href = "http://localhost:3000/#/memberhome")
                 : alert("로그인 실패...");

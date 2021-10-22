@@ -33,7 +33,7 @@
 	
 	<select id="myCourseSelect" resultType="com.bit5.wherewego.course.CourseVO">
 		select c_num, name, userid, time, stcode, info, grade, pcode1, pcode2, pcode3, score, sort, opt 
-		from course where userid=${param1} order by c_num desc
+		from course where userid=#{param1} order by c_num desc
 	</select>
 	
 </mapper>

@@ -114,9 +114,11 @@ const LinkedContents = ({ idx = "first", setIdx = () => {} }) => {
         <TextInImage
         //  fromTop="-76vh"
         >
-          <h1>비가 오는 날에도 오붓하게</h1>
           <h1>
-            <PointLetter>실내</PointLetter> 데이트!
+            볕 좋은 날 <PointLetter>한강</PointLetter>데이트,
+          </h1>
+          <h1>
+            비 오는 날엔<PointLetter>실내</PointLetter> 데이트!
           </h1>
         </TextInImage>
       </div>

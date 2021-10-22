@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../components/body/mixin/Form";
-import { BodyLayout, Button } from "../components/body/mixin/Mixin";
+import { BodyLayout, Button, MenuTitle } from "../components/body/mixin/Mixin";
 import {
   CenterWrapper,
   ErrorMsg,
@@ -87,6 +87,7 @@ const CompanyForm = () => {
     <>
       <Header />
       <BodyLayout>
+        <MenuTitle>법인회원가입</MenuTitle>
         <Form
           id="company_form"
           onSubmit={onSubmitForm}

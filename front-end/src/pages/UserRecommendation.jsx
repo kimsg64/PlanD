@@ -8,6 +8,7 @@ import {
   Input,
   SearchBar,
   StyledButton,
+  MenuTitle,
 } from "../components/body/mixin/Mixin";
 import Modal from "../components/body/mixin/Modal";
 import KakaoSearchFormInput from "../components/body/map/KakaoMapSearchFormInput";
@@ -40,6 +41,7 @@ const LineWrapper = styled.div`
 `;
 
 const RecommendationForm = styled(Form)`
+  margin-top: 0;
   & > div {
     padding-left: 0;
   }
@@ -67,9 +69,9 @@ const UserRecommendation = () => {
   const [stname, setStname] = useState("");
   const [stnameWidth, setStnameWidth] = useState("0");
   const [showModal, setShowModal] = useState(false);
-  console.log(name);
-  console.log(line);
-  console.log(stname);
+  // console.log(name);
+  // console.log(line);
+  // console.log(stname);
   // const body = {
   //   name: name,
   //   userid: userid,
@@ -88,7 +90,7 @@ const UserRecommendation = () => {
   };
   const onSubmitForm = (e) => {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
   };
 
   const checkBoxFilled = (e) => {
@@ -105,6 +107,7 @@ const UserRecommendation = () => {
     <>
       <Header />
       <BodyLayout>
+        <MenuTitle>코스 추천하기</MenuTitle>
         <RecommendationForm onSubmit={onSubmitForm}>
           <LineWrapper>
             <label>코스명</label>

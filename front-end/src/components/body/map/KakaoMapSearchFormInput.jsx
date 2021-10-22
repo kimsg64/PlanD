@@ -7,6 +7,7 @@ import KakaoMapSearchForm from "./KakaoMapSearchForm";
 import BorderEffectBox from "../mixin/BorderEffectBox";
 
 const SearchForm = styled(Form)`
+  margin: 0;
   & > div {
     padding: 0 0 0 0;
     background-color: white;
@@ -55,7 +56,7 @@ const KakaoMapSearchFormInput = () => {
 
   // console.log("인풋 inputText: ", inputText);
   // console.log("인풋 place: ", place);
-  console.log("선택 장소 from input: ", clickedPlace);
+  // console.log("선택 장소 from input: ", clickedPlace);
   return (
     <>
       <SearchForm onSubmit={onSubmitKeyword}>
