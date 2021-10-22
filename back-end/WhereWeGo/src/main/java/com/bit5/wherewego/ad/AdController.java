@@ -33,12 +33,14 @@ public class AdController {
 	}
 	//광고 관리
 	@RequestMapping("/advermanage")
-
-	public ModelAndView list(AdPagingVO pVo) {
+	public ModelAndView list(AdPagingVO pVo,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-			
+		String b_id = (String)session.getAttribute("logid");
+		
+		System.out.println("ㅠㅠㅠㅠ:"+b_id);
+		
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
-		int total= dao.totalAdCount(pVo.getSearchKey(), pVo.getSearchWord());		
+		int total= dao.totalAdCount(pVo.getSearchKey(), pVo.getSearchWord(),b_id);		
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -52,7 +54,7 @@ public class AdController {
 		}
 		
 		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
-		mav.addObject("list",dao2.adAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
+		mav.addObject("list",dao2.adAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord(),b_id));
 		mav.addObject("pVo",pVo);	
 		mav.setViewName("ad/advermanage");
 		
@@ -154,10 +156,11 @@ public class AdController {
 	
 	//광고 뷰
 	@RequestMapping("/adView")
-	public ModelAndView adView(int adnum) {
+	public ModelAndView adView(int adnum,AdPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		mav.addObject("vo", dao.adView(adnum));
+		mav.addObject("pVo", pVo);
 		mav.setViewName("/ad/adView");
 		
 		return mav;

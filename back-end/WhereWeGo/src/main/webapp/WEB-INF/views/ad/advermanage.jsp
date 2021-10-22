@@ -52,8 +52,8 @@ img {
 }
 
 .adlist {
-	width: 40%;
-	margin: 5%;
+	width: 44%;
+	margin: 3%;
 	border : 1px solid #efcac3;
 	background-color:#fffefd;
 	border-radius: 12px;
@@ -189,13 +189,19 @@ ul.pagination li a:hover:not(.active) {
       </ul>
    </div>
 
+	<!-- 버튼 -->
 	<div id="bottomdiv">
 		<div id="count">
 			<div>총 레코드 수 : ${pVo.totalRecord }</div>
 			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 		</div>
 		<div id="buttonMenu">
-			<a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
+			<c:if test="${logid=='admin'}">
+				<a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
+			</c:if>
+			<c:if test="${logid!='admin'}">
+				<a class="button" href="#">삭제</a>
+			</c:if>
 		</div>
 	</div>
 
