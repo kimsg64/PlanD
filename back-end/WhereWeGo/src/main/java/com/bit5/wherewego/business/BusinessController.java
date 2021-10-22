@@ -45,6 +45,7 @@ public class BusinessController {
 			ses.setAttribute("logid", logVo.getB_id());
 			ses.setAttribute("logname", logVo.getName());
 			ses.setAttribute("lognum",logVo.getNum());
+			ses.setAttribute("logStatus","B");
 			result = 1;
 		}
 		// 프론트로 로그인 성공 정보 보냄

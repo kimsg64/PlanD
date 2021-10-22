@@ -76,6 +76,15 @@ public class CourseController {
 		return null;
 	}
 	
+
+	@RequestMapping("/maptest")
+	public ModelAndView maptest() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("maptest");
+		
+		return mav;
+
 	// 로그인한 사용자 본인이 추천한 코스
 	@RequestMapping(value = "/myCourseSelect", method = RequestMethod.POST)
 	@ResponseBody
@@ -85,5 +94,6 @@ public class CourseController {
 		System.out.println("들어온 유저!: " + vo.getUserId());
 		list = dao.myCourseSelect(vo.getUserId());
 		return list;
+
 	}
 }
