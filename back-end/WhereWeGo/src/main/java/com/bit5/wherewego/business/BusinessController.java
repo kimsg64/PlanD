@@ -95,4 +95,12 @@ public class BusinessController {
 		int result = dao.insertBusiness(vo);
 		return result;
 	}
+	
+	// 정보수정
+	@RequestMapping(value = "/businessEdit")
+	public ModelAndView businessEdit() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("business/businessEdit");
+		return mav;
+	}
 }

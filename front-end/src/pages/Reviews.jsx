@@ -48,6 +48,7 @@ const Slider = styled.div`
   transform: translateX(${(props) => props.index * 32 + "%"});
   margin-bottom: calc(var(--margin-default) * 2);
 `;
+
 const ReviewItem = styled.li`
   max-width: 440px;
   height: 560px;

@@ -13,7 +13,7 @@ const ModalBackGround = styled.div`
 
 const ExitIcon = styled.span`
   position: relative;
-  top: 112px;
+  top: 160px;
   left: 1360px;
   z-index: 5;
   font-size: var(--font-size-title-normal);
@@ -26,8 +26,13 @@ const ExitIcon = styled.span`
   }
 `;
 
-const ModalBG = ({ children, setShowModal = () => {} }) => {
+const ModalBG = ({
+  children,
+  setShowModalResult = () => {},
+  setShowModal = () => {},
+}) => {
   const onClickSearchButton = (e) => {
+    setShowModalResult(false);
     setShowModal(false);
   };
   return (
