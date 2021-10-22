@@ -196,7 +196,7 @@ ul.pagination li a:hover:not(.active) {
 			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 		</div>
 		<div id="buttonMenu">
-			<a class="button" href="#">승인</a> <a class="button" href="#">미승인</a>
+			<a class="button" href="#">삭제</a>
 		</div>
 	</div>
 

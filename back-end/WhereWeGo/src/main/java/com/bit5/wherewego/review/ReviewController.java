@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -79,16 +78,14 @@ public class ReviewController {
 	}
 	
 	//뷰에서 공개비공개 전환
-	@RequestMapping(value="/reViewgradech",method=RequestMethod.POST)
-	public ModelAndView reViewgradech(ReviewVO vo) {
+	@RequestMapping("/reViewgradech")
+	public ModelAndView reViewgradech(int r_num, String grade) {
 		ModelAndView mav = new ModelAndView();
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
-		
-		int num = vo.getR_num();
-		String st = vo.getGrade();
-		dao.reViewgradech(num,st);
+
+		int cnt = dao.reViewgradech(r_num, grade);
+		mav.addObject("r_num", r_num);
 		mav.setViewName("redirect:reviewView");
-		
 		return mav;
 	}
 
