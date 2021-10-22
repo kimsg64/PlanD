@@ -10,5 +10,5 @@ public interface ReviewDAOImp {
 	public List<ReviewVO> myReviewSelect (String userid);
 	public ReviewVO reviewView (int r_num);
 	public int totalReviewCount(String searchKey, String searchWord); //페이징
-	public void reViewgradech(int num, String st);
+	public int reViewgradech(int num, String st);
 }

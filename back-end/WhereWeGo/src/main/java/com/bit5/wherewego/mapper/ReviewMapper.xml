@@ -71,10 +71,12 @@
 	</select>
 	
 	<!-- 공개 비공개 -->
-	<update id="reViewgradech" parameterType="com.bit5.wherewego.review.ReviewVO">
+	<update id="reViewgradech">
 		update review set 
-		<if test='param2!=null and !param2.equals("") and param2.equals("공개")'>grade='비공개'</if> 
-		<if test='param2!=null and !param2.equals("") and param2.equals("비공개")'>grade='공개'</if> 
+		<choose>
+			<when test='param2.equals("공개")'>grade='비공개'</when> 
+			<otherwise>grade='공개'</otherwise>
+		</choose>
 		where r_num=${param1} 
 	</update>
 
