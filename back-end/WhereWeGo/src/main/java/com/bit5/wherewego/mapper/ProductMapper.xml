@@ -25,4 +25,8 @@
 		where rownum<=${param2} order by p_num desc
 		]]>
 	</select>
-</mapper>  	
+	<!-- 광고게시판 뷰 -->
+	<select id="pointshopView" parameterType="String" resultType="com.bit5.wherewego.product.ProductVO">
+		select p_num, brand, name, price, img, gender, info from product where p_num=#{param1}
+	</select>
+</mapper> 

@@ -178,7 +178,7 @@ ul.pagination li a:hover:not(.active) {
                </div>
                <div class="image">
                   <a
-                     href="/wherewego/productView?p_num=${vo.p_num}&nowPage=${pVo.nowPage}">
+                     href="/wherewego/pointshopView?p_num=${vo.p_num}&nowPage=${pVo.nowPage}">
                      <img src="upload/pointshop/${vo.img}" />
                   </a>
                </div>
