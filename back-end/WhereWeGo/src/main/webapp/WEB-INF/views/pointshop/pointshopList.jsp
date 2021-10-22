@@ -148,7 +148,12 @@ ul.pagination li a:hover:not(.active) {
 </script>
 
 <div class="container">
-	<h1>포인트샵 관리</h1>
+	<c:if test="${logid==admin }">
+		<h1>포인트샵 관리</h1>
+	</c:if>
+	<c:if test="${logid!=admin }">
+		<h1>포인트샵</h1>
+	</c:if>
 	<img src="imgs/banner/pointshop.jpg" id="banner" />
 	
 	<!-- 검색 -->

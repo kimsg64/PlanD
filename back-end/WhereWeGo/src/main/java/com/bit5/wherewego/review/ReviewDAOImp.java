@@ -11,4 +11,5 @@ public interface ReviewDAOImp {
 	public ReviewVO reviewView (int r_num);
 	public int totalReviewCount(String searchKey, String searchWord); //페이징
 	public int reViewgradech(int num, String st);
+	public int reviewWriteOk(ReviewVO vo); // 리뷰 작성 확인용
 }

@@ -107,6 +107,7 @@
 				<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointB.png" /><br />포인트샵 관리</a></td>
 			</tr>
 		</table>
+		<a href="/wherewego/maptest">지도테스트</a>
 	</c:if>
 
 	<!-- 광고주 화면 -->

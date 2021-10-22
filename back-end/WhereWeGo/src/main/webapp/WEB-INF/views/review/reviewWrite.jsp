@@ -137,17 +137,20 @@
 
 <h1>후기 작성</h1>
 <div id="frame">
-<form method="post" action="#">
+<form method="post" action="/wherewego/reviewWriteOk">
   <div class="review_item">
-    <div id="titlediv" input="text" name="title" placeholder="코스명을 입력하세요."></div><br/>
+ <div id="titlediv">${vo.name }</div>
     <div class="image_box">
+   <textarea rows="16" cols="55" id="content" placeholder="사진"></textarea>
+      <!-- 
       <img
         src="/imgs/icecream.jpg"
         alt="cafe_review"
       />
+      -->
     </div>
     <div class="text_box">
-      <textarea placeholder="내용을 입력하세요."></textarea>
+      <textarea rows="5" cols="48" id="content" placeholder="내용을 입력하세요."></textarea>
     </div>
     <div class="profile_box">
       <div class="icon">
@@ -160,7 +163,9 @@
         <div class="name_and_start">
           <div class="user_name">${vo.userid }</div>
           <div class="star_box">
-          	<div class="score">${vo.score }</div>
+          	<div class="score" >
+          	<input type="number" name="score" min="0" max="10" step="1"/>
+          	</div>
 		      <i class="far fa-star"></i>
 		      <i class="fas fa-star"></i>
 		      <i class="fas fa-star"></i>
@@ -176,6 +181,6 @@
 </div>
 
 <div id="buttonMenu">
-				<a class="button" href="/wherewego/noticeList">목록</a>
+				<a class="button" href="/wherewego/reviewList">목록</a>
 				<button type="submit" class="button">작성</button>
 			</div>
