@@ -122,7 +122,7 @@ public class NoticeController {
 		String photo2 = photo.substring(1,point2);
 		System.out.println(photo2);
 		vo.setPhoto(photo2); //저장되는 파일명
-
+		
 		ModelAndView mav = new ModelAndView();
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
 		

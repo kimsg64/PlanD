@@ -13,18 +13,8 @@
 			});
 		});
 	});
-	
-	$("input[id=file]").change(function(){
-		
-		if($(this).val() !=""){
-			var ext = $(this).val().split(".").pop().toLowerCase();
-			if($.inArray(ext, ["gif","jpg", "jpeg", "png"])== -1){
-				alert("gif, jpg, jpeg, png 파일만 업로드 해주세요.");
-				$(this).val("");
-				return;
-			}
-		}
-	}
+
+
 	
 </script>
 <style>
@@ -107,8 +97,8 @@
 			<b>파일</b> : <input type="file" id="filename" name="filename"/><br/>
 			
 			<div id="buttonMenu">
-				<a class="button" href="/wherewego/noticeList">목록</a>
-				<button type="submit" class="button">작성</button>
+				<a class="button" href="/wherewego/noticeList">등록</a>
+				<button type="submit" class="button">취소</button>
 			</div>
 		</div>
 	</form>
