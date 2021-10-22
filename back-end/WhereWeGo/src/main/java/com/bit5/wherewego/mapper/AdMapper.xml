@@ -15,6 +15,9 @@
 		<if test='param4!=null and !param4.equals("")'>
 			and ${param3} like '%'||#{param4, jdbcType=VARCHAR}||'%'
 		</if>
+		<if test='param5!=null and !param5.equals("admin")'>
+			and a.b_id=#{param5}
+		</if>
 		order by adnum desc )
       <![CDATA[ 
       where rownum<=#{param1} order by adnum asc )  
@@ -28,6 +31,9 @@
 		join business b on a.b_id=b.b_id
 		<if test='param2!=null and !param2.equals("")'>
 			where ${param1} like '%'||#{param2, jdbcType=VARCHAR}||'%'
+		</if>
+		<if test='param3!=null and !param3.equals("admin")'>
+			and a.b_id=#{param3}
 		</if>
 	</select>
 

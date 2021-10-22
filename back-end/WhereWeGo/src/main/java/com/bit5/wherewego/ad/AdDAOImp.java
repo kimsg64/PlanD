@@ -13,8 +13,8 @@ public interface AdDAOImp {
 	public String adMoneySelect(String startdate, String enddate); //광고가격측정
 	public AdVO adView(int adnum);
 	public int adDelete(int adnum);
-	public int totalAdCount(String searchKey, String searchWord);
-	public List<AdVO> adAllSelect(int num1, int num2, String searchKey, String searchWord);
+	public int totalAdCount(String searchKey, String searchWord, String b_id);
+	public List<AdVO> adAllSelect(int num1, int num2, String searchKey, String searchWord, String b_id);
 	public int editOk(AdVO vo);
 
 }
