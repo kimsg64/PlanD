@@ -65,7 +65,6 @@
   	 
   	 <!-- 수정 -->
  	<update id="noticeEditOk" parameterType="com.bit5.wherewego.notice.NoticeVO">
-  		update notice set title=#{title}, content=#{content}
-  		where n_num=#{n_num}
+  		update notice set title=#{title}, content=#{content} where n_num=#{n_num}
   	</update>
 </mapper>

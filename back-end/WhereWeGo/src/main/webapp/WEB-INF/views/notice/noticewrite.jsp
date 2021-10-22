@@ -13,6 +13,19 @@
 			});
 		});
 	});
+	
+	$("input[id=file]").change(function(){
+		
+		if($(this).val() !=""){
+			var ext = $(this).val().split(".").pop().toLowerCase();
+			if($.inArray(ext, ["gif","jpg", "jpeg", "png"])== -1){
+				alert("gif, jpg, jpeg, png 파일만 업로드 해주세요.");
+				$(this).val("");
+				return;
+			}
+		}
+	}
+	
 </script>
 <style>
 	#mainDiv {
