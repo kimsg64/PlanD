@@ -88,5 +88,11 @@ public class ReviewController {
 		mav.setViewName("redirect:reviewView");
 		return mav;
 	}
+	//글쓰기폼
+		@RequestMapping("/reviewWrite")
+		public String write() {
+			return "review/reviewWrite";
+		}
+
 
 }
