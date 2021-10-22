@@ -92,6 +92,12 @@ public class ReviewController {
 		mav.setViewName("redirect:reviewView");
 		return mav;
 	}
+
+	//글쓰기폼
+		@RequestMapping("/reviewWrite")
+		public String write() {
+			return "review/reviewWrite";
+		}
 	
 	// 로그인한 유저가 작성한 리뷰
 	@RequestMapping(value = "/myReviewSelect", method = RequestMethod.POST)

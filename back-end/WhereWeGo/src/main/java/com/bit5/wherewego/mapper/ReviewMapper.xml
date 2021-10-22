@@ -79,5 +79,7 @@
 		</choose>
 		where r_num=${param1} 
 	</update>
+	
+	
 
 </mapper>
