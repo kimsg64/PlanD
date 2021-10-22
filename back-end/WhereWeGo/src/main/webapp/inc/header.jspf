@@ -53,7 +53,7 @@ header {
 .size-controller {
   width: 72%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .point_letter {

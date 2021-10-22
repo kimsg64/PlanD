@@ -34,8 +34,9 @@
 		margin: 0 calc(var(--margin-default) / 1.4);
 		padding: var(--padding-default);
 		border-radius: 8px;
-		border: 2px solid var(--color-font);
-		box-shadow: 0px 2px 4px 2px grey;
+		background-color: var(--color-bg);
+		border: 1px solid #ccc;
+		box-shadow: 4px 4px 10px 0px #ccc;
 	}
 	.image_box {
 		width: 400px;
@@ -55,9 +56,10 @@
 		margin-top: calc(var(--margin-default) / 2);
 		padding: var(--padding-default);
 		background-color: var(--color-light-bg);
-		box-shadow: 0px 2px 4px 2px grey;
+		box-shadow: 4px 4px 10px 0px #ccc;
 		border-radius: 8px;
 		font-size: var(--font-size-normal);
+		position: relative;
 	}
 	
 	.text_box > p {
@@ -86,6 +88,7 @@
 	}
 	.icon > img {
 		width: 100%;
+		height: 100%;
 	}
 	.user_info {
 		width: calc(100% - 60px);
@@ -112,7 +115,7 @@
 	.star_box > i {
 	    padding-bottom: 4px;
 	    font-size: var(--font-size-normal);
-	    color: var(--color-yellow);	
+	    color: var(--color-focus);	
 	}
 	.score {
 		font-size: var(--font-size-normal);
@@ -147,7 +150,7 @@
           <div class="user_name">${vo.userid }</div>
           <div class="star_box">
           	<div class="score">${vo.score }</div>
-		      <i class="far fa-star"></i>
+		      <i class="fas fa-star"></i>
 		      <i class="fas fa-star"></i>
 		      <i class="fas fa-star"></i>
 		      <i class="fas fa-star"></i>

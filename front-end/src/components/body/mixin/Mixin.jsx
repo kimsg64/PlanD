@@ -9,10 +9,7 @@ export const BodyLayout = styled.div`
   align-items: center;
   padding: ${(props) => props.padding || "var(--header-height) 0"};
   position: relative;
-  /* background-color: var(--color-bg); */
 `;
-
-// 바디 레이아웃(이미지, 비디오 겹치게)
 
 // 메뉴 타이틀
 export const MenuTitle = styled.div`
@@ -187,6 +184,7 @@ export const ToolTipBox = styled.div`
   width: ${(props) => props.width};
   top: ${(props) => props.fromTop};
   left: ${(props) => props.fromLeft};
+  font-size: var(--font-size-small);
   color: white;
   border-radius: 8px;
 `;

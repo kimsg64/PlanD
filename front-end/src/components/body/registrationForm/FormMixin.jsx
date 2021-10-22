@@ -26,11 +26,9 @@ export const FormInput = styled(Input)`
   margin: 0 var(--margin-default) calc(var(--margin-default) / 4) 0;
   padding: calc(var(--padding-small) * 2) calc(var(--padding-default) * 2);
   font-size: var(--font-size-small);
-  position: relative;
   text-align: left;
   border: 2px solid var(--color-bg);
   /* border-bottom: 2px solid var(--color-font); */
-  transition-duration: 0.2s;
   background-color: var(--color-bg);
   &:disabled {
     background-color: var(--color-super-light-green);
