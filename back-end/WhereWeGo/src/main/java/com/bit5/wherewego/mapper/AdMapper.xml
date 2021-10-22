@@ -82,8 +82,7 @@
 		ad where b_id=#{param1} and payment='미결제' and grade='승인'
 	</select>
 	<!-- 광고게시판 뷰 -->
-	<select id="adView" parameterType="int"
-		resultType="com.bit5.wherewego.ad.AdVO">
+	<select id="adView" parameterType="int" resultType="com.bit5.wherewego.ad.AdVO">
 		select adnum, a.b_id b_id, startdate, enddate, photo, info, link, price,
 		grade, payment, name, num, tel, addr from ad a join business b
 		on a.b_id = b.b_id and adnum = #{param1}

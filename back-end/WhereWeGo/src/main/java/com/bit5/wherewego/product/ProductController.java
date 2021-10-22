@@ -46,4 +46,14 @@ public class ProductController {
 		
 		return mav;
 	}
+	//포인트샵 뷰
+	@RequestMapping("/pointshopView")
+	public ModelAndView pointshopView(String p_num) {
+		ModelAndView mav = new ModelAndView();
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		mav.addObject("vo", dao.pointshopView(p_num));
+		mav.setViewName("/pointshop/pointshopView");
+		
+		return mav;
+	}
 }
