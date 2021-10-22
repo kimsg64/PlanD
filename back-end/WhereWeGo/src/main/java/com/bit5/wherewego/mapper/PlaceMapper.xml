@@ -25,4 +25,34 @@
 		where ${param1} like '%'||#{param2}||'%' 
 		</if>
 	</select>
+	
+	<!-- 장소 등록 전, 중복 여부 확인 -->
+	<select id="checkPlace" parameterType="com.bit5.wherewego.place.PlaceVO" resultType="int">
+		select count(pcode) from place
+		where sort=#{sort} and name=#{name} and addr=#{addr}
+	</select>
+	
+	<!-- 신규 장소 등록 -->
+	<insert id="insertPlace" parameterType="com.bit5.wherewego.place.PlaceVO">
+		insert into place(sort, name, addr, zip, tel, time
+		<if test='info!=null and !info.equals("")'>
+		,info
+		</if>
+		<if test='link!=null and !link.equals("")'>
+		,link
+		</if>
+		) values (#{sort}, #{name}, #{addr}, ${zip}, #{tel}, #{time}
+		<if test='info!=null and !info.equals("")'>
+		,#{info}
+		</if>
+		<if test='link!=null and !link.equals("")'>
+		,#{link}
+		</if>
+		)
+	</insert>
+	
+	<!-- 상호명, 주소로 pcode 알아내기 -->
+	<select id="selectPlace" parameterType="com.bit5.wherewego.place.PlaceVO" resultType="int">
+		select pcode from place where sort=#{sort} and name=#{name} and addr=#{addr}
+	</select>
 </mapper>

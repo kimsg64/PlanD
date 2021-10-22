@@ -51,7 +51,7 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="비트캠프 신촌센터" placeholder="장소명 입력" id="keyword" size="15"> 
+                    키워드 : <input type="text" value="비트캠프" placeholder="장소명 입력" id="keyword" size="15"> 
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -62,11 +62,62 @@
     </div>
 </div>
 
-<div id="name">이름</div>
-<div id="addr">주소</div>
-<div id="tel">번호</div>
+위에까진 네이버 제공
+여기처럼 이렇게 사용자가 볼 수 있게 띄우기<br/>
+<div id="name2">상호명</div>
+
+<hr/><hr/>
+<form method="post" action="/wherewego/checkPlace" onsubmit="return cantPlace();">
+	<!-- 임시로 일단 종류는 임의 입력!!!!!!!!!!! -->
+	<input type="text" name="sort" placeholder="식당 카페 기타"/>
+	<input type="text" name="zip" value="55555"/>
+	<input type="text" name="time" value="00~24"/>
+	<input type="text" name="info" placeholder="설명"/>
+	<input type="text" name="link" placeholder="링크"/>
+
+	<!-- 원래는 hidden으로 받기 -->
+	<input type="text" name="name" id="name" placeholder="상호명"/>
+	<input type="text" name="addr" id="addr" placeholder="주소"/>
+	<input type="text" name="tel" id="tel" placeholder="전화번호"/>
+	<input type="submit" value="확인"/>
+</form>
+<hr/>
+<br/><br/><br/><br/>
+<form method="post" action="/wherewego/checkCourse">
+	<input type="text" name="name" placeholder="코스명"/><br/>
+	<input type="text" name="userid" placeholder="작성자"/>일단 여기서 $ { logid }을 hidden으로 넣는다는 가정.. 또는 컨트롤러에서 session값 불러와도됨<br/>
+	<input type="text" name="starttime" value="00"/><input type="text" name="endtime" value="24"/>시간은 00~24 ~로 구분....... 일단 임시값<br/>
+	근데 생각해보니까 분명이 빠른시간대랑 늦은시간대랑 따로따로 받을듯... vo추가해두기
+	<input type="text" name="stname" value="잠실" placeholder="역이름"/>역이름으로 보내주시면됩니당<br/>
+	<input type="text" name="pcode1" placeholder="장소코드1"/>
+	<input type="text" name="pcode2" placeholder="장소코드2"/>
+	<input type="text" name="pcode3" placeholder="장소코드3"/><br/>
+	<input type="text" name="sortstring" placeholder="종류"/>카페기타식당 식당카페기타 이렇게 넘겨주세용<br/>
+	<input type="text" name="opt" value="#한식#일식/#분위기#야외/#체험/#팝업" placeholder="관심사"/><br/>
+	<textarea name="info"></textarea>
+	#한식#일식/#분위기#야외/#체험/#팝업<br/>
+	/#분위기//<br/>
+	#한식#일식#그외/#컨셉//#팝업<br/>
+	#양식///<br/>
+	<input type="submit" value="확인"/>
+</form>
+
 
 <script>
+////////////////////**************************
+function cantPlace() {
+	if($("#name").val()=="" || $("#addr").val()=="" || $("#tel").val()=="") {
+		alert("등록이 불가능한 장소입니다. 다른 장소를 추천해주세요. 라고 쓰려고 했는데 일부장소는 번호가 없는게 정상이긴하네?");
+		$("#name").val(null);
+		$("#addr").val(null);
+		$("#tel").val(null);
+		
+		return false;
+	}
+}
+///////////////////////////////////////////////////////
+
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -142,15 +193,6 @@ function displayPlaces(places) {
     removeMarker();
     
     for ( var i=0; i<places.length; i++ ) {
-    	
-    	
-    	/////////내가추가***********
-    	var addr = places[i].road_address_name;
-    	if(addr==null) {
-    		addr = places[i].address_name;
-    	}
-    	var tel = places[i].phone;
-    	////**************************
 
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -160,11 +202,26 @@ function displayPlaces(places) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
+            
+
+    	
+    	/////////내가추가***********
+    	//var addr = places[i].road_address_name;
+    	//if(addr==null) {
+    	//	addr = places[i].address_name;
+    	//}
+    	//var tel = places[i].phone;
+    	////**************************
 
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, title) {
+        	var addr = places[i].road_address_name;
+        	if(addr==null) {
+        		addr = places[i].address_name;
+        	}
+        	var tel = places[i].phone;
             kakao.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
             });
@@ -175,15 +232,17 @@ function displayPlaces(places) {
             
             ////////내가 추가***********************
             kakao.maps.event.addListener(marker, 'mouseup', function() {
-                $('#name').html(title);
-                $('#addr').html(addr);
-                $('#tel').html(tel);
+                $('#name').val(title);
+                $('#tel').val(tel);
+                $('#addr').val(addr);           
+                $('#name2').html(title);
             });
             
             itemEl.onmouseup =  function () {
-                $('#name').html(title);
-                $('#addr').html(addr);
-                $('#tel').html(tel);
+                $('#name').val(title);
+                $('#tel').val(tel);
+                $('#addr').val(addr);       
+                $('#name2').html(title);
             };
             ///////////////////
 
@@ -195,7 +254,7 @@ function displayPlaces(places) {
                 infowindow.close();
             };
             /////////////////더 갖고올 정보 여기서 추가함***********************
-        })(marker, places[i].place_name, places[i].phone, places[i].road_address_name, places[i].address_name);
+        })(marker, places[i].place_name, places[i].phone, places[i].address_name, places[i].road_address_name);
 
         fragment.appendChild(itemEl);
     }
