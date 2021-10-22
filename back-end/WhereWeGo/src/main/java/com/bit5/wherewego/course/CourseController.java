@@ -74,4 +74,13 @@ public class CourseController {
 		System.out.println(vo.getOpt());
 		return null;
 	}
+	
+	@RequestMapping("/maptest")
+	public ModelAndView maptest() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("maptest");
+		
+		return mav;
+	}
 }
