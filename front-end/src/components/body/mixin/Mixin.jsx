@@ -8,6 +8,7 @@ export const BodyLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: ${(props) => props.padding || "var(--header-height) 0"};
+  position: relative;
   /* background-color: var(--color-bg); */
 `;
 
@@ -15,10 +16,12 @@ export const BodyLayout = styled.div`
 
 // 메뉴 타이틀
 export const MenuTitle = styled.div`
-  width: 60vw;
-  margin-top: var(--margin-header-to-body);
-  margin-bottom: var(--margin-default);
+  width: 72%;
+  margin-top: calc(var(--margin-default) * 1.5);
+  margin-bottom: 0;
   font-size: var(--font-size-title-normal);
+  display: flex;
+  align-items: center;
 `;
 
 // 버튼
@@ -100,7 +103,7 @@ export const Input = styled.input`
 
 // 검색 폼
 export const SearchBar = styled.div`
-  width: ${(props) => props.width || "1200px"};
+  width: ${(props) => props.width || "1360px"};
   height: 60px;
   margin-top: var(--margin-default);
   display: flex;
@@ -148,9 +151,11 @@ export const Circle = styled.div`
   height: 25px;
   border-radius: 50%;
   position: relative;
-  background-color: ${(props) => props.bgColor};
   top: 130px;
   left: 34px;
+  &:hover {
+    background-color: ${(props) => props.bgColor};
+  }
 `;
 
 // 사각형
@@ -165,6 +170,61 @@ export const Square = styled.div`
     cursor: pointer;
     div {
       background-color: var(--color-focus);
+    }
+  }
+  div {
+    transition-duration: 0.2s;
+    background-color: ${(props) => props.bgColor};
+  }
+`;
+
+// 툴 팁
+export const ToolTipBox = styled.div`
+  display: ${(props) => props.display};
+  position: absolute;
+  background-color: var(--color-focus);
+  padding: calc(var(--padding-default) / 2);
+  width: ${(props) => props.width};
+  top: ${(props) => props.fromTop};
+  left: ${(props) => props.fromLeft};
+  color: white;
+  border-radius: 8px;
+`;
+
+export const ToolTip = styled.div`
+  position: absolute;
+  display: ${(props) => props.display};
+  border-style: solid;
+  border-width: 8px 8px 0;
+  border-color: var(--color-focus) transparent;
+  width: 0;
+  bottom: -6px;
+  left: 40px;
+`;
+
+// 마이메뉴 아이템 박스
+export const MyMenuItemBox = styled.div`
+  width: 100%;
+  padding: var(--padding-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-bg);
+  }
+
+  &:active {
+    background-color: var(--color-blur);
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    & > i {
+      color: var(--color-focus);
+      margin-right: calc(var(--margin-default) / 4);
     }
   }
 `;

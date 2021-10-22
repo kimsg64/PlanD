@@ -26,12 +26,13 @@ const Planning = ({ match }) => {
   const [selectedDate, setSelectedDate] = useState(match.params.date);
   const [selectedStation, setSelectedStation] = useState("역");
   const [lineNum, setLineNum] = useState("8");
+
   // console.log("부모", idx);
   // console.log(match);
   // console.log(match.params);
   // console.log(match.params.date);
   // console.log(selectedDate);
-  // console.log(selectedStation);
+  // console.log("플래닝에서 선택되었단다: ", selectedStation);
   useEffect(() => {
     setSelectedStation("역");
   }, [lineNum]);
@@ -51,7 +52,10 @@ const Planning = ({ match }) => {
           />
           <Slider>
             <PageSlider idx={idx} rate={-50}>
-              <Line8 setSelectedStation={setSelectedStation} />
+              <Line8
+                selectedStation={selectedStation}
+                setSelectedStation={setSelectedStation}
+              />
               <PlanningETC
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Form from "../components/body/mixin/Form";
 import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
-import { BodyLayout, Button } from "../components/body/mixin/Mixin";
+import { BodyLayout, Button, MenuTitle } from "../components/body/mixin/Mixin";
 import {
   ErrorMsg,
   FormInput,
@@ -174,6 +174,7 @@ const IndividualForm = () => {
     <>
       <Header />
       <BodyLayout>
+        <MenuTitle>{isLoaded ? "회원정보 수정" : "회원가입"}</MenuTitle>
         <Form onSubmit={onSubmitForm} encType="multipart/form-data">
           <CenterWrapper>
             <LineWrapper>

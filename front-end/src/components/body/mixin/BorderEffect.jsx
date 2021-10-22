@@ -14,7 +14,7 @@ const BorderSpan = styled.span`
 
 const BorderEffect = ({
   spanWidth = "0",
-  fromTop = "58px",
+  fromTop = "38px",
   // fromLeft = "0",
   bgColor = "var(--color-focus)",
 }) => {

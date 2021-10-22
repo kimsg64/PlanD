@@ -1,16 +1,20 @@
 package com.bit5.wherewego.review;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
+import com.bit5.wherewego.user.UserVO;
 
 @Controller
 public class ReviewController {
@@ -87,6 +91,23 @@ public class ReviewController {
 		mav.addObject("r_num", r_num);
 		mav.setViewName("redirect:reviewView");
 		return mav;
+	}
+
+	//글쓰기폼
+		@RequestMapping("/reviewWrite")
+		public String write() {
+			return "review/reviewWrite";
+		}
+	
+	// 로그인한 유저가 작성한 리뷰
+	@RequestMapping(value = "/myReviewSelect", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ReviewVO> myReviewSelect(@RequestBody UserVO vo) {
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
+		System.out.println("리뷰 보여줄때 쓸 아이디: " + vo.getUserId());
+		list = dao.myReviewSelect(vo.getUserId());
+		return list;
 	}
 
 }

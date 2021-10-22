@@ -108,7 +108,7 @@ const SubMenu = styled.ul`
 `;
 
 const SubMenuItem = styled.li`
-  height: 60px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -209,7 +209,7 @@ const Header = () => {
             ) : null}
             <LoginButtonContainer>
               <SubMenuContainer
-                onMouseOver={() => setHeightOfSub("300px")}
+                onMouseOver={() => setHeightOfSub("200px")}
                 onMouseOut={() => setHeightOfSub("0")}
               >
                 {read_cookie("userId").length > 0 ? (

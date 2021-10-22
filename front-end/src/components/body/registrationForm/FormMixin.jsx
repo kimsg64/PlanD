@@ -16,6 +16,7 @@ export const SubmitButton = styled(StyledButton)`
 export const Label = styled.label`
   width: 24em;
   font-size: var(--font-size-small);
+  font-weight: bold;
   margin: 0 calc(var(--margin-default) / 4) calc(var(--margin-default) / 4) 0;
 `;
 

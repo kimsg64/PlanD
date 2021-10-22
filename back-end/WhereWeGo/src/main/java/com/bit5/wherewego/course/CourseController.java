@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
 import com.bit5.wherewego.res.PlanningVO;
+import com.bit5.wherewego.user.UserVO;
 
 @Controller
 public class CourseController {
@@ -75,6 +76,7 @@ public class CourseController {
 		return null;
 	}
 	
+
 	@RequestMapping("/maptest")
 	public ModelAndView maptest() {
 		ModelAndView mav = new ModelAndView();
@@ -82,5 +84,16 @@ public class CourseController {
 		mav.setViewName("maptest");
 		
 		return mav;
+
+	// 로그인한 사용자 본인이 추천한 코스
+	@RequestMapping(value = "/myCourseSelect", method = RequestMethod.POST)
+	@ResponseBody
+	public List<CourseVO> myCourseSelect(@RequestBody UserVO vo) {
+		List<CourseVO> list = new ArrayList<CourseVO>();
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		System.out.println("들어온 유저!: " + vo.getUserId());
+		list = dao.myCourseSelect(vo.getUserId());
+		return list;
+
 	}
 }
