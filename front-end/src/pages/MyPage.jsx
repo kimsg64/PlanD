@@ -6,21 +6,22 @@ import {
   BodyLayout,
   MenuTitle,
   StyledButton,
-  Button,
 } from "../components/body/mixin/Mixin";
 import { Link } from "react-router-dom";
-import UserData from "../server/UserData";
 import { FormInput } from "../components/body/registrationForm/FormMixin";
 import { read_cookie } from "sfcookies";
 import axios from "axios";
+import MyCourse from "../components/body/myMenu/MyCourse";
+import MyReviews from "../components/body/myMenu/MyReviews";
 
 // 상단 프로필 섹션
 const ProfileSummary = styled.section`
   width: 60vw;
   height: auto;
+  margin-top: var(--margin-default);
   display: flex;
   justify-content: space-evenly;
-  background-color: var(--color-bg);
+  background-color: var(--color-light-bg);
   box-shadow: 0px 2px 4px 2px grey;
   border-radius: 4px;
 `;
@@ -41,7 +42,7 @@ const UserImgContainer = styled.div`
   height: 240px;
   overflow: hidden;
   border-radius: 50%;
-  border: 4px solid var(--color-green);
+  border: 4px solid var(--color-focus);
   margin-bottom: var(--margin-line-space);
   display: flex;
   justify-content: center;
@@ -55,7 +56,7 @@ const UserImgContainer = styled.div`
 
 // 유저 프로필 섹션
 const UserInfoSection = styled(SectionInProfile)`
-  min-width: 48%;
+  min-width: 40%;
   padding: var(--padding-default);
   display: flex;
 `;
@@ -69,8 +70,7 @@ const UserInfo = styled.div`
 `;
 // 정보 수정 버튼 섹션
 const ButtonsSection = styled(SectionInProfile)`
-  width: 20%;
-  height: 24vh;
+  width: 28%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -94,14 +94,25 @@ const MenuContainer = styled.section`
 const MenuBox = styled.div`
   width: 32%;
   height: 100%;
-  background-color: var(--color-bg);
+  background-color: var(--color-light-bg);
   box-shadow: 0px 2px 4px 2px grey;
   border-radius: 4px;
 `;
 
+const SubMenuTitle = styled.div`
+  font-size: var(--font-size-title-small);
+  padding: calc(var(--margin-default) / 2);
+  background-color: var(--color-focus);
+  color: white;
+`;
+
 const MyPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [reviewLoaded, setReviewLoaded] = useState(false);
+  const [courseLoaded, setCourseLoaded] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [userReview, setUserReview] = useState(null);
+  const [userCourse, setUserCourse] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [startdate, setStartdate] = useState("지정된 기념일이 없습니다.");
@@ -119,14 +130,29 @@ const MyPage = () => {
       axios
         .post("/wherewego/getUserData", body)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setUserData(response.data);
           setIsLoaded(true);
         })
         .catch((error) => console.log(error));
+
+      axios
+        .post("wherewego/myCourseSelect", body)
+        .then((response) => {
+          setUserCourse(response.data);
+          setCourseLoaded(true);
+        })
+        .catch((error) => console.log(error));
+
+      axios
+        .post("wherewego/myReviewSelect", body)
+        .then((response) => {
+          setUserReview(response.data);
+          setReviewLoaded(true);
+        })
+        .catch((error) => console.log(error));
     }
   }, []);
-
   useEffect(() => {
     if (isLoaded) {
       setName(userData.name);
@@ -152,13 +178,54 @@ const MyPage = () => {
       setPhotoUrl(reader.result);
     };
     reader.readAsDataURL(imageFile);
+    // console.log(photo);
+    // console.log(photoUrl);
+  };
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+
+    ///////////////////////////////////////////////////////////////////
+    /*
+    if (photo !== null) {
+      //FormData 생성
+      const userId = read_cookie("userId");
+      let formData = new FormData();
+      //FormData에 key, value 추가하기
+      formData.append(userId, photo);
+      console.log(photo);
+      for (let value of formData.keys()) {
+        console.log(value);
+      }
+      for (let key of formData.values()) {
+        console.log(key);
+      }
+      const header = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const body = {
+        userIid: userId,
+        photo: formData,
+      };
+
+      axios
+        .post("/wherewego/changeUserImage", formData, header)
+        // .post("/wherewego/changeUserImage", body, header)
+        .then((response) => {
+          return console.log(response);
+        })
+        .catch((error) => console.log(error));
+    }*/
+    ///////////////////////////////////////////////////////////////////
   };
 
   return (
     <>
       <Header />
       <BodyLayout>
-        <MenuTitle>My Page</MenuTitle>
+        <MenuTitle>마이 페이지</MenuTitle>
         <ProfileSummary>
           <UserIconSection>
             {/* <UserIcon>
@@ -171,19 +238,28 @@ const MyPage = () => {
             </UserIcon> */}
             <UserImgContainer>
               {photo === null ? (
-                <i className="far fa-user"></i>
+                userData !== null ? (
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/users/${userData.userId}.jpg`}
+                    alt="user"
+                  />
+                ) : (
+                  <i className="far fa-user"></i>
+                )
               ) : (
                 <img src={photoUrl} alt="preview" />
               )}
             </UserImgContainer>
 
-            <FormInput
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              onChange={onChangePhoto}
-            />
+            <form id="change_image" onSubmit={onSubmitForm}>
+              <FormInput
+                type="file"
+                id="photo"
+                name="photo"
+                accept="image/*"
+                onChange={onChangePhoto}
+              />
+            </form>
           </UserIconSection>
           <UserInfoSection>
             <UserId>{name} 님</UserId>
@@ -195,6 +271,9 @@ const MyPage = () => {
             <EditButton as="label" htmlFor="photo">
               사진 변경
             </EditButton>
+            <EditButton type="submit" form="change_image">
+              변경 완료
+            </EditButton>
             <Link to={"/individualform"}>
               <EditButton>프로필 수정</EditButton>
             </Link>
@@ -202,9 +281,19 @@ const MyPage = () => {
         </ProfileSummary>
 
         <MenuContainer>
-          <MenuBox>후기 컴포넌트 불러올 예정</MenuBox>
-          <MenuBox>찜한 장소</MenuBox>
-          <MenuBox>나의 추천 코스</MenuBox>
+          <MenuBox>
+            <SubMenuTitle>나의 후기</SubMenuTitle>
+            <MyReviews
+              userReview={reviewLoaded ? userReview : null}
+            ></MyReviews>
+          </MenuBox>
+          <MenuBox>
+            <SubMenuTitle>찜한 장소</SubMenuTitle>
+          </MenuBox>
+          <MenuBox>
+            <SubMenuTitle>나의 추천 코스</SubMenuTitle>
+            <MyCourse userCourse={courseLoaded ? userCourse : null} />
+          </MenuBox>
         </MenuContainer>
       </BodyLayout>
       <Footer />

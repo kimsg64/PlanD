@@ -1,12 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import { BodyLayout } from "../components/body/mixin/Mixin";
+import { BodyLayout, MenuTitle } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Stars from "../components/body/mixin/Stars";
 import ReviewsData from "../server/ReviewsData";
 
 // 여기는 리뷰 상세 페이지로 활용하기
+
+const ReviewPageMenuTitle = styled(MenuTitle)`
+  width: 72%;
+  margin-top: calc(var(--margin-default) * 3);
+  margin-bottom: 0;
+`;
 
 const ReviewsContainer = styled.ul`
   width: 80vw;
@@ -34,11 +40,13 @@ const ReviewsContainer = styled.ul`
 `;
 
 const Slider = styled.div`
+  height: 600px;
   display: flex;
   align-items: center;
   transition-duration: 0.3s;
   /* transform: translateX(-32%); */
   transform: translateX(${(props) => props.index * 32 + "%"});
+  margin-bottom: calc(var(--margin-default) * 2);
 `;
 const ReviewItem = styled.li`
   max-width: 440px;
@@ -46,7 +54,7 @@ const ReviewItem = styled.li`
   margin: 0 calc(var(--margin-default) / 1.4);
   padding: var(--padding-default);
   border-radius: 8px;
-
+  background-color: var(--color-bg);
   &:nth-child(even) {
     /* transform: scaleX(1.16) rotateY(10deg); */
   }
@@ -54,9 +62,8 @@ const ReviewItem = styled.li`
     /* transform: scaleX(1.16) rotateY(-10deg); */
   }
 
-  /* 체크용 > 색깔 변경예정 */
-  border: 2px solid var(--color-font);
-  box-shadow: 0px 2px 4px 2px grey;
+  border: 1px solid #ccc;
+  box-shadow: 4px 4px 10px 0px #ccc;
 `;
 
 const ImageBox = styled.div`
@@ -76,7 +83,7 @@ const TextBox = styled.div`
   margin-top: calc(var(--margin-default) / 2);
   padding: var(--padding-default);
   background-color: var(--color-light-bg);
-  box-shadow: 0px 2px 4px 2px grey;
+  box-shadow: 4px 4px 10px 0px #ccc;
   /* border: 2px solid var(--color-font); */
   border-radius: 8px;
   font-size: var(--font-size-normal);
@@ -89,17 +96,6 @@ const TextBox = styled.div`
     white-space: pre-wrap;
     text-overflow: ellipsis;
   }
-  /* &:after {
-    content: "";
-    position: absolute;
-    border-style: solid;
-    border-width: 20px 20px 0;
-    border-color: var(--color-light-bg) transparent;
-    display: block;
-    width: 0;
-    bottom: -20px;
-    left: 20px;
-  } */
 `;
 
 const ProfileBox = styled.div`
@@ -118,6 +114,7 @@ const Icon = styled.div`
   background-color: var(--color-bg);
   img {
     width: 100%;
+    height: 100%;
   }
 `;
 
@@ -142,7 +139,7 @@ const UserHistory = styled.div`
 const ArrowBox = styled.div`
   font-size: var(--font-size-title-normal);
   position: absolute;
-  top: 40%;
+  top: 56%;
   &:hover {
     cursor: pointer;
     color: var(--color-focus);
@@ -200,8 +197,8 @@ const Reviews = () => {
     return index === 0 ? setIndex(index) : setIndex(index + 1);
   };
   const setRightIndex = () => {
-    console.log("인덱스", index);
-    console.log("리뷰수", reviewsList.length);
+    // console.log("인덱스", index);
+    // console.log("리뷰수", reviewsList.length);
     return index <= (reviewsList.length - 3) * -1
       ? setIndex(index)
       : setIndex(index - 1);
@@ -213,6 +210,7 @@ const Reviews = () => {
     <>
       <Header />
       <BodyLayout padding="0">
+        <ReviewPageMenuTitle>베스트 리뷰</ReviewPageMenuTitle>
         <LeftArrow onClick={setLeftIndex}>
           <i className="fas fa-chevron-left"></i>
         </LeftArrow>
@@ -222,42 +220,12 @@ const Reviews = () => {
           onMouseMove={slideReviews}
           onMouseUp={stopDraging}
         >
-          {/* <ReviewItem onClick={showDetailItem}>
-            <div>코스명</div>
-            <ImageBox>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
-                alt="cafe_review"
-              />
-            </ImageBox>
-            <TextBox>
-              <p>
-                제가 LA에 있을때는 말이죠 정말 제가 꿈에 무대인 메이저리그로
-                진출해서 가는 식당마다 싸인해달라 기자들은 항상 붙어다니며
-                취재하고 제가 그 머~ 어~ 대통령이 된 기분이었어요
-              </p>
-            </TextBox>
-            <ProfileBox>
-              <Icon>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
-                  alt="user_icon"
-                />
-              </Icon>
-              <UserInfo>
-                <NameAndStar>
-                  <UserName>찬호팍</UserName>
-                  <Stars />
-                </NameAndStar>
-                <UserHistory>코스A, 1992.09.12 방문</UserHistory>
-              </UserInfo>
-            </ProfileBox>
-          </ReviewItem> */}
           <Slider index={index}>
             {reviewsList.map((review) => {
+              // console.log(review.resdate.split("/"));
               return (
                 <ReviewItem onClick={showDetailItem}>
-                  <div>코스명</div>
+                  <h3>{review.name}</h3>
                   <ImageBox>
                     <img
                       src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
@@ -270,7 +238,7 @@ const Reviews = () => {
                   <ProfileBox>
                     <Icon>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/users/user1.png`}
+                        src={`${process.env.PUBLIC_URL}/images/users/${review.userid}.jpg`}
                         alt="user_icon"
                       />
                     </Icon>
@@ -279,7 +247,11 @@ const Reviews = () => {
                         <UserName>{review.userid}</UserName>
                         <Stars score={review.score} />
                       </NameAndStar>
-                      <UserHistory>코스A, 1992.09.12 방문</UserHistory>
+                      <UserHistory>
+                        {"20" + review.resdate.split("/")[0]}.
+                        {review.resdate.split("/")[1]}.
+                        {review.resdate.split("/")[2]} 방문
+                      </UserHistory>
                     </UserInfo>
                   </ProfileBox>
                 </ReviewItem>

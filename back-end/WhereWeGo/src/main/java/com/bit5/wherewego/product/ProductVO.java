@@ -7,7 +7,14 @@ public class ProductVO {
 	private int price;
 	private String img;
 	private String gender;
+	private String info;
 	
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
 	public String getP_num() {
 		return p_num;
 	}

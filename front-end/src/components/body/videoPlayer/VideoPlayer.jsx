@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { read_cookie } from "sfcookies";
 import styled from "styled-components";
@@ -23,16 +23,47 @@ const TextContainer = styled.div`
 
 const TextInVideo = styled.h1`
   font-size: var(--font-size-title-large);
+  animation: fadein 12s;
+  animation-iteration-count: infinite;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 const VideoPlayer = () => {
+  const interval = useRef();
+  const videoRef = useRef();
+
+  useEffect(() => {
+    interval.current = setInterval(() => {
+      videoRef.current.play();
+    }, 12000);
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
   return (
     <VideoContainer>
       <video
         src={`${process.env.PUBLIC_URL}/videos/2.mp4`}
         autoPlay
         muted
-        // loop="true"
+        ref={videoRef}
       />
       <TextContainer>
         <TextInVideo>

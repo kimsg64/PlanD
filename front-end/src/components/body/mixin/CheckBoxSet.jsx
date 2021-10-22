@@ -39,6 +39,7 @@ const TitleGroup = styled.div`
 const Title = styled.div`
   height: 60px;
   line-height: 40px;
+  font-weight: bold;
   padding: calc(var(--margin-default) / 4) 0;
 `;
 

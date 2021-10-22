@@ -54,7 +54,7 @@ img {
 .adlist {
 	width: 44%;
 	margin: 3%;
-	border : 1px solid #efcac3;
+	order : 1px solid #efcac3;
 	background-color:#fffefd;
 	border-radius: 12px;
 	padding : 15px;
