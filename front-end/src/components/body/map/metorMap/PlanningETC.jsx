@@ -94,6 +94,19 @@ const PlanningETC = ({
   // 첫 콤보박스 선택시 다음 콤보박스 제한
   const combination = ["식당", "카페", "기타"];
 
+  const sortNum =
+    sort1 + sort2 + sort3 === "식당카페기타"
+      ? 1
+      : sort1 + sort2 + sort3 === "식당기타카페"
+      ? 2
+      : sort1 + sort2 + sort3 === "카페식당기타"
+      ? 3
+      : sort1 + sort2 + sort3 === "카페기타식당"
+      ? 4
+      : sort1 + sort2 + sort3 === "기타식당카페"
+      ? 5
+      : 6;
+
   const onSubmitForm = (e) => {
     e.preventDefault();
     const body = {
@@ -102,7 +115,7 @@ const PlanningETC = ({
       stname: selectedStation,
       resdate: stringifyResdate(),
       time: parseInt(time),
-      sort: sort1 + sort2 + sort3,
+      datesort: sortNum,
       opt: opt.join("#"),
     };
     console.log(body);

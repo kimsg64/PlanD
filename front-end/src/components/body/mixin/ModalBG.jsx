@@ -14,7 +14,8 @@ const ModalBackGround = styled.div`
 const ExitIcon = styled.span`
   position: relative;
   top: 160px;
-  left: 1360px;
+  left: ${(props) => props.coordLeft};
+  /* left: 1360px; */
   z-index: 5;
   font-size: var(--font-size-title-normal);
   &:hover {
@@ -30,6 +31,7 @@ const ModalBG = ({
   children,
   setShowModalResult = () => {},
   setShowModal = () => {},
+  coordLeft = "1360px",
 }) => {
   const onClickSearchButton = (e) => {
     setShowModalResult(false);
@@ -37,7 +39,7 @@ const ModalBG = ({
   };
   return (
     <ModalBackGround onClick={onClickSearchButton}>
-      <ExitIcon>
+      <ExitIcon coordLeft={coordLeft}>
         <i className="fas fa-times"></i>
       </ExitIcon>
       {children}

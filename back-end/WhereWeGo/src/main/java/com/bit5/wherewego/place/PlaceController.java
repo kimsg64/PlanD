@@ -78,6 +78,7 @@ public class PlaceController {
 		mav.setViewName("maptest");
 		
 		return mav;
+	}
 
 	// 유저에게 장소 리스트 보여주기
 	@RequestMapping("/allPlaceList")
@@ -85,11 +86,10 @@ public class PlaceController {
 	public List<PlaceVO> allPlaceList(@RequestBody PagingVO pVo) {
 		// 페이징
 		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
-		System.out.println(pVo.getSearchKey());
 		System.out.println(pVo.getSearchWord());
 		
 		// param3(searchKey)은 분류(장소명, 주소) / param4(keyword, searchWord)는 받아온 값  => 
-		int total = dao.totalPlaceCount(pVo.getSearchKey(), pVo.getSearchWord());
+		int total = dao.totalPlaceCount("name", pVo.getSearchWord());
 		pVo.setTotalRecord(total);
 		
 		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
@@ -103,7 +103,7 @@ public class PlaceController {
 		}
 		
 		PlaceDAOImp dao2 = sqlSession.getMapper(PlaceDAOImp.class);
-		List<PlaceVO> list = dao2.placeAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord());
+		List<PlaceVO> list = dao2.placeAllSelect(num1, num2, "name", pVo.getSearchWord());
 		// pVo 리턴해야되나?
 		return list;
 
