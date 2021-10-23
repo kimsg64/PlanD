@@ -137,11 +137,12 @@
 
 <h1>후기 작성</h1>
 <div id="frame">
-<form method="post" action="/wherewego/reviewWriteOk">
+<form method="post" action="/wherewego/reviewEditOk">
   <div class="review_item">
+  <input type="hidden" name="r_num" value="${vo.r_num}">
  <div id="titlediv">${vo.name }</div>
     <div class="image_box">
-   <textarea rows="16" cols="55" id="content" placeholder="사진"></textarea>
+   <textarea rows="16" cols="55" id="photo" name="photo" placeholder="사진">${vo.photo }</textarea>
       <!-- 
       <img
         src="/imgs/icecream.jpg"
@@ -149,8 +150,8 @@
       />
       -->
     </div>
-    <div class="text_box">
-      <textarea rows="5" cols="48" id="content" placeholder="내용을 입력하세요."></textarea>
+    <div class="text_box" >
+      <textarea rows="5" cols="48" id="info" name="info" placeholder="내용을 입력하세요." >${vo.info }</textarea>
     </div>
     <div class="profile_box">
       <div class="icon">
@@ -164,7 +165,7 @@
           <div class="user_name">${vo.userid }</div>
           <div class="star_box">
           	<div class="score" >
-          	<input type="number" name="score" min="0" max="10" step="1"/>
+          	<input type="number" name="score" value="${vo.score }" min="0" max="10" step="1"/>
           	</div>
 		      <i class="far fa-star"></i>
 		      <i class="fas fa-star"></i>
@@ -175,12 +176,16 @@
         </div>
         <div class="user_history">${vo.resdate } 방문<br/></div>
       </div>
-    </div>
+ 	 </div>
   </div>
-</form>
-</div>
+
+
 
 <div id="buttonMenu">
 				<button type="submit" class="button">수정</button>
-				<a class="button" href="/wherewego/reviewList">취소</a>		
+				<a class="button" href="/wherewego/reviewList">취소</a>	
+			
 			</div>
+	  </form>
+</div>
+	

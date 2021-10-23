@@ -132,7 +132,7 @@ public class ReviewController {
 		mav.addObject("r_num", vo.getR_num());
 		
 		if(cnt>0) {//글 수정이 되면 글 내용 보기
-			mav.setViewName("redirect:ReviewView");
+			mav.setViewName("redirect:reviewView");
 		}else {//수정 안되면 글수정으로 이동
 			mav.addObject("msg","수정");
 			mav.setViewName("review/writeResult");
