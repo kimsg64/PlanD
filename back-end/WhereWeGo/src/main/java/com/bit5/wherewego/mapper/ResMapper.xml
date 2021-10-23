@@ -7,7 +7,7 @@
 	<select id="resAllSelect" resultType="com.bit5.wherewego.res.ResVO">		
 		select * from 
 		(select * from 
-		(select r.res_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate, nvl(r.time,'null') time from res r 
+		(select r.res_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate, nvl(r.time,'없음') time from res r 
 		join course c on r.c_num=c.c_num
 		<if test='param4!=null and !param4.equals("") and param3.equals("name")'>
 		where c.name like '%'||#{param4}||'%' 
