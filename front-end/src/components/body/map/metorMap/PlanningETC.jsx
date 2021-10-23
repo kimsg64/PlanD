@@ -6,7 +6,7 @@ import Form from "../../mixin/Form";
 import { Button } from "../../mixin/Mixin";
 import { read_cookie } from "sfcookies";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import SelectBox from "../../mixin/SelectBox";
 
 const Container = styled.div`
   width: 100vw;
@@ -91,8 +91,8 @@ const PlanningETC = ({
     return `${year}-${month}-${date}`;
   };
 
-  // 첫 콤보박스 선택시 다음 콤보박스 제한
-  const combination = ["식당", "카페", "기타"];
+  // // 첫 콤보박스 선택시 다음 콤보박스 제한
+  // const combination = ["식당", "카페", "기타"];
 
   const sortNum =
     sort1 + sort2 + sort3 === "식당카페기타"
@@ -179,52 +179,14 @@ const PlanningETC = ({
             <Label>데이트 순서를 선택하세요.</Label>
           </TitleSection>
           <ContentSection>
-            <Indicator>
-              <select onChange={(e) => setSort1(e.target.value)}>
-                <option value="">장소1</option>
-                <option value="식당">식당</option>
-                <option value="카페">카페</option>
-                <option value="기타">기타</option>
-              </select>
-              {/* sort1 선택완료 */}
-
-              {sort1 === "" ? (
-                <select onChange={(e) => setSort2(e.target.value)}>
-                  <option value="">장소2</option>
-                  <option value="식당">식당</option>
-                  <option value="카페">카페</option>
-                  <option value="기타">기타</option>
-                </select>
-              ) : (
-                <select onChange={(e) => setSort2(e.target.value)}>
-                  <option value="">장소2</option>
-                  {combination.map((item) => {
-                    return item === sort1 ? null : (
-                      <option value={`${item}`}>{item}</option>
-                    );
-                  })}
-                </select>
-              )}
-              {/* sort2 선택완료 */}
-
-              {sort1 === "" || sort2 === "" ? (
-                <select onChange={(e) => setSort3(e.target.value)}>
-                  <option value="">장소3</option>
-                  <option value="식당">식당</option>
-                  <option value="카페">카페</option>
-                  <option value="기타">기타</option>
-                </select>
-              ) : (
-                <select onChange={(e) => setSort3(e.target.value)}>
-                  <option value="">장소3</option>
-                  {combination.map((item) => {
-                    return item === sort1 || item === sort2 ? null : (
-                      <option value={`${item}`}>{item}</option>
-                    );
-                  })}
-                </select>
-              )}
-            </Indicator>
+            <SelectBox
+              sort1={sort1}
+              setSort1={setSort1}
+              sort2={sort2}
+              setSort2={setSort2}
+              sort3={sort3}
+              setSort3={setSort3}
+            />
           </ContentSection>
         </ItemContainer>
         <OptionContainer>

@@ -73,7 +73,6 @@ public class CourseController {
 		System.out.println(vo.getTime());
 
 		System.out.println(vo.getCoursesort());
-		System.out.println(vo.getDatesort());
 		System.out.println(vo.getOpt());
 		return null;
 	}

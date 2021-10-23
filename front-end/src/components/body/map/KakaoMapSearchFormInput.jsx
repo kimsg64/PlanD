@@ -20,6 +20,9 @@ const CenterSearchBar = styled(SearchBar)`
   justify-content: center;
   background-color: var(--color-light-bg);
   box-shadow: 0px 2px 4px 2px grey;
+  select {
+    margin-right: var(--margin-default);
+  }
 `;
 
 const InputContainer = styled.div`
@@ -27,10 +30,17 @@ const InputContainer = styled.div`
 `;
 
 const Label = styled.label`
-  margin: 0 calc(var(--margin-default) * 2);
+  margin-right: calc(var(--margin-default));
 `;
 
-const KakaoMapSearchFormInput = () => {
+const KakaoMapSearchFormInput = ({
+  sort1 = "",
+  setSort1 = () => {},
+  sort2 = "",
+  setSort2 = () => {},
+  sort3 = "",
+  setSort3 = () => {},
+}) => {
   // 입력된 단어
   const [inputText, setInputText] = useState("");
   // 검색으로 나온 장소
@@ -54,14 +64,26 @@ const KakaoMapSearchFormInput = () => {
     return inputText.length > 0 ? null : setSearchBarWidth("0");
   };
 
-  // console.log("인풋 inputText: ", inputText);
-  // console.log("인풋 place: ", place);
-  // console.log("선택 장소 from input: ", clickedPlace);
+  console.log("인풋 inputText: ", inputText);
+  console.log("인풋 place: ", place);
+  console.log("선택 장소 from input: ", clickedPlace);
   return (
     <>
       <SearchForm onSubmit={onSubmitKeyword}>
         <CenterSearchBar>
           <Label>장소를 검색해 주세요</Label>
+          <select onChange={(e) => setSort1(e.target.value)}>
+            <option value="">장소</option>
+            <option value="식당">장소1</option>
+            <option value="카페">장소2</option>
+            <option value="기타">장소3</option>
+          </select>
+          <select onChange={(e) => setSort1(e.target.value)}>
+            <option value="">분류</option>
+            <option value="식당">식당</option>
+            <option value="카페">카페</option>
+            <option value="기타">기타</option>
+          </select>
           <InputContainer>
             <Input
               type="text"

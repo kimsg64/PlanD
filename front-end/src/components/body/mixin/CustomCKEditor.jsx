@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const CKEditorWrapper = styled.div`
   .ck-content {
+    width: 680px;
     height: 400px;
   }
   margin-bottom: var(--margin-default);
