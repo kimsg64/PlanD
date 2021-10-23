@@ -370,6 +370,7 @@ function removeAllChildNods(el) {
 
 
 <script>
+//오늘의날씨
 var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
 $.ajax({
     url: apiURI,
@@ -386,23 +387,23 @@ $.ajax({
         console.log("바람   : "+ resp.wind.speed );
         console.log("나라   : "+ resp.sys.country );
         console.log("도시이름  : "+ resp.name );
-        console.log("구름 !!!!!!!!!!!!!!!!! : "+ (resp.clouds.all) +"%" );                 
+        console.log("구름 : "+ (resp.clouds.all) +"%" );                 
     }
 })
-
 </script>
 
 <script>
-var apiURI = "https://pro.openweathermap.org/data/2.5/forecast/climate?q={city name},{country code}&appid={API key}";
+//5일치
+var apiURI = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
 $.ajax({
     url: apiURI,
     dataType: "json",
     type: "GET",
     async: "false",
     success: function(resp) {
-        console.log("상세날씨 : "+ list.weather.description);
+        console.log(resp);
+        console.log("ㄴㅆ : "+ resp.list[0].weather[0].description);         
     }
-
-});
+})
 
 </script>

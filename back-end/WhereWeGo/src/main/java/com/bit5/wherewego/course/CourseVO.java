@@ -138,6 +138,7 @@ public class CourseVO {
 
 	public void setCoursesort(int coursesort) {
 		this.coursesort = coursesort;
+	}
 
 
 	public String getOpt() {
