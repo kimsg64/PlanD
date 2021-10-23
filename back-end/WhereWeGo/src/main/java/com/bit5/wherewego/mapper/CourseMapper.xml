@@ -32,7 +32,7 @@
 	</select>
 	
 	<select id="myCourseSelect" resultType="com.bit5.wherewego.course.CourseVO">
-		select c_num, name, userid, stcode, info, grade, pcode1, pcode2, pcode3, score, sort, opt 
+		select c_num, name, userid, stcode, info, grade, pcode1, pcode2, pcode3, score, datesort, opt 
 		from course where userid=#{param1} order by c_num desc
 	</select>
 
@@ -44,7 +44,7 @@
 	
 	<!-- 새로운 코스 등록 -->
 	<insert id="insertCourse" parameterType="com.bit5.wherewego.course.CourseVO">
-		insert into course(name, userid, stcode, grade, pcode1, pcode2, pcode3, sort
+		insert into course(name, userid, stcode, grade, pcode1, pcode2, pcode3, datesort
 		<if test='info!=null and !info.equals("")'>
 		,info
 		</if>
@@ -52,7 +52,7 @@
 		,opt
 		</if>
 		) values(#{name}, #{userid}, (select stcode from station where stname=#{stname}), #{grade},
-		${pcode1},${pcode2},${pcode3},${sort}
+		${pcode1},${pcode2},${pcode3},${datesort}
 		<if test='info!=null and !info.equals("")'>
 		,#{info}
 		</if>
