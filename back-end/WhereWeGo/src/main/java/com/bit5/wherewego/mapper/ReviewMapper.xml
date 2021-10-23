@@ -82,12 +82,12 @@
 	
 	<!-- 리뷰 작성(전송) -->
 	<insert id="reviewWriteOk"  parameterType="com.bit5.wherewego.review.ReviewVO">
-  		insert into review(content,photo,score) values(#{content}, #{photo}, #{score})
+  		insert into review(info,photo,score) values(#{info}, #{photo}, #{score})
 	</insert>
 	
   	 <!-- 리뷰 수정 -->
- 	<update id="reviewWriteOk" parameterType="com.bit5.wherewego.review.ReviewVO">
-  		update review set content=#{content}, photo=#{photo}, score=#{score} where r_num=#{r_num}
+ 	<update id="reviewEditOk" parameterType="com.bit5.wherewego.review.ReviewVO">
+  		update review set info=#{info}, photo=#{photo}, score=#{score} where r_num=#{r_num}
   	</update>
 
 </mapper>
