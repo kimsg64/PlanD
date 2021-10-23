@@ -141,16 +141,16 @@
   <div class="review_item">
  <div id="titlediv">${vo.name }</div>
     <div class="image_box">
- <textarea rows="16" cols="58" id="content" placeholder="사진"></textarea> 
-       <!--  
+   <textarea rows="16" cols="55" id="content" placeholder="사진"></textarea>
+      <!-- 
       <img
         src="/imgs/icecream.jpg"
         alt="cafe_review"
       />
-     -->
+      -->
     </div>
     <div class="text_box">
-      <textarea rows="5" cols="50" id="content" placeholder="내용을 입력하세요."></textarea>
+      <textarea rows="5" cols="48" id="content" placeholder="내용을 입력하세요."></textarea>
     </div>
     <div class="profile_box">
       <div class="icon">
@@ -181,6 +181,6 @@
 </div>
 
 <div id="buttonMenu">
-				<a class="button" href="/wherewego/reviewList">목록</a>
-				<button type="submit" class="button">작성</button>
+				<button type="submit" class="button">수정</button>
+				<a class="button" href="/wherewego/reviewList">취소</a>		
 			</div>
