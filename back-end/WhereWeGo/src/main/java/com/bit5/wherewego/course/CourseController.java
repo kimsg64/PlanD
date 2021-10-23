@@ -71,7 +71,9 @@ public class CourseController {
 		
 		System.out.println(vo.getResdate());
 		System.out.println(vo.getTime());
+
 		System.out.println(vo.getCoursesort());
+		System.out.println(vo.getDatesort());
 		System.out.println(vo.getOpt());
 		return null;
 	}
@@ -112,6 +114,7 @@ public class CourseController {
 			System.out.println("올타임:"+alltime);
 			
 			switch(vo.getSortstring()) {
+
 				case "식당카페기타" : vo.setCoursesort(1); break;
 				case "식당기타카페" : vo.setCoursesort(2); break;
 				case "카페식당기타" : vo.setCoursesort(3); break;
@@ -120,6 +123,7 @@ public class CourseController {
 				case "기타카페식당" : vo.setCoursesort(6); break;
 			}
 			System.out.println("케이스"+vo.getCoursesort());
+
 			
 			if(vo.getUserid().equals("admin")) {
 				vo.setGrade("승인");
