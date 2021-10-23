@@ -202,6 +202,7 @@ ul.pagination li a:hover:not(.active) {
 		</div>
 		<div id="buttonMenu">
 			<a class="button" href="#">삭제</a>
+			<a class="button" href="paymentPage">결제</a>
 		</div>
 	</div>
 

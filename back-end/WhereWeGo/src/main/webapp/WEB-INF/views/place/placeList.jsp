@@ -208,7 +208,7 @@ ul.pagination li a:hover:not(.active) {
 				<c:forEach var="vo" items="${list }">
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>
 					<li>${vo.pcode }</li>
-					<li>${vo.sort }</li>
+					<li>${vo.datesort }</li>
 					<li><a href="/wherewego/placeView?no=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
 					<li>${vo.time }</li>
 					<li><c:if test="${vo.link==null }">

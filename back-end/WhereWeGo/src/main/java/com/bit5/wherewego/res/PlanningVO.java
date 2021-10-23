@@ -6,7 +6,7 @@ public class PlanningVO {
 	private String stname;
 	private String resdate;
 	private int time;
-	private String sort;
+	private String coursesort;
 	private String opt;
 	
 	public String getUserId() {
@@ -39,11 +39,11 @@ public class PlanningVO {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	public String getSort() {
-		return sort;
+	public String getCoursesort() {
+		return coursesort;
 	}
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setcourseSort(String coursesort) {
+		this.coursesort = coursesort;
 	}
 	public String getOpt() {
 		return opt;

@@ -2,7 +2,7 @@ package com.bit5.wherewego.place;
 
 public class PlaceVO {
 	private int pcode;
-	private String sort;
+	private String datesort;
 	private String name;
 	private String addr;
 	private int zip;
@@ -17,11 +17,11 @@ public class PlaceVO {
 	public void setPcode(int pcode) {
 		this.pcode = pcode;
 	}
-	public String getSort() {
-		return sort;
+	public String getDatesort() {
+		return datesort;
 	}
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setDatesort(String datesort) {
+		this.datesort = datesort;
 	}
 	public String getName() {
 		return name;
