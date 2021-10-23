@@ -154,10 +154,11 @@ public class AdController {
 
 	//광고 뷰
 	@RequestMapping("/adView")
-	public ModelAndView adView(int adnum) {
+	public ModelAndView adView(int adnum, AdPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		AdDAOImp dao = sqlSession.getMapper(AdDAOImp.class);
 		mav.addObject("vo", dao.adView(adnum));
+		mav.addObject("pVo", pVo);
 		mav.setViewName("/ad/adView");
 
 		return mav;
