@@ -33,4 +33,9 @@
 	<delete id="pdDelete" parameterType="com.bit5.wherewego.product.ProductVO">
 		delete from product where p_num=#{param1}
 	</delete>
+	
+	<!-- 결제 작성 -->
+	<insert id="paymentPageOk"  parameterType="com.bit5.wherewego.product.ProductVO">
+  		insert into notice(title,content,photo) values(#{title}, #{content}, #{photo})
+	</insert>
 </mapper> 
