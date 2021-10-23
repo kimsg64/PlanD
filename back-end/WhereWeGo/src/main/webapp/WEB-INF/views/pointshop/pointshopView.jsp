@@ -61,7 +61,7 @@
 <script>
 	function viewDel(){
 		if(confirm("글을 삭제하시겠습니까?")){
-			location.href="/wherewego/?p_num=${vo.p_num}";
+			location.href="/wherewego/pdDel?p_num=${vo.p_num}";
 		}
 	}
 </script>
@@ -84,5 +84,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="buttonMenu">		
+		<a class="button" href="pointshopList?nowPage=${pVo.nowPage }">목록</a>
+		<a class="button" href="javascript:viewDel()">삭제</a>
+		<a class="button" href="#" >구매</a>
+	</div>
 </div>

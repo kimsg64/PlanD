@@ -29,4 +29,8 @@
 	<select id="pointshopView" parameterType="String" resultType="com.bit5.wherewego.product.ProductVO">
 		select p_num, brand, name, price, img, gender, info from product where p_num=#{param1}
 	</select>
+	<!-- 리스트 삭제 -->
+	<delete id="pdDelete" parameterType="com.bit5.wherewego.product.ProductVO">
+		delete from product where p_num=#{param1}
+	</delete>
 </mapper> 

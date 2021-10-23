@@ -48,12 +48,28 @@ public class ProductController {
 	}
 	//포인트샵 뷰
 	@RequestMapping("/pointshopView")
-	public ModelAndView pointshopView(String p_num) {
+	public ModelAndView pointshopView(String p_num, PdPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		mav.addObject("vo", dao.pointshopView(p_num));
+		mav.addObject("pVo", pVo);
 		mav.setViewName("/pointshop/pointshopView");
 		
+		return mav;
+	}
+	// 샵 게시물 삭제
+	@RequestMapping("/pdDel")
+	public ModelAndView pdDel(String p_num) {
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		int cnt = dao.pdDelete(p_num);
+		
+		ModelAndView mav = new ModelAndView();
+		if(cnt>0) {
+			mav.setViewName("redirect:pointshopList");
+		}else {
+			mav.addObject("p_num", p_num);
+			mav.setViewName("redirect:pointshopView");
+		}
 		return mav;
 	}
 }
