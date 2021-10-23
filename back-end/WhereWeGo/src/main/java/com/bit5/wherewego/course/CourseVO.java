@@ -12,7 +12,7 @@ public class CourseVO {
 	private int pcode2;
 	private int pcode3;
 	private int score;
-	private int sort;
+	private int datesort;
 	private String opt;
 	
 	private String stname; //역이름
@@ -132,12 +132,12 @@ public class CourseVO {
 		this.score = score;
 	}
 
-	public int getSort() {
-		return sort;
+	public int getDatesort() {
+		return datesort;
 	}
 
-	public void setSort(int sort) {
-		this.sort = sort;
+	public void setDatesort(int dtesort) {
+		this.datesort = datesort;
 	}
 
 	public String getOpt() {
