@@ -7,7 +7,7 @@
 	<select id="placeAllSelect" resultType="com.bit5.wherewego.place.PlaceVO">
 		select * from 
 		(select * from 
-		(select pcode, sort, name, nvl(time,'null'), link, addr from place
+		(select pcode, sort, name, nvl(time,'없음') time, link, addr from place
 		<if test='param4!=null and !param4.equals("")'>
 		where ${param3} like '%'||#{param4}||'%' 
 		</if>	
@@ -34,14 +34,20 @@
 	
 	<!-- 신규 장소 등록 -->
 	<insert id="insertPlace" parameterType="com.bit5.wherewego.place.PlaceVO">
-		insert into place(sort, name, addr, zip, tel
+		insert into place(sort, name, addr, zip
+		<if test='tel!=null and !tel.equals("")'>
+		, tel
+		</if>
 		<if test='info!=null and !info.equals("")'>
 		,info
 		</if>
 		<if test='link!=null and !link.equals("")'>
 		,link
 		</if>
-		) values (#{sort}, #{name}, #{addr}, ${zip}, #{tel}
+		) values (#{sort}, #{name}, #{addr}, ${zip}
+		<if test='tel!=null and !tel.equals("")'>
+		, #{tel}
+		</if>
 		<if test='info!=null and !info.equals("")'>
 		,#{info}
 		</if>
