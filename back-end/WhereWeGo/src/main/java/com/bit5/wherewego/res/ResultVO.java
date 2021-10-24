@@ -9,7 +9,6 @@ public class ResultVO {
 	private int pcode1;
 	private int pcode2;
 	private int pcode3;
-	private int score;
 	
 	private String name1; //장소이름1
 	private String name2; //장소이름2
@@ -73,12 +72,6 @@ public class ResultVO {
 	}
 	public void setPcode3(int pcode3) {
 		this.pcode3 = pcode3;
-	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
 	}
 	public String getName1() {
 		return name1;

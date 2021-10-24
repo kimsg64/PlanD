@@ -186,7 +186,7 @@ select {border:}
 			<li class="wordCut"><b>코스명</b></li>
 			<li><b>예약자</b></li>
 			<li><b>날짜</b></li>
-			<li><b>시간대</b></li>
+			<li><b>후기</b></li>
 
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" id="allChk" value="${vo.res_num}" /></li>
@@ -194,7 +194,7 @@ select {border:}
 				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
-				<li>${vo.time }:00</li>
+				<li><a href="#"><img src="imgs/link.png"></a></li>
 			</c:forEach>
 		</ul>
 		<!-- </form> -->
