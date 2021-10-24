@@ -105,7 +105,7 @@
 	join place p2 on c.pcode2=p2.pcode
 	join place p3 on c.pcode3=p3.pcode
 	join station s on c.stcode=s.stcode
-	join (select avg(score) score,c_num from (select r.score,n.c_num, n.name
+	left join (select avg(score) score,c_num from (select r.score,n.c_num, n.name
 	from review r
 	join (select e.res_num,e.c_num,c.name from res e
 	join course c on e.c_num=c.c_num) n
