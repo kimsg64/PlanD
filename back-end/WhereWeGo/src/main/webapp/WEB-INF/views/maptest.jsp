@@ -394,8 +394,13 @@ $.ajax({
 
 <script>
 //이 스크립트를 코스 검색에 추가해주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//resp.list[11].weather[0].icon 이 데이터를 wheather 라는 데이터로 보내주시면 됩니다!!!!!!!!!!!!!!!!!!!!!
+//resp.list[i].weather[0].icon 이 데이터를 wheather 라는 데이터로 보내주시면 됩니다!!!!!!!!!!!!!!!!!!!!!
 //planningVO 에 제가 wheather 추가해놨어요!!!!!!!!!!!!!!!!!!!!!!!
+
+//날씨가 오늘 기준으로 4일뒤까지만 가져올 수 있어서
+//만약 오늘날짜 : 10/24이고, 예약날짜 5일 이상((10/29~)) 이면 날짜 value 그냥 비워두시면 됩니당.
+//10/29 이전이라면?
+//다음날:11 / 다다음날:19 / 다다다음날:27 / 다다다다음날 35 라는 숫자를 resp.list[i].weather[0].icon 여기 i 안에 넣어주면 됩니당!!!!!!
 var apiURI = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
 $.ajax({
     url: apiURI,
@@ -404,7 +409,17 @@ $.ajax({
     async: "false",
     success: function(resp) {
         console.log(resp);
-        console.log("이 데이터를 가져와주세요!!!!! : "+ resp.list[11].weather[0].icon);
+        console.log("이 데이터를 가져와주세요!!!!! : "+ resp.list[i].weather[0].icon);
     }
 })
 </script>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<input type="text" name="userid" plcaeholder="아이디"/>
+<input type="text" name="stname" plcaeholder="역명"/>
+<input type="text" name="userid" plcaeholder="날짜"/>
+

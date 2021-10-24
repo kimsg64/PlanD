@@ -11,6 +11,6 @@ public interface CourseDAOImp {
 	public List<CourseVO> courseAllSelect(int num1, int num2, String searchKey, String searchWord);
 	public int checkCourse(CourseVO vo);
 	public int insertCourse(CourseVO vo);
-	public List<ResultVO> CoursePlanD(List<String> foodlist, List<String> cafelist, List<String> etclist, String inout,
-			String money, List<String> alllist);
+	public List<ResultVO> CoursePlanD(String stcode, int coursesort, String inout, String money, List<String> foodlist,
+			List<String> cafelist, List<String> etclist, List<String> alllist);
 }

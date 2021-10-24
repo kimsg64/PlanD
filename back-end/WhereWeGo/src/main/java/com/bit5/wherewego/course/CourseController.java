@@ -145,7 +145,19 @@ public class CourseController {
 	public ModelAndView coursePlanD(PlanningVO vo) {
 		ModelAndView mav = new ModelAndView();
 		
-		String weather = vo.getWeather();
+		//만약 첨부터 숫자로 넘어오면 필요없어용!!!!!!!!!!!!!!
+		//coursesort 알아내기
+		switch(vo.getSortstring()) {
+
+			case "식당카페기타" : vo.setCoursesort(1); break;
+			case "식당기타카페" : vo.setCoursesort(2); break;
+			case "카페식당기타" : vo.setCoursesort(3); break;
+			case "카페기타식당" : vo.setCoursesort(4); break;
+			case "기타식당카페" : vo.setCoursesort(5); break;
+			case "기타카페식당" : vo.setCoursesort(6); break;
+		}
+		
+		//관심사 분석!!!!!!!!!!
 		String fullOpt = vo.getOpt(); //중식#문화#야외#럭셔리#실외#컨셉			
 
 		//먼저 식당 관심사 구분
@@ -182,6 +194,9 @@ public class CourseController {
 				etclist.add(etcarr[i]); //etclist에 추가
 			}
 		}
+
+		//날씨 분석도 해야되네!!!!
+		String weather = vo.getWeather();
 		
 		//실내 실외 관심사 구분
 		String inout=null; //매개변수 보낼 것
@@ -213,13 +228,13 @@ public class CourseController {
 				alllist.add(allarr[i]); //alllist에 추가
 			}
 		}
-		
-		
+			
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
-		List<ResultVO> r = dao.CoursePlanD(foodlist,cafelist,etclist,inout,money,alllist);
 		
+		//조건에 맞는 코스정보들을 갖고옴
+		List<ResultVO> r = dao.CoursePlanD(vo.getStcode(),vo.getCoursesort(),inout,money,foodlist,cafelist,etclist,alllist);
 		
-		mav.setViewName("maptest");
+		mav.setViewName("/");
 		
 		return mav;
 	}

@@ -64,7 +64,51 @@
 	
 	<!-- 코스검색 누르면 추천코스 떠야함 -->
 	<select id="coursePlanD" resultType="com.bit5.wherewego.res.ResultVO">
-		select opt where in
-		
+		select sc.score, c.c_num, c.name, c.stcode, s.stname, c.info, c.pcode1, c.pcode2, c.pcode3, 
+		p1.name name1, p2.name name2, p3.name name3, p1.addr addr1, p2.addr addr2, p3.addr addr3,
+		p1.tel tel1, p2.tel tel2, p3.tel tel3, p1.info info1, p2.info info2, p3.info info3, 
+		p1.link link1, p2.link link2, p3.link link3
+		from (select * from course
+		where stcode={param1} and coursesort={param2} 
+		<if test='param3!=null and !param3.equals("")'>
+		and opt like '%'||#{param3}||'%' 
+		</if>
+		<if test='param4!=null and !param4.equals("")'>
+		and opt like '%'||#{param4}||'%' 
+		</if>		
+		<if test='param5!=null and !param5.equals("")'>
+		and opt in
+			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+				#{item}
+			</foreach>
+		</if>	
+		<if test='param6!=null and !param6.equals("")'>
+		and opt in
+			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+				#{item}
+			</foreach>
+		</if>
+		<if test='param7!=null and !param7.equals("")'>
+		and opt in
+			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+				#{item}
+			</foreach>
+		</if>
+		<if test='param8!=null and !param8.equals("")'>
+		and opt in
+			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+				#{item}
+			</foreach>
+		</if>
+	) c
+	join place p1 on c.pcode1=p1.pcode
+	join place p2 on c.pcode2=p2.pcode
+	join place p3 on c.pcode3=p3.pcode
+	join station s on c.stcode=s.stcode
+	join (select avg(score) score,c_num from (select r.score,n.c_num, n.name
+	from review r
+	join (select e.res_num,e.c_num,c.name from res e
+	join course c on e.c_num=c.c_num) n
+	on r.res_num=n.res_num) group by c_num) sc on c.c_num=sc.c_num	
 	</select>
 </mapper>
