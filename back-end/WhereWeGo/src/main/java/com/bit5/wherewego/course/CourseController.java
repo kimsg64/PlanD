@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
-import com.bit5.wherewego.res.PlanningVO;
+import com.bit5.wherewego.res.ResultVO;
 import com.bit5.wherewego.user.UserVO;
 
 @Controller
@@ -139,4 +139,89 @@ public class CourseController {
 		
 		return mav;
 	}
+	
+	//관심사 기반 코스 검색해서 추천해주는 부분
+	@RequestMapping(value = "/coursePlanD", method = RequestMethod.POST)
+	public ModelAndView coursePlanD(PlanningVO vo) {
+		ModelAndView mav = new ModelAndView();
+		
+		String weather = vo.getWeather();
+		String fullOpt = vo.getOpt(); //중식#문화#야외#럭셔리#실외#컨셉			
+
+		//먼저 식당 관심사 구분
+		List<String> foodlist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
+		String[] foodarr = {"한식","일식","중식","양식","그외"};
+		for (int i=0; i<foodarr.length; i++) {	
+			if(fullOpt.indexOf(foodarr[i]) != -1) { //관심사에 한식,일식,.. 이 있으면
+				foodlist.add(foodarr[i]); //foodlist에 추가
+			}
+		}
+		
+		/* 보류
+		if(foodlist.size()==0) { //만약 하나도 체크를 안했으면?
+			for (int i=0; i<foodarr.length; i++) {	
+				foodlist.add(foodarr[i]); //전체 다 foodlist에 추가
+			}
+		}
+		*/
+		
+		//카페 관심사 구분
+		List<String> cafelist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
+		String[] cafearr = {"분위기","컨셉","야외"};
+		for (int i=0; i<cafearr.length; i++) {	
+			if(fullOpt.indexOf(cafearr[i]) != -1) { //관심사에 분위기,컨셉,.. 이 있으면
+				cafelist.add(cafearr[i]); //list에 추가
+			}
+		}
+		
+		//기타 관심사 구분
+		List<String> etclist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
+		String[] etcarr = {"체험","문화","익스트림","이색"};
+		for (int i=0; i<etcarr.length; i++) {	
+			if(fullOpt.indexOf(etcarr[i]) != -1) { //관심사에 있으면
+				etclist.add(etcarr[i]); //etclist에 추가
+			}
+		}
+		
+		//실내 실외 관심사 구분
+		String inout=null; //매개변수 보낼 것
+		if(fullOpt.indexOf("실외")!=-1 && fullOpt.indexOf("실내")==-1) { //만약 실외만 골랐으면
+			inout="실외";
+		}
+		else if(fullOpt.indexOf("실내")!=-1 && fullOpt.indexOf("실외")==-1) { //실내만 골랐다면
+			inout="실내";
+		}
+		//하지만 날씨가 안좋으면 무조건 실내
+		if(weather.indexOf("09")!=-1 || weather.indexOf("10")!=-1 || weather.indexOf("11")!=-1 || weather.indexOf("13")!=-1 || weather.indexOf("50")!=-1){
+			inout="실내";
+		}
+		
+		//가성비 럭셔리 구분
+		String money=null; //매개변수 보낼 것
+		if(fullOpt.indexOf("가성비")!=-1 && fullOpt.indexOf("럭셔리")==-1) { //가성비만 골랐다면
+			money="가성비";
+		}
+		else if(fullOpt.indexOf("럭셔리")!=-1 && fullOpt.indexOf("가성비")==-1) { //럭셔리만 골랐다면
+			money="럭셔리";
+		}
+		
+		//공통 관심사 구분
+		List<String> alllist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
+		String[] allarr = {"팝업","기념일","신상"};
+		for (int i=0; i<allarr.length; i++) {	
+			if(fullOpt.indexOf(allarr[i]) != -1) { //관심사에 있으면
+				alllist.add(allarr[i]); //alllist에 추가
+			}
+		}
+		
+		
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		List<ResultVO> r = dao.CoursePlanD(foodlist,cafelist,etclist,inout,money,alllist);
+		
+		
+		mav.setViewName("maptest");
+		
+		return mav;
+	}
+	
 }

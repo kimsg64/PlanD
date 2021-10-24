@@ -61,4 +61,10 @@
 		</if>
 		)
 	</insert>
+	
+	<!-- 코스검색 누르면 추천코스 떠야함 -->
+	<select id="coursePlanD" resultType="com.bit5.wherewego.res.ResultVO">
+		select opt where in
+		
+	</select>
 </mapper>

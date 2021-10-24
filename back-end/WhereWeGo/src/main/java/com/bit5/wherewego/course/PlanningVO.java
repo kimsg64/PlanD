@@ -1,4 +1,4 @@
-package com.bit5.wherewego.res;
+package com.bit5.wherewego.course;
 
 public class PlanningVO {
 	private String userId;
@@ -8,11 +8,12 @@ public class PlanningVO {
 	private int time;
 	private String coursesort;
 	private String opt;
+	private String weather;
 	
 	public String getUserId() {
 		return userId;
 	}
-	public void setUserid(String userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getLine() {
@@ -42,7 +43,7 @@ public class PlanningVO {
 	public String getCoursesort() {
 		return coursesort;
 	}
-	public void setcourseSort(String coursesort) {
+	public void setCoursesort(String coursesort) {
 		this.coursesort = coursesort;
 	}
 	public String getOpt() {
@@ -50,6 +51,12 @@ public class PlanningVO {
 	}
 	public void setOpt(String opt) {
 		this.opt = opt;
+	}
+	public String getWeather() {
+		return weather;
+	}
+	public void setWeather(String weather) {
+		this.weather = weather;
 	}
 	
 }
