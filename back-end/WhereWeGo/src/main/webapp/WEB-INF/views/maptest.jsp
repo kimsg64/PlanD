@@ -393,7 +393,9 @@ $.ajax({
 </script>
 
 <script>
-//5일치
+//이 스크립트를 코스 검색에 추가해주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//resp.list[11].weather[0].icon 이 데이터를 wheather 라는 데이터로 보내주시면 됩니다!!!!!!!!!!!!!!!!!!!!!
+//planningVO 에 제가 wheather 추가해놨어요!!!!!!!!!!!!!!!!!!!!!!!
 var apiURI = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
 $.ajax({
     url: apiURI,
@@ -402,8 +404,7 @@ $.ajax({
     async: "false",
     success: function(resp) {
         console.log(resp);
-        console.log("ㄴㅆ : "+ resp.list[0].weather[0].description);         
+        console.log("이 데이터를 가져와주세요!!!!! : "+ resp.list[11].weather[0].icon);
     }
 })
-
 </script>
