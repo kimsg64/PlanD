@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Checkbox, CheckboxLabel } from "./Mixin";
 
@@ -10,6 +10,7 @@ const OptionsContainer = styled.div`
   display: flex;
   border: 2px solid var(--color-font);
   border-radius: 4px;
+  margin: ${(props) => props.optionMargin || 0};
   padding: var(--padding-default);
 `;
 
@@ -43,7 +44,7 @@ const Title = styled.div`
   padding: calc(var(--margin-default) / 4) 0;
 `;
 
-const CheckBoxSet = ({ opt = [], setOpt = () => {} }) => {
+const CheckBoxSet = ({ opt = [], setOpt = () => {}, optionMargin = "" }) => {
   const restaurants = ["한식", "일식", "중식", "양식", "그외"];
   const cafes = ["분위기", "컨셉", "야외"];
   const others = ["체험", "문화", "익스트림", "이색"];
@@ -70,7 +71,7 @@ const CheckBoxSet = ({ opt = [], setOpt = () => {} }) => {
   // console.log(opt);
 
   return (
-    <OptionsContainer>
+    <OptionsContainer optionMargin={optionMargin}>
       <TitleGroup>
         <Title>식당</Title>
         <Title>카페</Title>

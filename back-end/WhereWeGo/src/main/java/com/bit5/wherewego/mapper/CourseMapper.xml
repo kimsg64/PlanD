@@ -69,34 +69,34 @@
 		p1.tel tel1, p2.tel tel2, p3.tel tel3, p1.info info1, p2.info info2, p3.info info3, 
 		p1.link link1, p2.link link2, p3.link link3
 		from (select * from course
-		where stcode={param1} and coursesort={param2} 
+		where stcode=#{param1} and coursesort=#{param2} 
 		<if test='param3!=null and !param3.equals("")'>
-		and opt like '%'||#{param3}||'%' 
+		and opt like '%'||#{param3, jdbcType=VARCHAR}||'%' 
 		</if>
 		<if test='param4!=null and !param4.equals("")'>
-		and opt like '%'||#{param4}||'%' 
-		</if>		
-		<if test='param5!=null and !param5.equals("")'>
+		and opt like '%'||#{param4, jdbcType=VARCHAR}||'%' 
+		</if>
+		<if test='param5.isEmpty()'>
 		and opt in
-			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			<foreach item="item" collection="foodlist" open="(" separator=", " close=")" >
 				#{item}
 			</foreach>
 		</if>	
-		<if test='param6!=null and !param6.equals("")'>
+		<if test='param6.isEmpty()'>
 		and opt in
-			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			<foreach item="item" collection="cafelist" open="(" separator=", " close=")" >
 				#{item}
 			</foreach>
 		</if>
-		<if test='param7!=null and !param7.equals("")'>
+		<if test='!param7.isEmpty()'>
 		and opt in
-			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			<foreach item="item" collection="etclist" open="(" separator=", " close=")" >
 				#{item}
 			</foreach>
 		</if>
-		<if test='param8!=null and !param8.equals("")'>
+		<if test='!param8.isEmpty()'>
 		and opt in
-			<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			<foreach item="item" collection="alllist" open="(" separator=", " close=")" >
 				#{item}
 			</foreach>
 		</if>

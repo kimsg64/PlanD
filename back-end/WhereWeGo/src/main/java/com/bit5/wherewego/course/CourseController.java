@@ -3,6 +3,7 @@ package com.bit5.wherewego.course;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,7 +101,7 @@ public class CourseController {
 	
 	//신규코스등록 시, 코스 중복 확인후 등록
 	@RequestMapping(value = "/checkCourse", method = RequestMethod.POST)
-	public ModelAndView inserPlace(CourseVO vo) {
+	public ModelAndView inserPlace(@RequestBody CourseVO vo) {
 		ModelAndView mav = new ModelAndView();
 		
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
@@ -142,9 +143,18 @@ public class CourseController {
 	
 	//관심사 기반 코스 검색해서 추천해주는 부분
 	@RequestMapping(value = "/coursePlanD", method = RequestMethod.POST)
-	public ModelAndView coursePlanD(PlanningVO vo) {
-		ModelAndView mav = new ModelAndView();
-		
+	@ResponseBody
+	public List<ResultVO> coursePlanD(@RequestBody PlanningVO vo) {
+		System.out.println("★★★★★★★★★★넘어온 데이터★★★★★★★★★★");
+		System.out.println(vo.getCoursesort());
+		System.out.println(vo.getLine());
+		System.out.println(vo.getOpt());
+		System.out.println(vo.getResdate());
+		System.out.println(vo.getStcode());
+		System.out.println(vo.getStname());
+		System.out.println(vo.getUserId());
+		System.out.println(vo.getWeather());
+		/*
 		//만약 첨부터 숫자로 넘어오면 필요없어용!!!!!!!!!!!!!!
 		//coursesort 알아내기
 		switch(vo.getSortstring()) {
@@ -156,7 +166,9 @@ public class CourseController {
 			case "기타식당카페" : vo.setCoursesort(5); break;
 			case "기타카페식당" : vo.setCoursesort(6); break;
 		}
+		*/
 		
+
 		//관심사 분석!!!!!!!!!!
 		String fullOpt = vo.getOpt(); //중식#문화#야외#럭셔리#실외#컨셉			
 
@@ -220,15 +232,42 @@ public class CourseController {
 				alllist.add(allarr[i]); //alllist에 추가
 			}
 		}
+
 			
+		
+		/*
+		김승규 시도 =>  삽질로 판명
+		vo.setFullOpt();
+		vo.setFoodlist(vo.getFullOpt());
+		vo.setCafelist(vo.getFullOpt());
+		vo.setEtclist(vo.getFullOpt());
+		vo.setAlllist(vo.getFullOpt());
+		vo.setInout(vo.getFullOpt());
+		vo.setMoney(vo.getFullOpt());
+		
+		System.out.println("################여기부터는 세팅된 VO");
+		System.out.println(vo.getStcode());
+		System.out.println(vo.getCoursesort());
+		System.out.println(vo.getInout());
+		System.out.println(vo.getMoney());
+		System.out.println(vo.getFoodlist());
+		System.out.println(vo.getCafelist());
+		System.out.println(vo.getCafelist() == null);
+		System.out.println(vo.getCafelist().isEmpty());
+		System.out.println(vo.getEtclist());
+		System.out.println(vo.getAlllist());
+		
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		List<ResultVO> r = dao.coursePlanD(vo.getStcode(),vo.getCoursesort(),vo.getInout(),vo.getMoney(),vo.getFoodlist(),vo.getCafelist(),vo.getEtclist(),vo.getAlllist());
+		*/
+		
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		
+		
 		//조건에 맞는 코스정보들을 갖고옴
-		List<ResultVO> r = dao.CoursePlanD(vo.getStcode(),vo.getCoursesort(),inout,money,foodlist,cafelist,etclist,alllist);
-		
-		mav.setViewName("/");
-		
-		return mav;
+		List<ResultVO> r = dao.coursePlanD(vo.getStcode(),vo.getCoursesort(),inout,money,foodlist,cafelist,etclist,alllist);
+		System.out.println(r.get(0).getName());
+		return r;
 	}
 	
 }

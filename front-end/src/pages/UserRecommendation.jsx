@@ -22,6 +22,7 @@ import BorderEffectBox from "../components/body/mixin/BorderEffectBox";
 import BorderEffect from "../components/body/mixin/BorderEffect";
 import { read_cookie } from "sfcookies";
 import SelectBox from "../components/body/mixin/SelectBox";
+import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
 
 // 지도 래퍼
 const MapWarpper = styled.div`
@@ -39,7 +40,7 @@ const LineWrapper = styled.div`
   justify-content: flex-start;
   margin-bottom: calc(var(--margin-default) / 2);
   position: relative;
-  label {
+  & label {
     min-width: 120px;
     display: flex;
     justify-content: flex-start;
@@ -47,17 +48,32 @@ const LineWrapper = styled.div`
     padding-left: var(--padding-default);
     font-weight: bold;
   }
+  & label:nth-child(5n) {
+    margin-left: 106px;
+  }
 `;
 
+// 장소 검색용
 const PlaceFinder = styled.div`
-  width: 256px;
+  width: 300px;
   height: 40px;
   margin-left: 128px;
   display: flex;
   align-items: center;
   position: relative;
-  label {
+  & label {
     padding: 0;
+  }
+`;
+
+const StationLineWrapper = styled(LineWrapper)`
+  display: flex;
+  align-items: center;
+  & select {
+    height: 24px;
+  }
+  & label:nth-child(3n) {
+    margin-left: 240px;
   }
 `;
 
@@ -150,9 +166,14 @@ const StyledInput = styled(Input)`
   text-align: left;
 `;
 
+// 장소용 작은 인풋
+const PlaceInput = styled(StyledInput)`
+  font-size: var(--font-size-small);
+`;
+
 // 서치바
 const StyledSearchBar = styled(SearchBar)`
-  margin: 0 0 0 12px;
+  margin: 0 0 0 66px;
 `;
 
 const UserRecommendation = () => {
@@ -175,6 +196,10 @@ const UserRecommendation = () => {
   // ★★★ 3. 최종 submit할 값
   const [name, setName] = useState("");
   const [datesort, setDatesort] = useState("");
+  const [line, setLine] = useState("");
+  const [stname, setStname] = useState("");
+  const [info, setInfo] = useState("");
+  const [opt, setOpt] = useState([]);
 
   // ★★★★ 4. 장소 순서 정하기
   const [sort1, setSort1] = useState("");
@@ -203,10 +228,6 @@ const UserRecommendation = () => {
   const onLeaveFinder = () => {
     setDisplay(false);
   };
-
-  // const [pname1, setPname1] = useState("");
-  // const [pname2, setPname2] = useState("");
-  // const [pname3, setPname3] = useState("");
 
   //////////////////// 수정사항 /////////////////////////
   // 1. 데이트 순서 먼저 정해서 받고(sort1, sort2, sort3)
@@ -245,17 +266,30 @@ const UserRecommendation = () => {
     const body = {
       name: name,
       userid: read_cookie("userId"),
-      datesort: datesort,
+      sortstring: datesort,
       pcode1: pcode1,
       pcode2: pcode2,
       pcode3: pcode3,
-      // stname: stname,
-      // time: time,
-      // info: info,
-      // opt: opt,
+      stname: stname,
+      info: info,
+      opt: opt.join("#"),
     };
-    console.log(body);
-    // axios.post("");
+    console.log("코스 등록용 바디", body);
+    axios
+      .post("/wherewego/checkCourse", body)
+      .then((response) => {
+        // console.log(response);
+        alert(
+          "해당 코스는 관리자의 심사를 거친 후 등록 여부가 결정되기까지 수 일이 소요됩니다."
+        );
+        return (window.location.href = "http://localhost:3000/#/memberhome");
+      })
+      .catch((error) => {
+        // console.log(error);
+        alert("신규 코스 등록 신청에 실패했습니다... ");
+        return (window.location.href =
+          "http://localhost:3000/#/userrecommendation");
+      });
   };
 
   // ★★★★ 4. 장소 순서 정하기
@@ -408,8 +442,34 @@ const UserRecommendation = () => {
     console.log("장소 등록시 보낼 바디", body);
     axios
       .post("/wherewego/checkPlace", body)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        console.log(response);
+        alert(`${clickedPlace}을(를) 새로운 장소로 등록했습니다.`);
+        // p코드 등록
+        // selectedPcode === "pcode1"
+        //   ? setPcode1(selectedSort)
+        //   : selectedPcode === "pcode2"
+        //   ? setPcode2(selectedSort)
+        //   : setPcode3(selectedSort);
+        // sort 등록
+        selectedPcode === "pcode1"
+          ? setSort1(selectedSort)
+          : selectedPcode === "pcode2"
+          ? setSort2(selectedSort)
+          : setSort3(selectedSort);
+        // 인풋박스 등록
+        selectedPcode === "pcode1"
+          ? setKeyword1(clickedPlace)
+          : selectedPcode === "pcode2"
+          ? setKeyword2(clickedPlace)
+          : setKeyword3(clickedPlace);
+
+        setShowModal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("장소 등록에 실패했습니다 ㅜㅜ");
+      });
   };
 
   return (
@@ -448,27 +508,28 @@ const UserRecommendation = () => {
               setSort2={setSort2}
               sort3={sort3}
               setSort3={setSort3}
+              selectedPcode={selectedPcode}
             />
           </LineWrapper>
 
           {/* 순서 선택 후에 각 장소 검색 */}
           <LineWrapper>
-            <label>{sort1}</label>
-            <StyledInput
+            <label>{sort1 || "장소1"}</label>
+            <PlaceInput
               type="text"
               placeholder="장소1"
               onChange={(e) => setKeyword1(e.target.value)}
-              onFocus={() => setPlace1Width("248px")}
+              onFocus={() => setPlace1Width("192px")}
               onBlur={checkBoxFilled}
               value={keyword1}
-              width="13.7em"
+              width="192px"
               data-type="keyword1"
             />
             <AbsoluteButton
               type="button"
               data-datesort={sort1}
               onClick={onClickSearchPlace}
-              fromLeft="316px"
+              fromLeft="264px"
               data-type="keyword1"
             >
               <i
@@ -477,7 +538,7 @@ const UserRecommendation = () => {
                 data-type="keyword1"
               ></i>
             </AbsoluteButton>
-            <BorderEffectBox fromLeft="-124px">
+            <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place1Width}
                 fromTop="38px"
@@ -485,15 +546,15 @@ const UserRecommendation = () => {
               />
             </BorderEffectBox>
 
-            <label>{sort2}</label>
-            <StyledInput
+            <label>{sort2 || "장소2"}</label>
+            <PlaceInput
               type="text"
               placeholder="장소2"
               onChange={(e) => setKeyword2(e.target.value)}
-              onFocus={() => setPlace2Width("248px")}
+              onFocus={() => setPlace2Width("192px")}
               onBlur={checkBoxFilled}
               value={keyword2}
-              width="13.7em"
+              width="192px"
               data-type="keyword2"
             />
             <AbsoluteButton
@@ -509,7 +570,7 @@ const UserRecommendation = () => {
                 data-type="keyword2"
               ></i>
             </AbsoluteButton>
-            <BorderEffectBox fromLeft="-124px">
+            <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place2Width}
                 fromTop="38px"
@@ -519,15 +580,15 @@ const UserRecommendation = () => {
           </LineWrapper>
 
           <LineWrapper>
-            <label>{sort3}</label>
-            <StyledInput
+            <label>{sort3 || "장소3"}</label>
+            <PlaceInput
               type="text"
               placeholder="장소3"
               onChange={(e) => setKeyword3(e.target.value)}
-              onFocus={() => setPlace3Width("248px")}
+              onFocus={() => setPlace3Width("192px")}
               onBlur={checkBoxFilled}
               value={keyword3}
-              width="13.7em"
+              width="192px"
               data-type="keyword3"
             />
             <AbsoluteButton
@@ -535,7 +596,7 @@ const UserRecommendation = () => {
               data-datesort={sort3}
               onClick={onClickSearchPlace}
               data-type="keyword3"
-              fromLeft="316px"
+              fromLeft="264px"
             >
               <i
                 className="fas fa-search"
@@ -543,7 +604,7 @@ const UserRecommendation = () => {
                 data-type="keyword3"
               ></i>
             </AbsoluteButton>
-            <BorderEffectBox fromLeft="-124px">
+            <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place3Width}
                 fromTop="38px"
@@ -642,7 +703,44 @@ const UserRecommendation = () => {
               </Modal>
             </ModalBG>
           ) : null}
-          <CustomCKEditor />
+
+          <StationLineWrapper>
+            <label>호선</label>
+            <select onChange={(e) => setLine(e.target.value)}>
+              <option value="">호선</option>
+              <option value="1호선">1호선</option>
+              <option value="2호선">2호선</option>
+              <option value="3호선">3호선</option>
+              <option value="4호선">4호선</option>
+              <option value="5호선">5호선</option>
+              <option value="6호선">6호선</option>
+              <option value="7호선">7호선</option>
+              <option value="8호선">8호선</option>
+              <option value="9호선">9호선</option>
+            </select>
+            <label>역</label>
+            <select onChange={(e) => setStname(e.target.value)}>
+              <option value=""> 역</option>
+              {line === "8호선" ? (
+                <>
+                  <option value="천호">천호</option>
+                  <option value="잠실">잠실</option>
+                  <option value="석촌">석촌</option>
+                  <option value="가락시장">가락시장</option>
+                  <option value="장지">장지</option>
+                </>
+              ) : (
+                <option value="">준비중</option>
+              )}
+            </select>
+          </StationLineWrapper>
+          <CustomCKEditor setInfo={setInfo} />
+
+          <CheckBoxSet
+            opt={opt}
+            setOpt={setOpt}
+            optionMargin="var(--margin-default)"
+          />
           <StyledButton>작성완료</StyledButton>
         </RecommendationForm>
       </BodyLayout>

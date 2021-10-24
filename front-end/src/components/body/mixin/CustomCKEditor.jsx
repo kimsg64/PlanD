@@ -11,13 +11,17 @@ const CKEditorWrapper = styled.div`
   margin-bottom: var(--margin-default);
 `;
 
-const CustomCKEditor = () => {
+const CustomCKEditor = ({ setInfo = () => {} }) => {
   return (
     <CKEditorWrapper>
       <CKEditor
         editor={ClassicEditor}
-        data="<p>추천 내용을 입력해 주세요</p>"
-      ></CKEditor>
+        onChange={(event, editor) => {
+          // console.log(event);
+          const data = editor.getData();
+          return setInfo(data);
+        }}
+      />
     </CKEditorWrapper>
   );
 };

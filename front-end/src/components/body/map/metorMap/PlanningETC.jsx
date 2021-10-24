@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CustomCalerdar from "../../calendar/CustomCalerdar";
 import CheckBoxSet from "../../mixin/CheckBoxSet";
@@ -73,14 +73,70 @@ const PlanningETC = ({
   selectedStation = "",
   lineNum = "",
 }) => {
-  const [time, setTime] = useState(10);
+  // const [time, setTime] = useState(10);
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
   const [sort3, setSort3] = useState("");
   const [opt, setOpt] = useState([]);
+  const [weather, setWeather] = useState("");
   // console.log("ETC 페이지", selectedDate);
   // console.log("ETC", selectedDate);
   // console.log("ETC", selectedStation);
+
+  // 날짜 클릭되면 해당 날짜의 날씨 데이터 구하기
+  useEffect(() => {
+    // 오늘 날짜 구하기
+    const today = new Date();
+    const dDay = new Date(selectedDate);
+    console.log(today);
+    console.log(dDay);
+    const gap = dDay - today;
+    // console.log(gap);
+    // console.log(new Date(2021, 9, 32));
+    let index;
+    if (gap > 1000 * 60 * 60 * 24 * 4) {
+      alert("현재 날씨 예측 서비스는 최대 4일 뒤까지만 서비스됩니다.");
+      return setSelectedDate(null);
+    } else {
+      const thisYear = today.getFullYear();
+      const thisMonth = today.getMonth();
+      const thisDate = today.getDate();
+      const dYear = dDay.getFullYear();
+      const dMonth = dDay.getMonth();
+      const dDate = dDay.getDate();
+      // console.log(
+      //   new Date(thisYear, thisMonth, thisDate).toDateString() ===
+      //     new Date(dYear, dMonth, dDate).toDateString()
+      // );
+      index =
+        new Date(thisYear, thisMonth, thisDate).toDateString() ===
+        new Date(dYear, dMonth, dDate).toDateString()
+          ? 3
+          : new Date(thisYear, thisMonth, thisDate + 1).toDateString() ===
+            new Date(dYear, dMonth, dDate).toDateString()
+          ? 11
+          : new Date(thisYear, thisMonth, thisDate + 2).toDateString() ===
+            new Date(dYear, dMonth, dDate).toDateString()
+          ? 19
+          : new Date(thisYear, thisMonth, thisDate + 3).toDateString() ===
+            new Date(dYear, dMonth, dDate).toDateString()
+          ? 27
+          : 35;
+      console.log(index);
+    }
+
+    // const index;
+
+    const url =
+      "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
+    axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data.list[index].weather[0].icon);
+        setWeather(response.data.list[index].weather[0].icon);
+      })
+      .catch((error) => console.log(error));
+  }, [selectedDate]);
 
   // 예약 날짜
   const stringifyResdate = () => {
@@ -90,9 +146,6 @@ const PlanningETC = ({
     const date = dDay.getDate();
     return `${year}-${month}-${date}`;
   };
-
-  // // 첫 콤보박스 선택시 다음 콤보박스 제한
-  // const combination = ["식당", "카페", "기타"];
 
   const sortNum =
     sort1 + sort2 + sort3 === "식당카페기타"
@@ -107,22 +160,37 @@ const PlanningETC = ({
       ? 5
       : 6;
 
+  const stcode =
+    selectedStation === "천호"
+      ? "121"
+      : selectedStation === "잠실"
+      ? "122"
+      : selectedStation === "석촌"
+      ? "123"
+      : selectedStation === "가락시장"
+      ? "124"
+      : selectedStation === "장지"
+      ? "125"
+      : null;
+
   const onSubmitForm = (e) => {
     e.preventDefault();
+
     const body = {
       userId: read_cookie("userId"),
       line: lineNum + "호선",
       stname: selectedStation,
+      stcode: stcode,
       resdate: stringifyResdate(),
-      time: parseInt(time),
-      datesort: sortNum,
+      coursesort: sortNum,
       opt: opt.join("#"),
+      weather: weather,
     };
-    console.log(body);
+    console.log("플래닝 전송시 넘어갈 바디: ", body);
 
     // 데이터 전송
     axios
-      .post("/wherewego/searchCourse", body)
+      .post("/wherewego/coursePlanD", body)
       .then((response) => {
         console.log("response : ", response.data);
         // 데이터 get 해서 결과 창 띄워야 함 ★★★★★
@@ -157,7 +225,7 @@ const PlanningETC = ({
             />
           </ContentSection>
         </ItemContainer>
-        <ItemContainer>
+        {/* <ItemContainer>
           <TitleSection>
             <Label>데이트 시작할 시간을 선택하세요.</Label>
           </TitleSection>
@@ -173,7 +241,7 @@ const PlanningETC = ({
               </select>
             </Indicator>
           </ContentSection>
-        </ItemContainer>
+        </ItemContainer> */}
         <ItemContainer>
           <TitleSection>
             <Label>데이트 순서를 선택하세요.</Label>
