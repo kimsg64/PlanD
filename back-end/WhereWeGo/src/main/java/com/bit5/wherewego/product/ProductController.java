@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.user.UserVO;
+
 
 
 @Controller
@@ -70,6 +72,19 @@ public class ProductController {
 			mav.addObject("p_num", p_num);
 			mav.setViewName("redirect:pointshopView");
 		}
+		return mav;
+	}
+	
+	//포인트샵 결제 뷰
+	@RequestMapping("/paymentPage")
+	public ModelAndView paymentPage(String p_num, ProductVO pVo, UserVO uVo) {
+		ModelAndView mav = new ModelAndView();
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		mav.addObject("vo", dao.paymentPageOk(p_num));
+		mav.addObject("pVo", pVo);
+		mav.addObject("uVo", uVo);
+		mav.setViewName("/pointshop/paymentPage");
+		
 		return mav;
 	}
 }
