@@ -23,24 +23,19 @@ img {
 	margin-top: 1px;
 	width: 100%;
 }
-
 #list {
 	text-align: center;
 	width: 40%;
 	height: auto;
 }
-
 #list ul, #list li {
 	margin-left: 0;
 	padding: 0;
 	list-style: none;
 }
-
-
 .allB {
 	margin-top: 10px;
 }
-
 .admenu {
 	margin: 0 auto;
 	padding: 10px;
@@ -50,7 +45,6 @@ img {
 	white-space: nowrap;
 	overflow: hidden;
 }
-
 .adlist {
 	width: 44%;
 	margin: 3%;

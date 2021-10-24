@@ -10,11 +10,14 @@
 	width: 72%;
 	margin: 0 auto;
 }
-
+.h2{
+	margin-bottom:3px;
+}
 .writeTitle {
 	padding: 29px 29px 29px;;
 	border: 1px solid gray;
 	border-radius: 6px;
+	width:60%;
 }
 
 .writeTitle.write_header {
@@ -29,9 +32,28 @@
 }
 
 .write_main {
+	position: relative;
 	margin-top: 10px;
-	overflow-x: auto;
 	padding: 15px 15px 15px;
+	width:100%;
+	display: flex;
+} 
+.write_story{
+	width:100%;
+}
+.buttonmain{
+	position:relative;
+	margin-top:5px;
+	height:50px;
+}
+.shop{
+	
+	padding: 30px 39px 30px 40px;
+	width:800px;
+	box-sizing: border-box;
+}
+.info{
+	border-top:1px;
 }
 
 #buttonMenu {
@@ -52,6 +74,21 @@
 	font-size: 13px;
 	width: 70px;
 	text-align: center;
+}
+.button2 {
+	background-color: #fd7d73;
+	border: none;
+	color: #f5ebe3;
+	padding: 10px 10px;
+	margin: 10px 0px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+	font-size: 13px;
+	width: 40%;
+	float:right;
 }
 
 .button:hover {
@@ -76,12 +113,21 @@
 		</div>
 		<div class="write_story">
 			<div class="write_main">
-				<img src="upload/pointshop/${vo.img}" width=70%; /><br />
-				<h2>브랜드 : ${vo.brand }</h2>
-				<h2>제품명 : ${vo.name }</h2>
-				<h2>가 격 : ${vo.price }</h2>
-				<h2>제품 설명: ${vo.info }</h2>
+				<img src="upload/pointshop/${vo.img}" width=50%; />
+				<div class="shop">
+					<h2> ${vo.brand }</h2>
+					<h2>제품명 : ${vo.name }</h2>
+					<h2>가 격 : ${vo.price }</h2>
+					<div class="buttonmain">
+						<a class="button2" href="#">구매</a>
+					</div>
+					<div class="info"><h2>제품 설명: ${vo.info }</h2></div>	
+				</div>
 			</div>
+				<!-- 이미지 상세정보 -->
+				<div class="imggo">
+					<img src="img/icecream.jpg"/>
+				</div>
 		</div>
 	</div>
 	<div id="buttonMenu">		
