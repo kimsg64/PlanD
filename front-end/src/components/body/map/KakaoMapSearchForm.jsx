@@ -7,10 +7,146 @@ const MapContainer = styled.div`
   width: 800px;
   height: 400px;
   font-size: var(--font-size-tiny);
+  position: relative;
+`;
+
+const MenuWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  margin: 10px 0 30px 10px;
+  padding: 5px;
+  overflow-y: auto;
+  z-index: 2;
+  font-size: 12px;
+  border-radius: 10px;
+  background: #fff;
+  opacity: 0.9;
+
+  & .option {
+    text-align: center;
+  }
+  & .option p {
+    margin: 10px 0;
+  }
+  & .option button {
+    margin-left: 5px;
+  }
+`;
+
+const PlacesList = styled.ul`
+  & .item {
+    position: relative;
+    border-bottom: 1px solid #888;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 65px;
+  }
+  & .item span {
+    display: block;
+    margin-top: 4px;
+  }
+  & .item h5,
+  & .item .info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  & .item .info {
+    padding: 10px 0 10px 55px;
+  }
+  & .info .gray {
+    color: #8a8a8a;
+  }
+  & .info .jibun {
+    padding-left: 26px;
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png")
+      no-repeat;
+  }
+  & .info .tel {
+    color: #009900;
+  }
+  & .item .markerbg {
+    float: left;
+    position: absolute;
+    width: 36px;
+    height: 37px;
+    margin: 10px 0 0 10px;
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png")
+      no-repeat;
+  }
+  & .item .marker_1 {
+    background-position: 0 -10px;
+  }
+  & .item .marker_2 {
+    background-position: 0 -56px;
+  }
+  & .item .marker_3 {
+    background-position: 0 -102px;
+  }
+  & .item .marker_4 {
+    background-position: 0 -148px;
+  }
+  & .item .marker_5 {
+    background-position: 0 -194px;
+  }
+  & .item .marker_6 {
+    background-position: 0 -240px;
+  }
+  & .item .marker_7 {
+    background-position: 0 -286px;
+  }
+  & .item .marker_8 {
+    background-position: 0 -332px;
+  }
+  & .item .marker_9 {
+    background-position: 0 -378px;
+  }
+  & .item .marker_10 {
+    background-position: 0 -423px;
+  }
+  & .item .marker_11 {
+    background-position: 0 -470px;
+  }
+  & .item .marker_12 {
+    background-position: 0 -516px;
+  }
+  & .item .marker_13 {
+    background-position: 0 -562px;
+  }
+  & .item .marker_14 {
+    background-position: 0 -608px;
+  }
+  & .item .marker_15 {
+    background-position: 0 -654px;
+  }
+`;
+
+const Pagination = styled.div`
+  & {
+    margin: 10px auto;
+    text-align: center;
+  }
+  & a {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  & .on {
+    font-weight: bold;
+    cursor: default;
+    color: #777;
+  }
 `;
 
 const { kakao } = window;
-const KakaoMapSearchForm = ({ place = "", setClickedPlace = () => {} }) => {
+const KakaoMapSearchForm = ({
+  place = "",
+  setClickedPlace = () => {},
+  setClickedPlaceAddr = () => {},
+  setClickedPlaceTel = () => {},
+}) => {
   useEffect(() => {
     // 마커를 담을 배열입니다
     var markers = [];
@@ -99,8 +235,18 @@ const KakaoMapSearchForm = ({ place = "", setClickedPlace = () => {} }) => {
           ////////////////////////////////////////////////////////////////
           // 클릭 이벤트 추가
           kakao.maps.event.addListener(marker, "click", function () {
+            // console.log(markers.findIndex((mark) => mark === this));
+            const selectedMarkerIndex = markers.findIndex(
+              (mark) => mark === this
+            );
+            // console.log(selectedMarkerIndex);
+            // console.log(places[selectedMarkerIndex]);
+            const selectedPlace = places[selectedMarkerIndex];
+            // console.log(selectedPlace);
             // console.log(title);
             setClickedPlace(title);
+            setClickedPlaceAddr(selectedPlace.address_name);
+            setClickedPlaceTel(selectedPlace.phone);
           });
           // console.log(marker);
           // console.log(title);
@@ -113,6 +259,14 @@ const KakaoMapSearchForm = ({ place = "", setClickedPlace = () => {} }) => {
 
           itemEl.onmouseover = function () {
             displayInfowindow(marker, title);
+          };
+          /////////////////////////////////
+          // 여기도 클릭 이벤트 추가
+          itemEl.onclick = function () {
+            // console.log(this.lastChild);
+            setClickedPlace(title);
+            setClickedPlaceAddr(this.lastChild.childNodes[5].innerText);
+            setClickedPlaceTel(this.lastChild.lastChild.innerText);
           };
 
           itemEl.onmouseout = function () {
@@ -253,7 +407,15 @@ const KakaoMapSearchForm = ({ place = "", setClickedPlace = () => {} }) => {
     }
   }, [place]);
 
-  return <MapContainer id="kakaoMap" />;
+  return (
+    <MapContainer id="kakaoMap">
+      <MenuWrapper id="menu_wrap">
+        <div className="option"></div>
+        <PlacesList id="placesList"></PlacesList>
+        <Pagination id="pagination"></Pagination>
+      </MenuWrapper>
+    </MapContainer>
+  );
 };
 
 export default KakaoMapSearchForm;

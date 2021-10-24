@@ -9,6 +9,8 @@ import {
   SearchBar,
   StyledButton,
   MenuTitle,
+  ToolTipBox,
+  ToolTip,
 } from "../components/body/mixin/Mixin";
 import Modal from "../components/body/mixin/Modal";
 import KakaoSearchFormInput from "../components/body/map/KakaoMapSearchFormInput";
@@ -53,6 +55,7 @@ const PlaceFinder = styled.div`
   margin-left: 128px;
   display: flex;
   align-items: center;
+  position: relative;
   label {
     padding: 0;
   }
@@ -152,26 +155,22 @@ const StyledSearchBar = styled(SearchBar)`
   margin: 0 0 0 12px;
 `;
 
-// 셀렉트박스 한줄로 담기
-const Indicator = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-right: calc(var(--padding-default) * 2);
-`;
-
 const UserRecommendation = () => {
   // ★ 1. 인풋 줄긋기 이펙트
   const [courseNameWidth, setCourseNameWidth] = useState("0");
-  const [placeWidth, setPlaceWidth] = useState("0");
   const [place1Width, setPlace1Width] = useState("0");
   const [place2Width, setPlace2Width] = useState("0");
   const [place3Width, setPlace3Width] = useState("0");
 
   // ★★ 2. 카카오맵 모달 보여주기
   const [showModal, setShowModal] = useState(false);
+  // ★★ 2. 카카오맵 장소 추가시 받을 것
+  const [selectedSort, setSelectedSort] = useState(""); // sort
+  const [selectedPcode, setSelectedPcode] = useState(""); // pcode
+  const [clickedPlace, setClickedPlace] = useState(""); // name
+  const [clickedPlaceAddr, setClickedPlaceAddr] = useState(""); // addr
+  const [clickedPlaceTel, setClickedPlaceTel] = useState(""); // tel
+  // ★★ 2. 카카오맵 장소 추가시 확인 요청
 
   // ★★★ 3. 최종 submit할 값
   const [name, setName] = useState("");
@@ -181,10 +180,8 @@ const UserRecommendation = () => {
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
   const [sort3, setSort3] = useState("");
-  const combination = ["식당", "카페", "기타"];
 
   // ★★★★★ 5-1. 장소 검색(검색어 정하기)
-  const [keyword, setKeyword] = useState("");
   const [keyword1, setKeyword1] = useState("");
   const [keyword2, setKeyword2] = useState("");
   const [keyword3, setKeyword3] = useState("");
@@ -197,6 +194,15 @@ const UserRecommendation = () => {
   const [pcode1, setPcode1] = useState("");
   const [pcode2, setPcode2] = useState("");
   const [pcode3, setPcode3] = useState("");
+
+  // 7. 툴팁용
+  const [display, setDisplay] = useState(false);
+  const onEnterFinder = () => {
+    setDisplay(true);
+  };
+  const onLeaveFinder = () => {
+    setDisplay(false);
+  };
 
   // const [pname1, setPname1] = useState("");
   // const [pname2, setPname2] = useState("");
@@ -235,6 +241,7 @@ const UserRecommendation = () => {
   const onSubmitForm = (e) => {
     e.preventDefault();
     // console.log(e);
+    // 값 다 안 차 있으면 제출 못하게 하기
     const body = {
       name: name,
       userid: read_cookie("userId"),
@@ -370,6 +377,40 @@ const UserRecommendation = () => {
     return selected;
   };
   // console.log(selectedPlace);
+
+  // ★★ 2. 카카오톡 장소 추가
+  const onClickAddPlace = (e) => {
+    e.preventDefault();
+    // 1. 제출해서 장소 추가하기
+    console.log(selectedSort);
+    console.log(clickedPlace);
+    console.log(clickedPlaceAddr);
+    console.log(clickedPlaceTel);
+    selectedPcode === ""
+      ? alert("순서를 선택해 주세요!")
+      : selectedSort === ""
+      ? alert("분류를 선택해 주세요!")
+      : clickedPlace === ""
+      ? alert("장소를 선택해 주세요!")
+      : addPlace();
+
+    // 2. 일치하는 인풋 박스에 값 입력하기
+    console.log(selectedPcode);
+  };
+  // 장소 추가하기
+  const addPlace = () => {
+    const body = {
+      datesort: selectedSort,
+      name: clickedPlace,
+      addr: clickedPlaceAddr,
+      tel: clickedPlaceTel,
+    };
+    console.log("장소 등록시 보낼 바디", body);
+    axios
+      .post("/wherewego/checkPlace", body)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -511,9 +552,21 @@ const UserRecommendation = () => {
             </BorderEffectBox>
 
             {/* 없는 장소 추가 */}
-            <PlaceFinder>
+            <PlaceFinder
+              onMouseEnter={onEnterFinder}
+              onMouseLeave={onLeaveFinder}
+            >
               <label>찾는 장소가 없으신가요?</label>
               <StyledSearchBar width="4em">
+                <ToolTipBox
+                  width="160px"
+                  fromTop="-40px"
+                  fromLeft="-16px"
+                  display={display ? "block" : "none"}
+                >
+                  장소를 추가해 보세요!
+                  <ToolTip />
+                </ToolTipBox>
                 <Button type="button" onClick={onClickSearchButton}>
                   <i className="fas fa-search"></i>
                 </Button>
@@ -571,14 +624,21 @@ const UserRecommendation = () => {
               <Modal>
                 <MapWarpper>
                   <KakaoSearchFormInput
-                    sort1={sort1}
-                    setSort1={setSort1}
-                    sort2={sort2}
-                    setSort2={setSort2}
-                    sort3={sort3}
-                    setSort3={setSort3}
+                    clickedPlace={clickedPlace}
+                    setClickedPlace={setClickedPlace}
+                    setClickedPlaceAddr={setClickedPlaceAddr}
+                    setClickedPlaceTel={setClickedPlaceTel}
+                    setSelectedSort={setSelectedSort}
+                    setSelectedPcode={setSelectedPcode}
                   />
                 </MapWarpper>
+                <AbsoluteButton
+                  onClick={onClickAddPlace}
+                  fromTop="584px"
+                  fromLeft="376px"
+                >
+                  장소 추가
+                </AbsoluteButton>
               </Modal>
             </ModalBG>
           ) : null}

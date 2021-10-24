@@ -55,7 +55,7 @@ public class PlaceController {
 	
 	//신규코스등록 시, 장소 확인 눌러서 추가
 	@RequestMapping(value = "/checkPlace", method = RequestMethod.POST)
-	public ModelAndView inserPlace(PlaceVO vo) {
+	public ModelAndView inserPlace(@RequestBody PlaceVO vo) {
 		ModelAndView mav = new ModelAndView();
 		
 		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);

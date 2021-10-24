@@ -34,11 +34,11 @@
 	
 	<!-- 신규 장소 등록 -->
 	<insert id="insertPlace" parameterType="com.bit5.wherewego.place.PlaceVO">
-		insert into place(datesort, name, addr,
+		insert into place(datesort, name, addr
 		<if test='tel!=null and !tel.equals("")'>
 		, tel
 		</if>
-		) values (#{datesort}, #{name}, #{addr}, ${zip}
+		) values (#{datesort}, #{name}, #{addr}
 		<if test='tel!=null and !tel.equals("")'>
 		, #{tel}
 		</if>

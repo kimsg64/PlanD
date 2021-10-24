@@ -185,7 +185,7 @@ export const ToolTipBox = styled.div`
   top: ${(props) => props.fromTop};
   left: ${(props) => props.fromLeft};
   font-size: var(--font-size-small);
-  color: white;
+  color: black;
   border-radius: 8px;
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Form from "../mixin/Form";
 import BorderEffect from "../mixin/BorderEffect";
@@ -34,51 +34,60 @@ const Label = styled.label`
 `;
 
 const KakaoMapSearchFormInput = ({
-  sort1 = "",
-  setSort1 = () => {},
-  sort2 = "",
-  setSort2 = () => {},
-  sort3 = "",
-  setSort3 = () => {},
+  clickedPlace = "",
+  setClickedPlace = () => {},
+  setClickedPlaceAddr = () => {},
+  setClickedPlaceTel = () => {},
+  setSelectedPcode = () => {},
+  setSelectedSort = () => {},
 }) => {
   // 입력된 단어
   const [inputText, setInputText] = useState("");
   // 검색으로 나온 장소
-  const [place, setPlace] = useState("송파구청 정문");
+  const [place, setPlace] = useState("비트캠프");
   // 마우스로 최종 선택한 장소
-  const [clickedPlace, setClickedPlace] = useState("");
+
+  // 스타일
   const [searchBarWidth, setSearchBarWidth] = useState("0");
+  // 마커 클릭시 useEffect
+  useEffect(() => {
+    setInputText(clickedPlace);
+  }, [clickedPlace]);
+  // 제출시... 왜인지 버튼 클릭을 막으면 서브밋도 같이 막힘;
   const onSubmitKeyword = (e) => {
     console.log("서브밋 발생하냐?");
     e.preventDefault();
     setPlace(inputText);
-    setInputText("");
   };
   const onClickButton = (e) => {
     e.preventDefault();
     setPlace(inputText);
-    setInputText("");
   };
+  // 인풋박스 스타일링
   const onBlurInputBox = () => {
     // console.log(inputText.length);
-    return inputText.length > 0 ? null : setSearchBarWidth("0");
+    return inputText.length > 0
+      ? setSearchBarWidth(searchBarWidth)
+      : setSearchBarWidth("0");
   };
 
-  console.log("인풋 inputText: ", inputText);
-  console.log("인풋 place: ", place);
-  console.log("선택 장소 from input: ", clickedPlace);
+  // console.log("pcode: ", selectedPcode);
+  // console.log("솔트는?: ", selectedSort);
+  // console.log("인풋 inputText: ", inputText);
+  // console.log("인풋 place: ", place);
+  // console.log("클릭된 장소: ", clickedPlace);
   return (
     <>
       <SearchForm onSubmit={onSubmitKeyword}>
         <CenterSearchBar>
           <Label>장소를 검색해 주세요</Label>
-          <select onChange={(e) => setSort1(e.target.value)}>
-            <option value="">장소</option>
-            <option value="식당">장소1</option>
-            <option value="카페">장소2</option>
-            <option value="기타">장소3</option>
+          <select onChange={(e) => setSelectedPcode(e.target.value)}>
+            <option value="">순서</option>
+            <option value="pcode1">장소1</option>
+            <option value="pcode2">장소2</option>
+            <option value="pcode3">장소3</option>
           </select>
-          <select onChange={(e) => setSort1(e.target.value)}>
+          <select onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="">분류</option>
             <option value="식당">식당</option>
             <option value="카페">카페</option>
@@ -89,7 +98,6 @@ const KakaoMapSearchFormInput = ({
               type="text"
               onChange={(e) => setInputText(e.target.value)}
               onFocus={() => setSearchBarWidth("240px")}
-              // onBlur={() => setSearchBarWidth("0")}
               onBlur={onBlurInputBox}
               value={inputText}
               placeholder="검색"
@@ -107,7 +115,12 @@ const KakaoMapSearchFormInput = ({
           </Button>
         </CenterSearchBar>
       </SearchForm>
-      <KakaoMapSearchForm place={place} setClickedPlace={setClickedPlace} />
+      <KakaoMapSearchForm
+        place={place}
+        setClickedPlace={setClickedPlace}
+        setClickedPlaceAddr={setClickedPlaceAddr}
+        setClickedPlaceTel={setClickedPlaceTel}
+      />
     </>
   );
 };
