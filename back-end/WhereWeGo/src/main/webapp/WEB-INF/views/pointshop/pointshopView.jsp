@@ -133,7 +133,7 @@
 					<h2>가 격 : ${vo.price }</h2>
 					<div class="info"><h2>제품 설명: ${vo.info }</h2></div>	
 					<div class="buttonmain">
-						<a class="button2" href="#">구매</a>
+						<a class="button2" href="paymentPage?p_num=${vo.p_num }">구매</a>
 					</div>
 				</div>
 			</div>
@@ -146,6 +146,5 @@
 	<div id="buttonMenu">		
 		<a class="button" href="pointshopList?nowPage=${pVo.nowPage }">목록</a>
 		<a class="button" href="javascript:viewDel()">삭제</a>
-		<a class="button" href="#" >구매</a>
 	</div>
 </div>
