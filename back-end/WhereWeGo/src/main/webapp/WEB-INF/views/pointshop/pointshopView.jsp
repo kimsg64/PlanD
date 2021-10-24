@@ -9,6 +9,7 @@
 .write-area {
 	width: 72%;
 	margin: 0 auto;
+	
 }
 .h2{
 	margin-bottom:3px;
@@ -17,7 +18,8 @@
 	padding: 29px 29px 29px;;
 	border: 1px solid gray;
 	border-radius: 6px;
-	width:60%;
+	width:80%;
+	
 }
 
 .writeTitle.write_header {
@@ -43,17 +45,28 @@
 }
 .buttonmain{
 	position:relative;
-	margin-top:5px;
+	margin-top:40px;
 	height:50px;
+	
+}
+.imggo{
+	border-top:1px solid gray;
+}
+.imgin{
+	margin-top:10px;
 }
 .shop{
 	
-	padding: 30px 39px 30px 40px;
+	padding: 30px 20px 30px 35px;
 	width:800px;
 	box-sizing: border-box;
 }
 .info{
-	border-top:1px;
+	margin-top:20px;
+	width:100%;
+	border:1px solid gray;
+	padding:15px 40px 15px 40px;
+	
 }
 
 #buttonMenu {
@@ -87,7 +100,7 @@
 	border-radius: 12px;
 	transition-duration: 0.4s;
 	font-size: 13px;
-	width: 40%;
+	width: 30%;
 	float:right;
 }
 
@@ -118,15 +131,15 @@
 					<h2> ${vo.brand }</h2>
 					<h2>제품명 : ${vo.name }</h2>
 					<h2>가 격 : ${vo.price }</h2>
+					<div class="info"><h2>제품 설명: ${vo.info }</h2></div>	
 					<div class="buttonmain">
 						<a class="button2" href="#">구매</a>
 					</div>
-					<div class="info"><h2>제품 설명: ${vo.info }</h2></div>	
 				</div>
 			</div>
 				<!-- 이미지 상세정보 -->
 				<div class="imggo">
-					<img src="img/icecream.jpg"/>
+					<div class="imgin"><img src="img/icecream.jpg"/></div>
 				</div>
 		</div>
 	</div>
