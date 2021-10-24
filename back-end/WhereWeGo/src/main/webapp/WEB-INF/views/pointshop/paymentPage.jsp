@@ -19,18 +19,18 @@ width: 72%;
 <div id="frame">
 <form method="get" action="/wherewego/paymentPageOk">
 <div>
-<input type="hidden" name="p_num" value="${pVo.p_num }">
-${pVo.name }<br/>
-${pVo.brand }<br/>
-${pVo.price }
+<input type="hidden" name="p_num" value="${ppVo.p_num }">
+${ppVo.name }<br/>
+${ppVo.brand }<br/>
+${ppVo.price }
 </div>
 <hr/>
 
 <div>
 <h2>구매자 정보</h2><br/>
-수령인 : <input type="" id="userId" name="userId" value="${uVo.userId }"><br/>
-연락처 : <input type="" id="tel" name="tel" value="${uVo.tel }"><br/>
-이메일 : <input type="" id="email" name="email" value="${uVo.email }"><br/>
+수령인 : <input type="text" id="userId" name="userId" value="${uVo.userId }"><br/>
+연락처 : <input type="text" id="tel" name="tel" value="${uVo.tel }"><br/>
+이메일 : <input type="text" id="email" name="email" value="${uVo.email }"><br/>
 포인트 : ${uVo.point }점
 </div>
 <hr/>
