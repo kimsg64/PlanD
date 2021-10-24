@@ -169,14 +169,6 @@ public class CourseController {
 			}
 		}
 		
-		/* 보류
-		if(foodlist.size()==0) { //만약 하나도 체크를 안했으면?
-			for (int i=0; i<foodarr.length; i++) {	
-				foodlist.add(foodarr[i]); //전체 다 foodlist에 추가
-			}
-		}
-		*/
-		
 		//카페 관심사 구분
 		List<String> cafelist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
 		String[] cafearr = {"분위기","컨셉","야외"};
