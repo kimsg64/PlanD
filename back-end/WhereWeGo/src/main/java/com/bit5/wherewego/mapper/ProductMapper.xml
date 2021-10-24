@@ -34,8 +34,9 @@
 		delete from product where p_num=#{param1}
 	</delete>
 	
-	<!-- 결제 작성 -->
-	<insert id="paymentPageOk"  parameterType="com.bit5.wherewego.product.ProductVO">
-  		insert into notice(title,content,photo) values(#{title}, #{content}, #{photo})
-	</insert>
+	<!-- 결제 상품 정보 -->
+	<select id="paymentPageOk"  parameterType="com.bit5.wherewego.product.ProductVO">
+  		select p_num, brand, name, price, img, gender from product
+	</select>
+	
 </mapper> 
