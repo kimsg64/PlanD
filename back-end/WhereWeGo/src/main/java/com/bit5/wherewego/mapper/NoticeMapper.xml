@@ -29,7 +29,15 @@
 	
 	<!-- 공지사항 작성(전송) -->
 	<insert id="noticeWriteOk"  parameterType="com.bit5.wherewego.notice.NoticeVO">
-  		insert into notice(title,content,photo) values(#{title}, #{content}, #{photo})
+  		insert into notice(title,content
+  		<if test='photo!=null and !photo.equals("")'>
+  		,photo
+  		</if>
+  		) values(#{title}, #{content}
+  		<if test='photo!=null and !photo.equals("")'>
+  		, #{photo, jdbcType=VARCHAR}
+  		</if>
+  		)
 	</insert>
 
 	<!--  공지사랑 뷰 -->

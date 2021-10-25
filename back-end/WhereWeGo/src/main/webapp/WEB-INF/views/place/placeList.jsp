@@ -209,7 +209,7 @@ ul.pagination li a:hover:not(.active) {
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>
 					<li>${vo.pcode }</li>
 					<li>${vo.datesort }</li>
-					<li><a href="/wherewego/placeView?no=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
+					<li><a href="/wherewego/placeView?pcode=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
 					<li>${vo.time }</li>
 					<li><c:if test="${vo.link==null }">
 							<img src="imgs/link.png"/>

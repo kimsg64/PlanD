@@ -7,15 +7,11 @@
 	$(document).ready(function() {
 		CKEDITOR.replace('content');
 		$(function() {
-
 			$('input[type=button]').click(function() {
 				console.log(CKEDITOR.instances.content.getData());
 			});
 		});
 	});
-
-
-	
 </script>
 <style>
 	#mainDiv {
@@ -97,8 +93,8 @@
 			<b>파일</b> : <input type="file" id="filename" name="filename"/><br/>
 			
 			<div id="buttonMenu">
-				<a class="button" href="/wherewego/noticeList">등록</a>
-				<button type="submit" class="button">취소</button>
+				<button type="submit" class="button">작성</button>
+				<a class="button" href="/wherewego/noticeList">목록</a>
 			</div>
 		</div>
 	</form>

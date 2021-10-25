@@ -119,9 +119,13 @@ public class NoticeController {
 			photo += fileList;
 		}
 		int point2 = photo.lastIndexOf("]");
-		String photo2 = photo.substring(1,point2);
-		System.out.println(photo2);
-		vo.setPhoto(photo2); //저장되는 파일명
+		if(photo.length()!=0) {
+			String photo2 = photo.substring(1,point2);
+			System.out.println(photo2);
+			vo.setPhoto(photo2); //저장되는 파일명
+		}
+		
+		System.out.println("파일명 : "+vo.getPhoto());
 		
 		ModelAndView mav = new ModelAndView();
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
