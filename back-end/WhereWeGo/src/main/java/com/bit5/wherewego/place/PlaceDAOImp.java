@@ -9,4 +9,5 @@ public interface PlaceDAOImp {
 	int checkPlace(PlaceVO vo);
 	int insertPlace(PlaceVO vo);
 	int selectPlace(PlaceVO vo);
+	PlaceVO placeView(int pcode);
 }

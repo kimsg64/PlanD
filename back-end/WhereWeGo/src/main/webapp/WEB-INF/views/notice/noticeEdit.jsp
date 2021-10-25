@@ -102,8 +102,8 @@ body::-webkit-scrollbar { display:none; }
 			<br />
 
 			<div id="buttonMenu">
-				<input type="submit" class="button" value="수정" /> <a class="button"
-					href="/wherewego/noticeList">취소</a>
+				<input type="submit" class="button" value="수정" /> 
+				<a class="button" href="/wherewego/noticeList">취소</a>
 			</div>
 		</div>
 	</form>

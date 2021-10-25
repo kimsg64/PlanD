@@ -20,8 +20,8 @@
 		select userid, pwd, name, num, tel, email, zip, addr, startdate, photo, opt, zzim, regdate, point from usertbl where userid=#{userId}
 	</select>
 	
-	<!-- 결제 구매자 정보 -->
+	<!-- 결제 구매자 정보-->
 	<select id="paymentPageOk" resultType="String" parameterType="com.bit5.wherewego.product.ProductVO">
   		select userid, name, email, point from usertbl
-	</select>
+	</select> 
 </mapper>

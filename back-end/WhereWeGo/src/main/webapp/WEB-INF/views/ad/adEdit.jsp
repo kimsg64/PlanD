@@ -30,12 +30,21 @@
 	#buttonMenu {
 	float: right;
 	}
+	input[type=text], input[type=file] {
+	width: 80%;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 40px;
+	border: 1px solid black;
+	background-color: white;
+	font-family: "TmoneyRoundWindRegular";
+}
 	.button {
 		background-color: #fd7d73;
 		border: none;
 		color: #f5ebe3;
 		padding: 10px 20px;
-		margin: 10px 0px;
+		margin: 10px 2px;
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
