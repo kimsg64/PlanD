@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.user.UserDAOImp;
 import com.bit5.wherewego.user.UserVO;
 
 
@@ -85,6 +86,7 @@ public class ProductController {
 	public ModelAndView paymentPage(String p_num, ProductVO ppVo, UserVO uVo) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		UserDAOImp dao2 = sqlSession.getMapper(UserDAOImp.class);
 		mav.addObject("vo", dao.paymentPageOk(p_num));
 		mav.addObject("ppVo", ppVo);
 		mav.addObject("uVo", uVo);
