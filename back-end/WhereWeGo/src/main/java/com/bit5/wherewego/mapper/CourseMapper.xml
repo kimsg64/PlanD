@@ -70,7 +70,7 @@
 		p1.link link1, p2.link link2, p3.link link3
 		
 		from (select * from course
-		where stcode=${param1} and coursesort=${param2} 
+		where stcode=${param1} and coursesort=${param2} and grade='승인'
 		<if test='param3!=null and !param3.equals("")'>
 		and opt like '%'||#{param3, jdbcType=VARCHAR}||'%' 
 		</if>
