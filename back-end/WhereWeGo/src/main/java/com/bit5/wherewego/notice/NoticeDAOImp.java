@@ -26,4 +26,6 @@ public interface NoticeDAOImp {
 
 	public int noticeEditOk(NoticeVO vo); //수정
 
+	public int delNoticeFile(NoticeVO vo);
+
 }
