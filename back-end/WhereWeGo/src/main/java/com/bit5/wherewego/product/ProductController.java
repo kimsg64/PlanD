@@ -101,6 +101,7 @@ public class ProductController {
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		mav.addObject("vo", dao.pointshopView(p_num));
 		mav.setViewName("pointshop/pointshopEdit");
+		
 		return mav;
 		
 	}

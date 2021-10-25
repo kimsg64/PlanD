@@ -8,6 +8,7 @@
 	margin: 0 auto;
 	color: #00282e;
 	text-align: center;
+	margin-top: 10px;
 }
 
 #mainDiv>h1 {
