@@ -107,7 +107,7 @@ public class PlaceController {
 		return list;
 	}
 
-	//공지사항 목록
+	//장소 뷰
 	@RequestMapping("/placeView")
 	public ModelAndView plcaeView(int pcode, PagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
@@ -115,6 +115,7 @@ public class PlaceController {
 		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
 		
 		mav.addObject("vo", dao.placeView(pcode));
+		
 		mav.setViewName("/place/placeView");
 	
 		return mav;

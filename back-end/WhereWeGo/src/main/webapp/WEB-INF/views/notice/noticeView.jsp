@@ -28,7 +28,7 @@ $("input[id=file]").change(function(){
 
 </script>
 <style>
-.write-area{
+	.write-area{
       width: 72%;
       margin:0 auto;
    }
@@ -80,7 +80,8 @@ $("input[id=file]").change(function(){
       color: #0e595f;
    }
    
-   img {width:50%; height:auto;display:inline;}
+   #ii {max-width:50%; height:auto;display:inline;}
+   #ff:hover {color:#fd7d73;}
 </style>
 
 
@@ -95,7 +96,7 @@ $("input[id=file]").change(function(){
 				<h1>${vo.title }</h1>
 				<br />
 				<hr>
-
+				<br/>
 				<div class="write_info">등록일 : ${vo.writedate } | 조회수 :
 					${vo.hit }</div>
 			</div>
@@ -105,7 +106,10 @@ $("input[id=file]").change(function(){
 				<h5>${vo.content }</h5>
 			</div>
 			<br/><br/>
-			<div class="imgDiv"><img src="upload/noticefile/${vo.photo }" /></div>
+			<c:if test="${vo.photo!=null}">
+				<img src="upload/noticefile/${vo.photo }" id="ii"/><br/>
+				<a id="ff" href="upload/noticefile/${vo.photo }" download><img src="imgs/disk.png"/> ${vo.photo }</a>
+			</c:if>
 		</div>
 	</div>
 	<div id="buttonMenu">

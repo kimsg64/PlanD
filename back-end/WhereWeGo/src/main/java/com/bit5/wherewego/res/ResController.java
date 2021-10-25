@@ -54,11 +54,20 @@ public class ResController {
 	@RequestMapping(value = "/insertRes", method = RequestMethod.POST)
 	public ModelAndView insertRes(String userid, int c_num, String resdate) {
 		ModelAndView mav = new ModelAndView();
-		
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
 		int total = dao.insertRest(userid, c_num, resdate);
 		
 		return null;
+	}
+	//예약하기 뷰
+	@RequestMapping("/resView")
+	public ModelAndView resView(String res_num) {
+		ModelAndView mav = new ModelAndView();
+		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
+		mav.addObject("vo", dao.resView(res_num));
+		mav.setViewName("res/resView");
+		
+		return mav;
 	}
 
 }

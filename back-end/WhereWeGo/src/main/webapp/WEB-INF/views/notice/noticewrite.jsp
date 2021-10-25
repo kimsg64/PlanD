@@ -44,17 +44,17 @@
 		font-family: "TmoneyRoundWindRegular";
 	}
 	
-	input[type=text]:focus, input[type=file]:focus {
-		background-color: #efcac3;
-		outline: none;
+	input[type=text]:focus, input[type=file]:focus, input[type=file]:focus, textarea:focus {
 		width : 94%;
 		border-radius: 4px;
 		padding: 10px;
 		margin-bottom: 40px;
 		border: 1px solid white;
-		background-color: white;
-		font-family: "TmoneyRoundWindRegular";
+		background-color: #efcac3;
+		outline: none;
 	}
+	
+	textarea {height:700px;}
 	
 	#buttonMenu {
 		float: right;
@@ -88,9 +88,12 @@
 	
 	<form method="post" action="/wherewego/noticeWriteOk" name="noticeFrm" enctype="multipart/form-data">
 		<div id="noticeDiv">
-			<b>제목</b> : <input type="text" id="title" name="title" /><br />
-			<textarea name="content" id="content"></textarea><br />
-			<b>파일</b> : <input type="file" id="filename" name="filename"/><br/>
+
+			
+			<label><b>제목</b></label> : <input type="text" id="title" name="title" required/><br />
+			<textarea name="content" id="content" required></textarea><br />
+			<label><b>파일</b></label> : <input type="file" id="filename" name="filename"/><br/>
+
 			
 			<div id="buttonMenu">
 				<button type="submit" class="button">작성</button>

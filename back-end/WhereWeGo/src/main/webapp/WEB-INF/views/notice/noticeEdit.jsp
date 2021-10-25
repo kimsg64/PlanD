@@ -8,11 +8,19 @@
 	$(document).ready(function() {
 		CKEDITOR.replace('content');
 		$(function() {
-
 			$('input[type=button]').click(function() {
 				console.log(CKEDITOR.instances.content.getData());
 			});
 		});
+
+	// 첨부파일이 삭제된 경우
+		$('.del').click(function() {
+			$(this).parent().css('display', 'none');
+			// 새로운 파일 첨부할 input를 표시
+			$('#fileDiv').css('display', 'block');
+			$('#delfile').val(1);
+		});
+
 	});
 </script>
 
@@ -57,7 +65,6 @@ input[type=text]:focus, input[type=file]:focus {
 	padding: 10px;
 	margin-bottom: 40px;
 	border: 1px solid white;
-	background-color: white;
 	font-family: "TmoneyRoundWindRegular";
 }
 
@@ -85,8 +92,18 @@ input[type=text]:focus, input[type=file]:focus {
 	color: #0e595f;
 }
 
-body::-webkit-scrollbar { display:none; }
+body::-webkit-scrollbar {
+	display: none;
+}
 
+#photoDiv {
+	text-align: left;
+}
+
+#ff:hover {
+	color: #fd7d73;
+}
+#fileDiv {display:none;}
 </style>
 
 <div id="mainDiv">
@@ -97,13 +114,24 @@ body::-webkit-scrollbar { display:none; }
 		enctype="multipart/form-data">
 		<div id="noticeDiv">
 			<input type="hidden" id="title" name="n_num" value="${vo.n_num }" /><br />
-			<b>제목</b> : <input type="text" name="title" value="${vo.title }" /><br />
+			<b>제목</b> : <input type="text" name="title" value="${vo.title }" required/><br />
 			<textarea name="content" id="content">${vo.content }</textarea>
 			<br />
 
+			<div id="photoDiv">
+				<c:if test="${vo.photo!=null }">
+					<a id="ff" href="upload/noticefile/${vo.photo }" download><img src="imgs/disk.png" /> ${vo.photo }</a>&nbsp;&nbsp;&nbsp;<b class='del'>X</b>
+					<input type="hidden" id="delfile" name="delfile"/>
+					<br />
+				</c:if>
+				<c:if test="${vo.photo==null }">
+					<label><b>파일</b></label> : <input type="file" id="filename" name="filename"/><br/>
+				</c:if>
+			</div>
+			<div id="fileDiv"><label><b>파일</b></label> : <input type="file" id="filename" name="filename"/><br/></div>
 			<div id="buttonMenu">
-				<input type="submit" class="button" value="수정" /> 
-				<a class="button" href="/wherewego/noticeList">취소</a>
+				<input type="submit" class="button" value="수정" /> <a class="button"
+					href="/wherewego/noticeList">취소</a>
 			</div>
 		</div>
 	</form>

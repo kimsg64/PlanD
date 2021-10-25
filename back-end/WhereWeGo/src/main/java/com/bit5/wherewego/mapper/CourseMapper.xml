@@ -112,4 +112,8 @@
 	join course c on e.c_num=c.c_num) n
 	on r.res_num=n.res_num) group by c_num) sc on c.c_num=sc.c_num	
 	</select>
+	<!-- 코스 뷰 -->
+	<select id="courseView" parameterType="int" resultType="com.bit5.wherewego.course.CourseVO">
+		select c_num, name, userid, time, stcode, info, grade, pcode1, pcode2, pcode3, score, opt from course where c_num=#{param1}
+	</select>
 </mapper>

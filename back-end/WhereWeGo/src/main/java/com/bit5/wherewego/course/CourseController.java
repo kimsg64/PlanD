@@ -275,5 +275,15 @@ public class CourseController {
 		System.out.println("결과:"+r);
 		return r;
 	}
+	//코스 뷰
+	@RequestMapping("/courseView")
+	public ModelAndView courseView(int c_num) {
+		ModelAndView mav = new ModelAndView();
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		mav.addObject("vo", dao.courseView(c_num));
+		mav.setViewName("course/courseView");
+		
+		return mav;
+	}
 	
 }

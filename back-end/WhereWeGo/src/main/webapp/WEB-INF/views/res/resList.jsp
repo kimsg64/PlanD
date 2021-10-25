@@ -191,10 +191,12 @@ select {border:}
 			<c:forEach var="vo" items="${list}">
 				<li><input type="checkbox" id="allChk" value="${vo.res_num}" /></li>
 				<li>${vo.res_num }</li>
-				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+				<li class="wordCut"><a href="/wherewego/resView?res_num=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
-				<li><a href="#"><img src="imgs/link.png"></a></li>
+				<li>
+					<a href="#"><img src="imgs/link.png"></a>
+				</li>
 			</c:forEach>
 		</ul>
 		<!-- </form> -->
