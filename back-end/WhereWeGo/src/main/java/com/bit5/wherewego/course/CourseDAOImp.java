@@ -15,4 +15,5 @@ public interface CourseDAOImp {
 	public int insertCourse(CourseVO vo);
 	public List<ResultVO> coursePlanD(String stcode, int coursesort, String inout, String money, @Param("foodlist") List<String> foodlist,
 			@Param("cafelist") List<String> cafelist, @Param("etclist") List<String> etclist, @Param("alllist") List<String> alllist);
+	public Object courseView(int c_num);
 }

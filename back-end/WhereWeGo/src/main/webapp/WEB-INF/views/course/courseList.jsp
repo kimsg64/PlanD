@@ -175,7 +175,7 @@ select, option, input {font-family: "TmoneyRoundWindRegular";}
 				<li><input type="checkbox" name="chk" value="${vo.c_num}" /></li>
 				<li>${vo.c_num}</li>
 				<li class="wordCut"><a
-					href="/wherewego/courseView?no=${vo.c_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
+					href="/wherewego/courseView?c_num=${vo.c_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.stname }</li>
 				<li>${vo.userid }</li>
 				<li>${vo.grade }</li>
