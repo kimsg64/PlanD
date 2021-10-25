@@ -21,11 +21,19 @@
 	text-align: left;
 }
 
-#banner {width:100%;}
+#banner {
+	width: 100%;
+}
 
-#searchDiv {width:100%; text-align:right; margin:20px 0px;}
+#searchDiv {
+	width: 100%;
+	text-align: right;
+	margin: 20px 0px;
+}
 
-select, option, input {font-family: "TmoneyRoundWindRegular";}
+select, option, input {
+	font-family: "TmoneyRoundWindRegular";
+}
 
 #bottomdiv {
 	width: 100%;
@@ -61,23 +69,23 @@ select, option, input {font-family: "TmoneyRoundWindRegular";}
 
 #adminboardList>li {
 	float: left;
-	width: 11%;
+	width: 15%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
-#adminboardList>li:nth-child(6n+4) {
+#adminboardList>li:nth-child(5n+3) {
 	width: 50%;
 	text-align: left;
 }
 
-#adminboardList>li:nth-child(4) {
+#adminboardList>li:nth-child(3) {
 	width: 50%;
 	text-align: center;
 }
 
-#adminboardList>li:nth-child(6n+1) {
+#adminboardList>li:nth-child(5n+1) {
 	width: 5%;
 }
 
@@ -112,7 +120,6 @@ select, option, input {font-family: "TmoneyRoundWindRegular";}
 .wordCut a:hover {
 	color: #fd7d73;
 }
-
 
 .button {
 	background-color: #fd7d73;
@@ -161,8 +168,19 @@ ul.pagination li a:hover:not(.active) {
 	background-color: #f5ebe3;
 }
 
-#banner {width:100%;}
+#banner {
+	width: 100%;
+}
 
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wordCut a:hover {
+	color: #fd7d73;
+}
 </style>
 
 <script>
@@ -177,18 +195,19 @@ ul.pagination li a:hover:not(.active) {
 
 <div id="mainDiv">
 	<h1>장소 관리</h1>
-	<img src="imgs/banner/place.jpg" id="banner"/>
+	<img src="imgs/banner/place.jpg" id="banner" />
 
 	<!-- 검색 -->
 	<div id="searchDiv">
 		<div>
-			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/placeList">
+			<form method="get" id="searchFrm" name="searchFrm"
+				action="/wherewego/placeList">
 				<select name="searchKey">
 					<option value="name">장소명</option>
 					<option value="addr">주소</option>
-				</select>
-				<input type="text" name="searchWord" id="searchWord" placeholder="검색어 입력" required/>
-				<input type="submit" value="검색" class="button"/>
+				</select> <input type="text" name="searchWord" id="searchWord"
+					placeholder="검색어 입력" required /> <input type="submit" value="검색"
+					class="button" />
 			</form>
 		</div>
 	</div>
@@ -200,24 +219,21 @@ ul.pagination li a:hover:not(.active) {
 			<ul id="adminboardList">
 				<li><input type="checkbox" id="allChk"></li>
 				<li><b>No.</b></li>
-				<li><b>종류</b></li>
 				<li class="wordCut"><b>장소명</b></li>
-				<li><b>영업시간</b></li>
+				<li><b>종류</b></li>
 				<li><b>링크</b></li>
 
 				<c:forEach var="vo" items="${list }">
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>
 					<li>${vo.pcode }</li>
+					<li class="wordCut"><a href="/wherewego/placeView?pcode=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
 					<li>${vo.datesort }</li>
-					<li><a href="/wherewego/placeView?pcode=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
-					<li>${vo.time }</li>
 					<li><c:if test="${vo.link==null }">
-							<img src="imgs/link.png"/>
-						</c:if>
-						<c:if test="${vo.link!=null }">
-							<a href="${vo.link }" target = "_blank"><img src="imgs/linkg.png"/></a>
-						</c:if>
-						</li>
+							<img src="imgs/link.png" />
+						</c:if> <c:if test="${vo.link!=null }">
+							<a href="${vo.link }" target="_blank"><img
+								src="imgs/linkg.png" /></a>
+						</c:if></li>
 				</c:forEach>
 			</ul>
 		</c:if>
@@ -232,8 +248,7 @@ ul.pagination li a:hover:not(.active) {
 			</div>
 
 			<div id="buttonMenu">
-				<a class="button" href="#">작성</a>
-				<a class="button" href="#">삭제</a>
+				<a class="button" href="#">작성</a> <a class="button" href="#">삭제</a>
 			</div>
 		</div>
 	</c:if>
@@ -271,8 +286,8 @@ ul.pagination li a:hover:not(.active) {
 
 			<!-- 다음페이지-->
 			<c:if test="${pVo.nowPage<pVo.totalPage}">
-				<li class='page-item'>
-				<a href="/wherewego/placeList?nowPage=${pVo.nowPage+1}">»</a></li>
+				<li class='page-item'><a
+					href="/wherewego/placeList?nowPage=${pVo.nowPage+1}">»</a></li>
 			</c:if>
 
 			<c:if test="${pVo.nowPage==pVo.totalPage}">
