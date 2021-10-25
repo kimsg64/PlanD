@@ -121,11 +121,13 @@ public class NoticeController {
 		int point2 = photo.lastIndexOf("]");
 		if(photo.length()!=0) {
 			String photo2 = photo.substring(1,point2);
-			System.out.println(photo2);
+			//System.out.println(photo2);
 			vo.setPhoto(photo2); //저장되는 파일명
 		}
 		
 		System.out.println("파일명 : "+vo.getPhoto());
+		
+		System.out.println("저장경로에 있는 "+vo.getPhoto()+"파일을 반드시 /upload/noticefile 에 옮겨놓고 깃허브에 올려주세요!");
 		
 		ModelAndView mav = new ModelAndView();
 		NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
@@ -142,12 +144,13 @@ public class NoticeController {
 		}
 		//게시판 내용 뷰
 		@RequestMapping("/noticeView")
-		public ModelAndView noticeView(int n_num) {
+		public ModelAndView noticeView(int n_num,PagingVO pVo) {
 			ModelAndView mav = new ModelAndView();
 			NoticeDAOImp dao2 = sqlSession.getMapper(NoticeDAOImp.class);
 			dao2.hitUpdate(n_num);
 			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
 			mav.addObject("vo", dao.noticeView(n_num));
+			mav.addObject("pVo", pVo);
 			mav.setViewName("/notice/noticeView");
 			
 			return mav;
