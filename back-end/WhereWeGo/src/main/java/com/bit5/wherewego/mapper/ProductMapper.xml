@@ -41,6 +41,6 @@
 	</select>
 	<!-- 수정 -->
 	<update id="pointshopEditOk" parameterType="com.bit5.wherewego.product.ProductVO">
-		update product set name=#{name}, brand=#{brand}, price=#{price}, info=#{info} where p_num=#{p_num}
+		update product set name=#{name}, brand=#{brand}, price=#{price}, info=#{info}, gender=#{gender} where p_num=#{p_num}
 	</update>
 </mapper> 
