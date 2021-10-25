@@ -45,6 +45,7 @@
 <form method="get" action="/wherewego/paymentPageOk">
 <div>
 <input type="hidden" name="p_num" value="${ppVo.p_num }">
+${ppVo.img }<br/>
 ${ppVo.name }<br/>
 ${ppVo.brand }<br/>
 ${ppVo.price }
