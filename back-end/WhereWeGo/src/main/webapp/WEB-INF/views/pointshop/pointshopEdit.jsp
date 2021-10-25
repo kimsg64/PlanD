@@ -9,6 +9,12 @@
 .write-area {
 	width: 72%;
 	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+.mainname{
+	margin-bottom:10px;
 	
 }
 .h2{
@@ -21,7 +27,6 @@
 	width:80%;
 	
 }
-
 .writeTitle.write_header {
 	
 }
@@ -70,7 +75,18 @@
 }
 
 #buttonMenu {
-	float: right;
+	width:80%;
+	display:flex;
+	justify-content:flex-end;
+}
+input[type=text], input[type=file] {
+	width: 94%;
+	border-radius: 2px;
+	padding: 1px;
+	margin-bottom: 20px;
+	border: 1px solid black;
+	background-color: white;
+	font-family: "TmoneyRoundWindRegular";
 }
 
 .button {
@@ -78,7 +94,7 @@
 	border: none;
 	color: #f5ebe3;
 	padding: 10px 10px;
-	margin: 10px 0px;
+	margin: 10px 2px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -88,21 +104,7 @@
 	width: 70px;
 	text-align: center;
 }
-.button2 {
-	background-color: #fd7d73;
-	border: none;
-	color: #f5ebe3;
-	padding: 10px 10px;
-	margin: 10px 0px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 12px;
-	transition-duration: 0.4s;
-	font-size: 13px;
-	width: 30%;
-	float:right;
-}
+
 
 .button:hover {
 	color: #0e595f;
@@ -114,14 +116,15 @@
 			location.href="/wherewego/pdDel?p_num=${vo.p_num}";
 		}
 	}
+
 </script>
 <form method="post" action="/wherewego/pointshopEditOk" name="pointshopFrm" enctype="multipart/form-data">
 <div class="write-area">
+	<div class="mainname"><h1>포인트샵 수정</h1></div>
 	<div class="writeTitle">
 		<div class="write_header">
 			<div class="write_title">
-				${vo.p_num }
-				<h1><input type="text" name="name" value="${vo.name }"/></h1>
+				<h1>${vo.name }</h1>
 				<div class="write_info"></div>
 			</div>
 		</div>
@@ -129,23 +132,31 @@
 			<div class="write_main">
 				<img src ="upload/pointshop/${vo.img}" width=50%; />
 				<div class="shop">
-					<h3> <input type="text" name="brand" value="${vo.brand }"/></h3><br/>
-					<h2>제품명 :<input type="text" name="name" value="${vo.name }"/></h2><br/>
-					<h2>가 격 :<input type="text" name="price" value=" ${vo.price }"/></h2><br/>
+					
+				<input type="hidden" name="p_num" value="${vo.p_num }"/>${vo.p_num }
+					<h3>브랜드 : <input type="text" name="brand" value="${vo.brand }"/></h3>
+					<h2>제품명 : <input type="text" name="name" value="${vo.name }"/></h2><br/>
+					<h2>가 격 : <input type="text" name="price" value=" ${vo.price }"/></h2><br/>
+					<select name="gender">
+						<option value="${vo.gender }">M</option>
+						<option value="${vo.gender }">W</option>
+						<option value="${vo.gender }">U</option>
+					</select>
 					<div class="info"><h3>제품 설명: <input type="text" name="info" value="${vo.info }"/></h3></div>	
 					<div class="buttonmain">
-						<a class="button2" href="paymentPage?p_num=${vo.p_num }&&?userid=${uVo.userId }">구매</a>
+					
 					</div>
 				</div>
 			</div>
-				<!-- 이미지 상세정보 -->
-				<div class="imggo">
-					<div class="imgin"><img src="img/icecream.jpg"/></div>
-				</div>
+			<!-- 상품 상세정보 -->
+			<div class="imggo">
+				<div class="imgin"><img src="img/icecream.jpg"/></div>
+			</div>
 		</div>
 	</div>
 	<div id="buttonMenu">		
 		<input type="submit" class="button" value="수정"/>
+		<a class="button" href="/wherewego/pointshopView?p_num=${vo.p_num }">취소</a>
 		<a class="button" href="javascript:viewDel()">삭제</a>
 	</div>
 </div>

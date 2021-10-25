@@ -4,8 +4,11 @@
 
 <style>
 .write-area {
-	width: 72%;
+	width: 80%;
 	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .writeTitle {
@@ -39,7 +42,9 @@
 }
 
 #buttonMenu {
-	float: right;
+	width:72%;
+	display:flex;
+	justify-content:flex-end;
 }
 
 .button {
@@ -47,7 +52,7 @@
 	border: none;
 	color: #f5ebe3;
 	padding: 10px 10px;
-	margin: 10px 0px;
+	margin: 10px 2px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;

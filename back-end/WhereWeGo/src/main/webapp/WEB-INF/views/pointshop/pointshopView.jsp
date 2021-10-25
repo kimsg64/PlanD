@@ -9,6 +9,9 @@
 .write-area {
 	width: 72%;
 	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
 	
 }
 .h2{
@@ -70,7 +73,11 @@
 }
 
 #buttonMenu {
-	float: right;
+	width:80%;
+	display:flex;
+	justify-content:flex-end;
+	
+	
 }
 
 .button {
@@ -78,7 +85,7 @@
 	border: none;
 	color: #f5ebe3;
 	padding: 10px 10px;
-	margin: 10px 0px;
+	margin: 10px 2px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -119,8 +126,8 @@
 	<div class="writeTitle">
 		<div class="write_header">
 			<div class="write_title">
-				${vo.p_num }
-				<h1>${vo.name }</h1>
+				
+				<h1>&nbsp;&nbsp;${vo.name }</h1>
 				<div class="write_info"></div>
 			</div>
 		</div>
@@ -128,9 +135,11 @@
 			<div class="write_main">
 				<img src="upload/pointshop/${vo.img}" width=50%; />
 				<div class="shop">
+					${vo.p_num }
 					<h3> ${vo.brand }</h3><br/>
 					<h2>제품명 : ${vo.name }</h2><br/>
 					<h2>가 격 : ${vo.price }</h2><br/>
+					
 					<div class="info"><h3>제품 설명: ${vo.info }</h3></div>	
 					<div class="buttonmain">
 						<a class="button2" href="paymentPage?p_num=${vo.p_num }&&?userid=${uVo.userId }">구매</a>
