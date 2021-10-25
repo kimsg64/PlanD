@@ -12,10 +12,16 @@
 	padding: 29px 29px 29px;;
 	border: 1px solid gray;
 	border-radius: 6px;
+	width:70%;
 }
 
 .writeTitle.write_header {
 	
+}
+.info{
+	padding:30px 20px 30px 35px;
+	width:800px;
+	box-sizing: border-box;
 }
 
 .write_title {
@@ -29,6 +35,7 @@
 	margin-top: 10px;
 	overflow-x: auto;
 	padding: 15px 15px 15px;
+	display:flex;
 }
 
 #buttonMenu {
@@ -74,12 +81,14 @@
 		<div class="write_story">
 			<div class="write_main">
 				<img src="upload/adimg/${vo.photo}" width=70%; /><br />
-				<h2>주소 : ${vo.addr }</h2>
-				<h2>사업자번호 : ${vo.num }</h2>
-				<h2>연락처 : ${vo.tel }</h2>
-				<h2>승인여부 : ${vo.grade }</h2>
-				<h2>가격 : ${vo.price }000원</h2>
-				<h2>결제여부 : ${vo.payment }</h2>
+				<div class="info">
+				<h4>주소 : ${vo.addr }</h4><br/>
+				<h4>사업자번호 : ${vo.num }</h4><br/>
+				<h4>연락처 : ${vo.tel }</h4><br/>
+				<h4>승인여부 : ${vo.grade }</h4><br/>
+				<h4>가격 : ${vo.price }000원</h4><br/>
+				<h4>결제여부 : ${vo.payment }</h4>
+				</div>
 			</div>
 		</div>
 	</div>

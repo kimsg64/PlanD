@@ -166,10 +166,8 @@ public class CourseController {
 			case "기타카페식당" : vo.setCoursesort(6); break;
 		}
 		*/
-		
-
 		//관심사 분석!!!!!!!!!!
-		String fullOpt = vo.getOpt(); //중식#문화#야외#럭셔리#실외#컨셉			
+		String fullOpt = vo.getOpt(); //중식#문화#야외#럭셔리#실외#컨셉
 
 		//먼저 식당 관심사 구분
 		List<String> foodlist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
@@ -180,6 +178,8 @@ public class CourseController {
 			}
 		}
 		
+		System.out.println("푸드리스트:"+foodlist);
+		
 		//카페 관심사 구분
 		List<String> cafelist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
 		String[] cafearr = {"분위기","컨셉","야외"};
@@ -189,6 +189,8 @@ public class CourseController {
 			}
 		}
 		
+		System.out.println("카페리스트:"+cafelist);
+		
 		//기타 관심사 구분
 		List<String> etclist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
 		String[] etcarr = {"체험","문화","익스트림","이색"};
@@ -197,6 +199,8 @@ public class CourseController {
 				etclist.add(etcarr[i]); //etclist에 추가
 			}
 		}
+		
+		System.out.println("기타리스트:"+etclist);
 
 		//날씨 분석도 해야되네!!!!
 		String weather = vo.getWeather();
@@ -214,6 +218,8 @@ public class CourseController {
 			inout="실내";
 		}
 		
+		System.out.println("weather:"+inout);
+		
 		//가성비 럭셔리 구분
 		String money=null; //매개변수 보낼 것
 		if(fullOpt.indexOf("가성비")!=-1 && fullOpt.indexOf("럭셔리")==-1) { //가성비만 골랐다면
@@ -223,6 +229,8 @@ public class CourseController {
 			money="럭셔리";
 		}
 		
+		System.out.println("가성비럭셔리:"+money);
+		
 		//공통 관심사 구분
 		List<String> alllist = new ArrayList<String>(); //batis에 매개변수로 보내서 반복문 돌릴것들
 		String[] allarr = {"팝업","기념일","신상"};
@@ -231,10 +239,9 @@ public class CourseController {
 				alllist.add(allarr[i]); //alllist에 추가
 			}
 		}
-
-			
 		
-		/*
+		System.out.println("리스트:"+alllist);
+	/*
 		김승규 시도 =>  삽질로 판명
 		vo.setFullOpt();
 		vo.setFoodlist(vo.getFullOpt());
@@ -265,7 +272,7 @@ public class CourseController {
 		
 		//조건에 맞는 코스정보들을 갖고옴
 		List<ResultVO> r = dao.coursePlanD(vo.getStcode(),vo.getCoursesort(),inout,money,foodlist,cafelist,etclist,alllist);
-		System.out.println(r.get(0).getName());
+		System.out.println("결과:"+r);
 		return r;
 	}
 	

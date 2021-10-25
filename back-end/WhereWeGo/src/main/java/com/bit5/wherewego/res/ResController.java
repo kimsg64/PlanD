@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
@@ -47,7 +48,18 @@ public class ResController {
 		mav.setViewName("res/resList");
 
 		return mav;
-	}	
+	}
+	
+	//예약하기 (전송)
+	@RequestMapping(value = "/insertRes", method = RequestMethod.POST)
+	public ModelAndView insertRes(String userid, int c_num, String resdate) {
+		ModelAndView mav = new ModelAndView();
+		
+		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
+		int total = dao.insertRest(userid, c_num, resdate);
+		
+		return null;
+	}
 
 }
 	

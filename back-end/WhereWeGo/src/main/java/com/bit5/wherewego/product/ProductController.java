@@ -1,9 +1,12 @@
 package com.bit5.wherewego.product;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.user.UserVO;
@@ -50,11 +53,13 @@ public class ProductController {
 	}
 	//포인트샵 뷰
 	@RequestMapping("/pointshopView")
-	public ModelAndView pointshopView(String p_num, PdPagingVO pVo) {
+	public ModelAndView pointshopView(String p_num, PdPagingVO pVo,ProductVO ppVo, UserVO uVo) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		mav.addObject("vo", dao.pointshopView(p_num));
 		mav.addObject("pVo", pVo);
+		mav.addObject("ppVo", ppVo);
+		mav.addObject("uVo", uVo);
 		mav.setViewName("/pointshop/pointshopView");
 		
 		return mav;
@@ -81,10 +86,37 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		mav.addObject("vo", dao.paymentPageOk(p_num));
-		mav.addObject("pVo", ppVo);
+		mav.addObject("ppVo", ppVo);
 		mav.addObject("uVo", uVo);
 		mav.setViewName("/pointshop/paymentPage");
 		
+		return mav;
+	}
+	//포인트샵 수정폼
+	@RequestMapping("/pointshopEdit")
+	public ModelAndView pointshopEdit(String p_num) {
+		ModelAndView mav = new ModelAndView();
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		mav.addObject("vo", dao.pointshopView(p_num));
+		mav.setViewName("pointshop/pointshopEdit");
+		return mav;
+		
+	}
+	//포인트샵 수정
+	@RequestMapping(value="/pointshopEditOk", method=RequestMethod.POST)
+	public ModelAndView pointshopEditOk(ProductVO vo, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		int cnt = dao.pointshopEditOk(vo);
+		mav.addObject("p_num", vo.getP_num());
+		
+		if(cnt>0) {
+			mav.setViewName("redirect:pointshopView");
+		}else {
+			mav.addObject("msg","수정");
+			mav.setViewName("pointshop/pointshopResult");
+		}
 		return mav;
 	}
 }

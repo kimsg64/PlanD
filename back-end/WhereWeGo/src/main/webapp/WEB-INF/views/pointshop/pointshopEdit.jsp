@@ -115,23 +115,24 @@
 		}
 	}
 </script>
+<form method="post" action="/wherewego/pointshopEditOk" name="pointshopFrm" enctype="multipart/form-data">
 <div class="write-area">
 	<div class="writeTitle">
 		<div class="write_header">
 			<div class="write_title">
 				${vo.p_num }
-				<h1>${vo.name }</h1>
+				<h1><input type="text" name="name" value="${vo.name }"/></h1>
 				<div class="write_info"></div>
 			</div>
 		</div>
 		<div class="write_story">
 			<div class="write_main">
-				<img src="upload/pointshop/${vo.img}" width=50%; />
+				<img src ="upload/pointshop/${vo.img}" width=50%; />
 				<div class="shop">
-					<h3> ${vo.brand }</h3><br/>
-					<h2>제품명 : ${vo.name }</h2><br/>
-					<h2>가 격 : ${vo.price }</h2><br/>
-					<div class="info"><h3>제품 설명: ${vo.info }</h3></div>	
+					<h3> <input type="text" name="brand" value="${vo.brand }"/></h3><br/>
+					<h2>제품명 :<input type="text" name="name" value="${vo.name }"/></h2><br/>
+					<h2>가 격 :<input type="text" name="price" value=" ${vo.price }"/></h2><br/>
+					<div class="info"><h3>제품 설명: <input type="text" name="info" value="${vo.info }"/></h3></div>	
 					<div class="buttonmain">
 						<a class="button2" href="paymentPage?p_num=${vo.p_num }&&?userid=${uVo.userId }">구매</a>
 					</div>
@@ -144,8 +145,8 @@
 		</div>
 	</div>
 	<div id="buttonMenu">		
-		<a class="button" href="pointshopList?nowPage=${pVo.nowPage }">목록</a>
-		<a class="button" href="pointshopEdit?p_num=${vo.p_num }">수정</a>
+		<input type="submit" class="button" value="수정"/>
 		<a class="button" href="javascript:viewDel()">삭제</a>
 	</div>
 </div>
+</form>
