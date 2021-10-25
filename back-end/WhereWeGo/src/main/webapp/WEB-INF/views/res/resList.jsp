@@ -194,7 +194,9 @@ select {border:}
 				<li class="wordCut"><a href="/wherewego/resView?no=${vo.res_num}&nowPage=${pVo.nowPage}">${vo.name}</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.resdate }</li>
-				<li><a href="#"><img src="imgs/link.png"></a></li>
+				<li>
+					<a href="#"><img src="imgs/link.png"></a>
+				</li>
 			</c:forEach>
 		</ul>
 		<!-- </form> -->
