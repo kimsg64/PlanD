@@ -36,4 +36,8 @@
 		delete res where r_num = #{r_num}
 	</delete>
 	-->
+	
+	<insert id="insertRes">
+		insert into res(userid, c_num, resdate) values(#{param1}, ${param2}, #{param3})
+	</insert>
 </mapper>
