@@ -24,6 +24,7 @@
 	width: 70px;
 	text-align: center;
 }
+
 .button:hover {
 	color: #0e595f;
 }
