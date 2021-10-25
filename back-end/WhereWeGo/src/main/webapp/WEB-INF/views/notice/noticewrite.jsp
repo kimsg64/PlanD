@@ -89,7 +89,7 @@
 	<form method="post" action="/wherewego/noticeWriteOk" name="noticeFrm" enctype="multipart/form-data">
 		<div id="noticeDiv">
 			<b>제목</b> : <input type="text" id="title" name="title" /><br />
-			<textarea name="content" id="content"></textarea><br />
+			<textarea name="content" id="content" ></textarea><br />
 			<b>파일</b> : <input type="file" id="filename" name="filename"/><br/>
 			
 			<div id="buttonMenu">
