@@ -86,9 +86,11 @@ public class ProductController {
 	
 	//포인트샵 결제 뷰
 	@RequestMapping("/paymentPage")
-	public ModelAndView paymentPage(String p_num, ProductVO ppVo, UserVO uVo) {
+	public ModelAndView paymentPage(String p_num) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
+		
+		
 		UserDAOImp dao2 = sqlSession.getMapper(UserDAOImp.class);
 		mav.addObject("vo", dao.paymentPageOk(p_num));
 		mav.addObject("ppVo", ppVo);
