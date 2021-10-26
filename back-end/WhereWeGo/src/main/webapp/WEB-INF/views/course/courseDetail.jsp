@@ -21,8 +21,8 @@
 }
 
 #viewDiv {
-	width:100%;
-	height:auto;
+	width: 100%;
+	height: auto;
 	float: center;
 	background-color: #f5ebe3;
 	border: 1px solid #efcac3;
@@ -32,37 +32,50 @@
 }
 
 #infoDiv {
-	margin:0 auto;
+	margin: 0 auto;
 	text-align: left;
-	height:auto;
-	width:50%;
-	margin-bottom:50px;
+	height: auto;
+	width: 50%;
+	margin-bottom: 50px;
 }
+
 #infoDiv li {
 	width: 80%;
 	height: 40px;
 }
+
 #infoDiv2 {
-	margin:0 auto;
+	margin: 0 auto;
 	text-align: left;
-	height:auto;
-	width:50%;
-	margin-bottom:50px;
+	height: auto;
+	width: 50%;
+	margin-bottom: 50px;
 }
+
 #infoDiv2 li {
 	width: 80%;
 	height: 40px;
 }
-#infoDiv2 h3 {
-	margin-bottm:20px;
+
+#infoDiv2 h2 {
+	margin-bottom: 20px;
 }
 
-#map_wrap{margin:0 auto; border: 1px solid #0e595f; 
-width:90%; max-width:700px; height:auto;}
+#map_wrap {
+	margin: 0 auto;
+	width: 90%;
+	max-width: 700px;
+	height: auto;
+}
 
 #buttonMenu {
 	float: right;
 }
+
+#map1, #map2, #map3 {
+	margin: 0 auto; margin-bottom:30px;
+}
+
 .button {
 	background-color: #fd7d73;
 	border: none;
@@ -82,53 +95,64 @@ width:90%; max-width:700px; height:auto;}
 .button:hover {
 	color: #0e595f;
 }
+
+#infoDiv2 a:hover{
+color:#fd7d73;}
 </style>
 <script>
-var lat1; var lng1; var lat2; var lng2; var lat3; var lng3;
-var url1 = "https://maps.googleapis.com/maps/api/geocode/json?address="+"${vo.addr1}"+"&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
-$.ajax({
-    url: url1,
-    dataType: "json",
-    type: "GET",
-    async : false,
-    success: function(resp) {
-        console.log(resp);  
-        console.log("장소1 경도 : "+ resp.results[0].geometry.location.lat);
-        lat1 = resp.results[0].geometry.location.lat;
-        console.log("장소1 위도 : "+ resp.results[0].geometry.location.lng);  
-        lng1 = resp.results[0].geometry.location.lng;
-    }
-});
+	var lat1;
+	var lng1;
+	var lat2;
+	var lng2;
+	var lat3;
+	var lng3;
+	var url1 = "https://maps.googleapis.com/maps/api/geocode/json?address="
+			+ "${vo.addr1}" + "&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
+	$.ajax({
+		url : url1,
+		dataType : "json",
+		type : "GET",
+		async : false,
+		success : function(resp) {
+			console.log(resp);
+			console.log("장소1 경도 : " + resp.results[0].geometry.location.lat);
+			lat1 = resp.results[0].geometry.location.lat;
+			console.log("장소1 위도 : " + resp.results[0].geometry.location.lng);
+			lng1 = resp.results[0].geometry.location.lng;
+		}
+	});
 
-var url2 = "https://maps.googleapis.com/maps/api/geocode/json?address="+"${vo.addr2}"+"&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
-$.ajax({
-    url: url2,
-    dataType: "json",
-    type: "GET",
-    async : false,
-    success: function(resp) {
-        console.log(resp);  
-        console.log("장소2 경도 : "+ resp.results[0].geometry.location.lat);
-        lat2 = resp.results[0].geometry.location.lat;
-        console.log("장소2 위도 : "+ resp.results[0].geometry.location.lng);  
-        lng2 = resp.results[0].geometry.location.lng;
-    }
-});
+	var url2 = "https://maps.googleapis.com/maps/api/geocode/json?address="
+			+ "${vo.addr2}" + "&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
+	$.ajax({
+		url : url2,
+		dataType : "json",
+		type : "GET",
+		async : false,
+		success : function(resp) {
+			console.log(resp);
+			console.log("장소2 경도 : " + resp.results[0].geometry.location.lat);
+			lat2 = resp.results[0].geometry.location.lat;
+			console.log("장소2 위도 : " + resp.results[0].geometry.location.lng);
+			lng2 = resp.results[0].geometry.location.lng;
+		}
+	});
 
-var url3 = "https://maps.googleapis.com/maps/api/geocode/json?address="+"${vo.addr3}"+"&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
-$.ajax({
-    url: url3,
-    dataType: "json",
-    type: "GET",
-    async : false,
-    success: function(resp) {
-        console.log(resp);  
-        console.log("장소3 경도 : "+ resp.results[0].geometry.location.lat);
-        lat3 = resp.results[0].geometry.location.lat;
-        console.log("장소3 위도 : "+ resp.results[0].geometry.location.lng);  
-        lng3 = resp.results[0].geometry.location.lng;
-    }
-});
+	var url3 = "https://maps.googleapis.com/maps/api/geocode/json?address="
+			+ "${vo.addr3}" + "&key=AIzaSyCIt_Stq2QW_15wVds7sVrxA9y0Cadru1s";
+	$.ajax({
+		url : url3,
+		dataType : "json",
+		type : "GET",
+		async : false,
+		success : function(resp) {
+			console.log(resp);
+			console.log("장소3 경도 : " + resp.results[0].geometry.location.lat);
+			lat3 = resp.results[0].geometry.location.lat;
+			console.log("장소3 위도 : " + resp.results[0].geometry.location.lng);
+			lng3 = resp.results[0].geometry.location.lng;
+		}
+	});
 </script>
 <div id="mainDiv">
 	<h1>장소 상세보기</h1>
@@ -175,44 +199,43 @@ $.ajax({
 				<li><b>설명 </b> : ${vo.info }</li>
 			</ul>
 		</div>
-		
+
+		<div id="map1" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
-				<h3>1st Place</h3>
-				<ul>
-					<li><h2>${vo.name1}</h2></li>
-					<li><b>주소 : </b>${vo.addr1}</li>
-					<li><b>연락처 : </b>${vo.tel1}</li>
-					<li><b>설명 : </b>${vo.info1}</li>
-					<li><b>링크 : </b><a href="${vo.link1}">${vo.link1}</a></li>
-					
-				</ul>
+			<h3>1st Place</h3>
+			<h2>${vo.name1}</h2>
+			<ul>
+				<li><b>주소 : </b>${vo.addr1}</li>
+				<li><b>연락처 : </b>${vo.tel1}</li>
+				<li><b>링크 : </b><a href="${vo.link1}">${vo.link1}</a></li>
+				<li><b>설명 : </b>${vo.info1}</li>
+
+			</ul>
 		</div>
-		
+		<div id="map2" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
-				<h3>2nd Place</h3>
-				<ul>
-					<li><h2>${vo.name2}</h2></li>
-					<li><b>주소 : </b>${vo.addr2}</li>
-					<li><b>연락처 : </b>${vo.tel2}</li>
-					<li><b>설명 : </b>${vo.info2}</li>
-					<li><b>링크 : </b><a href="${vo.link2}">${vo.link2}</a></li>
-					
-				</ul>
+			<h3>2nd Place</h3>
+			<h2>${vo.name2}</h2>
+			<ul>
+				<li><b>주소 : </b>${vo.addr2}</li>
+				<li><b>연락처 : </b>${vo.tel2}</li>
+				<li><b>링크 : </b><a href="${vo.link2}">${vo.link2}</a></li>
+				<li><b>설명 : </b>${vo.info2}</li>
+			</ul>
 		</div>
-		
+		<div id="map3" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
-				<h3>3rd Place</h3>
-				<ul>
-					<li><h2>${vo.name3}</h2></li>
-					<li><b>주소 : </b>${vo.addr3}</li>
-					<li><b>연락처 : </b>${vo.tel3}</li>
-					<li><b>설명 : </b>${vo.info3}</li>
-					<li><b>링크 : </b><a href="${vo.link3}">${vo.link3}</a></li>
-					
-				</ul>
+			<h3>3rd Place</h3>
+			<h2>${vo.name3}</h2>
+			<ul>
+				<li><b>주소 : </b>${vo.addr3}</li>
+				<li><b>연락처 : </b>${vo.tel3}</li>
+				<li><b>링크 : </b><a href="${vo.link3}" target="_blank">${vo.link3}</a></li>
+				<li><b>설명 : </b>${vo.info3}</li>
+			</ul>
 		</div>
 	</div>
-	
+
 	<div id="buttonMenu">
 		<a class="button" href="#">수정</a>
 		<c:if test="${vo.grade!='미승인'}">
@@ -225,16 +248,17 @@ $.ajax({
 	</div>
 </div>
 
-<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx2b206584120d471e8a290bd17aaba591"></script>
+<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx2b206584120d471e8a290bd17aaba591"></script>
 <script type="text/javascript">
 	var map;
 	var marker_s, marker_e, marker_p1, marker_p2;
 	var totalMarkerArr = [];
 	var drawInfoArr = [];
 	var resultdrawArr = [];
-	
-	var slat = (lat1+lat2+lat3)/3;
-	var slng = (lng1+lng2+lng3)/3;
+
+	var slat = (lat1 + lat2 + lat3) / 3;
+	var slng = (lng1 + lng2 + lng3) / 3;
 
 	window.onload = function initTmap() {
 		// 1. 지도 띄우기
@@ -266,16 +290,17 @@ $.ajax({
 					map : map
 				});
 		// 3. 경유지 심볼 찍기
-		marker = new Tmapv2.Marker({
-			position : new Tmapv2.LatLng(lat2, lng2),
-			icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_2.png",
-			iconSize : new Tmapv2.Size(24, 38),
-			map:map
-		});
-		
-		var pass = lng2+","+lat2;
-		console.log("확인"+pass);
-		
+		marker = new Tmapv2.Marker(
+				{
+					position : new Tmapv2.LatLng(lat2, lng2),
+					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_2.png",
+					iconSize : new Tmapv2.Size(24, 38),
+					map : map
+				});
+
+		var pass = lng2 + "," + lat2;
+		console.log("확인" + pass);
+
 		// 3. 경로탐색 API 사용요청
 		$
 				.ajax({
@@ -306,23 +331,21 @@ $.ajax({
 										.toFixed(0) + "분";
 
 						$("#result").text(tDistance + tTime);
-						
+
 						//기존 그려진 라인 & 마커가 있다면 초기화
 						if (resultdrawArr.length > 0) {
 							for ( var i in resultdrawArr) {
-								resultdrawArr[i]
-										.setMap(null);
+								resultdrawArr[i].setMap(null);
 							}
 							resultdrawArr = [];
 						}
-						
+
 						drawInfoArr = [];
 
 						for ( var i in resultData) { //for문 [S]
 							var geometry = resultData[i].geometry;
 							var properties = resultData[i].properties;
 							var polyline_;
-
 
 							if (geometry.type == "LineString") {
 								for ( var j in geometry.coordinates) {
@@ -402,7 +425,7 @@ $.ajax({
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');
 	}
-	
+
 	function drawLine(arrPoint) {
 		var polyline_;
 
@@ -414,4 +437,140 @@ $.ajax({
 		});
 		resultdrawArr.push(polyline_);
 	}
+</script>
+
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
+<script>
+	var mapContainer1 = document.getElementById('map1'), // 지도를 표시할 div 
+	mapOption1 = {
+		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
+
+	// 지도를 생성합니다    
+	var map1 = new kakao.maps.Map(mapContainer1, mapOption1);
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder1 = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder1
+			.addressSearch(
+					"${vo.addr1}",
+					function(result, status) {
+
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+
+							var coords1 = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker1 = new kakao.maps.Marker({
+								map : map1,
+								position : coords1
+							});
+
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow1 = new kakao.maps.InfoWindow(
+									{
+										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+									});
+							infowindow1.open(map1, marker1);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map1.setCenter(coords1);
+						}
+					});
+</script>
+<script>
+	var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div 
+	mapOption2 = {
+		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
+
+	// 지도를 생성합니다    
+	var map2 = new kakao.maps.Map(mapContainer2, mapOption2);
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder2 = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder2
+			.addressSearch(
+					"${vo.addr2}",
+					function(result, status) {
+
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+
+							var coords2 = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker2 = new kakao.maps.Marker({
+								map : map2,
+								position : coords2
+							});
+
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow2 = new kakao.maps.InfoWindow(
+									{
+										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+									});
+							infowindow2.open(map2, marker2);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map2.setCenter(coords2);
+						}
+					});
+</script>
+<script>
+	var mapContainer3 = document.getElementById('map3'), // 지도를 표시할 div 
+	mapOption3 = {
+		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
+
+	// 지도를 생성합니다    
+	var map3 = new kakao.maps.Map(mapContainer3, mapOption3);
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder3 = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder3
+			.addressSearch(
+					"${vo.addr3}",
+					function(result, status) {
+
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+
+							var coords3 = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker3 = new kakao.maps.Marker({
+								map : map3,
+								position : coords3
+							});
+
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow3 = new kakao.maps.InfoWindow(
+									{
+										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+									});
+							infowindow3.open(map3, marker3);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map3.setCenter(coords3);
+						}
+					});
 </script>
