@@ -21,16 +21,31 @@
 }
 
 #viewDiv {
-	float: center;
+	
 	background-color: #f5ebe3;
 	border: 1px solid #efcac3;
 	padding: 30px;
 	border-radius: 6px;
+	
+	
+	
+}
+#viewname{
+	width:100%;
+	position:relative;
+
+}
+#divinfo{
+	margin-top: 10px;
+	overflow-x: auto;
+	padding: 15px 15px 15px;
 }
 
 #infoDiv {
-	margin-left: 30%;
+	width:800px;
 	text-align: left;
+	box-sizing: border-box;
+	
 }
 
 #infoDiv li {
@@ -39,7 +54,8 @@
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
-#map{margin:0 auto; border: 1px solid #0e595f}
+#map{ border: 1px solid #0e595f; width:70%; }
+#mapin{width:100%; margin:0 auto; display:flex; flex-direction: column;}
 </style>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
@@ -49,14 +65,17 @@
 	<!-- <img src="imgs/banner/place.jpg" id="banner"/>  -->
 
 	<div id="viewDiv">
+		<div id="viewname">
 		<h4>No.${vo.pcode }</h4>
 		<br />
 		<h1>${vo.name }</h1>
 		<br /> <br />
-
-		<div id="map" style="width:600px;height:350px;"></div>
+		</div>
+	<div id="mapin">
+		<div id="map" style="width:600px;height:350px;" display:flex;></div>
 		<br /> <br />
-
+	</div>
+	<div id="divinfo">
 		<div id="infoDiv">
 			<ul>
 				<li><b>종류 : </b>${vo.datesort }</li>
@@ -67,6 +86,7 @@
 				<li><b>정보 : </b>${vo.info }</li>
 			</ul>
 		</div>
+	</div>
 	</div>
 </div>
 
