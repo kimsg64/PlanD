@@ -10,7 +10,16 @@ public class PlaceVO {
 	private String time;
 	private String info;
 	private String link;
+	private String grade;
 	
+	
+	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public int getPcode() {
 		return pcode;
 	}

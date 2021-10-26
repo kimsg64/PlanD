@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
@@ -35,17 +35,49 @@ const DetermineButtons = styled.div`
 `;
 
 // 코스 정보 받아와서 > 장소1, 장소2, 장소3 주소를 티맵으로 보내서 찍기
-const Result = () => {
+const Result = ({ location }) => {
   const [idx, setIdx] = useState(0);
-  const [startPoint, setStartPoint] = useState(
-    "서울특별시 마포구 서교동 332 33 1층"
-  ); // 부탄츄
-  const [wayPoint, setWayPoint] = useState(
-    "서울특별시 마포구 서교동 홍익로6길 15"
-  ); // 설빙
-  const [endPoint, setEndPoint] = useState(
-    "서울특별시 마포구 서교동 와우산로21길 31-10"
-  ); // 히어로 보드게임 카페
+  const [startPoint, setStartPoint] = useState();
+  // "서울특별시 마포구 서교동 332 33 1층"
+  const [wayPoint, setWayPoint] = useState();
+  // "서울특별시 마포구 서교동 홍익로6길 15"
+  const [endPoint, setEndPoint] = useState();
+  // "서울특별시 마포구 서교동 와우산로21길 31-10"
+  // const [startCoord, setStartCoord] = useState(null);
+  // const [wayCoord, setWayCoord] = useState(null);
+  // const [endCoord, setEndCoord] = useState(null);
+
+  const courseResults = location.props.result;
+  console.log(courseResults);
+  useEffect(() => {
+    // console.log("코스 검색을 통해 들어오면 마운트, 각 포인트 설정");
+    // console.log(courseResults[0]?.addr1);
+    // console.log(courseResults[0]?.addr2);
+    // console.log(courseResults[0]?.addr3);
+    setStartPoint(courseResults[0]?.addr1);
+    setWayPoint(courseResults[0]?.addr2);
+    setEndPoint(courseResults[0]?.addr3);
+  }, [courseResults]);
+
+  // console.log("startPoint: ", startPoint);
+  // console.log("wayPoint: ", wayPoint);
+  // console.log("endPoint: ", endPoint);
+
+  // 구글맵에서 갑자기 왜 또 못찍냐
+  const coords = GoogleMapSettings({ startPoint, wayPoint, endPoint });
+
+  // console.log("coords[0]: ", coords[0]);
+  // console.log("coords[1]: ", coords[1]);
+  // console.log("coords[2]: ", coords[2]);
+  // useEffect(() => {
+  //   console.log("아니 업데이트가 됐는데 셋팅을 안해?");
+  //   setStartCoord(coords[0]);
+  //   setWayCoord(coords[1]);
+  //   setEndCoord(coords[2]);
+  // }, [startPoint, wayPoint, endPoint]);
+  // console.log("startCoord", startCoord);
+  // console.log("wayCoord", wayCoord);
+  // console.log("endCoord", endCoord);
 
   const onClickNext = () => {
     setIdx((prevIdx) => prevIdx + 1);
@@ -53,11 +85,7 @@ const Result = () => {
   const onClickPrev = () => {
     setIdx((prevIdx) => prevIdx - 1);
   };
-  const coords = GoogleMapSettings({ startPoint, wayPoint, endPoint });
   // console.log("coords: ", coords);
-  // console.log("coords[0]: ", coords[0]);
-  // console.log("coords[1]: ", coords[1]);
-  // console.log("coords[2]: ", coords[2]);
 
   return (
     <>
@@ -73,6 +101,9 @@ const Result = () => {
             startPoint={coords[0]}
             wayPoint={coords[1]}
             endPoint={coords[2]}
+            // startPoint={GoogleMapSettings({ startPoint })}
+            // wayPoint={GoogleMapSettings({ wayPoint })}
+            // endPoint={GoogleMapSettings({ endPoint })}
           />
         ) : null}
         <Slider>

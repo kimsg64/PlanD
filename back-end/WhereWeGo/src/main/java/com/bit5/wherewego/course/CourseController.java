@@ -276,13 +276,16 @@ public class CourseController {
 		return r;
 	}
 	//코스 뷰
-	@RequestMapping("/courseView")
+	@RequestMapping("/courseDetail")
 	public ModelAndView courseView(int c_num) {
 		ModelAndView mav = new ModelAndView();
-		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
-		mav.addObject("vo", dao.courseView(c_num));
-		mav.setViewName("course/courseView");
 		
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		ResultVO vo = dao.courseDetail(c_num);
+	
+		mav.addObject("vo", vo);
+		mav.setViewName("course/courseDetail");
+	
 		return mav;
 	}
 	

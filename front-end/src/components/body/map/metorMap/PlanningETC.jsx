@@ -7,6 +7,7 @@ import { Button } from "../../mixin/Mixin";
 import { read_cookie } from "sfcookies";
 import axios from "axios";
 import SelectBox from "../../mixin/SelectBox";
+import { useHistory } from "react-router";
 
 const Container = styled.div`
   width: 100vw;
@@ -79,6 +80,7 @@ const PlanningETC = ({
   const [sort3, setSort3] = useState("");
   const [opt, setOpt] = useState([]);
   const [weather, setWeather] = useState("");
+  const history = useHistory();
   // console.log("ETC 페이지", selectedDate);
   // console.log("ETC", selectedDate);
   // console.log("ETC", selectedStation);
@@ -88,8 +90,8 @@ const PlanningETC = ({
     // 오늘 날짜 구하기
     const today = new Date();
     const dDay = new Date(selectedDate);
-    console.log(today);
-    console.log(dDay);
+    // console.log(today);
+    // console.log(dDay);
     const gap = dDay - today;
     // console.log(gap);
     // console.log(new Date(2021, 9, 32));
@@ -122,7 +124,7 @@ const PlanningETC = ({
             new Date(dYear, dMonth, dDate).toDateString()
           ? 27
           : 35;
-      console.log(index);
+      // console.log(index);
     }
 
     // const index;
@@ -132,7 +134,7 @@ const PlanningETC = ({
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data.list[index].weather[0].icon);
+        // console.log(response.data.list[index].weather[0].icon);
         setWeather(response.data.list[index].weather[0].icon);
       })
       .catch((error) => console.log(error));
@@ -158,7 +160,9 @@ const PlanningETC = ({
       ? 4
       : sort1 + sort2 + sort3 === "기타식당카페"
       ? 5
-      : 6;
+      : sort1 + sort2 + sort3 === "기타카페식당"
+      ? 6
+      : null;
 
   const stcode =
     selectedStation === "천호"
@@ -175,34 +179,45 @@ const PlanningETC = ({
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+    // console.log(sortNum);
+    if (selectedStation === "역") {
+      alert("역과 라인으을 선택해 주세요!");
+      return;
+    } else {
+      const body = {
+        userId: read_cookie("userId"),
+        line: lineNum + "호선",
+        stname: selectedStation,
+        stcode: stcode,
+        resdate: stringifyResdate(),
+        coursesort: sortNum,
+        opt: opt.join("#"),
+        weather: weather,
+      };
+      console.log("플래닝 전송시 넘어갈 바디: ", body);
 
-    const body = {
-      userId: read_cookie("userId"),
-      line: lineNum + "호선",
-      stname: selectedStation,
-      stcode: stcode,
-      resdate: stringifyResdate(),
-      coursesort: sortNum,
-      opt: opt.join("#"),
-      weather: weather,
-    };
-    console.log("플래닝 전송시 넘어갈 바디: ", body);
-
-    // 데이터 전송
-    axios
-      .post("/wherewego/coursePlanD", body)
-      .then((response) => {
-        console.log("response : ", response.data);
-        // 데이터 get 해서 결과 창 띄워야 함 ★★★★★
-        // 가져갈 데이터
-        // 1. userid
-        // 2. place1, 2, 3 (이름, 주소, 영업시간, 종류, 전화번호, info, 링크)
-        // 3. course(코스명, opt, sort, score, 승인된것만)
-        // window.location.href = "http://localhost:3000/#/result";
-      })
-      .catch((error) => {
-        console.log("failed", error);
-      });
+      // 데이터 전송
+      axios
+        .post("/wherewego/coursePlanD", body)
+        .then((response) => {
+          console.log("response : ", response.data);
+          // ★★★★★ 받은 데이터 가지고 결과창으로 보내기
+          console.log(history);
+          if (response.data.length > 0) {
+            history.push({
+              pathname: "/result",
+              props: {
+                result: response.data,
+              },
+            });
+          } else {
+            alert("해당되는 코스가 없습니다...");
+          }
+        })
+        .catch((error) => {
+          console.log("failed", error);
+        });
+    }
   };
 
   return (

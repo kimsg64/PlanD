@@ -8,7 +8,14 @@ public class NoticeVO {
 	private int hit;
 	private String writedate;
 	private int pop;
+	private int delfile;
 	
+	public int getDelfile() {
+		return delfile;
+	}
+	public void setDelfile(int delfile) {
+		this.delfile = delfile;
+	}
 	public int getN_num() {
 		return n_num;
 	}
