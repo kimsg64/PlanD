@@ -25,6 +25,7 @@
 	padding:30px 20px 30px 35px;
 	width:800px;
 	box-sizing: border-box;
+	text-align: left;
 }
 
 .write_title {
