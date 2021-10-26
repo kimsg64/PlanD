@@ -26,7 +26,11 @@
 	</insert>
 	
 	<!-- 회원정보 수정 -->
-	<update id="businessEdit">
-		update business set b_id=#{b_id}, pwd=#{pwd}, name=#{name}, num=#{num}, tel=#{tel}, zip=#{zip}, addr=#{addr}, regdate=#{regdate} where b_id=#{param1}
+	<update id="businessEditOk">
+		update business set b_id=#{b_id}, pwd=#{pwd}, name=#{name}, num=#{num}, tel=#{tel}, zip=#{zip}, addr=#{addr} where b_id=#{b_id}
 	</update>
+	<!-- 회원정보 가져오기 -->
+	<select id="allbusinessSelect" resultType="com.bit5.wherewego.business.BusinessVO">
+		select b_id, pwd, name, num, tel, zip, addr, regdate from business where b_id=#{param1}
+	</select>
 </mapper>

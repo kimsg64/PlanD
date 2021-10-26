@@ -77,6 +77,36 @@ public class BusinessController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+	//회원정보 가져오기
+	@RequestMapping(value = "/MyInfo")
+	public ModelAndView businessEdit(HttpSession session) {
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		String logid = (String)session.getAttribute("logid");
+		BusinessVO logVo = dao.allbusinessSelect(logid);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", logVo);
+		mav.setViewName("business/businessEdit");
+		return mav;
+	}
+	//회원정보 수정
+	@RequestMapping(value = "/businessEditOk", method=RequestMethod.POST)
+	public ModelAndView businessEditOk(BusinessVO vo) {
+		ModelAndView mav = new ModelAndView();
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		int cnt = dao.businessEditOk(vo);
+		mav.addObject("b_id", vo.getB_id());
+		
+		if(cnt>0) {
+			mav.setViewName("redirect:/");
+			
+		}else {
+			mav.addObject("msg","수정");
+			mav.setViewName("business/businessEdit");
+		}
+		return mav;
+		
+	}
 	
 	// 로그아웃
 	@RequestMapping("/logout")
@@ -96,16 +126,5 @@ public class BusinessController {
 		return result;
 	}
 	
-	// 정보수정폼
-	@RequestMapping(value = "/MyInfo")
-	public ModelAndView businessEdit(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		BusinessVO vo = new BusinessVO();
-		vo.setB_id((String)session.getAttribute("b_id"));
-		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
-		mav.addObject("vo", vo);
-		mav.setViewName("business/businessEdit");
-		return mav;
-	}
 	
 }

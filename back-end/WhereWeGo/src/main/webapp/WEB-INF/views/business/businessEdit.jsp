@@ -194,7 +194,7 @@
 <body>
 		<div class="body-layout">
 	        <div class="menu-title">법인회원정보수정</div>
-	        <form  method="POST" id="company_form" encType="multipart/form-data">
+	        <form  method="POST" id="company_form" encType="multipart/form-data" action="/wherewego/businessEditOk">
 	        	<div class="form-styler">
 		          <div class="center-wrapper">
 		            <div class="line-wrapper">
@@ -202,7 +202,7 @@
 		                <label for="userId">아이디</label>
 		              
 
-		                <input class="styled-input" type="text" name="b_id" value="${vo.b_id}"/>
+		                <input class="styled-input" type="text" name="b_id" value="${vo.b_id}" readonly/>
 
 		             
 		              </div>
@@ -219,14 +219,14 @@
 		              </div>
 		              <div class="item-container">
 		                <label for="userPwd2">비밀번호 확인</label>
-		                <input class="styled-input check" type="password" name="bPwd2" required maxLength="16" placeholder="비밀번호 확인" autoComplete="new-password" />
+		                <input class="styled-input check" type="password"  required maxLength="16" placeholder="비밀번호 확인" autoComplete="new-password"/>
 		                <div class="error-msg">비밀번호가 일치하지 않습니다.</div>
 		              </div>
 		            </div>
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="name">상호</label>
-		                <input class="styled-input" type="text" name="name" required minLength="2" maxLength="16" placeholder="상호"  />
+		                <input class="styled-input" type="text" name="name" required minLength="2" maxLength="16" placeholder="상호" value="${vo.name }" />
 		                <div class="error-msg">올바른 상호명을 입력해 주세요.</div>
 		              </div>
 		              <div class="item-container">
@@ -238,18 +238,18 @@
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="tel">대표 연락처</label>
-		                <input class="styled-input" type="text" name="tel" required minLength="9" maxLength="11" placeholder="대표 연락처   ex) 0212349845" pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$" />
+		                <input class="styled-input" type="text" name="tel" required minLength="9" maxLength="11" placeholder="대표 연락처   ex) 0212349845" pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$" value="${vo.tel }"/>
 		                <div class="error-msg">올바른 연락처를 입력해 주세요.</div>
 		              </div>
 		            </div>
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="addr">주소</label>
-		                <input class="styled-input optional"  type="text" name="addr" id="addr" />
+		                <input class="styled-input optional"  type="text" name="addr" id="addr" value="${vo.addr }"/>
 		              </div>
 		              <div class="item-container">
 		                <label for="zip">우편번호</label>
-		                <input class="styled-input optional" type="text" name="zip" id="zip" minLength="5" maxLength="5" />
+		                <input class="styled-input optional" type="text" name="zip" id="zip" minLength="5" maxLength="5" value="${vo.zip }"/>
 		            
 		              <button class="button" type="button" position="absolute">
 		                검색
