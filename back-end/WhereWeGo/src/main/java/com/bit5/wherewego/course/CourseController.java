@@ -277,7 +277,7 @@ public class CourseController {
 	}
 	//코스 뷰
 	@RequestMapping("/courseDetail")
-	public ModelAndView courseView(int c_num) {
+	public ModelAndView courseView(int c_num, CPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
@@ -303,9 +303,20 @@ public class CourseController {
 		
 	
 		mav.addObject("vo", vo);
+		mav.addObject("pVo", pVo);
 		mav.setViewName("course/courseDetail");
 	
 		return mav;
 	}
-	
+	//승인 미승인
+	@RequestMapping("/coursegrade")
+	public ModelAndView coursegrade(int c_num, String grade) {
+		ModelAndView mav = new ModelAndView();
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		
+		int cnt = dao.coursegrade(c_num, grade);
+		mav.addObject("c_num", c_num);
+		mav.setViewName("redirect:courseView");
+		return mav;
+	}
 }

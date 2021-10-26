@@ -21,16 +21,31 @@
 }
 
 #viewDiv {
-	float: center;
+	
 	background-color: #f5ebe3;
 	border: 1px solid #efcac3;
 	padding: 30px;
 	border-radius: 6px;
+	
+	
+	
+}
+#viewname{
+	width:100%;
+	position:relative;
+
+}
+#divinfo{
+	margin-top: 10px;
+	overflow-x: auto;
+	padding: 15px 15px 15px;
 }
 
 #infoDiv {
-	margin-left: 30%;
+	width:800px;
 	text-align: left;
+	box-sizing: border-box;
+	
 }
 
 #infoDiv li {
@@ -39,6 +54,10 @@
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
+
+#map{ border: 1px solid #0e595f; width:70%; }
+#mapin{width:100%; margin:0 auto; display:flex; flex-direction: column;}
+
 #map{margin:0 auto; border: 1px solid #0e595f; 
 width:90%; max-width:700px; height:450px;}
 li a:hover{color:#fd7d73;}
@@ -65,6 +84,7 @@ li a{overflow:ellipsis;}
 #buttonMenu {
 	float: right;
 }
+
 </style>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
@@ -74,14 +94,22 @@ li a{overflow:ellipsis;}
 	<!-- <img src="imgs/banner/place.jpg" id="banner"/>  -->
 
 	<div id="viewDiv">
+		<div id="viewname">
 		<h4>No.${vo.pcode }</h4>
 		<br />
 		<h1>${vo.name }</h1>
 		<br /> <br />
 
-		<div id="map"></div>
-		<br /> <br />
+		</div>
+	<div id="mapin">
+		<div id="map" style="width:600px;height:350px;" display:flex;></div>
 
+
+		<div id="map"></div>
+
+		<br /> <br />
+	</div>
+	<div id="divinfo">
 		<div id="infoDiv">
 			<ul>
 				<li><b>종류 : </b>${vo.datesort }</li>
@@ -94,6 +122,7 @@ li a{overflow:ellipsis;}
 		</div>
 	</div>
 
+
 	<div id="buttonMenu">
 		<a class="button" href="#">수정</a>
 		<c:if test="${vo.grade!='미승인'}">
@@ -102,7 +131,8 @@ li a{overflow:ellipsis;}
 		<c:if test="${vo.grade!='승인'}">
 			<a class="button" href="#">승인</a>
 		</c:if>
-		<a class="button" href="#">목록</a>
+		<a class="button" href="placeList?nowPage=${pVo.nowPage }">목록</a>
+
 	</div>
 </div>
 

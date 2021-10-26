@@ -24,4 +24,9 @@
 	<insert id="insertBusiness" parameterType="com.bit5.wherewego.business.BusinessVO">
 		insert into business values(#{b_id}, #{pwd}, #{name}, #{num}, #{tel}, #{zip}, #{addr}, sysdate)
 	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<insert id="businessEdit" parameterType="com.bit5.wherewego.business.BusinessVO">
+		insert into business values(#{pwd}, #{name}, #{tel}, #{zip}, #{addr})
+	</insert>
 </mapper>
