@@ -30,7 +30,7 @@
 </style>
 
 <div id="mainDiv">
-	<img src="imgs/adminMenu/adB.png"/>
+	<img src="imgs/adminMenu/pointB.png"/>
 	<h2>결제가 완료되었습니다.</h2>
-	<a href="/wherewego/advermanage" class="button">확인</a>
+	<a href="/wherewego/pointshop" class="button">확인</a>
 </div>
