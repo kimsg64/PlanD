@@ -73,8 +73,10 @@ public class ReviewController {
 	}
 
 	//글 내용 보기
+
 	@RequestMapping("/reviewView")
 	public ModelAndView view(int r_num, RePagingVO pVo) {
+
 		ModelAndView mav = new ModelAndView();
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
 		mav.addObject("vo", dao.reviewView(r_num));

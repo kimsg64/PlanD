@@ -188,26 +188,23 @@
 		align-items: flex-end;
 	}
 
+
 </style>
 </head>
 <body>
 		<div class="body-layout">
-	        <div class="menu-title">법인회원가입</div>
+	        <div class="menu-title">법인회원정보수정</div>
 	        <form id="company_form" encType="multipart/form-data">
 	        	<div class="form-styler">
 		          <div class="center-wrapper">
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="userId">아이디</label>
-		                <input class="styled-input" type="text" name="b_id" required minLength="6" maxLength="14" pattern="[A-Za-z]{1}\w{5,14}" placeholder="아이디"/>
-		                <div class="error-msg">
-		                  아이디는 6~14자의 영문 대소문자, 숫자로 이루어져야 하며, 첫
-		                  글자는 영문자만 입력할 수 있습니다.
-		                </div>
+		              
+		                <input class="styled-input" type="text" name="b_id" value="{vo.b_id}" readonly/> 
+		             
 		              </div>
-		              <button class="button" type="button">
-		                중복 확인
-		              </button>
+		           
 		            </div>
 		            <div class="line-wrapper">
 		              <div class="item-container">
@@ -227,13 +224,13 @@
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="name">상호</label>
-		                <input class="styled-input" type="text" name="name" required minLength="2" maxLength="16" placeholder="상호" />
+		                <input class="styled-input" type="text" name="name" required minLength="2" maxLength="16" placeholder="상호"  />
 		                <div class="error-msg">올바른 상호명을 입력해 주세요.</div>
 		              </div>
 		              <div class="item-container">
 		                <label for="num">사업자등록번호</label>
-		                <input class="styled-input" type="text" name="num" placeholder="사업자등록번호   ex) 00-000-00000" required minLength="12" maxLength="12" pattern="^[0-9]{2}-[0-9]{3}-[0-9]{5}$" />
-		                <div class="error-msg">올바른 사업자등록번호를 입력해 주세요.</div>
+		                <input class="styled-input" type="text" name="num" value="{vo.num}" readonly/>
+
 		              </div>
 		            </div>
 		            <div class="line-wrapper">
@@ -251,11 +248,12 @@
 		              <div class="item-container">
 		                <label for="zip">우편번호</label>
 		                <input class="styled-input optional" type="text" name="zip" id="zip" minLength="5" maxLength="5" />
-		              </div>
+		            
 		              <button class="button" type="button" position="absolute">
 		                검색
 		              </button>
 		            </div>
+		              </div>
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="addrDetail">상세주소</label>
@@ -264,10 +262,10 @@
 		            </div>
 		          </div>
 		          <section class="submit-setction">
-		            <button class="submit-button" type="submit">회원가입</button>
+		            <button class="submit-button" type="submit">수정</button>
 		          </section>
 				</div>
 	        </form>
-        </div>
+	        </div>
 </body>
 </html>
