@@ -26,15 +26,6 @@ public class HomeController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
-	/*
-	@RequestMapping(value = "/goFront", method = RequestMethod.GET)
-	@CrossOrigin(origins="")
-	public String goFront() {
-		
-		return "";
-	}
-	*/
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { bake_cookie } from "sfcookies";
+import { bake_cookie, delete_cookie } from "sfcookies";
 import axios from "axios";
 import styled from "styled-components";
 import Footer from "../components/footer/Footer";
@@ -146,6 +146,8 @@ const Login = ({ history }) => {
             // }
             // 일반 사용자
             bake_cookie("userId", userId);
+            // 사업자는 삭제
+            delete_cookie("b_id");
             axios.get("/wherewego/user/checkSession").then((res) => {
               // console.log(res.data);
               // 로컬터널 이용, 임시 공개용 주소
@@ -155,6 +157,8 @@ const Login = ({ history }) => {
           } else {
             // 사업자
             bake_cookie("b_id", userId);
+            // 일반 사용자는 삭제
+            delete_cookie("userId");
             axios.get("/wherewego/business/checkSession").then((res) => {
               // console.log(res.data);
               res.data

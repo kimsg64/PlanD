@@ -274,7 +274,7 @@ const UserRecommendation = ({ history }) => {
       info: info,
       opt: opt.join("#"),
     };
-    console.log("코스 등록용 바디", body);
+    // console.log("코스 등록용 바디", body);
     axios
       .post("/wherewego/checkCourse", body)
       .then((response) => {
@@ -414,9 +414,9 @@ const UserRecommendation = ({ history }) => {
   const onClickAddPlace = (e) => {
     e.preventDefault();
     // 1. 제출해서 장소 추가하기
-    console.log(selectedSort);
-    console.log(clickedPlace);
-    console.log(clickedPlaceAddr);
+    // console.log(selectedSort);
+    // console.log(clickedPlace);
+    // console.log(clickedPlaceAddr);
     console.log(clickedPlaceTel);
     selectedPcode === ""
       ? alert("순서를 선택해 주세요!")

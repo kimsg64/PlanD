@@ -55,7 +55,7 @@ const KakaoMapSearchFormInput = ({
   }, [clickedPlace]);
   // 제출시... 왜인지 버튼 클릭을 막으면 서브밋도 같이 막힘;
   const onSubmitKeyword = (e) => {
-    console.log("서브밋 발생하냐?");
+    // console.log("서브밋 발생하냐?");
     e.preventDefault();
     setPlace(inputText);
   };

@@ -78,6 +78,16 @@ const WeatherBox = styled.div`
   }
 `;
 
+const CakeContainer = styled.div`
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-huge);
+  color: var(--color-focus);
+`;
+
 // const SubHeading = styled.div`
 //   margin-top: calc(var(--margin-default)) 0;
 //   font-size: var(--font-size-title-normal);
@@ -233,11 +243,12 @@ const MemberHome = () => {
               {isLoaded && userData?.startdate === null ? (
                 <>
                   <HomeSubMenuTitle>기념일을 설정해 주세요!</HomeSubMenuTitle>
-                  <Link to={`/individualform`}>
-                    <StyledButtonWidthMargin fromTop="400px">
-                      기념일 설정하러 가기
-                    </StyledButtonWidthMargin>
-                  </Link>
+                  <CakeContainer>
+                    <i className="fas fa-birthday-cake"></i>
+                  </CakeContainer>
+                  <StyledButtonWidthMargin>
+                    <Link to={`/individualform`}>기념일 설정하러 가기</Link>
+                  </StyledButtonWidthMargin>
                 </>
               ) : (
                 <>

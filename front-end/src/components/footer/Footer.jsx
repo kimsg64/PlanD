@@ -61,7 +61,9 @@ const Footer = () => {
             <NavItems>
               <Link to={`/faq`}>FAQ</Link>
             </NavItems>
-            <NavItems>Q&A</NavItems>
+            <NavItems>
+              <a href="http://localhost:9090/wherewego/qna">Q&A</a>
+            </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
         <NavItemsContainer>

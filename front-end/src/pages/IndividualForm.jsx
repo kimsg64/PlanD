@@ -43,9 +43,9 @@ const IndividualForm = ({ history }) => {
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   // 임시값
-  const [zip, setZip] = useState("12345");
+  // const [zip, setZip] = useState("12345");
   const [addr, setAddr] = useState("");
-  const [addrDetail, setAddrDetail] = useState("");
+  // const [addrDetail, setAddrDetail] = useState("");
   const [startdate, setStartdate] = useState("");
   const [opt, setOpt] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -82,7 +82,7 @@ const IndividualForm = ({ history }) => {
       setName(userData.name);
       setNum(userData.num);
       setTel(userData.tel);
-      setZip(userData.zip);
+      // setZip(userData.zip);
       // 날짜
       if (userData.startdate === null) {
         return;
@@ -93,16 +93,16 @@ const IndividualForm = ({ history }) => {
         setStartdate(`${year}-${month}-${date}`);
       }
       // 로/동을 기준으로 addr, addrDetail로 나누기
-      userData.addr.includes("동")
-        ? setAddr(userData.addr.split("동")[0] + "동")
-        : userData.addr.includes("로")
-        ? setAddr(userData.addr.split("로")[0] + "로")
-        : setAddr("");
-      userData.addr.includes("동")
-        ? setAddrDetail(userData.addr.split("동")[1])
-        : userData.addr.includes("로")
-        ? setAddrDetail(userData.addr.split("로")[1])
-        : setAddrDetail("");
+      // userData.addr.includes("동")
+      //   ? setAddr(userData.addr.split("동")[0] + "동")
+      //   : userData.addr.includes("로")
+      //   ? setAddr(userData.addr.split("로")[0] + "로")
+      //   : setAddr("");
+      // userData.addr.includes("동")
+      //   ? setAddrDetail(userData.addr.split("동")[1])
+      //   : userData.addr.includes("로")
+      //   ? setAddrDetail(userData.addr.split("로")[1])
+      //   : setAddrDetail("");
       setEmail(userData.email);
       // 옵션 잘라서 넣기
       setOpt(userData.opt.split("#"));
@@ -146,8 +146,9 @@ const IndividualForm = ({ history }) => {
       num: num,
       tel: tel,
       email: email,
-      zip: zip,
-      addr: addr + " " + addrDetail,
+      // zip: zip,
+      // addr: addr + " " + addrDetail,
+      addr: addr,
       startdate: startdate,
       opt: opt.join("#"),
     };
@@ -344,7 +345,7 @@ const IndividualForm = ({ history }) => {
               </ItemContainer>
             </LineWrapper>
             <LineWrapper>
-              <ItemContainer width="16.5em">
+              {/* <ItemContainer width="16.5em">
                 <Label htmlFor="zip">우편번호</Label>
                 {isLoaded ? (
                   <FormInput
@@ -374,7 +375,7 @@ const IndividualForm = ({ history }) => {
                 width="54px"
               >
                 검색
-              </Button>
+              </Button> */}
               <ItemContainer>
                 <Label htmlFor="addr">주소</Label>
                 {isLoaded ? (
@@ -395,9 +396,9 @@ const IndividualForm = ({ history }) => {
                   />
                 )}
               </ItemContainer>
-            </LineWrapper>
-            <LineWrapper>
-              <ItemContainer>
+              {/* </LineWrapper>
+            <LineWrapper> */}
+              {/* <ItemContainer>
                 <Label htmlFor="addrDetail">상세주소</Label>
                 {isLoaded ? (
                   <FormInput
@@ -416,14 +417,14 @@ const IndividualForm = ({ history }) => {
                     onKeyUp={(e) => setAddrDetail(e.target.value)}
                   />
                 )}
-              </ItemContainer>
+              </ItemContainer> */}
               <ItemContainer>
                 <Label htmlFor="startdate">기념일</Label>
                 {isLoaded ? (
                   <FormInput
                     type="date"
                     max={setMaxDate()}
-                    width="20em"
+                    width="16em"
                     className="optional"
                     onChange={(e) => setStartdate(e.target.value)}
                     value={startdate}
@@ -432,7 +433,7 @@ const IndividualForm = ({ history }) => {
                   <FormInput
                     type="date"
                     max={setMaxDate()}
-                    width="20em"
+                    width="16em"
                     className="optional"
                     onChange={(e) => setStartdate(e.target.value)}
                   />

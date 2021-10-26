@@ -249,7 +249,9 @@ const KakaoMapSearchForm = ({
             // console.log(title);
             setClickedPlace(title);
             setClickedPlaceAddr(selectedPlace.address_name);
-            setClickedPlaceTel(selectedPlace.phone);
+            const phoneWithoutHypen = selectedPlace.phone.split("-").join("");
+            console.log(phoneWithoutHypen);
+            setClickedPlaceTel(phoneWithoutHypen);
           });
           // console.log(marker);
           // console.log(title);

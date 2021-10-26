@@ -32,9 +32,9 @@ const CompanyForm = ({ history }) => {
   const [num, setNum] = useState("");
   const [tel, setTel] = useState("");
   // 임시값
-  const [zip, setZip] = useState("12345");
+  // const [zip, setZip] = useState("12345");
   const [addr, setAddr] = useState("");
-  const [addrDetail, setAddrDetail] = useState("");
+  // const [addrDetail, setAddrDetail] = useState("");
 
   // 비밀번호 더블체크
   const checkPwd = (e) => {
@@ -61,8 +61,9 @@ const CompanyForm = ({ history }) => {
       name: name,
       num: num,
       tel: tel,
-      zip: zip,
-      addr: addr + " " + addrDetail,
+      // zip: zip,
+      // addr: addr + " " + addrDetail,
+      addr: addr,
     };
     console.log("회사바디", body);
     axios
@@ -207,12 +208,12 @@ const CompanyForm = ({ history }) => {
                   type="text"
                   name="addr"
                   id="addr"
-                  width="32em"
+                  width="50em"
                   className="optional"
                   onKeyUp={(e) => setAddr(e.target.value)}
                 />
               </ItemContainer>
-              <ItemContainer width="5em">
+              {/* <ItemContainer width="5em">
                 <Label htmlFor="zip">우편번호</Label>
                 <FormInput
                   type="text"
@@ -245,7 +246,7 @@ const CompanyForm = ({ history }) => {
                   className="optional"
                   onKeyUp={(e) => setAddrDetail(e.target.value)}
                 />
-              </ItemContainer>
+              </ItemContainer> */}
             </LineWrapper>
           </CenterWrapper>
           <SubmitSection>

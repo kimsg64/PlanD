@@ -7,7 +7,7 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="com.bit5.wherewego.user.UserVO">
-		insert into usertbl(userid, pwd, name, num, tel, email, zip, addr, startdate, opt) values(#{userId}, #{pwd}, #{name}, #{num}, #{tel}, #{email}, #{zip}, #{addr}, TO_DATE(#{startdate}, 'YYYY-MM-DD'), #{opt})
+		insert into usertbl(userid, pwd, name, num, tel, email, addr, startdate, opt) values(#{userId}, #{pwd}, #{name}, #{num}, #{tel}, #{email}, #{addr}, TO_DATE(#{startdate}, 'YYYY-MM-DD'), #{opt})
 	</insert>
 	
 	<!-- 로그인 -->

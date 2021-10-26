@@ -14,7 +14,10 @@ import {
 import PageSlider from "../components/body/mixin/PageSlider";
 import CustomTMap from "../components/body/map/CustomTMap";
 import GoogleMapSettings from "../components/body/map/GoogleMapSettings";
-import axios from "axios";
+
+const MenuTitleWithMargin = styled(MenuTitle)`
+  margin-bottom: var(--margin-default);
+`;
 
 const Slider = styled.div`
   width: 100vw;
@@ -95,6 +98,7 @@ const ImageSection = styled.div`
     height: 100%;
   }
 `;
+
 const InfoSection = styled.div`
   width: 400px;
   height: 300px;
@@ -116,7 +120,10 @@ const InfoSection = styled.div`
 `;
 
 const ForecastBox = styled.div`
-  margin-top: calc(var(--margin-default) / 2);
+  margin: calc(var(--margin-default) / 2) 0;
+  & h2 {
+    margin-bottom: var(--margin-default);
+  }
 `;
 
 // 코스 정보 받아와서 > 장소1, 장소2, 장소3 주소를 티맵으로 보내서 찍기
@@ -134,6 +141,10 @@ const Result = ({ location }) => {
   const [isSelected2, setIsSelected2] = useState(false);
   const [isSelected3, setIsSelected3] = useState(false);
 
+  // 야매 코디 추천
+  const [recommended, setRecommended] = useState("");
+  const [recommendedKor, setRecommendedKor] = useState("");
+
   // 검색 결과 받아와서 찍기
   const courseResults = location.props.result;
   const weather = location.props.weather;
@@ -141,6 +152,42 @@ const Result = ({ location }) => {
   const sort = location.props.sort;
   // console.log("결과 객체", courseResults);
   console.log("날씨 객체", weather);
+  console.log(recommended);
+  useEffect(() => {
+    weather[0]?.icon === "01d" ||
+    weather[0]?.icon === "01n" ||
+    weather[0]?.icon === "02d" ||
+    weather[0]?.icon === "02n"
+      ? setRecommended("trench")
+      : weather[0]?.icon === "03d" ||
+        weather[0]?.icon === "03n" ||
+        weather[0]?.icon === "04d" ||
+        weather[0]?.icon === "04n"
+      ? setRecommended("fleece")
+      : weather[0]?.icon === "09d" ||
+        weather[0]?.icon === "09n" ||
+        weather[0]?.icon === "10d" ||
+        weather[0]?.icon === "10n"
+      ? setRecommended("umbrella")
+      : setRecommended("nothing");
+
+    weather[0]?.icon === "01d" ||
+    weather[0]?.icon === "01n" ||
+    weather[0]?.icon === "02d" ||
+    weather[0]?.icon === "02n"
+      ? setRecommendedKor("트렌치 코트")
+      : weather[0]?.icon === "03d" ||
+        weather[0]?.icon === "03n" ||
+        weather[0]?.icon === "04d" ||
+        weather[0]?.icon === "04n"
+      ? setRecommendedKor("후리스")
+      : weather[0]?.icon === "09d" ||
+        weather[0]?.icon === "09n" ||
+        weather[0]?.icon === "10d" ||
+        weather[0]?.icon === "10n"
+      ? setRecommendedKor("우산")
+      : setRecommendedKor("없음");
+  }, []);
   // console.log("날짜 스트링", resdate);
   // console.log("순서", sort);
   useEffect(() => {
@@ -229,7 +276,7 @@ const Result = ({ location }) => {
     <>
       <Header />
       <BodyLayout>
-        <MenuTitle>{courseResults[0].name}</MenuTitle>
+        <MenuTitleWithMargin>{courseResults[0].name}</MenuTitleWithMargin>
         {coords.length === 3 ? (
           <CustomTMap
             startPoint={coords[0]}
@@ -391,15 +438,37 @@ const Result = ({ location }) => {
                 alt={weather[0]?.description}
               />
               <ForecastBox>
-                <PointLetter>
-                  {`${resdate?.substring(0, 4)}년 ${resdate?.substring(
-                    5,
-                    7
-                  )}월 ${resdate?.substring(8, 10)}일`}
-                </PointLetter>
-                의 날씨: {weather[0]?.description}
+                <h2>
+                  <PointLetter>
+                    {`${resdate?.substring(0, 4)}년 ${resdate?.substring(
+                      5,
+                      7
+                    )}월 ${resdate?.substring(8, 10)}일`}
+                  </PointLetter>
+                  의 날씨: {weather[0]?.description}
+                </h2>
               </ForecastBox>
-              <div>추천 코디</div>
+
+              <PlaceInfoWindow>
+                <ImageSection>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/shoppings/${recommended}1.jpg`}
+                    alt="first"
+                  />
+                </ImageSection>
+                <InfoSection>
+                  <h2>
+                    추천 아이템:
+                    <PointLetter>{recommendedKor}</PointLetter>
+                  </h2>
+                  <a
+                    href={`https://search.musinsa.com/search/musinsa/integration?type=&q=${recommendedKor}`}
+                    target="_blank"
+                  >
+                    <Button>사러 가기</Button>
+                  </a>
+                </InfoSection>
+              </PlaceInfoWindow>
             </Container>
           </PageSlider>
         </Slider>

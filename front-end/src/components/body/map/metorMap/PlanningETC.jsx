@@ -32,12 +32,20 @@ const ItemContainer = styled.div`
   margin-bottom: var(--margin-default);
 `;
 
+const CalendarContainer = styled(ItemContainer)`
+  flex-direction: column;
+  align-items: center;
+`;
+
 const TitleSection = styled.section`
-  width: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
 `;
 
 const ContentSection = styled.section`
-  width: calc(100% - 300px);
+  width: calc(100% - 360px);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -50,6 +58,7 @@ const OptionContainer = styled(ItemContainer)`
 const Indicator = styled.div`
   display: flex;
   padding-right: calc(var(--padding-default) * 2);
+  margin-left: calc(var(--margin-default) * 3.6);
 `;
 
 const ColorIndicator = styled.div`
@@ -227,23 +236,23 @@ const PlanningETC = ({
   return (
     <Container>
       <SearchForm onSubmit={onSubmitForm}>
-        <ItemContainer>
+        <CalendarContainer>
           <TitleSection>
             <Label>데이트 날짜를 선택하세요.</Label>
-          </TitleSection>
-          <ContentSection>
             <Indicator>
               <ColorIndicator bgColor="var(--color-focus)" />
               <TextIndicator>오늘</TextIndicator>
               <ColorIndicator bgColor="var(--color-green)" />
               <TextIndicator>예정</TextIndicator>
             </Indicator>
+          </TitleSection>
+          <ContentSection>
             <CustomCalerdar
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
             />
           </ContentSection>
-        </ItemContainer>
+        </CalendarContainer>
         {/* <ItemContainer>
           <TitleSection>
             <Label>데이트 시작할 시간을 선택하세요.</Label>
