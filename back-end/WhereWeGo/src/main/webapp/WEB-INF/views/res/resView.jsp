@@ -155,7 +155,7 @@ color:#fd7d73;}
 	});
 </script>
 <div id="mainDiv">
-	<h1>코스 상세보기</h1>
+	<h1>예약 상세보기</h1>
 	<!-- <img src="imgs/banner/place.jpg" id="banner"/>  -->
 
 	<div id="viewDiv">
