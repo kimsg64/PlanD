@@ -308,5 +308,15 @@ public class CourseController {
 	
 		return mav;
 	}
-	
+	//승인 미승인
+	@RequestMapping("/coursegrade")
+	public ModelAndView coursegrade(int c_num, String grade) {
+		ModelAndView mav = new ModelAndView();
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		
+		int cnt = dao.coursegrade(c_num, grade);
+		mav.addObject("c_num", c_num);
+		mav.setViewName("redirect:courseView");
+		return mav;
+	}
 }
