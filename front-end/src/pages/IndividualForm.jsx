@@ -33,7 +33,7 @@ const SubmitSection = styled.section`
   align-items: flex-end;
 `;
 
-const IndividualForm = () => {
+const IndividualForm = ({ history }) => {
   const [userId, setUserId] = useState("");
   const [pwd, setPwd] = useState("");
   // 비밀번호 체크용(userPwd2)
@@ -158,15 +158,21 @@ const IndividualForm = () => {
       .then((response) => {
         console.log("response : ", response.data);
         if (response.data > 0) {
-          alert("회원가입이 완료되었습니다!");
-          window.location.href = "http://localhost:3000/#/login";
+          isLoaded
+            ? alert("회원정보 수정이 완료되었습니다!")
+            : alert("회원가입이 완료되었습니다!");
+          history.push("/login");
         } else {
-          alert("회원가입에 실패하였습니다...!!!");
+          isLoaded
+            ? alert("회원정보 수정에 실패하였습니다...!")
+            : alert("회원가입에 실패하였습니다...!!!");
         }
       })
       .catch((error) => {
         console.log("failed", error);
-        alert("회원가입에 실패하였습니다...");
+        isLoaded
+          ? alert("회원정보 수정에 실패하였습니다...!")
+          : alert("회원가입에 실패하였습니다...");
       });
   };
 
@@ -289,6 +295,7 @@ const IndividualForm = () => {
                     placeholder="ex) 01012349874"
                     pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
                     onKeyDown={(e) => setTel(e.target.value)}
+                    onChange={(e) => setTel(e.target.value)}
                     value={tel}
                   />
                 ) : (
@@ -321,6 +328,7 @@ const IndividualForm = () => {
                     placeholder="ex) abc@naver.com"
                     pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
                     onKeyDown={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
                 ) : (
@@ -343,6 +351,7 @@ const IndividualForm = () => {
                     type="text"
                     width="16em"
                     className="optional"
+                    onChange={(e) => setZip(e.target.value)}
                     value={zip}
                     minLength="5"
                     maxLength="5"
@@ -374,6 +383,7 @@ const IndividualForm = () => {
                     width="32em"
                     className="optional"
                     onKeyUp={(e) => setAddr(e.target.value)}
+                    onChange={(e) => setAddr(e.target.value)}
                     value={addr}
                   />
                 ) : (
@@ -395,6 +405,7 @@ const IndividualForm = () => {
                     width="28em"
                     className="optional"
                     onKeyUp={(e) => setAddrDetail(e.target.value)}
+                    onChange={(e) => setAddrDetail(e.target.value)}
                     value={addrDetail}
                   />
                 ) : (
@@ -436,7 +447,7 @@ const IndividualForm = () => {
             </ItemContainer>
             <SubmitSection>
               <SubmitButton type="submit">
-                {userData ? "수정완료" : "회원가입"}
+                {isLoaded ? "수정완료" : "회원가입"}
               </SubmitButton>
             </SubmitSection>
           </BottomSection>

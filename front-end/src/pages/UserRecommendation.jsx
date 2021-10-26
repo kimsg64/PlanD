@@ -13,7 +13,6 @@ import {
   ToolTip,
 } from "../components/body/mixin/Mixin";
 import Modal from "../components/body/mixin/Modal";
-import KakaoSearchFormInput from "../components/body/map/KakaoMapSearchFormInput";
 import ModalBG from "../components/body/mixin/ModalBG";
 import styled from "styled-components";
 import CustomCKEditor from "../components/body/mixin/CustomCKEditor";
@@ -23,6 +22,7 @@ import BorderEffect from "../components/body/mixin/BorderEffect";
 import { read_cookie } from "sfcookies";
 import SelectBox from "../components/body/mixin/SelectBox";
 import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
+import KakaoMapSearchFormInput from "../components/body/map/KakaoMapSearchFormInput";
 
 // 지도 래퍼
 const MapWarpper = styled.div`
@@ -176,7 +176,7 @@ const StyledSearchBar = styled(SearchBar)`
   margin: 0 0 0 66px;
 `;
 
-const UserRecommendation = () => {
+const UserRecommendation = ({ history }) => {
   // ★ 1. 인풋 줄긋기 이펙트
   const [courseNameWidth, setCourseNameWidth] = useState("0");
   const [place1Width, setPlace1Width] = useState("0");
@@ -282,13 +282,11 @@ const UserRecommendation = () => {
         alert(
           "해당 코스는 관리자의 심사를 거친 후 등록 여부가 결정되기까지 수 일이 소요됩니다."
         );
-        return (window.location.href = "http://localhost:3000/#/memberhome");
+        return history.push("/mypage");
       })
       .catch((error) => {
         // console.log(error);
         alert("신규 코스 등록 신청에 실패했습니다... ");
-        return (window.location.href =
-          "http://localhost:3000/#/userrecommendation");
       });
   };
 
@@ -684,7 +682,7 @@ const UserRecommendation = () => {
             <ModalBG setShowModal={setShowModal}>
               <Modal>
                 <MapWarpper>
-                  <KakaoSearchFormInput
+                  <KakaoMapSearchFormInput
                     clickedPlace={clickedPlace}
                     setClickedPlace={setClickedPlace}
                     setClickedPlaceAddr={setClickedPlaceAddr}

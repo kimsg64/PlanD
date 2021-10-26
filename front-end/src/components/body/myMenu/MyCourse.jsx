@@ -10,12 +10,12 @@ const MyCourse = (userCourse = null) => {
   const [selectedItem, setSelectedItem] = useState("");
   const userCourseData = userCourse?.userCourse;
   // console.log("마이코스", userCourse);
-  console.log("옵셔널 체이닝 후 코스", userCourseData);
+  // console.log("옵셔널 체이닝 후 코스", userCourseData);
 
   const onClickItem = (e) => {
     setShowModal(true);
-    console.log(e.target.dataset);
-    console.log(e.target.dataset.cnum);
+    // console.log(e.target.dataset);
+    // console.log(e.target.dataset.cnum);
   };
 
   return (

@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import Geocode from "react-geocode";
 
 const GoogleMapSettings = ({
-  startPoint = "서울특별시 마포구 서교동 332 33 1층",
-  wayPoint = "서울특별시 마포구 서교동 홍익로6길 15",
-  endPoint = "서울특별시 마포구 서교동 와우산로21길 31-10",
+  startPoint = "",
+  wayPoint = "",
+  endPoint = "",
 }) => {
-  // console.log("startPoint", startPoint);
-  // console.log("wayPoint", wayPoint);
-  // console.log("endPoint", endPoint);
+  console.log("셋팅 startPoint", startPoint);
+  console.log("셋팅 wayPoint", wayPoint);
+  console.log("셋팅 endPoint", endPoint);
   // 리버스 Geocode (주소로 좌표 구하기)
   // 좌표를 담을 배열(기본 빈 배열)
   const [places, setPlaces] = useState([]);
@@ -40,11 +40,18 @@ const GoogleMapSettings = ({
     // console.log(
     //   `address1: ${address1} \naddress2: ${address2} \naddress3: ${address3} \n`
     // );
-    getLatLng(startPoint);
-    getLatLng(wayPoint);
-    getLatLng(endPoint);
-    // console.log("허허", places);
-  }, []);
+    console.log("니가 안되고 있니?");
+    console.log("넌뭔데 안들어가니? startPoint", startPoint);
+    console.log("넌뭔데 안들어가니? wayPoint", wayPoint);
+    console.log("넌뭔데 안들어가니? endPoint", endPoint);
+    if (startPoint !== "" && wayPoint !== "" && endPoint !== "") {
+      console.log("잡았다 요놈");
+      getLatLng(startPoint);
+      getLatLng(wayPoint);
+      getLatLng(endPoint);
+    }
+    console.log("허허", places);
+  }, [startPoint, wayPoint, endPoint]);
 
   return places;
 };

@@ -2,8 +2,8 @@ import React from "react";
 
 const MyReviews = (userReview = null) => {
   const userReviewData = userReview?.userReview;
-  console.log("마이리뷰", userReview);
-  console.log("옵셔널 체이닝 후 리뷰", userReviewData);
+  // console.log("마이리뷰", userReview);
+  // console.log("옵셔널 체이닝 후 리뷰", userReviewData);
   return (
     <div>
       {userReviewData?.length > 0 ? (

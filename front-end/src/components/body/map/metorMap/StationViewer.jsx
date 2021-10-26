@@ -100,7 +100,7 @@ const StationViewer = ({
   const startSearching = (e) => {
     setSelectedStation("");
     e.preventDefault();
-    console.log(stationsList);
+    // console.log(stationsList);
     const found = stationsList.find((station) => station.stname === keyword);
     if (found === undefined) {
       setSelectedStation("역");
