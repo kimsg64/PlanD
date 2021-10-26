@@ -90,4 +90,8 @@
 		</if>
 		where n_num=#{n_num}
 	</update>
+	
+	<select id="selectPopup" resultType="String">
+		select n_num, photo from notice where pop=1
+	</select>
 </mapper>

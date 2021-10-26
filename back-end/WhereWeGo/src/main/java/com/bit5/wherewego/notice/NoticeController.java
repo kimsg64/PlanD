@@ -282,5 +282,17 @@ public class NoticeController {
 			}
 			return mav;
 		}
+		
+		//글수정 폼
+		@RequestMapping("/selectPopUp")
+		public ModelAndView selectPopUp(int n_num) {
+			ModelAndView mav = new ModelAndView();
+			
+			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
+			mav.addObject("vo", dao.selectPopUp());
+			//vo에 공지사항 num이랑 이미지파일명 있어요
+
+			return mav;
+		}
 	}
 

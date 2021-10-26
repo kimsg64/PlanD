@@ -28,4 +28,6 @@ public interface NoticeDAOImp {
 
 	public int delNoticeFile(NoticeVO vo);
 
+	public NoticeVO selectPopUp();
+
 }
