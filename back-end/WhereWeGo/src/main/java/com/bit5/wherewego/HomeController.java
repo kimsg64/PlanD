@@ -42,23 +42,23 @@ public class HomeController {
 
 		CourseDAOImp dao1 = sqlSession.getMapper(CourseDAOImp.class);
 		int cnt1 = dao1.newCourseCount();
-		
+
 		AdDAOImp dao2 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt2 = dao2.newAdCount();
-		
+
 		ReviewDAOImp dao3 = sqlSession.getMapper(ReviewDAOImp.class);
 		int cnt3 = dao3.newReviewCount();
 
 		BuyDAOImp dao4 = sqlSession.getMapper(BuyDAOImp.class);
 		int cnt4 = dao4.newBuyCount();
-		
+
 		mav.addObject("cnt1",cnt1);
 		mav.addObject("cnt2",cnt2);
 		mav.addObject("cnt3",cnt3);
 		mav.addObject("cnt4",cnt4);
-		
+
 		String b_id = (String)session.getAttribute("logid");
-		
+
 		AdDAOImp dao5 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt5 = dao5.ingAdCount(b_id);
 		AdDAOImp dao6 = sqlSession.getMapper(AdDAOImp.class);
@@ -67,13 +67,23 @@ public class HomeController {
 		int cnt7 = dao7.edAdCount(b_id);
 		AdDAOImp dao8 = sqlSession.getMapper(AdDAOImp.class);
 		int cnt8 = dao8.payAdCount(b_id);
-		
+
 		mav.addObject("cnt5",cnt5);
 		mav.addObject("cnt6",cnt6);
 		mav.addObject("cnt7",cnt7);
 		mav.addObject("cnt8",cnt8);
 
 		mav.setViewName("home");
+
+		return mav;
+	}
+
+	//qna
+	@RequestMapping("/qna")
+	public ModelAndView list() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/qna");
 
 		return mav;
 	}

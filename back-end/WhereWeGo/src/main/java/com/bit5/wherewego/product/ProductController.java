@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.place.PlaceDAOImp;
 import com.bit5.wherewego.user.UserDAOImp;
 import com.bit5.wherewego.user.UserVO;
 
@@ -122,6 +123,17 @@ public class ProductController {
 			mav.addObject("msg","수정");
 			mav.setViewName("pointshop/pointshopResult");
 		}
+		return mav;
+	}
+	// 승인 미승인 ㄱㄱ
+	@RequestMapping("/placegrade")
+	public ModelAndView placegrade(int pcode, String grade) {
+		ModelAndView mav = new ModelAndView();
+		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
+		
+		int cnt = dao.placegrade(pcode, grade);
+		mav.addObject("pcode", pcode);
+		mav.setViewName("redirect:placeView");
 		return mav;
 	}
 }

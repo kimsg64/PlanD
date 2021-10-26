@@ -10,7 +10,7 @@ public interface ReviewDAOImp {
 	public List<ReviewVO> myReviewSelect (String userid);
 	public ReviewVO reviewView (int r_num);
 	public int totalReviewCount(String searchKey, String searchWord); //페이징
-	public int reViewgradech(int num, String st);
+	public int reViewgradech(int num, String st);//공개 비공개
 	public int reviewWriteOk(ReviewVO vo); // 리뷰 작성 확인용
 	public int reviewEditOk(ReviewVO vo); //리뷰 수정 확인용
 }

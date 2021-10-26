@@ -194,14 +194,16 @@
 <body>
 		<div class="body-layout">
 	        <div class="menu-title">법인회원정보수정</div>
-	        <form id="company_form" encType="multipart/form-data">
+	        <form  method="POST" id="company_form" encType="multipart/form-data">
 	        	<div class="form-styler">
 		          <div class="center-wrapper">
 		            <div class="line-wrapper">
 		              <div class="item-container">
 		                <label for="userId">아이디</label>
 		              
-		                <input class="styled-input" type="text" name="b_id" value=""/> ${vo.b_id}
+
+		                <input class="styled-input" type="text" name="b_id" value="${vo.b_id}"/>
+
 		             
 		              </div>
 		           
@@ -229,7 +231,7 @@
 		              </div>
 		              <div class="item-container">
 		                <label for="num">사업자등록번호</label>
-		                <input class="styled-input" type="text" name="num" value="{vo.num}" readonly/>
+		                <input class="styled-input" type="text" name="num" value="${vo.num}" readonly/>
 
 		              </div>
 		            </div>

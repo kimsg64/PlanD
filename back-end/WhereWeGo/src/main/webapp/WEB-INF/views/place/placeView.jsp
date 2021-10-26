@@ -115,15 +115,17 @@ li a {
 		</div>
 
 
-		<div id="buttonMenu">
-			<a class="button" href="#">수정</a>
-			<c:if test="${vo.grade!='미승인'}">
-				<a class="button" href="#">미승인</a>
-			</c:if>
-			<c:if test="${vo.grade!='승인'}">
-				<a class="button" href="#">승인</a>
-			</c:if>
-			<a class="button" href="placeList?nowPage=${pVo.nowPage }">목록</a>
+
+	<div id="buttonMenu">
+		<a class="button" href="#">수정</a>
+		<c:if test="${vo.grade!='승인'}">
+			<a class="button" href="/wherewego/placegrade?pcode=${vo.pcode }&grade=${vo.grade}">승인</a>
+		</c:if>
+		<c:if test="${vo.grade!='미승인'}">
+			<a class="button" href="/wherewego/placegrade?pcode=${vo.pcode }&grade=${vo.grade}">미승인</a>
+		</c:if>
+		<a class="button" href="placeList?nowPage=${pVo.nowPage }">목록</a>
+
 
 		</div>
 	</div>

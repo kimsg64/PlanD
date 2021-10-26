@@ -19,7 +19,7 @@
             <li>이용약관</li>
             <li>개인정보취급방침</li>
             <li>FAQ</li>
-            <li>Q&A</li>
+            <li><a href="/wherewego/qna">Q&A</a></li>
           </ul>
         </div>
         <div class="nav-container">

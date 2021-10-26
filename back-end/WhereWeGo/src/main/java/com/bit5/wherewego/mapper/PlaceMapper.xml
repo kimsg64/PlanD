@@ -54,4 +54,13 @@
 	<select id="placeView" resultType="com.bit5.wherewego.place.PlaceVO">
 		select pcode, datesort, name, addr, tel, info, time, info, link, grade from place where pcode=${param1}
 	</select>
+	<!--  승인 미승인 -->
+	<update id="placegrade">
+		update place set
+		<choose>
+			<when test='param2.equals("승인")'>grade='미승인'</when>
+			<otherwise>grade='승인'</otherwise>
+		</choose>
+		where pcode=${param1}
+	</update>
 </mapper>

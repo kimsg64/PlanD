@@ -96,10 +96,14 @@ public class BusinessController {
 		return result;
 	}
 	
-	// 정보수정
+	// 정보수정폼
 	@RequestMapping(value = "/MyInfo")
-	public ModelAndView businessEdit() {
+	public ModelAndView businessEdit(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		BusinessVO vo = new BusinessVO();
+		vo.setB_id((String)session.getAttribute("b_id"));
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		mav.addObject("vo", vo);
 		mav.setViewName("business/businessEdit");
 		return mav;
 	}
