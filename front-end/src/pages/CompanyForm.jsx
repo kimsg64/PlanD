@@ -23,7 +23,7 @@ const SubmitSection = styled.section`
   align-items: flex-end;
 `;
 
-const CompanyForm = () => {
+const CompanyForm = ({ history }) => {
   const [b_id, setB_id] = useState("");
   const [pwd, setPwd] = useState("");
   // 비밀번호 체크용(userPwd2)
@@ -71,7 +71,7 @@ const CompanyForm = () => {
         console.log("response : ", response.data);
         if (response.data > 0) {
           alert("회원가입이 완료되었습니다!");
-          window.location.href = "http://localhost:3000/#/login";
+          history.push("/login");
         } else {
           alert("회원가입에 실패하였습니다...!!!");
         }
@@ -79,7 +79,6 @@ const CompanyForm = () => {
       .catch((error) => {
         console.log("failed", error);
         alert("회원가입에 실패하였습니다...");
-        // window.history.back();
       });
   };
 

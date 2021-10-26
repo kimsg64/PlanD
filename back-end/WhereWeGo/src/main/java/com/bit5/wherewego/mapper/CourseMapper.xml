@@ -112,4 +112,30 @@
 	join course c on e.c_num=c.c_num) n
 	on r.res_num=n.res_num) group by c_num) sc on c.c_num=sc.c_num	
 	</select>
+	
+	
+	<!-- 코스 뷰 -->
+		<select id="courseDetail" parameterType="int" resultType="com.bit5.wherewego.res.ResultVO">
+		select sc.score, c.c_num, c.name, c.userid, c.stcode, s.stname, c.info, c.grade,
+		c.pcode1, c.pcode2, c.pcode3,c.coursesort, c.opt,
+		p1.name name1, p2.name name2, p3.name name3, p1.addr addr1, p2.addr addr2,
+		p3.addr addr3,
+		p1.tel tel1, p2.tel tel2, p3.tel tel3, p1.info info1, p2.info info2, p3.info
+		info3,
+		p1.link link1, p2.link link2, p3.link link3
+		from (select * from course where c_num=${param1}) c
+		join place p1 on c.pcode1=p1.pcode
+		join place p2 on
+		c.pcode2=p2.pcode
+		join place p3 on c.pcode3=p3.pcode
+		join station s on
+		c.stcode=s.stcode
+		left join (select avg(score) score,c_num from (select
+		r.score,n.c_num, n.name
+		from review r
+		join (select
+		e.res_num,e.c_num,c.name from res e
+		join course c on e.c_num=c.c_num) n
+		on r.res_num=n.res_num) group by c_num) sc on c.c_num=sc.c_num
+	</select>
 </mapper>

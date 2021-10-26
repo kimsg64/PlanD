@@ -6,6 +6,8 @@ import {
   BodyLayout,
   MenuTitle,
   StyledButton,
+  MenuBox,
+  SubMenuTitle,
 } from "../components/body/mixin/Mixin";
 import { Link } from "react-router-dom";
 import { FormInput } from "../components/body/registrationForm/FormMixin";
@@ -89,21 +91,6 @@ const MenuContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-`;
-
-const MenuBox = styled.div`
-  width: 32%;
-  height: 100%;
-  background-color: var(--color-light-bg);
-  box-shadow: 0px 2px 4px 2px grey;
-  border-radius: 4px;
-`;
-
-const SubMenuTitle = styled.div`
-  font-size: var(--font-size-title-small);
-  padding: calc(var(--margin-default) / 2);
-  background-color: var(--color-focus);
-  color: white;
 `;
 
 const MyPage = () => {

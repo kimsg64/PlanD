@@ -275,5 +275,38 @@ public class CourseController {
 		System.out.println("결과:"+r);
 		return r;
 	}
+	//코스 뷰
+	@RequestMapping("/courseDetail")
+	public ModelAndView courseView(int c_num, CPagingVO pVo) {
+		ModelAndView mav = new ModelAndView();
+		
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		ResultVO vo = dao.courseDetail(c_num);
+		
+		if(vo.getInfo()!=null) {
+			String i = vo.getInfo().substring(3,vo.getInfo().length()-4);
+			vo.setInfo(i);
+		}
+		if(vo.getInfo1()!=null) {
+			String i1 = vo.getInfo1().substring(3,vo.getInfo1().length()-4);
+			vo.setInfo1(i1);
+		}
+		if(vo.getInfo2()!=null) {
+			String i2 = vo.getInfo2().substring(3,vo.getInfo2().length()-4);
+			vo.setInfo2(i2);
+		}
+		if(vo.getInfo3()!=null) {
+			String i3 = vo.getInfo3().substring(3,vo.getInfo3().length()-4);
+			vo.setInfo3(i3);
+		}
+		
+		
+	
+		mav.addObject("vo", vo);
+		mav.addObject("pVo", pVo);
+		mav.setViewName("course/courseDetail");
+	
+		return mav;
+	}
 	
 }

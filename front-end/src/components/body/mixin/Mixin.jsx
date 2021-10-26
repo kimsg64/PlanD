@@ -226,3 +226,20 @@ export const MyMenuItemBox = styled.div`
     }
   }
 `;
+
+// 메뉴 박스
+export const MenuBox = styled.div`
+  width: 32%;
+  height: 100%;
+  background-color: var(--color-light-bg);
+  box-shadow: 0px 2px 4px 2px grey;
+  border-radius: 4px;
+`;
+
+// 서브메뉴 타이틀
+export const SubMenuTitle = styled.div`
+  font-size: var(--font-size-title-small);
+  padding: calc(var(--margin-default) / 2);
+  background-color: var(--color-focus);
+  color: white;
+`;
