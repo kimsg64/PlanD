@@ -32,19 +32,34 @@
 }
 
 #infoDiv {
-	margin-left: 30%;
+	margin:0 auto;
 	text-align: left;
+	height:auto;
+	width:50%;
+	margin-bottom:50px;
 }
-
 #infoDiv li {
 	width: 80%;
 	height: 40px;
-	line-height: 40px;
-	border-bottom: 1px solid #f5ebe3;
+}
+#infoDiv2 {
+	margin:0 auto;
+	text-align: left;
+	height:auto;
+	width:50%;
+	margin-bottom:50px;
+}
+#infoDiv2 li {
+	width: 80%;
+	height: 40px;
+}
+#infoDiv2 h3 {
+	margin-bottm:20px;
 }
 
 #map_wrap{margin:0 auto; border: 1px solid #0e595f; 
 width:90%; max-width:700px; height:auto;}
+
 #buttonMenu {
 	float: right;
 }
@@ -158,9 +173,43 @@ $.ajax({
 					</c:if></li>
 				<li><b>관심사 : </b>${vo.opt }</li>
 				<li><b>설명 </b> : ${vo.info }</li>
-				
-				<h3>1st Place</h3>
 			</ul>
+		</div>
+		
+		<div id="infoDiv2">
+				<h3>1st Place</h3>
+				<ul>
+					<li><h2>${vo.name1}</h2></li>
+					<li><b>주소 : </b>${vo.addr1}</li>
+					<li><b>연락처 : </b>${vo.tel1}</li>
+					<li><b>설명 : </b>${vo.info1}</li>
+					<li><b>링크 : </b><a href="${vo.link1}">${vo.link1}</a></li>
+					
+				</ul>
+		</div>
+		
+		<div id="infoDiv2">
+				<h3>2nd Place</h3>
+				<ul>
+					<li><h2>${vo.name2}</h2></li>
+					<li><b>주소 : </b>${vo.addr2}</li>
+					<li><b>연락처 : </b>${vo.tel2}</li>
+					<li><b>설명 : </b>${vo.info2}</li>
+					<li><b>링크 : </b><a href="${vo.link2}">${vo.link2}</a></li>
+					
+				</ul>
+		</div>
+		
+		<div id="infoDiv2">
+				<h3>3rd Place</h3>
+				<ul>
+					<li><h2>${vo.name3}</h2></li>
+					<li><b>주소 : </b>${vo.addr3}</li>
+					<li><b>연락처 : </b>${vo.tel3}</li>
+					<li><b>설명 : </b>${vo.info3}</li>
+					<li><b>링크 : </b><a href="${vo.link3}">${vo.link3}</a></li>
+					
+				</ul>
 		</div>
 	</div>
 	

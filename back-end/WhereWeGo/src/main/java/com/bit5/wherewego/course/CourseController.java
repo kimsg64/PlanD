@@ -282,6 +282,25 @@ public class CourseController {
 		
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		ResultVO vo = dao.courseDetail(c_num);
+		
+		if(vo.getInfo()!=null) {
+			String i = vo.getInfo().substring(3,vo.getInfo().length()-4);
+			vo.setInfo(i);
+		}
+		if(vo.getInfo1()!=null) {
+			String i1 = vo.getInfo1().substring(3,vo.getInfo1().length()-4);
+			vo.setInfo1(i1);
+		}
+		if(vo.getInfo2()!=null) {
+			String i2 = vo.getInfo2().substring(3,vo.getInfo2().length()-4);
+			vo.setInfo2(i2);
+		}
+		if(vo.getInfo3()!=null) {
+			String i3 = vo.getInfo3().substring(3,vo.getInfo3().length()-4);
+			vo.setInfo3(i3);
+		}
+		
+		
 	
 		mav.addObject("vo", vo);
 		mav.setViewName("course/courseDetail");
