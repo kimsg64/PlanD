@@ -1,14 +1,17 @@
 package com.bit5.wherewego.res;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.course.CourseDAOImp;
 import com.bit5.wherewego.notice.PagingVO;
+
 
 @Controller
 public class ResController {
@@ -62,9 +65,7 @@ public class ResController {
 	}
 	//예약하기 뷰
 	@RequestMapping("/resView")
-
-	public ModelAndView resView(String res_num, PagingVO pVo) {
-
+	public ModelAndView resView(String res_num,PagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
@@ -99,5 +100,6 @@ public class ResController {
 		return mav;
 	}
 
+	
 }
 	
