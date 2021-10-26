@@ -109,7 +109,7 @@ public class PlaceController {
 
 	//장소 뷰
 	@RequestMapping("/placeView")
-	public ModelAndView plcaeView(int pcode, PPagingVO pVo) {
+	public ModelAndView plcaeView(int pcode, PagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 
 		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);

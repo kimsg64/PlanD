@@ -61,7 +61,7 @@ public class ResController {
 	}
 	//예약하기 뷰
 	@RequestMapping("/resView")
-	public ModelAndView resView(String res_num, resPagingVO pVo) {
+	public ModelAndView resView(String res_num, PagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
 		mav.addObject("vo", dao.resView(res_num));
