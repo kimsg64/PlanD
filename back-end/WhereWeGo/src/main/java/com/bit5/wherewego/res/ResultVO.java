@@ -25,6 +25,45 @@ public class ResultVO {
 	private String link1; //링크
 	private String link2;
 	private String link3;
+	
+	private String userid;
+	private String grade;
+	private int coursesort;
+	private String opt;
+	private int score;
+	
+	
+	
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getCoursesort() {
+		return coursesort;
+	}
+	public void setCoursesort(int coursesort) {
+		this.coursesort = coursesort;
+	}
+	public String getOpt() {
+		return opt;
+	}
+	public void setOpt(String opt) {
+		this.opt = opt;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public int getC_num() {
 		return c_num;
 	}

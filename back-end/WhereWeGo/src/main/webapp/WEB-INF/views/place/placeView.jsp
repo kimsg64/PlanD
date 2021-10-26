@@ -39,7 +39,32 @@
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
-#map{margin:0 auto; border: 1px solid #0e595f}
+#map{margin:0 auto; border: 1px solid #0e595f; 
+width:90%; max-width:700px; height:450px;}
+li a:hover{color:#fd7d73;}
+li a{overflow:ellipsis;}
+.button {
+	background-color: #fd7d73;
+	border: none;
+	color: #f5ebe3;
+	padding: 10px 20px;
+	margin: 10px 0px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+	font-size: 13px;
+	width: 70px;
+	text-align: center;
+}
+
+.button:hover {
+	color: #0e595f;
+}
+#buttonMenu {
+	float: right;
+}
 </style>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
@@ -54,7 +79,7 @@
 		<h1>${vo.name }</h1>
 		<br /> <br />
 
-		<div id="map" style="width:600px;height:350px;"></div>
+		<div id="map"></div>
 		<br /> <br />
 
 		<div id="infoDiv">
@@ -62,11 +87,14 @@
 				<li><b>종류 : </b>${vo.datesort }</li>
 				<li><b>주소 : </b>${vo.addr }</li>
 				<li><b>연락처 : </b>${vo.tel }</li>
-				<li><b>영업시간 : </b>${vo.time }</li>
-				<li><b>링크 : </b>${vo.link }</li>
+				<li><b>링크 : </b><a href="${vo.link }">${vo.link }</a></li>
 				<li><b>정보 : </b>${vo.info }</li>
 			</ul>
 		</div>
+	</div>
+
+	<div id="buttonMenu">
+		<a class="button" href="#">수정</a> <a class="button" href="#">삭제</a> <a class="button" href="#">목록</a>
 	</div>
 </div>
 
