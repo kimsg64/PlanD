@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.place.PlaceDAOImp;
 import com.bit5.wherewego.user.UserDAOImp;
-import com.bit5.wherewego.user.UserVO;
 
 
 
@@ -57,13 +56,11 @@ public class ProductController {
 	}
 	//포인트샵 뷰
 	@RequestMapping("/pointshopView")
-	public ModelAndView pointshopView(String p_num, PdPagingVO pVo,ProductVO ppVo, UserVO uVo) {
+	public ModelAndView pointshopView(String p_num, PdPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		mav.addObject("vo", dao.pointshopView(p_num));
 		mav.addObject("pVo", pVo);
-		mav.addObject("ppVo", ppVo);
-		mav.addObject("uVo", uVo);
 		mav.setViewName("/pointshop/pointshopView");
 		
 		return mav;
@@ -86,19 +83,22 @@ public class ProductController {
 	
 	//포인트샵 결제 뷰
 	@RequestMapping("/paymentPage")
-	public ModelAndView paymentPage(String p_num) {
+	public ModelAndView paymentPage(String p_num, PdPagingVO pVo, @CookieValue(name = "userId") String cookie) {
 		ModelAndView mav = new ModelAndView();
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
-		
-		
+		mav.addObject("prVo", dao.productForPay(p_num));
+
 		UserDAOImp dao2 = sqlSession.getMapper(UserDAOImp.class);
-		mav.addObject("vo", dao.paymentPageOk(p_num));
-		mav.addObject("ppVo", ppVo);
-		mav.addObject("uVo", uVo);
-		mav.setViewName("/pointshop/paymentPage");
+		System.out.println("사용자아이디잘들어왔니?"+cookie);
+		mav.addObject("uVo", dao2.userForPay(cookie));
 		
+		mav.addObject("pVo",pVo);
+		
+		mav.setViewName("/pointshop/paymentPage");
+
 		return mav;
 	}
+	
 	//포인트샵 수정폼
 	@RequestMapping("/pointshopEdit")
 	public ModelAndView pointshopEdit(String p_num) {

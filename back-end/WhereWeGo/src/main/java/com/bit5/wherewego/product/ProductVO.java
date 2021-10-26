@@ -8,11 +8,16 @@ public class ProductVO {
 	private String img;
 	private String gender;
 	private String info;
+	private String detailphoto;
 	
-	private String userid; //구매자 아이디
-	private String tel; //구매자 전화번호
-	private int point; // 포인트
 	
+	
+	public String getDetailphoto() {
+		return detailphoto;
+	}
+	public void setDetailphoto(String detailphoto) {
+		this.detailphoto = detailphoto;
+	}
 	public String getInfo() {
 		return info;
 	}
@@ -55,24 +60,4 @@ public class ProductVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
-	}
-	
-	
 }

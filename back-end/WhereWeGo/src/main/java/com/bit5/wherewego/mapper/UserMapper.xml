@@ -21,7 +21,8 @@
 	</select>
 	
 	<!-- 결제 구매자 정보-->
-	<select id="paymentPageOk" resultType="String" parameterType="com.bit5.wherewego.product.ProductVO">
-  		select userid, name, email, point from usertbl
+	<select id="userForPay" resultType="com.bit5.wherewego.user.UserVO">
+  		select userid, name, tel, email, point from usertbl where userid=#{param1}
 	</select> 
+	
 </mapper>
