@@ -98,6 +98,11 @@
 
 #infoDiv2 a:hover{
 color:#fd7d73;}
+
+#lineImg {
+
+	margin-bottom: 80px; 
+}
 </style>
 <script>
 	var lat1;
@@ -200,6 +205,8 @@ color:#fd7d73;}
 			</ul>
 		</div>
 
+			<img src="imgs/line.png" id="lineImg"/>
+
 		<div id="map1" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
 			<h3>1st Place</h3>
@@ -212,6 +219,9 @@ color:#fd7d73;}
 
 			</ul>
 		</div>
+		
+		<img src="imgs/line.png" id="lineImg"/>
+		
 		<div id="map2" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
 			<h3>2nd Place</h3>
@@ -223,6 +233,9 @@ color:#fd7d73;}
 				<li><b>설명 : </b>${vo.info2}</li>
 			</ul>
 		</div>
+		
+		<img src="imgs/line.png" id="lineImg"/>
+		
 		<div id="map3" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
 			<h3>3rd Place</h3>
