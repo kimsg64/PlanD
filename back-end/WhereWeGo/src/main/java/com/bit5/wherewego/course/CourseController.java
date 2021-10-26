@@ -277,13 +277,14 @@ public class CourseController {
 	}
 	//코스 뷰
 	@RequestMapping("/courseDetail")
-	public ModelAndView courseView(int c_num) {
+	public ModelAndView courseView(int c_num, CPagingVO pVo) {
 		ModelAndView mav = new ModelAndView();
 		
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		ResultVO vo = dao.courseDetail(c_num);
 	
 		mav.addObject("vo", vo);
+		mav.addObject("pVo", pVo);
 		mav.setViewName("course/courseDetail");
 	
 		return mav;

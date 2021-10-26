@@ -172,7 +172,7 @@ $.ajax({
 		<c:if test="${vo.grade!='승인'}">
 			<a class="button" href="#">승인</a>
 		</c:if>
-		<a class="button" href="#">목록</a>
+		<a class="button" href="courseList?nowPage=${pVo.nowPage }">목록</a>
 	</div>
 </div>
 
