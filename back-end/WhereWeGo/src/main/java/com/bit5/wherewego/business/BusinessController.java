@@ -97,10 +97,11 @@ public class BusinessController {
 	}
 	
 	// 정보수정
-	@RequestMapping(value = "/businessEdit")
+	@RequestMapping(value = "/MyInfo")
 	public ModelAndView businessEdit() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("business/businessEdit");
 		return mav;
 	}
+	
 }
