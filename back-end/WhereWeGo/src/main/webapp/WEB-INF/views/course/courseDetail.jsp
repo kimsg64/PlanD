@@ -35,7 +35,8 @@
 	margin: 0 auto;
 	text-align: left;
 	height: auto;
-	width: 50%;
+	width: 90%;
+	max-width: 700px;
 	margin-bottom: 50px;
 }
 
@@ -48,7 +49,8 @@
 	margin: 0 auto;
 	text-align: left;
 	height: auto;
-	width: 50%;
+	width: 90%;
+	max-width: 700px;
 	margin-bottom: 50px;
 }
 
@@ -155,7 +157,7 @@ color:#fd7d73;}
 	});
 </script>
 <div id="mainDiv">
-	<h1>장소 상세보기</h1>
+	<h1>코스 상세보기</h1>
 	<!-- <img src="imgs/banner/place.jpg" id="banner"/>  -->
 
 	<div id="viewDiv">
@@ -189,7 +191,7 @@ color:#fd7d73;}
 					</c:if> <c:if test="${vo.coursesort==6}">
 						기타 -> 카페 -> 식당
 					</c:if></li>
-				<li><b>역명 : </b>${vo.stname }</li>
+				<li><b>역명 : </b>${vo.stname }역</li>
 				<li><b>평점 : </b> <c:if test="${vo.score==null or vo.score==0}">
 						평가없음
 					</c:if> <c:if test="${vo.score!=null and vo.score!=0}">
@@ -199,7 +201,11 @@ color:#fd7d73;}
 				<li><b>설명 </b> : ${vo.info }</li>
 			</ul>
 		</div>
-
+		
+		<br/>
+		<img src="imgs/line.png"/>
+		<br/>
+		
 		<div id="map1" style="width: 90%; max-width: 700px; height: 350px;"></div>
 		<div id="infoDiv2">
 			<h3>1st Place</h3>
@@ -478,7 +484,7 @@ color:#fd7d73;}
 							// 인포윈도우로 장소에 대한 설명을 표시합니다
 							var infowindow1 = new kakao.maps.InfoWindow(
 									{
-										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+										content : '<div style="width:150px;text-align:center;padding:6px 0;">${vo.name1}</div>'
 									});
 							infowindow1.open(map1, marker1);
 
@@ -522,7 +528,7 @@ color:#fd7d73;}
 							// 인포윈도우로 장소에 대한 설명을 표시합니다
 							var infowindow2 = new kakao.maps.InfoWindow(
 									{
-										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+										content : '<div style="width:150px;text-align:center;padding:6px 0;">${vo.name2}</div>'
 									});
 							infowindow2.open(map2, marker2);
 
@@ -566,7 +572,7 @@ color:#fd7d73;}
 							// 인포윈도우로 장소에 대한 설명을 표시합니다
 							var infowindow3 = new kakao.maps.InfoWindow(
 									{
-										content : '<div style="width:90%; max-width:700px;text-align:center;padding:6px 0;">우리회사</div>'
+										content : '<div style="width:150px;text-align:center;padding:6px 0;">${vo.name3}</div>'
 									});
 							infowindow3.open(map3, marker3);
 

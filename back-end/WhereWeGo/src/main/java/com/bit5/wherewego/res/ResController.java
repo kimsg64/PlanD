@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.course.CourseDAOImp;
 import com.bit5.wherewego.notice.PagingVO;
 
 @Controller
@@ -61,11 +62,38 @@ public class ResController {
 	}
 	//예약하기 뷰
 	@RequestMapping("/resView")
+
 	public ModelAndView resView(String res_num, PagingVO pVo) {
+
 		ModelAndView mav = new ModelAndView();
+		
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		mav.addObject("vo", dao.resView(res_num));
-		mav.addObject("pVo", pVo);
+		ResVO rVo = dao.resView(res_num);
+		mav.addObject("rVo", rVo);
+		
+		//System.out.println(rVo.getC_num());
+		
+		CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
+		ResultVO cVo = dao2.courseDetail(rVo.getC_num());
+		if(cVo.getInfo()!=null) {
+			String i = cVo.getInfo().substring(3,cVo.getInfo().length()-4);
+			cVo.setInfo(i);
+		}
+		if(cVo.getInfo1()!=null) {
+			String i1 = cVo.getInfo1().substring(3,cVo.getInfo1().length()-4);
+			cVo.setInfo1(i1);
+		}
+		if(cVo.getInfo2()!=null) {
+			String i2 = cVo.getInfo2().substring(3,cVo.getInfo2().length()-4);
+			cVo.setInfo2(i2);
+		}
+		if(cVo.getInfo3()!=null) {
+			String i3 = cVo.getInfo3().substring(3,cVo.getInfo3().length()-4);
+			cVo.setInfo3(i3);
+		}
+		mav.addObject("vo",cVo);
+		
+		mav.addObject("pVo",pVo);
 		mav.setViewName("res/resView");
 		
 		return mav;

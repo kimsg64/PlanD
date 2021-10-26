@@ -201,7 +201,9 @@
 		              <div class="item-container">
 		                <label for="userId">아이디</label>
 		              
+
 		                <input class="styled-input" type="text" name="b_id" value="${vo.b_id}"/>
+
 		             
 		              </div>
 		           

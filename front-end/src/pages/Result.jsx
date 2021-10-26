@@ -3,10 +3,18 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { Button, BodyLayout } from "../components/body/mixin/Mixin";
+import {
+  Button,
+  BodyLayout,
+  MenuTitle,
+  ToolTipBox,
+  ToolTip,
+  PointLetter,
+} from "../components/body/mixin/Mixin";
 import PageSlider from "../components/body/mixin/PageSlider";
 import CustomTMap from "../components/body/map/CustomTMap";
 import GoogleMapSettings from "../components/body/map/GoogleMapSettings";
+import axios from "axios";
 
 const Slider = styled.div`
   width: 100vw;
@@ -20,18 +28,95 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  & h1 {
+    margin: var(--margin-default) 0;
+  }
+  & > img {
+    margin-top: var(--margin-default);
+  }
 `;
 
 const ButtonContainer = styled.div`
   width: 200px;
+  margin-top: var(--margin-default);
   display: flex;
   justify-content: center;
 `;
 
-const DetermineButtons = styled.div`
-  width: 400px;
+const LineContianer = styled.div`
+  width: 800px;
+  height: 40px;
+  margin-top: calc(var(--margin-default) * 2);
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const LineSpan = styled.span`
+  width: 370px;
+  height: 4px;
+  background-color: var(--color-focus);
+  position: relative;
+  right: 2px;
+`;
+
+const Circle = styled.div`
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 4px solid var(--color-focus);
+  border-radius: 50%;
+  right: 2px;
+  font-weight: bold;
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => props.fontColor};
+  &:hover {
+    cursor: pointer;
+    color: var(--color-dark-focus);
+    background-color: var(--color-blur);
+  }
+`;
+
+const PlaceInfoWindow = styled.div`
+  width: 800px;
+  height: 300px;
+  display: flex;
+`;
+const ImageSection = styled.div`
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px 0 0 12px;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+const InfoSection = styled.div`
+  width: 400px;
+  height: 300px;
+  padding: var(--padding-default);
+  border: 2px solid var(--color-green);
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  background-color: var(--color-light-bg);
+  & h2 {
+    margin-bottom: var(--margin-default);
+  }
+  & h3 {
+    margin-bottom: calc(var(--margin-default) / 4);
+    &:nth-of-type(3n):hover {
+      cursor: pointer;
+      color: var(--color-focus);
+    }
+  }
+`;
+
+const ForecastBox = styled.div`
+  margin-top: calc(var(--margin-default) / 2);
 `;
 
 // 코스 정보 받아와서 > 장소1, 장소2, 장소3 주소를 티맵으로 보내서 찍기
@@ -43,12 +128,19 @@ const Result = ({ location }) => {
   // "서울특별시 마포구 서교동 홍익로6길 15"
   const [endPoint, setEndPoint] = useState();
   // "서울특별시 마포구 서교동 와우산로21길 31-10"
-  // const [startCoord, setStartCoord] = useState(null);
-  // const [wayCoord, setWayCoord] = useState(null);
-  // const [endCoord, setEndCoord] = useState(null);
 
+  // 장소 표시하기
+  const [isSelected1, setIsSelected1] = useState(false);
+  const [isSelected2, setIsSelected2] = useState(false);
+  const [isSelected3, setIsSelected3] = useState(false);
+
+  // 검색 결과 받아와서 찍기
   const courseResults = location.props.result;
-  console.log(courseResults);
+  const weather = location.props.weather;
+  const resdate = location.props.resdate;
+  // console.log(courseResults);
+  // console.log(weather);
+  // console.log(resdate);
   useEffect(() => {
     // console.log("코스 검색을 통해 들어오면 마운트, 각 포인트 설정");
     // console.log(courseResults[0]?.addr1);
@@ -57,28 +149,82 @@ const Result = ({ location }) => {
     setStartPoint(courseResults[0]?.addr1);
     setWayPoint(courseResults[0]?.addr2);
     setEndPoint(courseResults[0]?.addr3);
-  }, [courseResults]);
 
+    // 날씨에 맞춰 아이템 가져오기
+    // axios
+    //   .get(
+    //     "http://openapi.11st.co.kr/openapi/OpenApiService.tmall?key=dcab9d1df5972221d1ef15b03dbd8bb6&apiCode=ProductSearch&keyword=우산&pageNum=1&pageSize=5&sortCd=A",
+    //     {},
+    //     { withCredentials: true }
+    //   )
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
+  }, [courseResults]);
   // console.log("startPoint: ", startPoint);
   // console.log("wayPoint: ", wayPoint);
   // console.log("endPoint: ", endPoint);
-
-  // 구글맵에서 갑자기 왜 또 못찍냐
+  // 구글맵에서 지오코딩하기
   const coords = GoogleMapSettings({ startPoint, wayPoint, endPoint });
-
   // console.log("coords[0]: ", coords[0]);
   // console.log("coords[1]: ", coords[1]);
   // console.log("coords[2]: ", coords[2]);
-  // useEffect(() => {
-  //   console.log("아니 업데이트가 됐는데 셋팅을 안해?");
-  //   setStartCoord(coords[0]);
-  //   setWayCoord(coords[1]);
-  //   setEndCoord(coords[2]);
-  // }, [startPoint, wayPoint, endPoint]);
-  // console.log("startCoord", startCoord);
-  // console.log("wayCoord", wayCoord);
-  // console.log("endCoord", endCoord);
 
+  const onClickPlace1 = (e) => {
+    setIsSelected1(true);
+    setIsSelected2(false);
+    setIsSelected3(false);
+  };
+  const onClickPlace2 = (e) => {
+    setIsSelected1(false);
+    setIsSelected2(true);
+    setIsSelected3(false);
+  };
+  const onClickPlace3 = (e) => {
+    setIsSelected1(false);
+    setIsSelected2(false);
+    setIsSelected3(true);
+  };
+
+  // 전화번호 스타일링
+  const CheckPhoneNumber = (tel) => {
+    if (!tel.includes("-")) {
+      switch (tel.length) {
+        case 11:
+          return `${tel.substring(0, 3)}-${tel.substring(3, 7)}-${tel.substring(
+            7,
+            11
+          )}`;
+        case 10:
+          return `${tel.substring(0, 2)}-${tel.substring(2, 6)}-${tel.substring(
+            6,
+            10
+          )}`;
+        case 9:
+          return `${tel.substring(0, 2)}-${tel.substring(2, 5)}-${tel.substring(
+            5,
+            9
+          )}`;
+        case 8:
+          return `${tel.substring(0, 3)}-${tel.substring(3, 8)}`;
+      }
+    }
+  };
+
+  // 주소 스타일링
+  const DevideAddr = (addr) => {
+    return addr.split("구");
+  };
+
+  // 링크 타고 넘어가기
+  const onClickLink = (e) => {
+    console.log(e.target.innerText.split("링크: ")[1]);
+    if (e.target.innerText !== "링크: ") {
+      e.stopPropagation();
+      window.open(e.target.innerText.split("링크: ")[1]);
+    }
+  };
+
+  // 페이지 넘기기
   const onClickNext = () => {
     setIdx((prevIdx) => prevIdx + 1);
   };
@@ -91,49 +237,177 @@ const Result = ({ location }) => {
     <>
       <Header />
       <BodyLayout>
-        {/* 요약 */}
-        <div>
-          <h1>코스명</h1>
-          <div>10:00~14:00</div>
-        </div>
+        <MenuTitle>{courseResults[0].name}</MenuTitle>
         {coords.length === 3 ? (
           <CustomTMap
             startPoint={coords[0]}
             wayPoint={coords[1]}
             endPoint={coords[2]}
-            // startPoint={GoogleMapSettings({ startPoint })}
-            // wayPoint={GoogleMapSettings({ wayPoint })}
-            // endPoint={GoogleMapSettings({ endPoint })}
           />
         ) : null}
         <Slider>
-          <PageSlider idx={idx} rate={-25}>
+          <PageSlider idx={idx} rate={-50}>
             <Container>
-              <div>코스 요약(장소 1, 2, 3)</div>
-              <div>날씨 소개</div>
-              <div>추천 코디</div>
+              <LineContianer>
+                {isSelected1 ? null : isSelected2 ? null : isSelected3 ? null : (
+                  <ToolTipBox fromTop="-44px" fromLeft="-36px">
+                    각 장소의 상세 설명을 보시려면 아래 버튼을 클릭해 주세요!
+                    <ToolTip />
+                  </ToolTipBox>
+                )}
+                <Circle
+                  onClick={onClickPlace1}
+                  bgColor={isSelected1 ? "var(--color-focus)" : "white"}
+                  fontColor={isSelected1 ? "white" : "var(--color-font)"}
+                >
+                  1
+                </Circle>
+                <LineSpan />
+                <Circle
+                  onClick={onClickPlace2}
+                  bgColor={isSelected2 ? "var(--color-focus)" : "white"}
+                  fontColor={isSelected2 ? "white" : "var(--color-font)"}
+                >
+                  2
+                </Circle>
+                <LineSpan />
+                <Circle
+                  onClick={onClickPlace3}
+                  bgColor={isSelected3 ? "var(--color-focus)" : "white"}
+                  fontColor={isSelected3 ? "white" : "var(--color-font)"}
+                >
+                  3
+                </Circle>
+              </LineContianer>
+              {isSelected1 ? (
+                <>
+                  <h1>{courseResults[0]?.name1}</h1>
+                  <PlaceInfoWindow>
+                    <ImageSection>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/places/food2.jpg`}
+                        alt="first"
+                      />
+                    </ImageSection>
+                    <InfoSection>
+                      <h2>{courseResults[0]?.name1}</h2>
+                      <h3>
+                        주소: {DevideAddr(courseResults[0]?.addr1)[0] + "구"}
+                        <br />
+                        {DevideAddr(courseResults[0]?.addr1)[1]}
+                      </h3>
+                      <h3>
+                        연락처: {CheckPhoneNumber(courseResults[0]?.tel1)}
+                      </h3>
+
+                      {courseResults[0]?.link1 === null ? null : (
+                        <h3 onClick={onClickLink}>
+                          링크: {courseResults[0]?.link1}
+                        </h3>
+                      )}
+                      {courseResults[0]?.info1 === null ? null : (
+                        <h3>기타: {courseResults[0]?.info1}</h3>
+                      )}
+                    </InfoSection>
+                  </PlaceInfoWindow>
+                </>
+              ) : isSelected2 ? (
+                <>
+                  <h1>{courseResults[0]?.name2}</h1>
+                  <PlaceInfoWindow>
+                    <ImageSection>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/places/food1.jpg`}
+                        alt="first"
+                      />
+                    </ImageSection>
+                    <InfoSection>
+                      <h2>{courseResults[0]?.name2}</h2>
+                      <h3>
+                        주소: {DevideAddr(courseResults[0]?.addr2)[0] + "구"}
+                        <br />
+                        {DevideAddr(courseResults[0]?.addr2)[1]}
+                      </h3>
+                      <h3>
+                        연락처: {CheckPhoneNumber(courseResults[0]?.tel2)}
+                      </h3>
+                      {courseResults[0]?.link2 === null ? null : (
+                        <h3 onClick={onClickLink}>
+                          링크: {courseResults[0]?.link2}
+                        </h3>
+                      )}
+                      {courseResults[0]?.info2 === null ? null : (
+                        <h3>기타: {courseResults[0]?.info2}</h3>
+                      )}
+                    </InfoSection>
+                  </PlaceInfoWindow>
+                </>
+              ) : isSelected3 ? (
+                <>
+                  <h1>{courseResults[0]?.name3}</h1>
+                  <PlaceInfoWindow>
+                    <ImageSection>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/places/food1.jpg`}
+                        alt="first"
+                      />
+                    </ImageSection>
+                    <InfoSection>
+                      <h2>{courseResults[0]?.name3}</h2>
+                      <h3>
+                        주소: {DevideAddr(courseResults[0]?.addr3)[0] + "구"}
+                        <br />
+                        {DevideAddr(courseResults[0]?.addr3)[1]}
+                      </h3>
+                      <h3>
+                        연락처: {CheckPhoneNumber(courseResults[0]?.tel3)}
+                      </h3>
+                      {courseResults[0]?.link3 === null ? null : (
+                        <h3 onClick={onClickLink}>
+                          링크: {courseResults[0]?.link3}
+                        </h3>
+                      )}
+                      {courseResults[0]?.info3 === null ? null : (
+                        <h3>기타: {courseResults[0]?.info3}</h3>
+                      )}
+                    </InfoSection>
+                  </PlaceInfoWindow>
+                </>
+              ) : null}
             </Container>
             <Container>
-              <div>장소1, 2, 3 소개</div>
+              <img
+                src={`http://openweathermap.org/img/wn/${weather[0]?.icon}@2x.png`}
+                alt={weather[0]?.description}
+              />
+              <ForecastBox>
+                <PointLetter>
+                  {`${resdate?.substring(0, 4)}년 ${resdate?.substring(
+                    5,
+                    7
+                  )}월 ${resdate?.substring(8, 10)}일`}
+                </PointLetter>
+                의 날씨: {weather[0]?.description}
+              </ForecastBox>
+              <div>추천 코디</div>
             </Container>
           </PageSlider>
         </Slider>
         {idx === 0 ? (
           <ButtonContainer>
             <Button onClick={onClickNext}>다음</Button>
+            <Link to={"/planning"}>
+              <Button>다시 선택하기</Button>
+            </Link>
           </ButtonContainer>
         ) : idx === 1 ? (
           <ButtonContainer>
             <Button onClick={onClickPrev}>이전</Button>
+            <Link to={"/planning"}>
+              <Button>다시 선택하기</Button>
+            </Link>
           </ButtonContainer>
         ) : null}
-
-        <DetermineButtons>
-          <Link to={"/planning"}>
-            <Button>다시 선택하기</Button>
-          </Link>
-          <Button>휴대폰 알람 설정하기</Button>
-        </DetermineButtons>
       </BodyLayout>
       <Footer />
     </>

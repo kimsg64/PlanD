@@ -135,7 +135,7 @@ const PlanningETC = ({
       .get(url)
       .then((response) => {
         // console.log(response.data.list[index].weather[0].icon);
-        setWeather(response.data.list[index].weather[0].icon);
+        setWeather(response.data.list[index].weather);
       })
       .catch((error) => console.log(error));
   }, [selectedDate]);
@@ -177,11 +177,12 @@ const PlanningETC = ({
       ? "125"
       : null;
 
+  console.log("날씨", weather);
   const onSubmitForm = (e) => {
     e.preventDefault();
     // console.log(sortNum);
     if (selectedStation === "역") {
-      alert("역과 라인으을 선택해 주세요!");
+      alert("역과 라인을 선택해 주세요!");
       return;
     } else {
       const body = {
@@ -192,7 +193,7 @@ const PlanningETC = ({
         resdate: stringifyResdate(),
         coursesort: sortNum,
         opt: opt.join("#"),
-        weather: weather,
+        weather: weather[0].icon,
       };
       console.log("플래닝 전송시 넘어갈 바디: ", body);
 
@@ -202,12 +203,14 @@ const PlanningETC = ({
         .then((response) => {
           console.log("response : ", response.data);
           // ★★★★★ 받은 데이터 가지고 결과창으로 보내기
-          console.log(history);
+          // console.log(history);
           if (response.data.length > 0) {
             history.push({
               pathname: "/result",
               props: {
                 result: response.data,
+                weather: weather,
+                resdate: stringifyResdate(),
               },
             });
           } else {
