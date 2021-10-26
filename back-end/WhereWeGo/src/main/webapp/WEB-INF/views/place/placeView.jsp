@@ -47,7 +47,7 @@ li a{overflow:ellipsis;}
 	background-color: #fd7d73;
 	border: none;
 	color: #f5ebe3;
-	padding: 10px 20px;
+	padding: 10px 15px;
 	margin: 10px 0px;
 	text-align: center;
 	text-decoration: none;
@@ -87,6 +87,7 @@ li a{overflow:ellipsis;}
 				<li><b>종류 : </b>${vo.datesort }</li>
 				<li><b>주소 : </b>${vo.addr }</li>
 				<li><b>연락처 : </b>${vo.tel }</li>
+				<li><b>승인 여부 : </b>${vo.grade }</li>
 				<li><b>링크 : </b><a href="${vo.link }">${vo.link }</a></li>
 				<li><b>정보 : </b>${vo.info }</li>
 			</ul>
@@ -94,7 +95,14 @@ li a{overflow:ellipsis;}
 	</div>
 
 	<div id="buttonMenu">
-		<a class="button" href="#">수정</a> <a class="button" href="#">삭제</a> <a class="button" href="#">목록</a>
+		<a class="button" href="#">수정</a>
+		<c:if test="${vo.grade!='미승인'}">
+			<a class="button" href="#">미승인</a>
+		</c:if>
+		<c:if test="${vo.grade!='승인'}">
+			<a class="button" href="#">승인</a>
+		</c:if>
+		<a class="button" href="#">목록</a>
 	</div>
 </div>
 

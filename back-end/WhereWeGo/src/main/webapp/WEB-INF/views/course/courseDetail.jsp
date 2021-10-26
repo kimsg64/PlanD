@@ -52,7 +52,7 @@ width:90%; max-width:700px; height:auto;}
 	background-color: #fd7d73;
 	border: none;
 	color: #f5ebe3;
-	padding: 10px 20px;
+	padding: 10px 15px;
 	margin: 10px 0px;
 	text-align: center;
 	text-decoration: none;
@@ -158,12 +158,21 @@ $.ajax({
 					</c:if></li>
 				<li><b>관심사 : </b>${vo.opt }</li>
 				<li><b>설명 </b> : ${vo.info }</li>
+				
+				<h3>1st Place</h3>
 			</ul>
 		</div>
 	</div>
 	
 	<div id="buttonMenu">
-		<a class="button" href="#">수정</a> <a class="button" href="#">삭제</a> <a class="button" href="#">목록</a>
+		<a class="button" href="#">수정</a>
+		<c:if test="${vo.grade!='미승인'}">
+			<a class="button" href="#">미승인</a>
+		</c:if>
+		<c:if test="${vo.grade!='승인'}">
+			<a class="button" href="#">승인</a>
+		</c:if>
+		<a class="button" href="#">목록</a>
 	</div>
 </div>
 

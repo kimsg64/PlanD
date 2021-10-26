@@ -52,6 +52,6 @@
 	
 	<!-- 장소 상세보기 -->
 	<select id="placeView" resultType="com.bit5.wherewego.place.PlaceVO">
-		select pcode, datesort, name, addr, tel, info, time, info, link from place where pcode=${param1}
+		select pcode, datesort, name, addr, tel, info, time, info, link, grade from place where pcode=${param1}
 	</select>
 </mapper>
