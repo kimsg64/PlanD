@@ -15,6 +15,29 @@
 	margin-bottom: 30px;
 	text-align: left;
 }
+ #buttonMenu {
+   float: right;
+   }
+   
+   .button {
+      background-color: #fd7d73;
+      border: none;
+      color: #f5ebe3;
+      padding: 10px 20px;
+      margin: 10px 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 12px;
+      transition-duration: 0.4s;
+      font-size: 13px;
+      width: 70px;
+      text-align: center;
+   }
+   
+   .button:hover {
+      color: #0e595f;
+   }
 
 #banner {
 	width: 100%;
@@ -61,5 +84,10 @@
 		<div id="infoDiv">
 		
 		</div>
+	</div>
+	<div id="buttonMenu">
+		<a class="button" href="#">수정</a>
+		<a class="button" href="#">삭제</a>
+		<a class="button" href="resList?nowPage=${pVo.nowPage }">목록</a>
 	</div>
 </div>

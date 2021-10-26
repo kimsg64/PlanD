@@ -171,6 +171,6 @@
 	<c:if test="${vo.grade == '비공개' }">
 		<a href="/wherewego/reViewgradech?r_num=${vo.r_num}&grade=${vo.grade}" class="button">공개</a>
 	</c:if>
-	<a class="button" href="#">목록</a>
+	<a class="button" href="reviewList?nowPage=${pVo.nowPage }">목록</a>
 	<a class="button" href="reviewEdit?r_num=${vo.r_num }">수정</a>
 </div>
