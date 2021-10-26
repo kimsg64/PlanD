@@ -139,12 +139,12 @@
 		on r.res_num=n.res_num) group by c_num) sc on c.c_num=sc.c_num
 	</select>
 	<!-- 공개 비공개 -->
-	<update id = "coursegrade">
-		update course set
-			<choose>
-				<when test='param2.equals("승인")'>grade='미승인'</when>
-				<otherwise>grade='승인'</otherwise>
-			</choose>
-		where c_num=${param1}
+	<update id="coursegrade" >
+		update course set 
+		<choose>
+			<when test='param2.equals("승인")'>grade='미승인'</when>
+			<otherwise>grade='승인'</otherwise>
+		</choose>
+		where c_num=${param1} 
 	</update>
 </mapper>

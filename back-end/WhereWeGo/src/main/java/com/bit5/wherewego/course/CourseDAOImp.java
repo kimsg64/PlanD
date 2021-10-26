@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.bit5.wherewego.notice.PagingVO;
 import com.bit5.wherewego.res.ResultVO;
 
 public interface CourseDAOImp {

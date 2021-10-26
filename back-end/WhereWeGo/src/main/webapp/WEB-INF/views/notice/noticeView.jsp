@@ -115,7 +115,7 @@ $("input[id=file]").change(function(){
 	<div id="buttonMenu">
 		<a class="button" href="noticeEdit?n_num=${vo.n_num }">수정</a>
 		<a class="button" href="javascript:delCheck()">삭제</a>
-		<a class="button" href="#">목록</a>
+		<a class="button" href="noticeList?nowPage=${pVo.nowPage }">목록</a>
 	</div>
 	<!-- 
   			 	<li>사진 : ${vo.photo }</li>

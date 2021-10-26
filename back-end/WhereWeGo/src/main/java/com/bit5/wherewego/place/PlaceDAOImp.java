@@ -10,4 +10,5 @@ public interface PlaceDAOImp {
 	int insertPlace(PlaceVO vo);
 	int selectPlace(PlaceVO vo);
 	PlaceVO placeView(int pcode);
+	int placegrade(int pcode, String grade);
 }
