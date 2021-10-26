@@ -43,7 +43,7 @@
 	
 	<!-- res 뷰 -->
 	<select id="resView" parameterType="String" resultType="com.bit5.wherewego.res.ResVO">
-		select res_num, userid, to_char(resdate, 'MM-DD') resdate, time, c_num from res where res_num=#{param1}
+		select res_num, userid, to_char(resdate, 'YY-MM-DD') resdate, c_num from res where res_num=#{param1}
 	</select>
 
 </mapper>
