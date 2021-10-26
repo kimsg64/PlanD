@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.buy.BuyVO;
 import com.bit5.wherewego.place.PlaceDAOImp;
 import com.bit5.wherewego.user.UserDAOImp;
 
@@ -89,12 +90,23 @@ public class ProductController {
 		mav.addObject("prVo", dao.productForPay(p_num));
 
 		UserDAOImp dao2 = sqlSession.getMapper(UserDAOImp.class);
-		System.out.println("사용자아이디잘들어왔니?"+cookie);
+		//System.out.println("사용자아이디잘들어왔니?"+cookie);
 		mav.addObject("uVo", dao2.userForPay(cookie));
-		
 		mav.addObject("pVo",pVo);
 		
 		mav.setViewName("/pointshop/paymentPage");
+
+		return mav;
+	}
+
+	//포인트샵 결제
+	@RequestMapping(value="/productPay", method=RequestMethod.POST)
+	public ModelAndView productPay(BuyVO vo) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("vo",vo);
+
+		mav.setViewName("pointshop/productPay");
 
 		return mav;
 	}
@@ -138,4 +150,5 @@ public class ProductController {
 		mav.setViewName("redirect:placeView");
 		return mav;
 	}
+
 }

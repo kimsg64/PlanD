@@ -8,4 +8,10 @@
 	<select id="newBuyCount" resultType="int">
 		select count(buynum) newBuy from buy where to_char(buydate,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
 	</select>
+	
+	<!-- 구매내역 추가 -->
+	<insert id="insertBuy" parameterType="com.bit5.wherewego.buy.BuyVO">
+		insert into buy(p_num,userid,email,tel,price,count)
+		values(#{p_num},#{userid},#{email},#{tel},${price},${count})
+	</insert>
 </mapper>

@@ -1,18 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <script>
-	var inputText = function() {
-		var a = document.querySelector("#one").value;
-		document.querySelector("#two").innerText = a;
-		document.querySelector("#one").value = "";
-		document.querySelector("#one").focus();
-	};
+	$(()=> {	
+		var price = "${prVo.price}";
+		$('#finalprice').val(price);
+		
+		//구매수량 달라지면 가격도 바뀜
+		$('#count').change(function() {
+			price = "${prVo.price}"*$('#count').val();
+			$('#money').html(price);
+			$('#finalprice').val(price-$('.usepoint').val());
+		});
+		
+		//포인트 전체 사용 체크
+		$('#check').change(function() {
+			$('.usepoint').val("${uVo.point}");
+			$('.point').val(0);
+			$('#finalprice').val(price-$('.usepoint').val());
+		});
+		
+		//사용포인트 변화
+		$('.usepoint').change(function(){
+			var point = "${uVo.point}";
+			usepoint = $('.usepoint').val();
+			$('.point').val(point-usepoint);
+			$('#finalprice').val(price-$('.usepoint').val());
+			
+			if($("#check").prop("checked", true)) {
+				$("#check").prop("checked", false);
+			}
+		});
+		//사용포인트 변화(키보드)
+		$('.usepoint').keyup(function(){
+			var point = "${uVo.point}";
+			usepoint = $('.usepoint').val();
+			$('.point').val(point-usepoint);
+			$('#finalprice').val(price-$('.usepoint').val());
+			
+			if($("#check").prop("checked", true)) {
+				$("#check").prop("checked", false);
+			}
+		});
+		
+	});
+	
 </script>
 
 <style>
@@ -20,9 +52,11 @@
 	width: 72%;
 	margin: 0 auto;
 }
+
 #buttonMenu {
 	float: right;
 }
+
 .button {
 	background-color: #fd7d73;
 	border: none;
@@ -38,66 +72,136 @@
 	width: 70px;
 	text-align: center;
 }
+
 .button:hover {
 	color: #0e595f;
 }
-img {margin-left:20%;width:20%; border:1px solid black;}
-#infoDiv {width:50%; float:right}
+
+img {
+	margin-left: 20%;
+	width: 20%;
+}
+
+#infoDiv {
+	width: 50%;
+	float: right
+}
+
+span {
+	color: #0e595f;
+	font-size: 0.8em;
+}
+
+#userInfo li {
+	height: 20px;
+	margin: 10px 20%;
+	font-size: 1.2em;
+}
+
+#userInfo {
+	margin: 50px 0px;
+}
+
+#inputtxt {
+	width: 40%;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 60px;
+	border: 1px solid #0e595f;
+	background-color: white;
+}
+
+#inputtxt:focus {
+	width: 40%;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 60px;
+	background-color: #efcac3;
+	outline: none;
+}
+#finalprice {
+	font-family: "TmoneyRoundWindRegular";
+	border: 1px solid #f5ebe3;
+	font-size:1.5em;
+	width:130px;
+	font-weight:bold;
+	background-color:#f5ebe3;
+}
+#finalprice:focus {background-color:#f5ebe3;outline: none;border: 1px solid white;}
+#priceBox {padding:10px;width:200px; height:auto;text-align:right;background-color:#f5ebe3;border-radius: 12px;
+position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 </style>
 </head>
 <body>
 	<div id="frame">
-		<h1>주문 / 결제</h1>
-		<br />
-		<hr/>
-		<br/>
-		<h3>상품 정보</h3>
-		<br/>
-		<img src="upload/pointshop/${prVo.img }"/>
-		<div id="infoDiv">
-			${prVo.brand }
-			<h3>${prVo.name }</h3>
-		</div>
-		<form method="get" action="/wherewego/paymentPageOk">
+		<form method="post" action="/wherewego/productPay">		
+			<h1>주문 / 결제</h1>
+			<br />
+			<hr />
+			<br />
+	
+			<h2>상품 정보</h2>
+			<br /> <img src="upload/pointshop/${prVo.img }" />
+			<div id="infoDiv">
+				${prVo.p_num }<br /> <br /> ${prVo.brand }
+				<h3>${prVo.name }</h3>
+				<br /> <br /> 수량 : <input type="number" name="count" id="count" min="1" max="10" value="1" />개<br /> 
+				<span>최대 구입 가능 수량은 10개입니다.</span><br /> <br />
+				가격 : <b id="money">${prVo.price }</b>원
+			</div>
 			<div>
 				<input type="hidden" name="p_num" value="${ppVo.p_num }">
-				${ppVo.img }<br /> ${ppVo.name }<br /> ${ppVo.brand }<br />
+				${ppVo.img }<br /> 
+				${ppVo.name }<br /> 
+				${ppVo.brand }<br />
 				${ppVo.price }
 			</div>
+			
 			<br />
 			<hr />
-
-			<div>
-				<h2>구매자 정보</h2>
-				<br /> 수령인 : <input name="userId" value="${uVo.userId }"><br />
-				연락처 : <input name="tel" value="${uVo.tel }"><br /> 이메일 : <input
-					name="email" value="${uVo.email }"><br /> 포인트 : ${uVo.point }점
+			<br />
+			
+			<h2>구매자 정보</h2><br/>
+			<div id="userInfo">
+				<ul>
+					<li><b>아이디</b> : ${uVo.userId }<input type="hidden" name="userid" value="${uVo.userId }" readonly /><li>
+					<li><b>구매자</b> : ${uVo.name }<li>
+					<li><b>이메일</b> : <input type="text" id="inputtxt" name="email" value="${uVo.email }" required /><li>
+					<li><b>연락처</b> : <input type="text" id="inputtxt" name="tel" value="${uVo.tel }" required/><li>
+					<li><b>배송지</b> : <input type="text" id="inputtxt" name="addr" value="${uVo.addr }" required/><li>
+					<br/><span>배송은 최대 3일 소요될 수 있습니다.</span><br /> <br />
+				</ul>
 			</div>
 			<br />
 			<hr />
-
-			<div class="wrapper">
-				<h2>포인트 결제</h2>
-				<br /> 보유 : <input name="point" value="${uVo.point }"><br />
-				사용 : <input type="text" id="one"
-					onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" /> <input
-					type="checkbox" id="useAllPoint" checked> 항상 보유 포인트 전액 사용하기
-
-				<button onclick="inputText();">사용</button>
-
+			<br />
+			
+			<h2>Point</h2><br/>
+			<div id="userInfo">
+				<ul>
+					<li><b>잔여</b> : <input type="text" id="inputtxt" name="point" class="point" value="${uVo.point }"  readonly/><li>
+					<li>
+						<b>사용</b> : <input type="number" value="0" id="inputtxt" class="usepoint" min="0" max="${uVo.point }"/>
+						&nbsp;<input type="checkbox" id="check"><span>&nbsp;전체 사용</span>
+					<li>
+					<br/><span>1point 단위로 사용 가능합니다.</span><br /> <br />
+				</ul>
 			</div>
 			<br />
+			<br />
 
-			<div>
-				${uVo.point }<br /> -<br />
-				<p id="two"></p>
+			<div id="priceBox">
+				최종 결제 금액<br />
+				<!-- <b id="finalprice">원</b> -->
+				<input type="text" name="price" id="finalprice" readonly />원
 			</div>
 
 			<div id="buttonMenu">
-				<a class="button" href="/wherewego/productPay?p_num=${prVo.p_num }&name=${prVo.name}&price=${prVo.price}">결제</a>
+				<input type="submit" class="button" value="결제" />
 				<a class="button" href="/wherewego/pointshopView?p_num=${prVo.p_num}&nowPage=${pVo.nowPage}">취소</a>
 			</div>
+
 		</form>
+		
+		
 	</div>
-</body>
-</html>
