@@ -35,8 +35,8 @@
 	</delete>
 	
 	<!-- 결제 상품 정보 -->
-	<select id="paymentPageOk"  resultType="String" parameterType="com.bit5.wherewego.product.ProductVO">
-  		select p_num, brand, name, price, img, gender from product
+	<select id="productForPay"  resultType="com.bit5.wherewego.product.ProductVO">
+  		select p_num, brand, name, price, img, gender, info, detailphoto from product where p_num=#{param1}
 	</select>
 	
 	<!-- 수정 -->

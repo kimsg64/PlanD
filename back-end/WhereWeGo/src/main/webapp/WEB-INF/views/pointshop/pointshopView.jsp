@@ -142,7 +142,7 @@
 					
 					<div class="info"><h3>제품 설명: ${vo.info }</h3></div>	
 					<div class="buttonmain">
-						<a class="button2" href="paymentPage?p_num=${vo.p_num }">구매</a>
+						<a class="button2" href="paymentPage?p_num=${vo.p_num }&nowPage=${pVo.nowPage}">구매</a>
 					</div>
 				</div>
 			</div>
