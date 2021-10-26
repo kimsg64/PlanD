@@ -2,14 +2,12 @@ import React from "react";
 import { Route } from "react-router";
 import "./App.css";
 import About from "../pages/About";
-import AdForAd from "../pages/AdForAd";
 import CompanyForm from "../pages/CompanyForm";
 import FAQ from "../pages/FAQ";
 import Home from "../pages/Home";
 import IndividualForm from "../pages/IndividualForm";
 import Login from "../pages/Login";
 import MemberHome from "../pages/MemberHome";
-import MyDibs from "../pages/MyDibs";
 import MyHistory from "../pages/MyHistory";
 import MyPage from "../pages/MyPage";
 import MyRecommendation from "../pages/MyRecommendation";
@@ -25,14 +23,12 @@ const App = () => {
   return (
     <div id="page-layout">
       <Route path="/about" component={About} />
-      <Route path="/adforad" component={AdForAd} />
       <Route path="/companyform" component={CompanyForm} />
       <Route path="/faq" component={FAQ} />
       <Route exact path="/" component={Home} />
       <Route path="/individualform" component={IndividualForm} />
       <Route path="/login" component={Login} />
       <Route path="/memberhome" component={MemberHome} />
-      <Route path="/mydibs" component={MyDibs} />
       <Route path="/myhistory" component={MyHistory} />
       <Route path="/mypage" component={MyPage} />
       <Route path="/myrecommendation" component={MyRecommendation} />

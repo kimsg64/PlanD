@@ -67,6 +67,17 @@ const DDayBox = styled.div`
   width: 200px;
 `;
 
+const WeatherBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & img {
+    width: 32%;
+  }
+`;
+
 // const SubHeading = styled.div`
 //   margin-top: calc(var(--margin-default)) 0;
 //   font-size: var(--font-size-title-normal);
@@ -96,6 +107,7 @@ const MemberHome = () => {
   const [userData, setUserData] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [idx, setIdx] = useState("first");
+  const [weather, setWeather] = useState(null);
   // console.log("idx in member home", idx);
   // 날짜 선택하고 course로 넘어가게 하기
   // console.log("멤버홈", selectedDate);
@@ -117,8 +129,21 @@ const MemberHome = () => {
         })
         .catch((error) => console.log(error));
     }
+
+    // 오늘의 날씨
+    const url =
+      "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response.data.list[3].weather[0]);
+        setWeather(response.data.list[3].weather[0]);
+      })
+      .catch((error) => console.log(error));
   }, []);
   // console.log(userData);
+
+  console.log(weather);
 
   useEffect(() => {
     calculateDDays(100);
@@ -138,7 +163,7 @@ const MemberHome = () => {
     return Math.floor(betweenTime / (1000 * 60 * 60 * 24));
   };
 
-  const anniversary = [100, 200, 300, 365, 400, 500, 600];
+  const anniversary = [100, 200, 300, 365];
   const today = new Date();
 
   const calculateDDays = (anniversary) => {
@@ -238,6 +263,16 @@ const MemberHome = () => {
                       </HomeMyMenuItemBox>
                     );
                   })}
+                  <WeatherBox>
+                    <img
+                      src={`http://openweathermap.org/img/wn/${weather?.icon}@2x.png`}
+                      alt={weather?.description}
+                    />
+                    <h2>
+                      오늘의 날씨:
+                      <PointLetter>{weather?.description}</PointLetter>
+                    </h2>
+                  </WeatherBox>
                 </>
               )}
             </HomeMenuBox>

@@ -95,7 +95,7 @@ const NormalButton = styled(SubmitButton)`
   margin-top: calc(var(--margin-default) / 2);
 `;
 
-const Login = () => {
+const Login = ({ history }) => {
   const [classification, setClassification] = useState("individual");
   const [userId, setUserId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -148,9 +148,9 @@ const Login = () => {
             bake_cookie("userId", userId);
             axios.get("/wherewego/user/checkSession").then((res) => {
               // console.log(res.data);
-              res.data
-                ? (window.location.href = "http://localhost:3000/#/memberhome")
-                : alert("로그인 실패...");
+              // 로컬터널 이용, 임시 공개용 주소
+              // 백 주소는
+              res.data ? history.push("/memberhome") : alert("로그인 실패...");
             });
           } else {
             // 사업자

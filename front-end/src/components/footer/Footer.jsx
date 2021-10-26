@@ -49,9 +49,7 @@ const Footer = () => {
             <NavItems>
               <a href="http://localhost:9090/wherewego/noticeList">공지사항</a>
             </NavItems>
-            <NavItems>
-              <Link to={`/about`}>서비스 안내</Link>
-            </NavItems>
+            <NavItems>서비스 안내</NavItems>
             <NavItems>이용 방법</NavItems>
           </NavItemsTitle>
         </NavItemsContainer>
@@ -70,7 +68,7 @@ const Footer = () => {
           <NavItemsTitle>
             광고
             <NavItems>
-              <Link to={`/adforad`}>광고 문의</Link>
+              <Link to={`/login`}>광고 문의</Link>
             </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>

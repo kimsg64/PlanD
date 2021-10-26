@@ -138,9 +138,11 @@ const Result = ({ location }) => {
   const courseResults = location.props.result;
   const weather = location.props.weather;
   const resdate = location.props.resdate;
-  // console.log(courseResults);
-  // console.log(weather);
-  // console.log(resdate);
+  const sort = location.props.sort;
+  // console.log("결과 객체", courseResults);
+  console.log("날씨 객체", weather);
+  // console.log("날짜 스트링", resdate);
+  // console.log("순서", sort);
   useEffect(() => {
     // console.log("코스 검색을 통해 들어오면 마운트, 각 포인트 설정");
     // console.log(courseResults[0]?.addr1);
@@ -149,16 +151,6 @@ const Result = ({ location }) => {
     setStartPoint(courseResults[0]?.addr1);
     setWayPoint(courseResults[0]?.addr2);
     setEndPoint(courseResults[0]?.addr3);
-
-    // 날씨에 맞춰 아이템 가져오기
-    // axios
-    //   .get(
-    //     "http://openapi.11st.co.kr/openapi/OpenApiService.tmall?key=dcab9d1df5972221d1ef15b03dbd8bb6&apiCode=ProductSearch&keyword=우산&pageNum=1&pageSize=5&sortCd=A",
-    //     {},
-    //     { withCredentials: true }
-    //   )
-    //   .then((response) => console.log(response))
-    //   .catch((error) => console.log(error));
   }, [courseResults]);
   // console.log("startPoint: ", startPoint);
   // console.log("wayPoint: ", wayPoint);
@@ -285,7 +277,13 @@ const Result = ({ location }) => {
                   <PlaceInfoWindow>
                     <ImageSection>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/places/food2.jpg`}
+                        src={`${process.env.PUBLIC_URL}/images/places/${
+                          sort[0] === "카페"
+                            ? "cafe1.jpg"
+                            : sort[0] === "식당"
+                            ? "food1.jpg"
+                            : "etc1.jpg"
+                        }`}
                         alt="first"
                       />
                     </ImageSection>
@@ -317,7 +315,13 @@ const Result = ({ location }) => {
                   <PlaceInfoWindow>
                     <ImageSection>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/places/food1.jpg`}
+                        src={`${process.env.PUBLIC_URL}/images/places/${
+                          sort[1] === "카페"
+                            ? "cafe2.jpg"
+                            : sort[1] === "식당"
+                            ? "food2.jfif"
+                            : "etc2.jpg"
+                        }`}
                         alt="first"
                       />
                     </ImageSection>
@@ -348,7 +352,13 @@ const Result = ({ location }) => {
                   <PlaceInfoWindow>
                     <ImageSection>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/places/food1.jpg`}
+                        src={`${process.env.PUBLIC_URL}/images/places/${
+                          sort[2] === "카페"
+                            ? "cafe1.jpg"
+                            : sort[2] === "식당"
+                            ? "food2.jfif"
+                            : "etc2.jpg"
+                        }`}
                         alt="first"
                       />
                     </ImageSection>

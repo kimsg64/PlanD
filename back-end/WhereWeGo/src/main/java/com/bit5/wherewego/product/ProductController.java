@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,8 +29,9 @@ public class ProductController {
 
 	//포인트샵 리스트
 	@RequestMapping("/pointshopList")
-	public ModelAndView list(PdPagingVO pVo) {
+	public ModelAndView list(PdPagingVO pVo, @CookieValue(name = "userId") String cookie) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println(cookie);
 		
 		ProductDAOImp dao = sqlSession.getMapper(ProductDAOImp.class);
 		int total= dao.totalProductCount(pVo.getSearchKey(), pVo.getSearchWord());		

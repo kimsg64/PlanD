@@ -203,7 +203,9 @@ const Header = () => {
                   <Link to={`/userrecommendation`}>Recommend</Link>
                 </li>
                 <li>
-                  <Link to={`/`}>PointShop</Link>
+                  <a href="http://localhost:9090/wherewego/pointshopList">
+                    PointShop
+                  </a>
                 </li>
               </MenuContainer>
             ) : null}
@@ -234,6 +236,15 @@ const Header = () => {
                           <BorderEffect spanWidth={profileWidth} />
                         </SubMenuItem>
                       </Link>
+                      {/* <Link to={"/mydibs"}> */}
+                      <SubMenuItem
+                        onMouseOver={() => setLikeWidth("152px")}
+                        onMouseOut={() => setLikeWidth("0")}
+                      >
+                        Reviews
+                        <BorderEffect spanWidth={likeWidth} />
+                      </SubMenuItem>
+                      {/* </Link> */}
                       <Link to={"/myhistory"}>
                         <SubMenuItem
                           onMouseOver={() => setReviewWidth("152px")}
@@ -248,17 +259,8 @@ const Header = () => {
                           onMouseOver={() => setRecommendWidth("152px")}
                           onMouseOut={() => setRecommendWidth("0")}
                         >
-                          MyRecommendation
+                          Recommendations
                           <BorderEffect spanWidth={recommendWidth} />
-                        </SubMenuItem>
-                      </Link>
-                      <Link to={"/mydibs"}>
-                        <SubMenuItem
-                          onMouseOver={() => setLikeWidth("152px")}
-                          onMouseOut={() => setLikeWidth("0")}
-                        >
-                          Dibs
-                          <BorderEffect spanWidth={likeWidth} />
                         </SubMenuItem>
                       </Link>
                     </SubMenu>

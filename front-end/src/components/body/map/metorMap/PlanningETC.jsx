@@ -211,6 +211,7 @@ const PlanningETC = ({
                 result: response.data,
                 weather: weather,
                 resdate: stringifyResdate(),
+                sort: [sort1, sort2, sort3],
               },
             });
           } else {

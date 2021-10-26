@@ -275,7 +275,7 @@ const MyPage = () => {
             ></MyReviews>
           </MenuBox>
           <MenuBox>
-            <SubMenuTitle>찜한 장소</SubMenuTitle>
+            <SubMenuTitle>나의 이용 내역</SubMenuTitle>
           </MenuBox>
           <MenuBox>
             <SubMenuTitle>나의 추천 코스</SubMenuTitle>

@@ -229,7 +229,7 @@ const Reviews = () => {
                   <h3>{review.name}</h3>
                   <ImageBox>
                     <img
-                      src={`${process.env.PUBLIC_URL}/images/reviews/review_sample.jpg`}
+                      src={`${process.env.PUBLIC_URL}/images/reviews/${review.r_num}.jpg`}
                       alt="cafe_review"
                     />
                   </ImageBox>
