@@ -43,10 +43,13 @@ const CustomTMap = ({ startPoint = {}, wayPoint = {}, endPoint = {} }) => {
     // 지도 띄우기
     setTMap(
       new Tmapv2.Map("t-map", {
-        center: new Tmapv2.LatLng(startY, startX),
+        center: new Tmapv2.LatLng(
+          (startY + wayY + endY) / 3,
+          (startX + wayX + endX) / 3
+        ),
         width: "800px",
         height: "400px",
-        zoom: 15,
+        zoom: 16,
       })
     );
   }, []);
@@ -57,7 +60,7 @@ const CustomTMap = ({ startPoint = {}, wayPoint = {}, endPoint = {} }) => {
       new Tmapv2.Marker({
         // position: new Tmapv2.LatLng(37.5668986, 126.97871544),
         position: new Tmapv2.LatLng(startY, startX),
-        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_1.png",
         iconSize: new Tmapv2.Size(24, 38),
         map: Tmap,
       })
@@ -69,7 +72,7 @@ const CustomTMap = ({ startPoint = {}, wayPoint = {}, endPoint = {} }) => {
     setMarker_e(
       new Tmapv2.Marker({
         position: new Tmapv2.LatLng(endY, endX),
-        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_2.png",
         iconSize: new Tmapv2.Size(24, 38),
         map: Tmap,
       })
@@ -81,7 +84,7 @@ const CustomTMap = ({ startPoint = {}, wayPoint = {}, endPoint = {} }) => {
     setMarker_p(
       new Tmapv2.Marker({
         position: new Tmapv2.LatLng(wayY, wayX),
-        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_p.png",
+        icon: "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_3.png",
         iconSize: new Tmapv2.Size(24, 38),
         map: Tmap,
       })

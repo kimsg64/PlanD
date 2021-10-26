@@ -6,9 +6,9 @@ const GoogleMapSettings = ({
   wayPoint = "",
   endPoint = "",
 }) => {
-  console.log("셋팅 startPoint", startPoint);
-  console.log("셋팅 wayPoint", wayPoint);
-  console.log("셋팅 endPoint", endPoint);
+  // console.log("셋팅 startPoint", startPoint);
+  // console.log("셋팅 wayPoint", wayPoint);
+  // console.log("셋팅 endPoint", endPoint);
   // 리버스 Geocode (주소로 좌표 구하기)
   // 좌표를 담을 배열(기본 빈 배열)
   const [places, setPlaces] = useState([]);
@@ -40,17 +40,17 @@ const GoogleMapSettings = ({
     // console.log(
     //   `address1: ${address1} \naddress2: ${address2} \naddress3: ${address3} \n`
     // );
-    console.log("니가 안되고 있니?");
-    console.log("넌뭔데 안들어가니? startPoint", startPoint);
-    console.log("넌뭔데 안들어가니? wayPoint", wayPoint);
-    console.log("넌뭔데 안들어가니? endPoint", endPoint);
+    // console.log("니가 안되고 있니?");
+    // console.log("넌뭔데 안들어가니? startPoint", startPoint);
+    // console.log("넌뭔데 안들어가니? wayPoint", wayPoint);
+    // console.log("넌뭔데 안들어가니? endPoint", endPoint);
     if (startPoint !== "" && wayPoint !== "" && endPoint !== "") {
-      console.log("잡았다 요놈");
+      // console.log("잡았다 요놈");
       getLatLng(startPoint);
       getLatLng(wayPoint);
       getLatLng(endPoint);
     }
-    console.log("허허", places);
+    // console.log("허허", places);
   }, [startPoint, wayPoint, endPoint]);
 
   return places;
