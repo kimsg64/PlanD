@@ -223,7 +223,7 @@ const IndividualForm = ({ history }) => {
       axios
         .post(url, body)
         .then((response) => {
-          console.log("response : ", response.data);
+          // console.log("response : ", response.data);
           if (response.data > 0) {
             isLoaded
               ? alert("회원정보 수정이 완료되었습니다!")
@@ -236,7 +236,7 @@ const IndividualForm = ({ history }) => {
           }
         })
         .catch((error) => {
-          console.log("failed", error);
+          // console.log("failed", error);
           isLoaded
             ? alert("회원정보 수정에 실패하였습니다...!")
             : alert("회원가입에 실패하였습니다...");
@@ -379,7 +379,7 @@ const IndividualForm = ({ history }) => {
                     maxLength="11"
                     placeholder="ex) 01012349874"
                     pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
-                    onKeyDown={(e) => setTel(e.target.value)}
+                    onKeyUp={(e) => setTel(e.target.value)}
                   />
                 )}
                 <Button
