@@ -21,11 +21,30 @@ const SelectBox = ({
   sort3 = "",
   setSort3 = () => {},
   selectedPcode = "",
+  coursesort = 0,
 }) => {
   // selectedPcode가 내려오면 그 값에 따라 option 선택
   const [isSelected1, setIsSelected1] = useState(false);
   const [isSelected2, setIsSelected2] = useState(false);
   const [isSelected3, setIsSelected3] = useState(false);
+  const sequence =
+    coursesort === 1
+      ? "식당카페기타"
+      : coursesort === 2
+      ? "식당기타카페"
+      : coursesort === 3
+      ? "카페식당기타"
+      : coursesort === 4
+      ? "카페기타식당"
+      : coursesort === 5
+      ? "기타식당카페"
+      : coursesort === 6
+      ? "기타카페식당"
+      : null;
+  const first = sequence?.substring(0, 2);
+  const second = sequence?.substring(2, 4);
+  const third = sequence?.substring(4, 6);
+  console.log(sequence);
   // useEffect(() => {
   //   selectedPcode === "pcode1"
   //     ? setIsSelected1(true)
@@ -109,30 +128,44 @@ const SelectBox = ({
   return (
     <Indicator>
       {/* <select data-sort="sort1" onChange={(e) => setSort1(e.target.value)}> */}
-      <select data-sort="sort1" onChange={onChangeSort}>
-        <option value="">장소1</option>
-        <option
-          value="식당"
-          selected={isSelected1 && sort1 === "식당" ? true : false}
-        >
-          식당
-        </option>
-        <option
-          value="카페"
-          selected={isSelected1 && sort1 === "카페" ? true : false}
-        >
-          카페
-        </option>
-        <option
-          value="기타"
-          selected={isSelected1 && sort1 === "기타" ? true : false}
-        >
-          기타
-        </option>
-      </select>
+      {coursesort > 0 ? (
+        <>
+          <select>
+            <option>{first}</option>
+          </select>
+          <select>
+            <option>{second}</option>
+          </select>
+          <select>
+            <option>{third}</option>
+          </select>
+        </>
+      ) : null}
+      {coursesort > 0 ? null : (
+        <select data-sort="sort1" onChange={onChangeSort}>
+          <option value="">장소1</option>
+          <option
+            value="식당"
+            selected={isSelected1 && sort1 === "식당" ? true : false}
+          >
+            식당
+          </option>
+          <option
+            value="카페"
+            selected={isSelected1 && sort1 === "카페" ? true : false}
+          >
+            카페
+          </option>
+          <option
+            value="기타"
+            selected={isSelected1 && sort1 === "기타" ? true : false}
+          >
+            기타
+          </option>
+        </select>
+      )}
       {/* sort1 선택완료 */}
-
-      {sort1 === "" ? (
+      {coursesort > 0 ? null : sort1 === "" ? (
         // <select data-sort="sort2" onChange={(e) => setSort2(e.target.value)}>
         <select data-sort="sort2" onChange={onChangeSort}>
           <option value="">장소2</option>
@@ -173,7 +206,9 @@ const SelectBox = ({
       )}
       {/* sort2 선택완료 */}
 
-      {sort1 === "" || sort2 === "" || (sort1 === "" && sort2 === "") ? (
+      {coursesort > 0 ? null : sort1 === "" ||
+        sort2 === "" ||
+        (sort1 === "" && sort2 === "") ? (
         // <select data-sort="sort3" onChange={(e) => setSort3(e.target.value)}>
         <select data-sort="sort3" onChange={onChangeSort}>
           <option value="">장소3</option>

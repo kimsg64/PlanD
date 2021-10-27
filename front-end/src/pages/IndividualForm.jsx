@@ -93,6 +93,7 @@ const IndividualForm = ({ history }) => {
         setStartdate(`${year}-${month}-${date}`);
       }
       // 로/동을 기준으로 addr, addrDetail로 나누기
+      setAddr(userData.addr);
       // userData.addr.includes("동")
       //   ? setAddr(userData.addr.split("동")[0] + "동")
       //   : userData.addr.includes("로")
@@ -139,6 +140,9 @@ const IndividualForm = ({ history }) => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+
+    const url = isLoaded ? "/wherewego/editUser" : "/wherewego/registerUser";
+
     const body = {
       userId: userId,
       pwd: pwd,
@@ -155,14 +159,14 @@ const IndividualForm = ({ history }) => {
     console.log("바디", body);
 
     axios
-      .post("/wherewego/registerUser", body)
+      .post(url, body)
       .then((response) => {
         console.log("response : ", response.data);
         if (response.data > 0) {
           isLoaded
             ? alert("회원정보 수정이 완료되었습니다!")
             : alert("회원가입이 완료되었습니다!");
-          history.push("/login");
+          isLoaded ? history.push("/mypage") : history.push("/login");
         } else {
           isLoaded
             ? alert("회원정보 수정에 실패하였습니다...!")

@@ -153,7 +153,7 @@ const MemberHome = () => {
   }, []);
   // console.log(userData);
 
-  console.log(weather);
+  // console.log(weather);
 
   useEffect(() => {
     calculateDDays(100);

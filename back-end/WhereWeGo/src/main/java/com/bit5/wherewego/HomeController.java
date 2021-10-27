@@ -78,5 +78,21 @@ public class HomeController {
 
 		return mav;
 	}
+	//이용약관
+	@RequestMapping("/menuList")
+	public ModelAndView menulist() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/menuList");
+		
+		return mav;
+	}
+	//개인정보취급방침
+	@RequestMapping("/infomenu")
+	public ModelAndView infomenu() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/infomenu");
+		return mav;
+	}
 
 }
