@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Form from "../components/body/mixin/Form";
 import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
-import { BodyLayout, Button, MenuTitle } from "../components/body/mixin/Mixin";
+import {
+  BodyLayout,
+  Button,
+  MenuTitle,
+  Input,
+} from "../components/body/mixin/Mixin";
 import {
   ErrorMsg,
   FormInput,
@@ -33,6 +38,23 @@ const SubmitSection = styled.section`
   align-items: flex-end;
 `;
 
+const CheckInput = styled.input`
+  width: 24em;
+  margin: 0 var(--margin-default) calc(var(--margin-default) / 4) 0;
+  padding: calc(var(--padding-small) * 2) calc(var(--padding-default) * 2);
+  font-size: var(--font-size-small);
+  text-align: left;
+  border: 2px solid var(--color-bg);
+  background-color: var(--color-bg);
+  &:focus {
+    outline: none;
+  }
+  &:invalid:not(:focus):not(:placeholder-shown) {
+    border: 2px solid var(--color-focus);
+  }
+  border: 2px solid ${(props) => (props.check ? "none" : "var(--color-focus)")};
+`;
+
 const IndividualForm = ({ history }) => {
   const [userId, setUserId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -50,6 +72,11 @@ const IndividualForm = ({ history }) => {
   const [opt, setOpt] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [userData, setUserData] = useState(null);
+
+  // 휴대폰 인증
+  const [checkNum, setCheckNum] = useState(0);
+  const [check, setCheck] = useState(true);
+  const [ranInt, setRanInt] = useState(0);
 
   useEffect(() => {
     // 마이페이지에서 수정하러 왔을 때만 axios에서 유저 정보 받아오기
@@ -138,47 +165,72 @@ const IndividualForm = ({ history }) => {
       : e.target.value;
   };
 
+  const onClickTelCheck = () => {
+    console.log("사용자 입력 넘버", checkNum);
+    axios
+      .post("/wherewego/telcheck", { tel: tel })
+      .then((response) => {
+        console.log(response.data);
+        // 전달받은 데이터의 ranInt === checkNum이면 setCheck true => valid!
+        setRanInt(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    if (ranInt !== 0 && checkNum !== 0) {
+      ranInt === checkNum ? setCheck(true) : setCheck(false);
+    }
+  }, [ranInt, checkNum]);
+  console.log(check);
+  console.log(checkNum);
+  console.log(ranInt);
+
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    const url = isLoaded ? "/wherewego/editUser" : "/wherewego/registerUser";
+    if (check) {
+      const url = isLoaded ? "/wherewego/editUser" : "/wherewego/registerUser";
 
-    const body = {
-      userId: userId,
-      pwd: pwd,
-      name: name,
-      num: num,
-      tel: tel,
-      email: email,
-      // zip: zip,
-      // addr: addr + " " + addrDetail,
-      addr: addr,
-      startdate: startdate,
-      opt: opt.join("#"),
-    };
-    console.log("바디", body);
+      const body = {
+        userId: userId,
+        pwd: pwd,
+        name: name,
+        num: num,
+        tel: tel,
+        email: email,
+        // zip: zip,
+        // addr: addr + " " + addrDetail,
+        addr: addr,
+        startdate: startdate,
+        opt: opt.join("#"),
+      };
+      console.log("바디", body);
 
-    axios
-      .post(url, body)
-      .then((response) => {
-        console.log("response : ", response.data);
-        if (response.data > 0) {
-          isLoaded
-            ? alert("회원정보 수정이 완료되었습니다!")
-            : alert("회원가입이 완료되었습니다!");
-          isLoaded ? history.push("/mypage") : history.push("/login");
-        } else {
+      axios
+        .post(url, body)
+        .then((response) => {
+          console.log("response : ", response.data);
+          if (response.data > 0) {
+            isLoaded
+              ? alert("회원정보 수정이 완료되었습니다!")
+              : alert("회원가입이 완료되었습니다!");
+            isLoaded ? history.push("/mypage") : history.push("/login");
+          } else {
+            isLoaded
+              ? alert("회원정보 수정에 실패하였습니다...!")
+              : alert("회원가입에 실패하였습니다...!!!");
+          }
+        })
+        .catch((error) => {
+          console.log("failed", error);
           isLoaded
             ? alert("회원정보 수정에 실패하였습니다...!")
-            : alert("회원가입에 실패하였습니다...!!!");
-        }
-      })
-      .catch((error) => {
-        console.log("failed", error);
-        isLoaded
-          ? alert("회원정보 수정에 실패하였습니다...!")
-          : alert("회원가입에 실패하였습니다...");
-      });
+            : alert("회원가입에 실패하였습니다...");
+        });
+    } else {
+      alert("인증번호가 일치하지 않습니다!");
+    }
   };
 
   return (
@@ -319,33 +371,24 @@ const IndividualForm = ({ history }) => {
                   position="absolute"
                   fromTop="60px"
                   fromLeft="240px"
+                  onClick={onClickTelCheck}
                 >
                   본인 인증
                 </Button>
                 <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
               </ItemContainer>
               <ItemContainer>
-                <Label htmlFor="email">이메일</Label>
-                {isLoaded ? (
-                  <FormInput
-                    type="email"
-                    required
-                    placeholder="ex) abc@naver.com"
-                    pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-                    onKeyDown={(e) => setEmail(e.target.value)}
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                ) : (
-                  <FormInput
-                    type="email"
-                    required
-                    placeholder="ex) abc@naver.com"
-                    pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-                    onKeyDown={(e) => setEmail(e.target.value)}
-                  />
-                )}
-                <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
+                <Label htmlFor="check">인증번호</Label>
+                <CheckInput
+                  type="text"
+                  required
+                  minLength="4"
+                  maxLength="4"
+                  placeholder="인증번호 네 자리를 입력해 주세요"
+                  pattern="\d{4}"
+                  onKeyUp={(e) => setCheckNum(parseInt(e.target.value))}
+                  check={check}
+                />
               </ItemContainer>
             </LineWrapper>
             <LineWrapper>
@@ -385,7 +428,7 @@ const IndividualForm = ({ history }) => {
                 {isLoaded ? (
                   <FormInput
                     type="text"
-                    width="32em"
+                    width="51em"
                     className="optional"
                     onKeyUp={(e) => setAddr(e.target.value)}
                     onChange={(e) => setAddr(e.target.value)}
@@ -394,12 +437,14 @@ const IndividualForm = ({ history }) => {
                 ) : (
                   <FormInput
                     type="text"
-                    width="32em"
+                    width="51em"
                     className="optional"
                     onKeyUp={(e) => setAddr(e.target.value)}
                   />
                 )}
               </ItemContainer>
+            </LineWrapper>
+            <LineWrapper>
               {/* </LineWrapper>
             <LineWrapper> */}
               {/* <ItemContainer>
@@ -423,12 +468,34 @@ const IndividualForm = ({ history }) => {
                 )}
               </ItemContainer> */}
               <ItemContainer>
+                <Label htmlFor="email">이메일</Label>
+                {isLoaded ? (
+                  <FormInput
+                    type="email"
+                    required
+                    placeholder="ex) abc@naver.com"
+                    pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+                    onKeyDown={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                ) : (
+                  <FormInput
+                    type="email"
+                    required
+                    placeholder="ex) abc@naver.com"
+                    pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+                    onKeyDown={(e) => setEmail(e.target.value)}
+                  />
+                )}
+                <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
+              </ItemContainer>
+              <ItemContainer>
                 <Label htmlFor="startdate">기념일</Label>
                 {isLoaded ? (
                   <FormInput
                     type="date"
                     max={setMaxDate()}
-                    width="16em"
                     className="optional"
                     onChange={(e) => setStartdate(e.target.value)}
                     value={startdate}
@@ -437,7 +504,6 @@ const IndividualForm = ({ history }) => {
                   <FormInput
                     type="date"
                     max={setMaxDate()}
-                    width="16em"
                     className="optional"
                     onChange={(e) => setStartdate(e.target.value)}
                   />

@@ -18,6 +18,9 @@ import Result from "../pages/Result";
 import Reviews from "../pages/Reviews";
 import SearchPlace from "../pages/SearchPlace";
 import UserRecommendation from "../pages/UserRecommendation";
+import UserReview from "../pages/UserReview";
+import MyCourseItem from "../pages/MyCourseItem";
+import MyReviewsItem from "../pages/MyReviewsItem";
 
 const App = () => {
   return (
@@ -29,9 +32,11 @@ const App = () => {
       <Route path="/individualform" component={IndividualForm} />
       <Route path="/login" component={Login} />
       <Route path="/memberhome" component={MemberHome} />
+      <Route path="/mycourseitem/:cnum" component={MyCourseItem} />
       <Route path="/myhistory" component={MyHistory} />
       <Route path="/mypage" component={MyPage} />
       <Route path="/myrecommendation" component={MyRecommendation} />
+      <Route path="/myreviewsitem/:rnum" component={MyReviewsItem} />
       <Route exact path="/planning" component={Planning} />
       <Route path="/planning/:date" component={Planning} />
       <Route path="/pointshop" component={PointShop} />
@@ -40,6 +45,7 @@ const App = () => {
       <Route path="/reviews" component={Reviews} />
       <Route path="/searchplace" component={SearchPlace} />
       <Route path="/userrecommendation" component={UserRecommendation} />
+      <Route path="/userreview" component={UserReview} />
     </div>
   );
 };

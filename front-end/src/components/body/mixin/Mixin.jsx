@@ -243,3 +243,83 @@ export const SubMenuTitle = styled.div`
   background-color: var(--color-focus);
   color: white;
 `;
+
+// 리뷰 아이템
+export const ReviewItem = styled.div`
+  max-width: 440px;
+  height: 560px;
+  margin: 0 calc(var(--margin-default) / 1.4);
+  padding: var(--padding-default);
+  border-radius: 8px;
+  background-color: var(--color-bg);
+  border: 1px solid #ccc;
+  box-shadow: 4px 4px 10px 0px #ccc;
+`;
+// 리뷰 아이템 내 이미지
+export const ReviewImageBox = styled.div`
+  width: 400px;
+  height: 240px;
+  margin: calc(var(--margin-default) / 2) 0;
+  overflow: hidden;
+  background-color: var(--color-green);
+  img {
+    width: 100%;
+  }
+`;
+export const ReviewTextBox = styled.div`
+  width: 100%;
+  height: 112px;
+  margin-top: calc(var(--margin-default) / 2);
+  padding: var(--padding-default);
+  background-color: var(--color-light-bg);
+  box-shadow: 4px 4px 10px 0px #ccc;
+  border-radius: 8px;
+  font-size: var(--font-size-normal);
+  position: relative;
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+  }
+`;
+// 리뷰 프로필 박스
+export const ReviewProfileBox = styled.div`
+  width: 400px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+`;
+// 리뷰 아이콘
+export const ReviewIcon = styled.div`
+  width: 60px;
+  height: 60px;
+  margin: calc(var(--margin-default) / 2) calc(var(--margin-default) / 4);
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const CommonP = styled.p`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+`;
+export const TitleP = styled(CommonP)`
+  width: 240px;
+  font-weight: bold;
+`;
+export const ContentP = styled(CommonP)`
+  width: 120px;
+  text-align: right;
+  margin-right: var(--margin-line-space);
+`;

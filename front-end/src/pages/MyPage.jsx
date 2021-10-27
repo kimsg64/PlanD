@@ -98,9 +98,11 @@ const MyPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [reviewLoaded, setReviewLoaded] = useState(false);
   const [courseLoaded, setCourseLoaded] = useState(false);
+  const [reservationLoaded, setReservationLoaded] = useState(false);
   const [userData, setUserData] = useState(null);
   const [userReview, setUserReview] = useState(null);
   const [userCourse, setUserCourse] = useState(null);
+  const [userReservation, setUserReservation] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [startdate, setStartdate] = useState("지정된 기념일이 없습니다.");
@@ -127,6 +129,7 @@ const MyPage = () => {
       axios
         .post("wherewego/myCourseSelect", body)
         .then((response) => {
+          // console.log(response.data);
           setUserCourse(response.data);
           setCourseLoaded(true);
         })
@@ -135,10 +138,19 @@ const MyPage = () => {
       axios
         .post("wherewego/myReviewSelect", body)
         .then((response) => {
+          // console.log(response.data);
           setUserReview(response.data);
           setReviewLoaded(true);
         })
         .catch((error) => console.log(error));
+
+      // axios
+      //   .post("wherewego/myReservationSelect", body)
+      //   .then((response) => {
+      //     console.log(response.data);
+      //     setUserReservation(response.data);
+      //   })
+      //   .catch((error) => console.log(error));
     }
   }, []);
   useEffect(() => {
@@ -275,7 +287,9 @@ const MyPage = () => {
           </MenuBox>
           <MenuBox>
             <SubMenuTitle>나의 예약 및 이용 내역</SubMenuTitle>
-            <MyReservation />
+            <MyReservation
+              userReservation={reservationLoaded ? userReservation : null}
+            />
           </MenuBox>
           <MenuBox>
             <SubMenuTitle>나의 추천 코스</SubMenuTitle>

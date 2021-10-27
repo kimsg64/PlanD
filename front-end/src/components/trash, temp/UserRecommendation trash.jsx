@@ -475,21 +475,35 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
 
   return (
     <>
-      <Header />
+      {userCourseData?.length > 0 ? null : <Header />}
       <BodyLayout>
-        <MenuTitle>코스 추천하기</MenuTitle>
+        {userCourseData?.length > 0 ? (
+          <MenuTitle>{userCourseData[0]?.name}</MenuTitle>
+        ) : (
+          <MenuTitle>코스 추천하기</MenuTitle>
+        )}
         <RecommendationForm onSubmit={onSubmitForm}>
           <LineWrapper>
             <label>코스명</label>
-            <StyledInput
-              type="text"
-              width="34em"
-              placeholder="코스명을 입력해 주세요"
-              onKeyUp={(e) => setName(e.target.value)}
-              onFocus={() => setCourseNameWidth("612px")}
-              onBlur={checkBoxFilled}
-              data-type="name"
-            />
+            {userCourseData?.length > 0 ? (
+              <StyledInput
+                type="text"
+                width="34em"
+                onBlur={checkBoxFilled}
+                value={userCourseData[0]?.name}
+                disabled
+              />
+            ) : (
+              <StyledInput
+                type="text"
+                width="34em"
+                placeholder="코스명을 입력해 주세요"
+                onKeyUp={(e) => setName(e.target.value)}
+                onFocus={() => setCourseNameWidth("612px")}
+                onBlur={checkBoxFilled}
+                data-type="name"
+              />
+            )}
             <BorderEffectBox fromLeft="-306px">
               <BorderEffect
                 spanWidth={courseNameWidth}
@@ -502,44 +516,60 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
           {/* 순서 정하기 */}
           <LineWrapper>
             <label>데이트 순서</label>
-            <SelectBox
-              sort1={sort1}
-              setSort1={setSort1}
-              sort2={sort2}
-              setSort2={setSort2}
-              sort3={sort3}
-              setSort3={setSort3}
-              selectedPcode={selectedPcode}
-            />
+            {userCourseData?.length > 0 ? (
+              <SelectBox coursesort={userCourseData[0]?.coursesort} />
+            ) : (
+              <SelectBox
+                sort1={sort1}
+                setSort1={setSort1}
+                sort2={sort2}
+                setSort2={setSort2}
+                sort3={sort3}
+                setSort3={setSort3}
+                selectedPcode={selectedPcode}
+              />
+            )}
           </LineWrapper>
 
           {/* 순서 선택 후에 각 장소 검색 */}
           <LineWrapper>
             <label>{sort1 || "장소1"}</label>
-
-            <PlaceInput
-              type="text"
-              placeholder="장소1"
-              onChange={(e) => setKeyword1(e.target.value)}
-              onFocus={() => setPlace1Width("192px")}
-              onBlur={checkBoxFilled}
-              value={keyword1}
-              width="192px"
-              data-type="keyword1"
-            />
-            <AbsoluteButton
-              type="button"
-              data-datesort={sort1}
-              onClick={onClickSearchPlace}
-              fromLeft="264px"
-              data-type="keyword1"
-            >
-              <i
-                className="fas fa-search"
-                data-datesort={sort1}
+            {userCourseData?.length > 0 ? (
+              <PlaceInput
+                type="text"
+                placeholder="장소1"
+                value={keyword1}
+                width="192px"
                 data-type="keyword1"
-              ></i>
-            </AbsoluteButton>
+                disabled
+              />
+            ) : (
+              <>
+                <PlaceInput
+                  type="text"
+                  placeholder="장소1"
+                  onChange={(e) => setKeyword1(e.target.value)}
+                  onFocus={() => setPlace1Width("192px")}
+                  onBlur={checkBoxFilled}
+                  value={keyword1}
+                  width="192px"
+                  data-type="keyword1"
+                />
+                <AbsoluteButton
+                  type="button"
+                  data-datesort={sort1}
+                  onClick={onClickSearchPlace}
+                  fromLeft="264px"
+                  data-type="keyword1"
+                >
+                  <i
+                    className="fas fa-search"
+                    data-datesort={sort1}
+                    data-type="keyword1"
+                  ></i>
+                </AbsoluteButton>
+              </>
+            )}
             <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place1Width}
@@ -549,29 +579,43 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
             </BorderEffectBox>
 
             <label>{sort2 || "장소2"}</label>
-            <PlaceInput
-              type="text"
-              placeholder="장소2"
-              onChange={(e) => setKeyword2(e.target.value)}
-              onFocus={() => setPlace2Width("192px")}
-              onBlur={checkBoxFilled}
-              value={keyword2}
-              width="192px"
-              data-type="keyword2"
-            />
-            <AbsoluteButton
-              type="button"
-              data-datesort={sort2}
-              onClick={onClickSearchPlace}
-              data-type="keyword2"
-              fromLeft="680px"
-            >
-              <i
-                className="fas fa-search"
-                data-datesort={sort2}
+
+            {userCourseData?.length > 0 ? (
+              <PlaceInput
+                type="text"
+                placeholder="장소2"
+                value={keyword2}
+                width="192px"
                 data-type="keyword2"
-              ></i>
-            </AbsoluteButton>
+                disabled
+              />
+            ) : (
+              <>
+                <PlaceInput
+                  type="text"
+                  placeholder="장소2"
+                  onChange={(e) => setKeyword2(e.target.value)}
+                  onFocus={() => setPlace2Width("192px")}
+                  onBlur={checkBoxFilled}
+                  value={keyword2}
+                  width="192px"
+                  data-type="keyword2"
+                />
+                <AbsoluteButton
+                  type="button"
+                  data-datesort={sort2}
+                  onClick={onClickSearchPlace}
+                  data-type="keyword2"
+                  fromLeft="680px"
+                >
+                  <i
+                    className="fas fa-search"
+                    data-datesort={sort2}
+                    data-type="keyword2"
+                  ></i>
+                </AbsoluteButton>
+              </>
+            )}
             <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place2Width}
@@ -583,29 +627,42 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
 
           <LineWrapper>
             <label>{sort3 || "장소3"}</label>
-            <PlaceInput
-              type="text"
-              placeholder="장소3"
-              onChange={(e) => setKeyword3(e.target.value)}
-              onFocus={() => setPlace3Width("192px")}
-              onBlur={checkBoxFilled}
-              value={keyword3}
-              width="192px"
-              data-type="keyword3"
-            />
-            <AbsoluteButton
-              type="button"
-              data-datesort={sort3}
-              onClick={onClickSearchPlace}
-              data-type="keyword3"
-              fromLeft="264px"
-            >
-              <i
-                className="fas fa-search"
-                data-datesort={sort3}
-                data-type="keyword3"
-              ></i>
-            </AbsoluteButton>
+            {userCourseData?.length > 0 ? (
+              <PlaceInput
+                type="text"
+                placeholder="장소2"
+                value={keyword2}
+                width="192px"
+                data-type="keyword2"
+                disabled
+              />
+            ) : (
+              <>
+                <PlaceInput
+                  type="text"
+                  placeholder="장소3"
+                  onChange={(e) => setKeyword3(e.target.value)}
+                  onFocus={() => setPlace3Width("192px")}
+                  onBlur={checkBoxFilled}
+                  value={keyword3}
+                  width="192px"
+                  data-type="keyword3"
+                />
+                <AbsoluteButton
+                  type="button"
+                  data-datesort={sort3}
+                  onClick={onClickSearchPlace}
+                  data-type="keyword3"
+                  fromLeft="264px"
+                >
+                  <i
+                    className="fas fa-search"
+                    data-datesort={sort3}
+                    data-type="keyword3"
+                  ></i>
+                </AbsoluteButton>
+              </>
+            )}
             <BorderEffectBox fromLeft="-96px">
               <BorderEffect
                 spanWidth={place3Width}
@@ -613,27 +670,34 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
                 bgColor="var(--color-green)"
               />
             </BorderEffectBox>
+
             {/* 없는 장소 추가 */}
-            <PlaceFinder
-              onMouseEnter={onEnterFinder}
-              onMouseLeave={onLeaveFinder}
-            >
-              <label>찾는 장소가 없으신가요?</label>
-              <StyledSearchBar width="4em">
-                <ToolTipBox
-                  width="160px"
-                  fromTop="-40px"
-                  fromLeft="-16px"
-                  display={display ? "block" : "none"}
-                >
-                  장소를 추가해 보세요!
-                  <ToolTip />
-                </ToolTipBox>
-                <Button type="button" onClick={onClickSearchButton}>
-                  <i className="fas fa-search"></i>
-                </Button>
-              </StyledSearchBar>
-            </PlaceFinder>
+            {userCourseData?.length > 0 ? (
+              <>
+                <div></div>
+              </>
+            ) : (
+              <PlaceFinder
+                onMouseEnter={onEnterFinder}
+                onMouseLeave={onLeaveFinder}
+              >
+                <label>찾는 장소가 없으신가요?</label>
+                <StyledSearchBar width="4em">
+                  <ToolTipBox
+                    width="160px"
+                    fromTop="-40px"
+                    fromLeft="-16px"
+                    display={display ? "block" : "none"}
+                  >
+                    장소를 추가해 보세요!
+                    <ToolTip />
+                  </ToolTipBox>
+                  <Button type="button" onClick={onClickSearchButton}>
+                    <i className="fas fa-search"></i>
+                  </Button>
+                </StyledSearchBar>
+              </PlaceFinder>
+            )}
           </LineWrapper>
 
           {/* 장소 검색 결과 모달 */}

@@ -89,8 +89,10 @@ public class UserController {
 	}
 
 	//문자 보내는 메소드
-	@GetMapping(path = "/telcheck")
-	public ModelAndView telcheck(String tel) {
+	@PostMapping(path = "/telcheck")
+	public int telcheck(@RequestBody UserVO vo) {
+		String tel = vo.getTel();
+		System.out.println(tel);
 		String api_key = "NCSYDAV6TEW7BM61";
 	    String api_secret = "GRZG9MR5SCWPLWITSCTYRF056KXHNPOB";
 	    Message coolsms = new Message(api_key, api_secret);
@@ -114,11 +116,7 @@ public class UserController {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
-	    
-	    ModelAndView mav = new ModelAndView();
-	    mav.setViewName("redirect:maptest");
-	    
-	    return mav;
+	    return ranInt;
 	}
 	
 	// 회원정보 수정
