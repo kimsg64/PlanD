@@ -1,7 +1,9 @@
 package com.bit5.wherewego.res;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bit5.wherewego.course.CourseDAOImp;
 import com.bit5.wherewego.notice.PagingVO;
 import com.bit5.wherewego.user.UserDAOImp;
+import com.bit5.wherewego.user.UserVO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -62,36 +65,16 @@ public class ResController {
 		return mav;
 	}
 
-	/*
 	// 로그인한 유저의 이력/예약
 	@RequestMapping(value = "/myReservationSelect", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView list(PagingVO pVo) {
-
-		ModelAndView mav = new ModelAndView();
-
+	public List<ResVO> selectUserRes(@RequestBody UserVO vo) {
+		System.out.println("접속한유저: " + vo.getUserId());
+		List<ResVO> list = new ArrayList<ResVO>();
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		int total = dao.totalResCount(pVo.getSearchKey(), pVo.getSearchWord());
-		pVo.setTotalRecord(total);
-
-		int num1 = pVo.getOnePageRecord() * pVo.getNowPage();
-		int num2;
-
-		int lastPageRecord = pVo.getTotalRecord() % pVo.getOnePageRecord();
-		if (pVo.getTotalPage() == pVo.getNowPage() && lastPageRecord != 0) {
-			num2 = lastPageRecord;
-		} else {
-			num2 = pVo.getOnePageRecord();
-		}
-
-		ResDAOImp dao2 = sqlSession.getMapper(ResDAOImp.class);
-		mav.addObject("list",dao2.resAllSelect(num1,num2,pVo.getSearchKey(),pVo.getSearchWord()));
-		mav.addObject("pVo",pVo);
-		mav.setViewName("res/resList");
-
-		return mav;
+		list = dao.selectUserRes(vo);
+		return list;
 	}
-	 */
 
 	//예약하기 (전송)
 	@RequestMapping(value = "/insertRes", method = RequestMethod.POST)

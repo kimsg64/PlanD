@@ -144,13 +144,14 @@ const MyPage = () => {
         })
         .catch((error) => console.log(error));
 
-      // axios
-      //   .post("wherewego/myReservationSelect", body)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     setUserReservation(response.data);
-      //   })
-      //   .catch((error) => console.log(error));
+      axios
+        .post("wherewego/myReservationSelect", body)
+        .then((response) => {
+          // console.log(response.data);
+          setUserReservation(response.data);
+          setReservationLoaded(true);
+        })
+        .catch((error) => console.log(error));
     }
   }, []);
   useEffect(() => {
@@ -283,12 +284,18 @@ const MyPage = () => {
         <MenuContainer>
           <MenuBox>
             <SubMenuTitle>나의 후기</SubMenuTitle>
-            <MyReviews userReview={reviewLoaded ? userReview : null} />
+            <MyReviews
+              reviewLoaded={reviewLoaded}
+              userReview={userReview}
+              reservationLoaded={reservationLoaded}
+              userReservation={userReservation}
+            />
           </MenuBox>
           <MenuBox>
-            <SubMenuTitle>나의 예약 및 이용 내역</SubMenuTitle>
+            <SubMenuTitle>나의 예약</SubMenuTitle>
             <MyReservation
-              userReservation={reservationLoaded ? userReservation : null}
+              reservationLoaded={reservationLoaded}
+              userReservation={userReservation}
             />
           </MenuBox>
           <MenuBox>

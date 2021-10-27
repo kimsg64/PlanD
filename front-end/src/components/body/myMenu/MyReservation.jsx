@@ -1,24 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ContentP, MyMenuItemBox, StyledButton, TitleP } from "../mixin/Mixin";
 
-const MyReservation = (userReservation = null) => {
-  // const userReservationData = userReservation?.
+const MyReservation = ({
+  reservationLoaded = false,
+  userReservation = null,
+}) => {
+  const [reservationList, setReservationList] = useState([]);
+  const userReservationData = userReservation;
+
+  useEffect(() => {
+    // 리뷰 = 작성한 리뷰(userReviewData) + 작성 가능한 예약
+    const today = new Date();
+    const thisMonth = today.getMonth() + 1;
+    const thisDate = today.getDate();
+    // 오늘 이후의 예약을 표시
+    // console.log("오늘", today);
+    // console.log("오늘", thisMonth, thisDate);
+    const list = userReservationData?.filter((data) => {
+      return (
+        parseInt(data.resdate.split("/")[0]) > thisMonth ||
+        (parseInt(data.resdate.split("/")[0]) === thisMonth &&
+          parseInt(data.resdate.split("/")[1]) >= thisDate)
+      );
+    });
+    setReservationList(list);
+  }, []);
+
+  console.log("나의 예약의 예약", userReservationData);
+  console.log(reservationList);
+
   return (
     <>
-      <MyMenuItemBox>
-        <div>
-          <i className="fas fa-clock"></i>
-          <TitleP>예약</TitleP>
-        </div>
-        <ContentP>예약</ContentP>
-      </MyMenuItemBox>
-      <MyMenuItemBox>
-        데이트 코스를 찾아보세요!
-        <Link to={`/planning`}>
-          <StyledButton>예약하러 가기</StyledButton>
-        </Link>
-      </MyMenuItemBox>
+      {reservationList?.length === 0 ? (
+        <MyMenuItemBox>
+          데이트 코스를 찾아보세요!
+          <Link to={`/planning`}>
+            <StyledButton>예약하러 가기</StyledButton>
+          </Link>
+        </MyMenuItemBox>
+      ) : null}
+      {reservationList &&
+        reservationList.map((reservation) => {
+          return (
+            <Link to={`/userreservation/${reservation.c_num}`}>
+              <MyMenuItemBox>
+                <div>
+                  <i className="far fa-clock"></i>
+                  <TitleP>{reservation.name}</TitleP>
+                </div>
+                <ContentP>{`21/${reservation.resdate}`}</ContentP>
+              </MyMenuItemBox>
+            </Link>
+          );
+        })}
     </>
   );
 };

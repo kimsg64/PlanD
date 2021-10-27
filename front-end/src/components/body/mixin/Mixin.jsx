@@ -198,6 +198,7 @@ export const ToolTip = styled.div`
   width: 0;
   bottom: -6px;
   left: 40px;
+  z-index: 2;
 `;
 
 // 마이메뉴 아이템 박스
@@ -315,11 +316,11 @@ export const CommonP = styled.p`
   text-overflow: ellipsis;
 `;
 export const TitleP = styled(CommonP)`
-  width: 240px;
+  width: 200px;
   font-weight: bold;
 `;
 export const ContentP = styled(CommonP)`
-  width: 120px;
+  width: 160px;
   text-align: right;
   margin-right: var(--margin-line-space);
 `;

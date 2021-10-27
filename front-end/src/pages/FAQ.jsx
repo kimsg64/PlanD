@@ -289,7 +289,7 @@ const FAQ = () => {
               <SmallBox>번호</SmallBox>
               <SmallBox>분류</SmallBox>
               <TitleBox>제목</TitleBox>
-              <SmallBox>작성일</SmallBox>
+              <SmallBox></SmallBox>
               <SmallBox></SmallBox>
             </Liner>
           </NoticeItem>
@@ -303,7 +303,7 @@ const FAQ = () => {
                     <ItemTitleBox onClick={openItem} data-number={item.number}>
                       <PointLetter>Q</PointLetter>: {item.title}
                     </ItemTitleBox>
-                    <SmallBox>{item.enrollment}</SmallBox>
+                    <SmallBox></SmallBox>
                     {item.number === "1" ? (
                       <SmallBox
                         onClick={openItem}
