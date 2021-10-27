@@ -78,5 +78,14 @@ public class HomeController {
 
 		return mav;
 	}
+	//이용약관
+	@RequestMapping("/menuList")
+	public ModelAndView menulist() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/menuList");
+		
+		return mav;
+	}
 
 }
