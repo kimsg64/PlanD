@@ -18,4 +18,5 @@ public interface CourseDAOImp {
 			@Param("cafelist") List<String> cafelist, @Param("etclist") List<String> etclist, @Param("alllist") List<String> alllist);
 	public ResultVO courseDetail(int c_num);
 	public int coursegrade(int c_num, String grade);
+	public int gradecourse(int pcode);
 }
