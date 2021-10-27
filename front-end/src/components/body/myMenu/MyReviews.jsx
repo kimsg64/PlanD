@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { MyMenuItemBox, StyledButton } from "../mixin/Mixin";
 
 const MyReviews = (userReview = null) => {
   const userReviewData = userReview?.userReview;
@@ -18,7 +20,12 @@ const MyReviews = (userReview = null) => {
           );
         })
       ) : (
-        <p>리뷰를 작성해 주세요</p>
+        <MyMenuItemBox>
+          리뷰를 작성해 주세요
+          <Link to={`/`}>
+            <StyledButton>작성하러 가기</StyledButton>
+          </Link>
+        </MyMenuItemBox>
       )}
     </div>
   );

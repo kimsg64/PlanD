@@ -4,9 +4,10 @@ package com.bit5.wherewego.res;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.course.CourseDAOImp;
@@ -56,12 +57,20 @@ public class ResController {
 	
 	//예약하기 (전송)
 	@RequestMapping(value = "/insertRes", method = RequestMethod.POST)
-	public ModelAndView insertRes(String userid, int c_num, String resdate) {
-		ModelAndView mav = new ModelAndView();
+	@ResponseBody
+	public int insertRes(@RequestBody ResVO vo) {
+		System.out.println(vo.getUserid());
+		System.out.println(vo.getC_num());
+		System.out.println(vo.getResdate());
 		ResDAOImp dao = sqlSession.getMapper(ResDAOImp.class);
-		int total = dao.insertRest(userid, c_num, resdate);
-		
-		return null;
+		int total = dao.insertRes(vo.getUserid(), vo.getC_num(), vo.getResdate());
+		System.out.println(total);
+		if(total > 0) {
+			System.out.println("you did it~!");			
+		} else {
+			System.out.println("fail");
+		}
+		return total;
 	}
 	//예약하기 뷰
 	@RequestMapping("/resView")

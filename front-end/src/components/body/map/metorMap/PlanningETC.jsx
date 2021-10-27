@@ -186,7 +186,7 @@ const PlanningETC = ({
       ? "125"
       : null;
 
-  console.log("날씨", weather);
+  // console.log("날씨", weather);
   const onSubmitForm = (e) => {
     e.preventDefault();
     // console.log(sortNum);

@@ -25,4 +25,9 @@
   		select userid, name, tel, email, point from usertbl where userid=#{param1}
 	</select> 
 	
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="com.bit5.wherewego.user.UserVO">
+		update usertbl set pwd=#{pwd}, tel=#{tel}, email=#{email}, addr=#{addr}, startdate=TO_DATE(#{startdate}, 'YYYY-MM-DD') where userid=#{userId} 
+	</update>
+	
 </mapper>

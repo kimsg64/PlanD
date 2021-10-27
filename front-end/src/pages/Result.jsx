@@ -14,6 +14,8 @@ import {
 import PageSlider from "../components/body/mixin/PageSlider";
 import CustomTMap from "../components/body/map/CustomTMap";
 import GoogleMapSettings from "../components/body/map/GoogleMapSettings";
+import axios from "axios";
+import { read_cookie } from "sfcookies";
 
 const MenuTitleWithMargin = styled(MenuTitle)`
   margin-bottom: var(--margin-default);
@@ -40,7 +42,7 @@ const Container = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  width: 200px;
+  width: 400px;
   margin-top: var(--margin-default);
   display: flex;
   justify-content: center;
@@ -127,7 +129,7 @@ const ForecastBox = styled.div`
 `;
 
 // 코스 정보 받아와서 > 장소1, 장소2, 장소3 주소를 티맵으로 보내서 찍기
-const Result = ({ location }) => {
+const Result = ({ location, history }) => {
   const [idx, setIdx] = useState(0);
   const [startPoint, setStartPoint] = useState();
   // "서울특별시 마포구 서교동 332 33 1층"
@@ -150,9 +152,12 @@ const Result = ({ location }) => {
   const weather = location.props.weather;
   const resdate = location.props.resdate;
   const sort = location.props.sort;
+  const c_num = courseResults[0]?.c_num;
   // console.log("결과 객체", courseResults);
-  console.log("날씨 객체", weather);
-  console.log(recommended);
+  // console.log("코스번호", c_num);
+  // console.log("날씨 객체", weather);
+  // console.log("날짜 스트링", resdate);
+  // console.log(recommended);
   useEffect(() => {
     weather[0]?.icon === "01d" ||
     weather[0]?.icon === "01n" ||
@@ -271,6 +276,24 @@ const Result = ({ location }) => {
     setIdx((prevIdx) => prevIdx - 1);
   };
   // console.log("coords: ", coords);
+
+  // 예약 확정해서 DB로 보내기
+  const onClickConfirm = () => {
+    const body = {
+      userid: read_cookie("userId"),
+      c_num: c_num,
+      resdate: resdate,
+    };
+    console.log("예약 확정이요~", body);
+    axios
+      .post("/wherewego/insertRes", body)
+      .then((response) => {
+        console.log(response.data);
+        alert("예약이 완료되었습니다!");
+        history.push("/mypage");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -459,13 +482,13 @@ const Result = ({ location }) => {
                 <InfoSection>
                   <h2>
                     추천 아이템:
-                    <PointLetter>{recommendedKor}</PointLetter>
+                    <PointLetter> {recommendedKor}</PointLetter>
                   </h2>
                   <a
                     href={`https://search.musinsa.com/search/musinsa/integration?type=&q=${recommendedKor}`}
                     target="_blank"
                   >
-                    <Button>사러 가기</Button>
+                    <div>사러 가기</div>
                   </a>
                 </InfoSection>
               </PlaceInfoWindow>
@@ -482,9 +505,7 @@ const Result = ({ location }) => {
         ) : idx === 1 ? (
           <ButtonContainer>
             <Button onClick={onClickPrev}>이전</Button>
-            <Link to={"/planning"}>
-              <Button>다시 선택하기</Button>
-            </Link>
+            <Button onClick={onClickConfirm}>예약 확정하기</Button>
           </ButtonContainer>
         ) : null}
       </BodyLayout>

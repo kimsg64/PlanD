@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserRecommendation from "../../../pages/UserRecommendation";
 import { StyledButton, MyMenuItemBox } from "../mixin/Mixin";
@@ -7,15 +7,21 @@ import ModalBG from "../mixin/ModalBG";
 
 const MyCourse = (userCourse = null) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(0);
   const userCourseData = userCourse?.userCourse;
   // console.log("마이코스", userCourse);
   // console.log("옵셔널 체이닝 후 코스", userCourseData);
 
+  useEffect(() => {
+    setIsLoaded(true);
+  }, [userCourseData]);
+
   const onClickItem = (e) => {
     setShowModal(true);
-    // console.log(e.target.dataset);
-    // console.log(e.target.dataset.cnum);
+    console.log(e.target.dataset);
+    console.log(e.target.dataset.cnum);
+    setSelectedItem(parseInt(e.target.dataset.cnum));
   };
 
   return (
@@ -42,8 +48,12 @@ const MyCourse = (userCourse = null) => {
       )}
       {showModal ? (
         <ModalBG setShowModal={setShowModal}>
-          <Modal>
-            <UserRecommendation />
+          <Modal isLoaded={isLoaded}>
+            <UserRecommendation
+              userCourseData={userCourseData.filter(
+                (data) => data.c_num === selectedItem
+              )}
+            />
           </Modal>
         </ModalBG>
       ) : null}

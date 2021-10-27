@@ -15,6 +15,7 @@ import { read_cookie } from "sfcookies";
 import axios from "axios";
 import MyCourse from "../components/body/myMenu/MyCourse";
 import MyReviews from "../components/body/myMenu/MyReviews";
+import MyReservation from "../components/body/myMenu/MyReservation";
 
 // 상단 프로필 섹션
 const ProfileSummary = styled.section`
@@ -270,12 +271,11 @@ const MyPage = () => {
         <MenuContainer>
           <MenuBox>
             <SubMenuTitle>나의 후기</SubMenuTitle>
-            <MyReviews
-              userReview={reviewLoaded ? userReview : null}
-            ></MyReviews>
+            <MyReviews userReview={reviewLoaded ? userReview : null} />
           </MenuBox>
           <MenuBox>
-            <SubMenuTitle>나의 이용 내역</SubMenuTitle>
+            <SubMenuTitle>나의 예약 및 이용 내역</SubMenuTitle>
+            <MyReservation />
           </MenuBox>
           <MenuBox>
             <SubMenuTitle>나의 추천 코스</SubMenuTitle>
