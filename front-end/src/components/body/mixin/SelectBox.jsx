@@ -44,7 +44,7 @@ const SelectBox = ({
   const first = sequence?.substring(0, 2);
   const second = sequence?.substring(2, 4);
   const third = sequence?.substring(4, 6);
-  console.log(sequence);
+  // console.log(sequence);
   // useEffect(() => {
   //   selectedPcode === "pcode1"
   //     ? setIsSelected1(true)

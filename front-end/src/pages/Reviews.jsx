@@ -1,12 +1,17 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import { BodyLayout, MenuTitle } from "../components/body/mixin/Mixin";
+import {
+  BodyLayout,
+  MenuTitle,
+  ReviewImageBox,
+  ReviewItem,
+  ReviewTextBox,
+} from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
 import Stars from "../components/body/mixin/Stars";
 import ReviewsData from "../server/ReviewsData";
-
-// 여기는 리뷰 상세 페이지로 활용하기
+import { bake_cookie, read_cookie } from "sfcookies";
 
 const ReviewPageMenuTitle = styled(MenuTitle)`
   width: 72%;
@@ -47,56 +52,6 @@ const Slider = styled.div`
   /* transform: translateX(-32%); */
   transform: translateX(${(props) => props.index * 32 + "%"});
   margin-bottom: calc(var(--margin-default) * 2);
-`;
-
-const ReviewItem = styled.li`
-  max-width: 440px;
-  height: 560px;
-  margin: 0 calc(var(--margin-default) / 1.4);
-  padding: var(--padding-default);
-  border-radius: 8px;
-  background-color: var(--color-bg);
-  &:nth-child(even) {
-    /* transform: scaleX(1.16) rotateY(10deg); */
-  }
-  &:nth-child(odd) {
-    /* transform: scaleX(1.16) rotateY(-10deg); */
-  }
-
-  border: 1px solid #ccc;
-  box-shadow: 4px 4px 10px 0px #ccc;
-`;
-
-const ImageBox = styled.div`
-  width: 400px;
-  height: 240px;
-  margin: calc(var(--margin-default) / 2) 0;
-  overflow: hidden;
-  background-color: var(--color-green);
-  img {
-    width: 100%;
-  }
-`;
-
-const TextBox = styled.div`
-  width: 100%;
-  height: 112px;
-  margin-top: calc(var(--margin-default) / 2);
-  padding: var(--padding-default);
-  background-color: var(--color-light-bg);
-  box-shadow: 4px 4px 10px 0px #ccc;
-  /* border: 2px solid var(--color-font); */
-  border-radius: 8px;
-  font-size: var(--font-size-normal);
-  position: relative;
-  p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    white-space: pre-wrap;
-    text-overflow: ellipsis;
-  }
 `;
 
 const ProfileBox = styled.div`
@@ -207,6 +162,9 @@ const Reviews = () => {
 
   const showDetailItem = () => {};
 
+  const userId = read_cookie("userId");
+  console.log(userId);
+
   return (
     <>
       <Header />
@@ -225,17 +183,17 @@ const Reviews = () => {
             {reviewsList.map((review) => {
               // console.log(review.resdate.split("/"));
               return (
-                <ReviewItem onClick={showDetailItem}>
+                <ReviewItem as="li" onClick={showDetailItem}>
                   <h3>{review.name}</h3>
-                  <ImageBox>
+                  <ReviewImageBox>
                     <img
                       src={`${process.env.PUBLIC_URL}/images/reviews/${review.r_num}.jpg`}
                       alt="cafe_review"
                     />
-                  </ImageBox>
-                  <TextBox>
+                  </ReviewImageBox>
+                  <ReviewTextBox>
                     <p>{review.info}</p>
-                  </TextBox>
+                  </ReviewTextBox>
                   <ProfileBox>
                     <Icon>
                       <img

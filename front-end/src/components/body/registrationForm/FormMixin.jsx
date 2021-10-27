@@ -67,7 +67,7 @@ export const FormInput = styled(Input)`
   &.check:not(:focus):not(:placeholder-shown) {
     border: 2px solid
       ${(props) => {
-        return props.isSame ? "var(--color-font)" : "var(--color-focus)";
+        return props.isSame ? "var(--color-bg)" : "var(--color-focus)";
       }};
   }
   &.check:not(:focus):not(:placeholder-shown) ~ div {

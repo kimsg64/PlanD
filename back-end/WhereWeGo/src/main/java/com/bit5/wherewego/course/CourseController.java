@@ -320,4 +320,15 @@ public class CourseController {
 		mav.setViewName("redirect:courseDetail");
 		return mav;
 	}
+	
+	
+	//코스 뷰
+	@RequestMapping(value = "/userCourseDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultVO courseView(@RequestBody CourseVO vo) {
+		System.out.println(vo.getC_num());
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		ResultVO Rvo = dao.courseDetail(vo.getC_num());
+		return Rvo;
+	}
 }

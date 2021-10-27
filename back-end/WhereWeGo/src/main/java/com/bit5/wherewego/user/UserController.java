@@ -95,36 +95,35 @@ public class UserController {
 	}
 
 	//문자 보내는 메소드
-	@GetMapping(path = "/telcheck")
-	public ModelAndView telcheck(String tel) {
+	@PostMapping(path = "/telcheck")
+	public int telcheck(@RequestBody UserVO vo) {
+		String tel = vo.getTel();
+		System.out.println(tel);
 		String api_key = "NCSYDAV6TEW7BM61";
-		String api_secret = "GRZG9MR5SCWPLWITSCTYRF056KXHNPOB";
-		Message coolsms = new Message(api_key, api_secret);
+	    String api_secret = "GRZG9MR5SCWPLWITSCTYRF056KXHNPOB";
+	    Message coolsms = new Message(api_key, api_secret);
+	    
+	    //System.out.println(tel);
+	    double ran = Math.random();
+	    int ranInt = (int)(ran*(9999-1000+1)+1000);
+	    System.out.println("인증문자:"+String.valueOf(ranInt));
 
-		//System.out.println(tel);
-		double ran = Math.random();
-		int ranInt = (int)(ran*(9999-1000+1)+1000);
-		System.out.println("인증문자:"+String.valueOf(ranInt));
+	    // 4 params(to, from, type, text) are mandatory. must be filled
+	    HashMap<String, String> params = new HashMap<String, String>();
+	    params.put("to", tel); // 수신번호
+	    params.put("from", "01087885202"); // 발신번호
+	    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
+	    params.put("text", "[PlanD] 인증문자는 "+String.valueOf(ranInt)+" 입니다."); // 문자내용    
+	    params.put("app_version", "JAVA SDK v1.2"); // application name and version
+	    try {
+	      JSONObject obj = coolsms.send(params);
+	      System.out.println(obj.toString());
+	    } catch (CoolsmsException e) {
+	      System.out.println(e.getMessage());
+	      System.out.println(e.getCode());
+	    }
+	    return ranInt;
 
-		// 4 params(to, from, type, text) are mandatory. must be filled
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("to", tel); // 수신번호
-		params.put("from", "01087885202"); // 발신번호
-		params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
-		params.put("text", "[PlanD] 인증문자는 "+String.valueOf(ranInt)+" 입니다."); // 문자내용    
-		params.put("app_version", "JAVA SDK v1.2"); // application name and version
-		try {
-			JSONObject obj = coolsms.send(params);
-			System.out.println(obj.toString());
-		} catch (CoolsmsException e) {
-			System.out.println(e.getMessage());
-			System.out.println(e.getCode());
-		}
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:maptest");
-
-		return mav;
 	}
 
 	// 회원정보 수정

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StarsBox = styled.div`
@@ -19,6 +19,12 @@ const Score = styled.div`
   margin: 0 calc(var(--margin-default) / 2);
 `;
 
+const ScoreInput = styled(Score)`
+  width: 40px;
+  font-size: var(--font-size-normal);
+  margin: 0 calc(var(--margin-default) / 2);
+`;
+
 const HalfBox = styled.div`
   position: relative;
   &:before {
@@ -32,11 +38,28 @@ const HalfBox = styled.div`
   }
 `;
 
-const Stars = ({ score = 1 }) => {
-  // console.log(score);
+const Stars = ({ score = 1, setScore = () => {}, isEditable = false }) => {
+  useEffect(() => {}, [score]);
+  console.log(score);
+  const onChangeScore = (e) => {
+    setScore(e.target.value);
+  };
   return (
     <StarsBox>
-      <Score>{score}점</Score>
+      {isEditable ? (
+        <ScoreInput
+          as="input"
+          placeholder="평점"
+          value={score}
+          min="1"
+          max="10"
+          maxLength="2"
+          onChange={onChangeScore}
+        />
+      ) : (
+        <Score>{score}점</Score>
+      )}
+
       {score === 10 ? (
         <>
           <i className="fas fa-star "></i>

@@ -62,7 +62,6 @@ public class ResController {
 		return mav;
 	}
 
-	/*
 	// 로그인한 유저의 이력/예약
 	@RequestMapping(value = "/myReservationSelect", method = RequestMethod.POST)
 	@ResponseBody
