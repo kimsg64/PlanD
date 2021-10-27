@@ -1,5 +1,7 @@
 package com.bit5.wherewego.user;
 
+import com.bit5.wherewego.buy.BuyVO;
+
 public interface UserDAOImp {
 	// 유저 추가(회원가입)
 	public int insertUser(UserVO userData);
@@ -14,4 +16,6 @@ public interface UserDAOImp {
 	
 	// 유저 개인정보 수정
 	public int updateUser(UserVO vo);
+
+	public int usePoint(BuyVO vo); //포인트사용
 }

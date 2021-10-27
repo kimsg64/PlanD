@@ -22,12 +22,17 @@
 	
 	<!-- 결제 구매자 정보-->
 	<select id="userForPay" resultType="com.bit5.wherewego.user.UserVO">
-  		select userid, name, tel, email, point from usertbl where userid=#{param1}
+  		select userid, name, tel, email, point, addr from usertbl where userid=#{param1}
 	</select> 
 	
 	<!-- 회원정보 수정 -->
 	<update id="updateUser" parameterType="com.bit5.wherewego.user.UserVO">
 		update usertbl set pwd=#{pwd}, tel=#{tel}, email=#{email}, addr=#{addr}, startdate=TO_DATE(#{startdate}, 'YYYY-MM-DD') where userid=#{userId} 
+	</update>
+	
+	<!-- 포인트 사용 -->
+	<update id="usePoint" parameterType="com.bit5.wherewego.buy.BuyVO">
+	 	update set point=${point} where userid=#{userid}
 	</update>
 	
 </mapper>
