@@ -135,4 +135,14 @@ public class UserController {
 		}
 		return result;
 	}
+	
+	// ID 더블쳌
+	@PostMapping(path = "/idDoubleCheck")
+	public int idDoubleCheck(@RequestBody UserVO vo) {
+		System.out.println(vo.getUserId());
+		UserDAOImp dao = sqlSession.getMapper(UserDAOImp.class);
+		int result = dao.idDoubleCheck(vo);
+		// 0이 아니면 중복
+		return result;
+	}
 }

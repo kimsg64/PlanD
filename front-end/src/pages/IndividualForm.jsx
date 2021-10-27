@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Form from "../components/body/mixin/Form";
 import CheckBoxSet from "../components/body/mixin/CheckBoxSet";
-import {
-  BodyLayout,
-  Button,
-  MenuTitle,
-  Input,
-} from "../components/body/mixin/Mixin";
+import { BodyLayout, Button, MenuTitle } from "../components/body/mixin/Mixin";
 import {
   ErrorMsg,
   FormInput,
@@ -57,6 +52,7 @@ const CheckInput = styled.input`
 
 const IndividualForm = ({ history }) => {
   const [userId, setUserId] = useState("");
+  const [idCheck, setidCheck] = useState(false);
   const [pwd, setPwd] = useState("");
   // 비밀번호 체크용(userPwd2)
   const [isSame, setIsSame] = useState(false);
@@ -182,14 +178,31 @@ const IndividualForm = ({ history }) => {
       ranInt === checkNum ? setCheck(true) : setCheck(false);
     }
   }, [ranInt, checkNum]);
-  console.log(check);
-  console.log(checkNum);
-  console.log(ranInt);
+  // console.log(check);
+  // console.log(checkNum);
+  // console.log(ranInt);
+
+  const onClickDoubleCheck = () => {
+    axios
+      .post("/wherewego/idDoubleCheck", { userId: userId })
+      .then((response) => {
+        console.log(response.data);
+        // 결과가 0이 아니면 중복(false)
+        if (response.data === 0) {
+          setidCheck(true);
+          alert(`${userId}를 사용할 수 있습니다!`);
+        } else {
+          setidCheck(false);
+          alert("동일한 아이디가 존재합니다!");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    if (check) {
+    if (check && idCheck) {
       const url = isLoaded ? "/wherewego/editUser" : "/wherewego/registerUser";
 
       const body = {
@@ -228,8 +241,10 @@ const IndividualForm = ({ history }) => {
             ? alert("회원정보 수정에 실패하였습니다...!")
             : alert("회원가입에 실패하였습니다...");
         });
-    } else {
+    } else if (!check && idCheck) {
       alert("인증번호가 일치하지 않습니다!");
+    } else {
+      alert("중복된 아이디가 존재합니다!");
     }
   };
 
@@ -253,7 +268,7 @@ const IndividualForm = ({ history }) => {
                     maxLength="14"
                     pattern="[A-Za-z]{1}\w{5,14}"
                     placeholder="아이디"
-                    onKeyDown={(e) => setUserId(e.target.value)}
+                    onKeyUp={(e) => setUserId(e.target.value)}
                   />
                 )}
                 <ErrorMsg>
@@ -267,6 +282,7 @@ const IndividualForm = ({ history }) => {
                   position="absolute"
                   fromTop="60px"
                   fromLeft="240px"
+                  onClick={onClickDoubleCheck}
                 >
                   중복 확인
                 </Button>

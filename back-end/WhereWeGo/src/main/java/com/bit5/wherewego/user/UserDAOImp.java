@@ -18,4 +18,7 @@ public interface UserDAOImp {
 	public int updateUser(UserVO vo);
 
 	public int usePoint(BuyVO vo); //포인트사용
+	
+	// 중복확인
+	public int idDoubleCheck(UserVO vo);
 }
