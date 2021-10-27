@@ -104,7 +104,7 @@
 				<td><a href="/wherewego/courseList"><img src="imgs/adminMenu/locaB.png" /><br />코스 관리</a></td>
 				<td><a href="/wherewego/placeList"><img src="imgs/adminMenu/placeB.png" /><br />장소 관리</a></td>
 				<td><a href="/wherewego/advermanage"><img src="imgs/adminMenu/adB.png" /><br />광고 관리</a></td>
-				<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointB.png" /><br />포인트샵 관리</a></td>
+				<td><a href="/wherewego/pointshopList"><img src="imgs/adminMenu/pointB.png" onclick='SetCookie("userId",admin,null)'/><br />포인트샵 관리</a></td>
 			</tr>
 		</table>
 		<a href="/wherewego/maptest">지도테스트</a>
@@ -146,12 +146,17 @@
 	</c:if>
 </div>
 
-<%
-	if(session.getAttribute("logid")=="admin") {
-		String userid = "admin";
-		Cookie c = new Cookie("userId",userid);
-		c.setComment("사실은 관리자");
-		c.setMaxAge(3600);
-		response.addCookie(c);
+<script>
+function SetCookie( strName, strValue, iSecond )
+{
+	var strCookie = strName + "=" + encodeURIComponent(strValue);
+	if( typeof iSecond === "number" )
+	{
+		strCookie += "; max-age=" + iSecond;
 	}
-%>
+
+	// QQQ: path, domain 유효범위를 설정하고 싶으면 여기서 strCookie 변수에 추가해 주어야 한다.
+
+	document.cookie = strCookie;
+}
+</script>

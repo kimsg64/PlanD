@@ -2,8 +2,12 @@ package com.bit5.wherewego.user;
 
 
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.nurigo.java_sdk.api.Message;
@@ -24,7 +30,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @RestController
 public class UserController {
-	
+
 	SqlSession sqlSession;
 
 	public SqlSession getSqlSession() {
@@ -35,7 +41,7 @@ public class UserController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
 	// 회원가입
 	@PostMapping(path = "/registerUser")
 	public int getUserData(@RequestBody UserVO userData) {
@@ -48,7 +54,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	// 로그인
 	@PostMapping(path = "/user/userLogin")
 	public int userLogin(@RequestBody UserVO userData) {
@@ -61,7 +67,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	// 로그인 성공 => 세션 설정
 	@GetMapping(path = "/user/checkSession")
 	public boolean setSession(@CookieValue(name = "userId") String loginId, HttpSession session) {
@@ -72,7 +78,7 @@ public class UserController {
 		System.out.println(session.getAttribute("loginId"));
 		return true;
 	}
-	
+
 	// 유저 데이터 받기
 	@PostMapping(path = "/getUserData")
 	public UserVO selectUserData(@RequestBody UserVO userData) {
@@ -84,7 +90,7 @@ public class UserController {
 		System.out.println(vo.getStartdate());
 		System.out.println(vo.getRegdate());
 		System.out.println(vo.getZzim());
-		
+
 		return vo;
 	}
 
@@ -117,8 +123,9 @@ public class UserController {
 	      System.out.println(e.getCode());
 	    }
 	    return ranInt;
+
 	}
-	
+
 	// 회원정보 수정
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
 	public int updateUser(@RequestBody UserVO vo) {
@@ -144,5 +151,73 @@ public class UserController {
 		int result = dao.idDoubleCheck(vo);
 		// 0이 아니면 중복
 		return result;
+	}
+
+	@GetMapping(path = "/userPhotoChange")
+	public ModelAndView userPhotoChange(HttpServletRequest req, UserVO vo) { //아이디와 사진을 UserVO에 담아서 넘겨주세요
+		ModelAndView mav = new ModelAndView();
+
+		//업로드 위치
+		String path = req.getSession().getServletContext().getRealPath("/upload/userphoto");
+		System.out.println("회원이미지 저장경로 : "+path);
+
+		//파일업로드를 위해서는 HttpServletRequest객체를 이용하여 MultipartHttpServletRequest 객체를 구하여야 한다.
+		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
+		
+		//mr에서 MultipartFile객체를 얻어와야 한다.
+		List<MultipartFile> files = mr.getFiles("photo");
+		List<String> fileList = new ArrayList<String>();//업로드된 파일명을 저장할 곳
+		//업로드한 파일이 있으면
+		if(files!=null) {
+			//업로드 구현
+
+			for(int i=0;i<files.size();i++) {
+				//업로드할 MultipartFile객체를 얻어온다
+				MultipartFile mf = files.get(i);
+				//원래 파일명
+				String fname = mf.getOriginalFilename();
+				if(fname!=null && !fname.equals("")) {
+					//같은파일명이 서버에 있는지 확인
+					File fileObj = new File(path,fname);
+					File newFileObj = new File(path,fname);
+					//파일존재여부확인
+					if(fileObj.exists()) {//있으면 트루,없으면 폴스\
+						for(int num=1; ;num++) {
+							//파일이 있으면->파일명 변경
+							int point = fname.lastIndexOf(".");//마지막 점의 위치를 구해라
+							String orgFileName = fname.substring(0,point);//파일명(인덱스0부터 .앞까지) file1
+							String orgFileExt = fname.substring(point+1);//확장자명(.다음부터 끝까지)    jpg
+							String newFileName = orgFileName+"("+num+")."+orgFileExt; //ccc(1).jpg
+							newFileObj = new File(path,newFileName);
+							if(!newFileObj.exists()) {
+								break;
+							}
+						}//for AAA
+
+					}//if BBB
+					try {
+						mf.transferTo(newFileObj);
+					}catch(Exception e) {}
+					fileList.add(newFileObj.getName());
+				}//for문 안에 if문끝
+			}//for문끝
+		}//if문 끝
+
+		String photo = "";
+		for(int i=0; i<fileList.size(); i++) {
+			photo += fileList; //[exo.jpg]
+		}
+		int point2 = photo.lastIndexOf("]"); // ] 의 위치를 알아냄
+		String photo2 = photo.substring(1,point2); //exo.jpg
+		vo.setPhoto(photo2); //저장되는 파일명 : exo.jpg
+		
+		System.out.println("저장경로에 있는 "+photo2+" 파일을 꼭 STS의 upload/userphoto 에 복사해서 옮겨주세요!");
+		
+		UserDAOImp dao = sqlSession.getMapper(UserDAOImp.class);
+		int cnt = dao.userPhotoChange(vo);
+		
+		mav.setViewName("redirect:maptest");
+		
+		return mav;
 	}
 }

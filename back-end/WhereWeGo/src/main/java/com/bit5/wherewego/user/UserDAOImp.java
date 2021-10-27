@@ -21,4 +21,6 @@ public interface UserDAOImp {
 	
 	// 중복확인
 	public int idDoubleCheck(UserVO vo);
+
+	public int userPhotoChange(UserVO vo);
 }

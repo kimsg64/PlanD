@@ -149,13 +149,10 @@ position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 				<span>최대 구입 가능 수량은 10개입니다.</span><br /> <br />
 				가격 : <b id="money">${prVo.price }</b>원
 			</div>
-			<div>
-				<input type="hidden" name="p_num" value="${ppVo.p_num }">
-				${ppVo.img }<br /> 
-				${ppVo.name }<br /> 
-				${ppVo.brand }<br />
-				${ppVo.price }
-			</div>
+			
+			<input type="hidden" name="p_num" value="${prVo.p_num }" />
+			<input type="hidden" name="brand" value="${prVo.brand }" />
+			<input type="hidden" name="name" value="${prVo.name }" />
 			
 			<br />
 			<hr />
@@ -168,8 +165,7 @@ position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 					<li><b>구매자</b> : ${uVo.name }<li>
 					<li><b>이메일</b> : <input type="text" id="inputtxt" name="email" value="${uVo.email }" required /><li>
 					<li><b>연락처</b> : <input type="text" id="inputtxt" name="tel" value="${uVo.tel }" required/><li>
-					<li><b>배송지</b> : <input type="text" id="inputtxt" name="addr" value="${uVo.addr }" required/><li>
-					<br/><span>배송은 최대 3일 소요될 수 있습니다.</span><br /> <br />
+					<br/><span>입력한 연락처로 쿠폰 번호가 발송됩니다.</span><br /> <br />
 				</ul>
 			</div>
 			<br />

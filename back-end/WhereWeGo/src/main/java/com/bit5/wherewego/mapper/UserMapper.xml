@@ -37,7 +37,10 @@
 	
 	<!-- 포인트 사용 -->
 	<update id="usePoint" parameterType="com.bit5.wherewego.buy.BuyVO">
-	 	update set point=${point} where userid=#{userid}
+	 	update usertbl set point=${point} where userid=#{userid}
 	</update>
 	
+	<update id="userPhotoChange" parameterType="com.bit5.wherewego.buy.BuyVO">
+		update usertbl set photo=${photo} where userid=#{userid}
+	</update>
 </mapper>

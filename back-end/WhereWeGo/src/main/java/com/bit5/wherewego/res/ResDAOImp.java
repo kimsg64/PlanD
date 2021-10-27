@@ -8,6 +8,7 @@ public interface ResDAOImp {
 	public int totalResCount(String string, String string2); //페이징
 	public int insertRes(String userid, int c_num, String resdate);
 	public ResVO resView(String res_num);
+	public String selectResnum(ResVO vo);
 }
 
 
