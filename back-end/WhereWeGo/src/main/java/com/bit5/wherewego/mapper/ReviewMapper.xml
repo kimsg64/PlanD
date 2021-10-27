@@ -82,7 +82,7 @@
 	
 	<!-- 리뷰 작성(전송) -->
 	<insert id="reviewWriteOk"  parameterType="com.bit5.wherewego.review.ReviewVO">
-  		insert into review(info,photo,score) values(#{info}, #{photo}, #{score})
+  		insert into review(info,photo,score,res_num) values(#{info}, #{photo}, #{score}, #{res_num})
 	</insert>
 	
 

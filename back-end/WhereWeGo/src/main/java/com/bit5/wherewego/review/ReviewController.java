@@ -4,11 +4,13 @@ package com.bit5.wherewego.review;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -127,7 +129,7 @@ public class ReviewController {
 	}
 	//글수정
 	@RequestMapping(value="/reviewEditOk", method=RequestMethod.POST)
-	public ModelAndView reviewEditOk(ReviewVO vo, HttpSession session) {
+	public ModelAndView reviewEditOk(ReviewVO vo, HttpSession ses,HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
 		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
@@ -138,6 +140,23 @@ public class ReviewController {
 			mav.setViewName("redirect:reviewView");
 		}else {//수정 안되면 글수정으로 이동
 			mav.addObject("msg","수정");
+			mav.setViewName("review/writeResult");
+			
+		}
+		return mav;
+	}
+	//리뷰 작성
+	@RequestMapping(value="/reviewWriteOk", method=RequestMethod.POST)
+	public ModelAndView reviewWriteOk(ReviewVO vo) {
+
+		ModelAndView mav = new ModelAndView();		
+		ReviewDAOImp dao = sqlSession.getMapper(ReviewDAOImp.class);
+		
+		int cnt = dao.reviewWriteOk(vo);
+		if(cnt>0) {
+			mav.setViewName("redirect:reviewList");
+		}else {
+			mav.addObject("msg","등록");
 			mav.setViewName("review/writeResult");
 			
 		}
