@@ -196,9 +196,9 @@ select {border:}
 				<li>${vo.resdate }</li>
 			<li><c:if test="${vo.res_num==null }">
 							<img src="imgs/link.png" />
-						</c:if> <c:if test="${vo.res_num!=null }">
-							<a href="${vo.res_num }" target="_blank"><img
-								src="imgs/linkg.png" /></a>
+						</c:if>
+						<c:if test="${vo.res_num!=null }">
+						<img src="imgs/linkg.png" />
 						</c:if></li>
 			</c:forEach>
 		</ul>
