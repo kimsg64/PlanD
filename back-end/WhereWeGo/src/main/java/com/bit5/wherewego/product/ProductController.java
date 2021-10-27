@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.buy.BuyVO;
-import com.bit5.wherewego.place.PlaceDAOImp;
 import com.bit5.wherewego.user.UserDAOImp;
 
 
@@ -105,7 +104,6 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("vo",vo);
-
 		mav.setViewName("pointshop/productPay");
 
 		return mav;

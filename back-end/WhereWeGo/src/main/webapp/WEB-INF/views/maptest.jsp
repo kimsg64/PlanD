@@ -9,6 +9,12 @@
 	<input type="submit" id="telcheck" value="인증하기"/>
 </form>
 
+<form method="get" action="wherewego/userPhotoChange">
+	<input type="text" id="userId" name="userId">
+	<input type="file" id="photo" name="photo">
+	<input type ="submit" value="사진 업로드"/>
+</form>
+	
 
 
 

@@ -4,11 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit5.wherewego.res.ResDAOImp">
+
 	<select id="resAllSelect" resultType="com.bit5.wherewego.res.ResVO">		
 		select * from 
 		(select * from 
-		(select r.res_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate, v.r_num 
-		from res r join course c on r.c_num=c.c_num join review v on r.res_num=v.res_num
+		(select r.res_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate from res r 
+		join course c on r.c_num=c.c_num
 		<if test='param4!=null and !param4.equals("") and param3.equals("name")'>
 		where c.name like '%'||#{param4}||'%' 
 		</if>
@@ -44,6 +45,11 @@
 	<!-- res 뷰 -->
 	<select id="resView" parameterType="String" resultType="com.bit5.wherewego.res.ResVO">
 		select res_num, userid, to_char(resdate, 'YY-MM-DD') resdate, c_num from res where res_num=#{param1}
+	</select>
+	
+	<!-- 예약번호 알아내기 -->
+	<select id="selectResnum" parameterType="com.bit5.wherewego.res.ResVO" resultType="String">
+		select res_num from res where userid=#{userid} and c_num=#{c_num} and resdate=#{resdate}
 	</select>
 
 </mapper>

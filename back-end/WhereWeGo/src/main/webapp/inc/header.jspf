@@ -273,9 +273,9 @@ nav {
 					
 				<div>
 					<c:if test="${logid!=null}">
-						<a href="/wherewego/logout">Logout</a>
+						<a href="/wherewego/logout" onclick='SetCookie("b_id",null,null)'>Logout</a>
 					</c:if>
-					<c:if test="${logid==null}">
+					<c:if test="${logid==null} or ${log }">
 						<a href="http://localhost:3000/#/login">Login</a>
 					</c:if>
 	            </div>
@@ -328,5 +328,7 @@ nav {
 	container.addEventListener('mouseover', showSubmenu);
 	container.addEventListener('mouseout', hideSubmenu);
 </script>
+<script>
 
+</script>
 <div id="whitetop"></div>
