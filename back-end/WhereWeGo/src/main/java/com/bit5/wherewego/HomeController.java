@@ -87,5 +87,12 @@ public class HomeController {
 		
 		return mav;
 	}
+	//개인정보취급방침
+	@RequestMapping("/infomenu")
+	public ModelAndView infomenu() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/infomenu");
+		return mav;
+	}
 
 }
