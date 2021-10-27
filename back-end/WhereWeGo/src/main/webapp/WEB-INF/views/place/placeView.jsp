@@ -36,7 +36,7 @@
 #infoDiv li {
 	width: 80%;
 	height: 40px;
-	line-height: 40px;
+	line-height: 20px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
@@ -97,7 +97,7 @@ li a {
 			<br /> <br />
 		</div>
 		<div id="mapin">
-			<div id="map" style="width:90%;max-width: 600px; height: 350px; display:flex;"></div>
+			<div id="map" style="width:90%;max-width: 600px; height: 350px;"></div>
 
 			<br /> <br />
 		</div>
@@ -112,10 +112,13 @@ li a {
 					<li><b>정보 : </b>${vo.info }</li>
 				</ul>
 			</div>
+
+
+
+
+
 		</div>
-
-
-
+	</div>
 	<div id="buttonMenu">
 		<a class="button" href="#">수정</a>
 		<c:if test="${vo.grade!='승인'}">
@@ -125,10 +128,7 @@ li a {
 			<a class="button" href="/wherewego/placegrade?pcode=${vo.pcode }&grade=${vo.grade}">미승인</a>
 		</c:if>
 		<a class="button" href="placeList?nowPage=${pVo.nowPage }">목록</a>
-
-
 		</div>
-	</div>
 </div>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
