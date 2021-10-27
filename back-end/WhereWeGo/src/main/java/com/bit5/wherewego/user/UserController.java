@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -117,5 +119,22 @@ public class UserController {
 	    mav.setViewName("redirect:maptest");
 	    
 	    return mav;
+	}
+	
+	// 회원정보 수정
+	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+	public int updateUser(@RequestBody UserVO vo) {
+		UserDAOImp dao = sqlSession.getMapper(UserDAOImp.class);
+		System.out.println(vo.getAddr());
+		System.out.println(vo.getEmail());
+		System.out.println(vo.getUserId());
+		System.out.println(vo.getOpt());
+		int result = dao.updateUser(vo);
+		if(result > 0) {
+			System.out.println("succeeded!");
+		} else {
+			System.out.println("T.T");			
+		}
+		return result;
 	}
 }

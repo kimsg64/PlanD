@@ -13,6 +13,9 @@ public interface UserDAOImp {
 	public UserVO selectUser(String userId);
 
 	public UserVO userForPay(String cookie);
+	
+	// 유저 개인정보 수정
+	public int updateUser(UserVO vo);
 
 	public int usePoint(BuyVO vo); //포인트사용
 }

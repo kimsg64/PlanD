@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit5.wherewego.course.CourseDAOImp;
 import com.bit5.wherewego.notice.PagingVO;
 
 @Controller
@@ -118,6 +119,23 @@ public class PlaceController {
 		mav.addObject("pVo", pVo);
 		mav.setViewName("/place/placeView");
 	
+		return mav;
+	}
+	// 승인 미승인 ㄱㄱ
+	@RequestMapping("/placegrade")
+	public ModelAndView placegrade(int pcode, String grade) {
+		ModelAndView mav = new ModelAndView();
+		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
+		int cnt = dao.placegrade(pcode, grade);
+		
+		if(grade.equals("승인")) {
+			CourseDAOImp dao2 = sqlSession.getMapper(CourseDAOImp.class);
+			int cnt2 = dao2.gradecourse(pcode);
+		}
+		
+		
+		mav.addObject("pcode", pcode);
+		mav.setViewName("redirect:placeView");
 		return mav;
 	}
 

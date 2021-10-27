@@ -147,4 +147,7 @@
 		</choose>
 		where c_num=${param1} 
 	</update>
+	<update id="gradecourse">
+		update course set grade='미승인' where pcode1=#{param1} or pcode2=#{param1} or pcode3=#{param1}  
+	</update>
 </mapper>

@@ -139,16 +139,6 @@ public class ProductController {
 		}
 		return mav;
 	}
-	// 승인 미승인 ㄱㄱ
-	@RequestMapping("/placegrade")
-	public ModelAndView placegrade(int pcode, String grade) {
-		ModelAndView mav = new ModelAndView();
-		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
-		
-		int cnt = dao.placegrade(pcode, grade);
-		mav.addObject("pcode", pcode);
-		mav.setViewName("redirect:placeView");
-		return mav;
-	}
+
 
 }

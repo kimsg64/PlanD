@@ -46,7 +46,7 @@ const Planning = ({ match }) => {
   // console.log(match.params.date);
   // console.log(selectedDate);
   // console.log("플래닝에서 선택되었단다: ", selectedStation);
-  console.log(lineNum);
+  // console.log(lineNum);
   useEffect(() => {
     setSelectedStation("역");
   }, [lineNum]);
