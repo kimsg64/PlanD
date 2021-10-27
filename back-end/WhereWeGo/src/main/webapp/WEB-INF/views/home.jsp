@@ -147,9 +147,11 @@
 </div>
 
 <%
-	String userid = "admin";
-	Cookie c = new Cookie("userId",userid);
-	c.setComment("사실은 관리자");
-	c.setMaxAge(3600);
-	response.addCookie(c);
+	if(session.getAttribute("logid")=="admin") {
+		String userid = "admin";
+		Cookie c = new Cookie("userId",userid);
+		c.setComment("사실은 관리자");
+		c.setMaxAge(3600);
+		response.addCookie(c);
+	}
 %>

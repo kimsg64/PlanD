@@ -2,9 +2,12 @@ package com.bit5.wherewego.user;
 
 
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bit5.wherewego.product.ProductDAOImp;
-import com.bit5.wherewego.product.ProductVO;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 
 @RestController
@@ -84,6 +87,39 @@ public class UserController {
 		
 		return vo;
 	}
+
+	//문자 보내는 메소드
+	@GetMapping(path = "/telcheck")
+	public ModelAndView telcheck(String tel) {
+		String api_key = "NCSYDAV6TEW7BM61";
+	    String api_secret = "GRZG9MR5SCWPLWITSCTYRF056KXHNPOB";
+	    Message coolsms = new Message(api_key, api_secret);
+	    
+	    //System.out.println(tel);
+	    double ran = Math.random();
+	    int ranInt = (int)(ran*(9999-1000+1)+1000);
+	    System.out.println("인증문자:"+String.valueOf(ranInt));
+
+	    // 4 params(to, from, type, text) are mandatory. must be filled
+	    HashMap<String, String> params = new HashMap<String, String>();
+	    params.put("to", tel); // 수신번호
+	    params.put("from", "01087885202"); // 발신번호
+	    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
+	    params.put("text", "[PlanD] 인증문자는 "+String.valueOf(ranInt)+" 입니다."); // 문자내용    
+	    params.put("app_version", "JAVA SDK v1.2"); // application name and version
+	    try {
+	      JSONObject obj = coolsms.send(params);
+	      System.out.println(obj.toString());
+	    } catch (CoolsmsException e) {
+	      System.out.println(e.getMessage());
+	      System.out.println(e.getCode());
+	    }
+	    
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("redirect:maptest");
+	    
+	    return mav;
+	}
 	
 	// 회원정보 수정
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
@@ -101,6 +137,4 @@ public class UserController {
 		}
 		return result;
 	}
-	
-	
 }

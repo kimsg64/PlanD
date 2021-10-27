@@ -179,8 +179,7 @@ color:#fd7d73;}
 
 		<div id="infoDiv">
 			<ul>
-				<li><b>작성자 : </b>${vo.userid}</li>
-				<li><b>승인여부 : </b>${vo.grade}</li>
+				<li><b>예약자 : </b>${rVo.userid}</li>
 				<li><b>순서 : </b> <c:if test="${vo.coursesort==1}">
 						식당 -> 카페 -> 기타
 					</c:if> <c:if test="${vo.coursesort==2}">
@@ -195,13 +194,6 @@ color:#fd7d73;}
 						기타 -> 카페 -> 식당
 					</c:if></li>
 				<li><b>역명 : </b>${vo.stname }역</li>
-				<li><b>평점 : </b> <c:if test="${vo.score==null or vo.score==0}">
-						평가없음
-					</c:if> <c:if test="${vo.score!=null and vo.score!=0}">
-						${vo.score }
-					</c:if></li>
-				<li><b>관심사 : </b>${vo.opt }</li>
-				<li><b>설명 </b> : ${vo.info }</li>
 			</ul>
 		</div>
 

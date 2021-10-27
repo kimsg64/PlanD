@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script>
+
+</script>
+<form method="get" action="/wherewego/telcheck">
+	<input type="text" id="tel" name="tel" value="01087885202" required/>
+	<input type="submit" id="telcheck" value="인증하기"/>
+</form>
+
+
+
+
+
+
+
 <!--  -->
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -- >
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
