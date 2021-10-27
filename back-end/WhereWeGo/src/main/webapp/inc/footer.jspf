@@ -17,7 +17,7 @@
           <ul>
             고객센터
             <li><a href="/wherewego/menuList">이용약관</a></li>
-            <li>개인정보취급방침</li>
+            <li><a href="/wherewego/infomenu">개인정보취급방침</a></li>
             <li>FAQ</li>
             <li><a href="/wherewego/qna">Q&A</a></li>
           </ul>
