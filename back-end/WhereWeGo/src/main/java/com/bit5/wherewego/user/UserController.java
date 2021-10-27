@@ -93,14 +93,17 @@ public class UserController {
 	    String api_secret = "GRZG9MR5SCWPLWITSCTYRF056KXHNPOB";
 	    Message coolsms = new Message(api_key, api_secret);
 	    
-	    System.out.println(tel);
+	    //System.out.println(tel);
+	    double ran = Math.random();
+	    int ranInt = (int)(ran*(9999-1000+1)+1000);
+	    System.out.println("인증문자:"+String.valueOf(ranInt));
 
 	    // 4 params(to, from, type, text) are mandatory. must be filled
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", tel); // 수신번호
 	    params.put("from", "01087885202"); // 발신번호
 	    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
-	    params.put("text", "문자테스트~~~"); // 문자내용    
+	    params.put("text", "[PlanD] 인증문자는 "+String.valueOf(ranInt)+" 입니다."); // 문자내용    
 	    params.put("app_version", "JAVA SDK v1.2"); // application name and version
 	    try {
 	      JSONObject obj = coolsms.send(params);
