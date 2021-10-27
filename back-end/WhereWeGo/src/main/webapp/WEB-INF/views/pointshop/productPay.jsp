@@ -9,18 +9,31 @@
 <script>
 	var p_num = "${vo.p_num}";
 	var userid = "${vo.userid}";
-	var price = "${vo.price}"/10;
+	var price = "${vo.price}"/100;
+	var count = "${vo.count}";
+	var email = "${vo.email}";
+	var tel = "${vo.tel}";
+	var point = "${vo.point}";
+	var name ="${vo.name}";
+	var brand ="${vo.brand}";
+	
+	let today = new Date();   
+
+	let year = today.getFullYear(); // 년도
+	let month = today.getMonth() + 1;  // 월
+	let date = today.getDate();  // 날짜
+	let day = today.getDay();  // 요일
 	
 	IMP.init('imp18284589');
 	IMP.request_pay({
 		pg : 'inicis',
 		pay_method : 'card',
-		merchant_uid : 'PlanD'+p_num+userid+price,
-		name : 'PlanD 결제',
+		merchant_uid : p_num+userid+price+name+brand+year+month+date+day,
+		name : 'PlanD 포인트샵 결제',
 		amount : price,
-		//buyer_email : 'iamport@siot.do',
+		buyer_email : email,
 		buyer_name : userid,
-		//buyer_tel : '010-1234-5678',
+		buyer_tel : tel,
 		//buyer_addr : '서울특별시 강남구 삼성동',
 		//buyer_postcode : '123-456'
 	}, function(rsp) {
@@ -31,12 +44,12 @@
 			//msg += '결제 금액 : ' + rsp.paid_amount;
 			//msg += '카드 승인번호 : ' + rsp.apply_num;
 			alert(msg);
-			location.href="/wherewego/insertBuy?vo="+vo;
+			location.href="/wherewego/insertBuy?p_num="+p_num+"&userid="+userid+"&price="+price+"&count="+count+"&email="+email+"&name="+name+"&brand="+brand+"&tel="+tel+"&point="+point;
 		} else {
 			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;	
-			alert(msg);	
-			history.go(-1);
+			msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+			history.back();
 		}
 
 		//alert(msg);

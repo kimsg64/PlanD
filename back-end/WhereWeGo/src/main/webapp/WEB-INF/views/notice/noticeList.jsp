@@ -181,7 +181,7 @@ ul.pagination li a:hover:not(.active) {
 </script>
 
 <div id="mainDiv">
-	<h1>공지사항 관리</h1>
+	<h1>공지사항</h1>
 	<img src="imgs/banner/notice.jpg" id="banner"/>
 	
 	<!-- 검색 -->

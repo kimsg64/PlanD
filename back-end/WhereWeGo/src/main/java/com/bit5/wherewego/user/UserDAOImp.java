@@ -18,4 +18,6 @@ public interface UserDAOImp {
 	public int updateUser(UserVO vo);
 
 	public int usePoint(BuyVO vo); //포인트사용
+
+	public int userPhotoChange(UserVO vo);
 }
