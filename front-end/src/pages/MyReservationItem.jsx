@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { read_cookie } from "sfcookies";
 import styled from "styled-components";
 import { BodyLayout, MenuTitle } from "../components/body/mixin/Mixin";
 import Footer from "../components/footer/Footer";
@@ -82,7 +83,7 @@ const MyCourseItem = ({ match }) => {
       <Header />
       <BodyLayout>
         <MenuTitle>
-          {isLoaded ? matchedData?.userid : null}님이 예약한 코스
+          {isLoaded ? read_cookie("userId") : null}님이 예약한 코스
         </MenuTitle>
         <Container>
           <ContentsBox>

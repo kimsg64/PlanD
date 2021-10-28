@@ -105,7 +105,7 @@ const CompanyForm = ({ history }) => {
                   maxLength="14"
                   pattern="[A-Za-z]{1}\w{5,14}"
                   placeholder="아이디"
-                  onKeyDown={(e) => setB_id(e.target.value)}
+                  onKeyUp={(e) => setB_id(e.target.value)}
                 />
                 <ErrorMsg>
                   아이디는 6~14자의 영문 대소문자, 숫자로 이루어져야 하며, 첫
@@ -132,7 +132,7 @@ const CompanyForm = ({ history }) => {
                   maxLength="16"
                   pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$"
                   placeholder="비밀번호"
-                  onKeyDown={(e) => setPwd(e.target.value)}
+                  onKeyUp={(e) => setPwd(e.target.value)}
                 />
                 <ErrorMsg>
                   비밀번호는 8자 이상이어야 하며, 숫자, 영문 대소문자,
@@ -165,7 +165,7 @@ const CompanyForm = ({ history }) => {
                   minLength="2"
                   maxLength="16"
                   placeholder="상호"
-                  onKeyDown={(e) => setName(e.target.value)}
+                  onKeyUp={(e) => setName(e.target.value)}
                 />
                 <ErrorMsg>올바른 상호명을 입력해 주세요.</ErrorMsg>
               </ItemContainer>
@@ -180,7 +180,7 @@ const CompanyForm = ({ history }) => {
                   maxLength="12"
                   pattern="^[0-9]{2}-[0-9]{3}-[0-9]{5}$"
                   onKeyUp={(e) => insertHyphen(e, 2, 6)}
-                  onKeyDown={(e) => setNum(e.target.value)}
+                  onKeyUp={(e) => setNum(e.target.value)}
                 />
                 <ErrorMsg>올바른 사업자등록번호를 입력해 주세요.</ErrorMsg>
               </ItemContainer>
@@ -196,7 +196,7 @@ const CompanyForm = ({ history }) => {
                   maxLength="11"
                   placeholder="대표 연락처   ex) 0212349845"
                   pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
-                  onKeyDown={(e) => setTel(e.target.value)}
+                  onKeyUp={(e) => setTel(e.target.value)}
                 />
                 <ErrorMsg>올바른 연락처를 입력해 주세요.</ErrorMsg>
               </ItemContainer>

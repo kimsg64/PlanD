@@ -148,6 +148,8 @@ const IndividualForm = ({ history }) => {
 
   // 비밀번호 더블체크
   const checkPwd = (e) => {
+    console.log(e.target.value);
+    console.log(pwd);
     if (e.target.value === "") return;
     return pwd === e.target.value ? setIsSame(true) : setIsSame(false);
   };
@@ -298,7 +300,7 @@ const IndividualForm = ({ history }) => {
                   maxLength="16"
                   pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$"
                   placeholder="비밀번호"
-                  onKeyDown={(e) => setPwd(e.target.value)}
+                  onKeyUp={(e) => setPwd(e.target.value)}
                 />
                 <ErrorMsg>
                   비밀번호는 8자 이상이어야 하며, 숫자, 영문 대소문자,
@@ -333,7 +335,7 @@ const IndividualForm = ({ history }) => {
                     maxLength="8"
                     placeholder="이름"
                     pattern="^[가-힣]{2,8}$"
-                    onKeyDown={(e) => setName(e.target.value)}
+                    onKeyUp={(e) => setName(e.target.value)}
                   />
                 )}
                 <ErrorMsg>올바른 이름을 입력해 주세요.</ErrorMsg>
@@ -350,7 +352,7 @@ const IndividualForm = ({ history }) => {
                     placeholder="ex) 000000-0000000"
                     pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
                     onKeyUp={(e) => insertHyphen(e, 6)}
-                    onKeyDown={(e) => setNum(e.target.value)}
+                    onKeyUp={(e) => setNum(e.target.value)}
                   />
                 )}
                 <ErrorMsg>올바른 주민등록번호를 입력해 주세요.</ErrorMsg>
@@ -367,7 +369,7 @@ const IndividualForm = ({ history }) => {
                     maxLength="11"
                     placeholder="ex) 01012349874"
                     pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
-                    onKeyDown={(e) => setTel(e.target.value)}
+                    onKeyUp={(e) => setTel(e.target.value)}
                     onChange={(e) => setTel(e.target.value)}
                     value={tel}
                   />
@@ -491,7 +493,7 @@ const IndividualForm = ({ history }) => {
                     required
                     placeholder="ex) abc@naver.com"
                     pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-                    onKeyDown={(e) => setEmail(e.target.value)}
+                    onKeyUp={(e) => setEmail(e.target.value)}
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
@@ -501,7 +503,7 @@ const IndividualForm = ({ history }) => {
                     required
                     placeholder="ex) abc@naver.com"
                     pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-                    onKeyDown={(e) => setEmail(e.target.value)}
+                    onKeyUp={(e) => setEmail(e.target.value)}
                   />
                 )}
                 <ErrorMsg>올바른 이메일 주소를 입력해 주세요.</ErrorMsg>
