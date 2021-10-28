@@ -149,7 +149,7 @@ ul.pagination li a:hover:not(.active) {
 
 <div class="container">
 	<c:if test="${logid==admin }">
-		<h1>포인트샵 관리</h1>
+		<h1>포인트샵</h1>
 	</c:if>
 	<c:if test="${logid!=admin }">
 		<h1>포인트샵</h1>
@@ -201,7 +201,6 @@ ul.pagination li a:hover:not(.active) {
 			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 		</div>
 		<div id="buttonMenu">
-			<a class="button" href="#">삭제</a>
 			<a class="button" href="paymentPage">결제</a>
 		</div>
 	</div>
