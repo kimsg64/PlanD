@@ -72,7 +72,7 @@
 	
 		<div id="adminprofileDiv">
 			${logid} 관리자 페이지<br />
-			<div id="adminimg"><img src="imgs/adminMenu/admin.png"/></div>
+			<div id="adminimg"><img src="imgs/adminMenu/logo.png"/></div>
 			<h2>${logname}</h2>
 			사업자번호 : ${lognum}
 		</div>
@@ -95,7 +95,7 @@
 		<!-- 링크 이름은 임시로 제가 넣어둠! -->
 		<table id="adminMenu">
 			<tr>
-				<td><a href="/wherewego/userList"><img src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
+				<td><a href="/wherewego/userList"><img src="http://192.168.0.65:9090/management/" /><br />회원 관리</a></td>
 				<td><a href="/wherewego/noticeList"><img src="imgs/adminMenu/notiB.png" /><br />공지 관리</a></td>
 				<td><a href="/wherewego/resList"><img src="imgs/adminMenu/resB.png" /><br />예약 관리</a></td>
 				<td><a href="/wherewego/reviewList"><img src="imgs/adminMenu/reviewB.png" /><br />후기 관리</a></td>
@@ -147,16 +147,5 @@
 </div>
 
 <script>
-function SetCookie( strName, strValue, iSecond )
-{
-	var strCookie = strName + "=" + encodeURIComponent(strValue);
-	if( typeof iSecond === "number" )
-	{
-		strCookie += "; max-age=" + iSecond;
-	}
 
-	// QQQ: path, domain 유효범위를 설정하고 싶으면 여기서 strCookie 변수에 추가해 주어야 한다.
-
-	document.cookie = strCookie;
-}
 </script>
