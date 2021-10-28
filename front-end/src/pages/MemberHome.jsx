@@ -73,6 +73,9 @@ const WeatherBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: white;
+  background-color: var(--color-light-green);
+  padding-bottom: 32px;
   & img {
     width: 32%;
   }
@@ -144,7 +147,7 @@ const MemberHome = () => {
     window.open(
       `${process.env.PUBLIC_URL}/images/notice.jpg`,
       "PopupNotice",
-      "width=680, height=309"
+      "width=600, height=600"
     );
     // 오늘의 날씨
     const url =

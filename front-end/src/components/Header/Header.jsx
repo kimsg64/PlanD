@@ -204,7 +204,7 @@ const Header = () => {
                   <Link to={`/userrecommendation`}>Recommend</Link>
                 </li>
                 <li>
-                  <a href="http://localhost:9090/wherewego/pointshopList">
+                  <a href="http://192.168.0.63:9090/wherewego/pointshopList">
                     PointShop
                   </a>
                 </li>

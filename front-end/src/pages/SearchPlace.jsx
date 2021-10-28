@@ -23,8 +23,6 @@ const SearchPlace = () => {
           setSelectedSort={setSelectedSort}
           setSelectedPcode={setSelectedPcode}
         />
-        <div>장소 설명</div>
-        <div>관련 코스</div>
       </BodyLayout>
       <Footer />
     </>

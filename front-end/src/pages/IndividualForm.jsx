@@ -351,7 +351,7 @@ const IndividualForm = ({ history }) => {
                     maxLength="14"
                     placeholder="ex) 000000-0000000"
                     pattern="^[0-9]{2}[01]{1}[0-9]{1}[0-3]{1}[0-9]{1}-[0-9]{7}$"
-                    onKeyUp={(e) => insertHyphen(e, 6)}
+                    onKeyDown={(e) => insertHyphen(e, 6)}
                     onKeyUp={(e) => setNum(e.target.value)}
                   />
                 )}

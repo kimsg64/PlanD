@@ -168,15 +168,13 @@ const Login = ({ history }) => {
             // 쿠키 들어갔는지 확인
             console.log(read_cookie("b_id"));
 
-            window.location.href =
-              "http://localhost:9090/wherewego/business/gohome";
-            // axios.get("/wherewego/business/checkSession").then((res) => {
-            //   console.log("세션 체크 결과", res.data);
-            //   res.data
-            //     ? (window.location.href =
-            //         "http://localhost:9090/wherewego/business/gohome")
-            //     : alert("로그인 실패...");
-            // });
+            axios.get("/wherewego/business/checkSession").then((res) => {
+              console.log("세션 체크 결과", res.data);
+              res.data
+                ? (window.location.href =
+                    "http://192.168.0.63:9090/wherewego/business/gohome")
+                : alert("로그인 실패...");
+            });
           }
         } else {
           setIsSucceeded(false);
