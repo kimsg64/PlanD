@@ -135,9 +135,9 @@
 	#titlediv {font-weight:bold; font-size:1.1em;}
 </style>
 
+<form method="post" action="/wherewego/reviewWriteOk">
 <h1>후기 작성</h1>
 <div id="frame">
-<form method="post" action="/wherewego/reviewWriteOk">
   <div class="review_item">
  <div id="titlediv">${vo.name }</div>
     <div class="image_box">
@@ -177,10 +177,10 @@
       </div>
     </div>
   </div>
-</form>
 </div>
 
 <div id="buttonMenu">
 				<a class="button" href="/wherewego/reviewList">목록</a>
-				<button type="submit" class="button">작성</button>
+				<input type="submit" class="button" value="작성">
 			</div>
+</form>

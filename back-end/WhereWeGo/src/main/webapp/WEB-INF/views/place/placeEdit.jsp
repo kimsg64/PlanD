@@ -56,7 +56,6 @@ li a {
 	overflow: ellipsis;
 }
 
-
 .button {
 	background-color: #fd7d73;
 	border: none;
@@ -77,6 +76,15 @@ li a {
 .button:hover {
 	color: #0e595f;
 }
+input[type=text], input[type=file] {
+	width: 50%;
+	border-radius: 2px;
+	padding: 1px;
+	margin-bottom: 20px;
+	border: 1px solid black;
+	background-color: white;
+	font-family: "TmoneyRoundWindRegular";
+}
 
 #buttonMenu {
 	float: right;
@@ -86,6 +94,7 @@ li a {
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed6c268bc17af15a75755708f3c3d0a9&libraries=services,clusterer,drawing"></script>
 
+<form method="post" action="/wherewego/placeEditOk" name="placeFrm" enctype="multipart/form-data">
 <div id="mainDiv">
 	<h1>장소 상세보기</h1>
 	<!-- <img src="imgs/banner/place.jpg" id="banner"/>  -->
@@ -94,43 +103,32 @@ li a {
 		<div id="viewname">
 			<h4>No.${vo.pcode }</h4>
 			<br />
-			<h1>${vo.name }</h1>
+			<h1><input type="text" name="name" value="${vo.name }"/></h1>
 			<br /> <br />
 		</div>
 		<div id="mapin">
 			<div id="map" style="width:90%;max-width: 600px; height: 350px;"></div>
-
 			<br /> <br />
 		</div>
 		<div id="divinfo">
 			<div id="infoDiv">
 				<ul>
-					<li><b>종류 : </b>${vo.datesort }</li>
-					<li><b>주소 : </b>${vo.addr }</li>
-					<li><b>연락처 : </b>${vo.tel }</li>
+					<li><b>종류 : </b><input type="text" name="datesort" value="${vo.datesort }"/></li>
+					<li><b>주소 : </b><input type="text" name="addr" value="${vo.addr }"/></li>
+					<li><b>연락처 : </b><input type="text" name="tel" value="${vo.tel }"/></li>
 					<li><b>승인 여부 : </b>${vo.grade }</li>
-					<li><b>링크 : </b><a href="${vo.link }">${vo.link }</a></li>
-					<li><b>정보 : </b>${vo.info }</li>
+					<li><b>링크 : </b><input type="text" name="link" value="${vo.link }"/></li>
+					<li><b>정보 : </b><input type="text" name="info" value="${vo.info }"/></li>
 				</ul>
 			</div>
-
-
-
-
-
 		</div>
 	</div>
 	<div id="buttonMenu">
-		<a class="button" href="placeEdit?pcode=${vo.pcode }">수정</a>
-		<c:if test="${vo.grade!='승인'}">
-			<a class="button" href="/wherewego/placegrade?pcode=${vo.pcode }&grade=${vo.grade}">승인</a>
-		</c:if>
-		<c:if test="${vo.grade!='미승인'}">
-			<a class="button" href="/wherewego/placegrade?pcode=${vo.pcode }&grade=${vo.grade}">미승인</a>
-		</c:if>
+		<input type="submit" class="button" value="수정"/>
 		<a class="button" href="placeList?nowPage=${pVo.nowPage }">목록</a>
 		</div>
 </div>
+</form>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
