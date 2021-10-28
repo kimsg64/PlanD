@@ -255,10 +255,10 @@ color:#fd7d73;}
 	<div id="buttonMenu">
 		<a class="button" href="#">수정</a>
 		<c:if test="${vo.grade !='승인'}">
-			<a class="button" href="/wherewego/coursegrade?c_num=${vo.c_num }&grade=${vo.grade }">승인</a>
+			<a class="button" href="/wherewego/coursegrade?c_num=${vo.c_num }&grade=승인&userid=${vo.userid}">승인</a>
 		</c:if>
 		<c:if test="${vo.grade != '미승인' }">
-			<a class="button" href="/wherewego/coursegrade?c_num=${vo.c_num }&grade=${vo.grade }">미승인</a>
+			<a class="button" href="/wherewego/coursegrade?c_num=${vo.c_num }&grade=미승인&userid=${vo.userid}">미승인</a>
 		</c:if>
 		<a class="button" href="courseList?nowPage=${pVo.nowPage }">목록</a>
 	

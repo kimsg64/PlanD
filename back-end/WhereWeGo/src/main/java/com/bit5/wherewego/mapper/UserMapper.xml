@@ -40,6 +40,13 @@
 	 	update usertbl set point=${point} where userid=#{userid}
 	</update>
 	
+	<!-- 코스승인나면 포인트 적립 -->
+	<update id="plusPoint">
+		update usertbl set point =+ 100 where userid=#{param1}
+	</update>
+	
+	
+	<!-- 미완성임!!!!!!!! 사진변경 -->
 	<update id="userPhotoChange" parameterType="com.bit5.wherewego.buy.BuyVO">
 		update usertbl set photo=${photo} where userid=#{userid}
 	</update>
