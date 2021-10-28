@@ -87,7 +87,7 @@ img {
 	float: right
 }
 
-span {
+.aaa {
 	color: #0e595f;
 	font-size: 0.8em;
 }
@@ -146,7 +146,7 @@ position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 				${prVo.p_num }<br /> <br /> ${prVo.brand }
 				<h3>${prVo.name }</h3>
 				<br /> <br /> 수량 : <input type="number" name="count" id="count" min="1" max="10" value="1" />개<br /> 
-				<span>최대 구입 가능 수량은 10개입니다.</span><br /> <br />
+				<span id="aaa">최대 구입 가능 수량은 10개입니다.</span><br /> <br />
 				가격 : <b id="money">${prVo.price }</b>원
 			</div>
 			
