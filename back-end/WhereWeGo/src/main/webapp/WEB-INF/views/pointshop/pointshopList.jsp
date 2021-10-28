@@ -201,10 +201,10 @@ ul.pagination li a:hover:not(.active) {
 			<div>현재페이지/총페이지수 : ${pVo.nowPage}/${pVo.totalPage}</div>
 		</div>
 		<div id="buttonMenu">
-		<c:if test="${logid }!=admin">
+		<c:if test="${logid!='admin'}">
 			<a class="button" href="paymentPage">결제</a>
 		</c:if>
-		<c:if test="${logid }==admin">
+		<c:if test="${logid=='admin'}">
 			<a class="button" href="paymentPage">삭제</a>
 		</c:if>
 		</div>

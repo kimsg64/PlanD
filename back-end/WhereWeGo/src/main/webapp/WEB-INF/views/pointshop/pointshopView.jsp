@@ -162,7 +162,9 @@ font-size:1.2em;
 	</div>  
 	<div id="buttonMenu">		
 		<a class="button" href="pointshopList?nowPage=${pVo.nowPage }">목록</a>
-		<a class="button" href="pointshopEdit?p_num=${vo.p_num }">수정</a>
-		<a class="button" href="javascript:viewDel()">삭제</a>
+		<c:if test="${logid=='admin'}">
+			<a class="button" href="pointshopEdit?p_num=${vo.p_num }">수정</a>
+			<a class="button" href="javascript:viewDel()">삭제</a>
+		</c:if>
 	</div>
 </div>
