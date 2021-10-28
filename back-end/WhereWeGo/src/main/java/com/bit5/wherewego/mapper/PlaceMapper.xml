@@ -7,7 +7,7 @@
 	<select id="placeAllSelect" resultType="com.bit5.wherewego.place.PlaceVO">
 		select * from 
 		(select * from 
-		(select pcode, datesort, name, nvl(time,'없음') time, link, addr from place
+		(select pcode, datesort, name, nvl(time,'없음') time, link, addr,grade from place
 		<if test='param4!=null and !param4.equals("")'>
 		where ${param3} like '%'||#{param4}||'%' 
 		</if>	
@@ -65,6 +65,16 @@
 	</update>
 	<!-- 수정완료 -->
 	<update id="placeEditOk" parameterType="com.bit5.wherewego.place.PlaceVO">
-		update place set name=#{name}, datesort=#{datesort}, addr=#{addr}, tel=#{tel}, link=#{link}, info=#{info} where pcode=#{pcode}
+		update place set name=#{name}, addr=#{addr} 
+		<if test='tel!=null and !tel.equals("")'>
+		,tel=#{tel}
+		</if>
+		<if test='info!=null and !info.equals("")'>
+		, info=#{info}
+		</if>
+		<if test='link!=null and !link.equals("")'>
+		, link=#{link}
+		</if>
+		where pcode=${pcode}
 	</update>
 </mapper>

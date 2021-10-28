@@ -102,8 +102,9 @@ input[type=text], input[type=file] {
 	<div id="viewDiv">
 		<div id="viewname">
 			<h4>No.${vo.pcode }</h4>
+			<input type="hidden" name="pcode" value="${vo.pcode }" required/>
 			<br />
-			<h1><input type="text" name="name" value="${vo.name }"/></h1>
+			<h1><input type="text" name="name" value="${vo.name }" required/></h1>
 			<br /> <br />
 		</div>
 		<div id="mapin">
@@ -113,8 +114,8 @@ input[type=text], input[type=file] {
 		<div id="divinfo">
 			<div id="infoDiv">
 				<ul>
-					<li><b>종류 : </b><input type="text" name="datesort" value="${vo.datesort }"/></li>
-					<li><b>주소 : </b><input type="text" name="addr" value="${vo.addr }"/></li>
+					<li><b>종류 : </b>${vo.datesort }</li>
+					<li><b>주소 : </b><input type="text" name="addr" value="${vo.addr }" required/></li>
 					<li><b>연락처 : </b><input type="text" name="tel" value="${vo.tel }"/></li>
 					<li><b>승인 여부 : </b>${vo.grade }</li>
 					<li><b>링크 : </b><input type="text" name="link" value="${vo.link }"/></li>

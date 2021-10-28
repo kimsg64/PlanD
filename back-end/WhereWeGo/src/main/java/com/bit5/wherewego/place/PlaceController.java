@@ -2,8 +2,6 @@ package com.bit5.wherewego.place;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -152,7 +150,7 @@ public class PlaceController {
 	}
 	//수정 완료
 	@RequestMapping(value="/placeEditOk", method=RequestMethod.POST)
-	public ModelAndView placeEditOk(PlaceVO vo, HttpSession session) {
+	public ModelAndView placeEditOk(PlaceVO vo) {
 		ModelAndView mav = new ModelAndView();
 		PlaceDAOImp dao = sqlSession.getMapper(PlaceDAOImp.class);
 		int cnt = dao.placeEditOk(vo);

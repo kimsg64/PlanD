@@ -69,23 +69,23 @@ select, option, input {
 
 #adminboardList>li {
 	float: left;
-	width: 15%;
+	width: 13.75%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #f5ebe3;
 }
 
-#adminboardList>li:nth-child(5n+3) {
-	width: 50%;
+#adminboardList>li:nth-child(6n+3) {
+	width: 40%;
 	text-align: left;
 }
 
 #adminboardList>li:nth-child(3) {
-	width: 50%;
+	width: 40%;
 	text-align: center;
 }
 
-#adminboardList>li:nth-child(5n+1) {
+#adminboardList>li:nth-child(6n+1) {
 	width: 5%;
 }
 
@@ -221,12 +221,14 @@ ul.pagination li a:hover:not(.active) {
 				<li><b>No.</b></li>
 				<li class="wordCut"><b>장소명</b></li>
 				<li><b>종류</b></li>
+				<li><b>공개 여부</b></li>
 				<li><b>링크</b></li>
 
 				<c:forEach var="vo" items="${list }">
 					<li><input type="checkbox" name="chk" value="${vo.pcode }" /></li>
 					<li>${vo.pcode }</li>
 					<li class="wordCut"><a href="/wherewego/placeView?pcode=${vo.pcode }&nowPage=${pVo.nowPage}">${vo.name }</a></li>
+					<li>${vo.grade }</li>
 					<li>${vo.datesort }</li>
 					<li><c:if test="${vo.link==null }">
 							<img src="imgs/link.png" />

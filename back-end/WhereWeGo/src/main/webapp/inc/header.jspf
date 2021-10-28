@@ -212,11 +212,8 @@ nav {
 					<a href="/wherewego/">Plan.<span class="point_letter">D</span></a>
 				</c:if>
 				<c:if test="${logid==null}">
-<<<<<<< HEAD
-					<a href="http://192.168.0.24:3000">Plan.<span class="point_letter">D</span></a>
-=======
 					<a href="http://192.168.0.63:3000">Plan.<span class="point_letter">D</span></a>
->>>>>>> f9f53f3600b0cb96b316b036b204d1d2cb1b05e9
+
 				</c:if>
 			</div>
 			<!-- 우측 메뉴 -->
