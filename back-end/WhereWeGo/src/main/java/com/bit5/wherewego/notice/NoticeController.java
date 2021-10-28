@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -285,14 +287,17 @@ public class NoticeController {
 		
 		//글수정 폼
 		@RequestMapping("/selectPopUp")
-		public ModelAndView selectPopUp(int n_num) {
-			ModelAndView mav = new ModelAndView();
-			
+		@ResponseBody
+		public NoticeVO selectPopUp(@RequestBody NoticeVO vo) {
+			System.out.println("ㅎㅇ");
+			//ModelAndView mav = new ModelAndView();
 			NoticeDAOImp dao = sqlSession.getMapper(NoticeDAOImp.class);
-			mav.addObject("vo", dao.selectPopUp());
+			vo = dao.selectPopUp();
+			System.out.println(vo.getN_num());
+			System.out.println(vo.getPhoto());
+			//mav.addObject("vo", dao.selectPopUp());
 			//vo에 공지사항 num이랑 이미지파일명 있어요
-
-			return mav;
+			return vo;
 		}
 	}
 

@@ -140,6 +140,12 @@ const MemberHome = () => {
         .catch((error) => console.log(error));
     }
 
+    // 팝업 게시물
+    window.open(
+      `${process.env.PUBLIC_URL}/images/notice.jpg`,
+      "PopupNotice",
+      "width=680, height=309"
+    );
     // 오늘의 날씨
     const url =
       "https://api.openweathermap.org/data/2.5/forecast?q=seoul&appid=28dfc3b27e5cac4c9fd964f060b19070&lang=kr";

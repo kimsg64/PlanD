@@ -139,6 +139,7 @@ const Header = () => {
   const onClickLogout = () => {
     delete_cookie("userId");
     delete_cookie("b_id");
+    delete_cookie("popup");
   };
 
   // intersection observer로 헤더의 변화에 따라 색깔 변화시키기
