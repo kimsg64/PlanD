@@ -18,5 +18,6 @@ public interface AdDAOImp {
 	public int editOk(AdVO vo);
 	public int adGradeChange(int adnum, String grade);
 	public int adPaymentChange(int adnum);
+	public AdVO selectAding();
 
 }

@@ -110,4 +110,11 @@
 		payment='결제완료'
 		where adnum=${param1} 
 	</update>
+	
+	<!-- 기간 및 결제완료 광고 가져오기 -->
+	<select id="selectAding" resultType="com.bit5.wherewego.ad.AdVO">
+	<![CDATA[
+		select photo,link from ad where payment='결제완료' and startdate<=sysdate and enddate>=sysdate
+	]]>
+	</select>
 </mapper>
