@@ -63,4 +63,8 @@
 		</choose>
 		where pcode=${param1}
 	</update>
+	<!-- 수정완료 -->
+	<update id="placeEditOk" parameterType="com.bit5.wherewego.place.PlaceVO">
+		update place set name=#{name}, datesort=#{datesort}, addr=#{addr}, tel=#{tel}, link=#{link}, info=#{info} where pcode=#{pcode}
+	</update>
 </mapper>
