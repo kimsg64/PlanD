@@ -92,6 +92,6 @@
 	</update>
 	
 	<select id="selectPopup" resultType="com.bit5.wherewego.notice.NoticeVO">
-		select n_num, photo from notice where pop=1
+		select n_num, photo from notice where pop=1 and photo is not null
 	</select>
 </mapper>
