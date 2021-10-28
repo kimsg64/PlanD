@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
 import com.bit5.wherewego.res.ResultVO;
+import com.bit5.wherewego.user.UserDAOImp;
 import com.bit5.wherewego.user.UserVO;
 
 @Controller
@@ -310,11 +311,17 @@ public class CourseController {
 	}
 	//승인 미승인
 	@RequestMapping("/coursegrade")
-	public ModelAndView coursegrade(int c_num, String grade) {
+	public ModelAndView coursegrade(int c_num, String grade,String userid) {
 		ModelAndView mav = new ModelAndView();
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		
 		int cnt = dao.coursegrade(c_num, grade);
+		
+		if(grade.equals("승인") ) {
+			UserDAOImp dao2 = sqlSession.getMapper(UserDAOImp.class);
+			int cnt2 = dao2.plusPoint(userid);
+		}
+		
 		mav.addObject("c_num", c_num);
 		mav.addObject("grade", grade);
 		mav.setViewName("redirect:courseDetail");

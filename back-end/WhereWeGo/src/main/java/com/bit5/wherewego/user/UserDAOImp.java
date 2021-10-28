@@ -23,4 +23,6 @@ public interface UserDAOImp {
 	public int idDoubleCheck(UserVO vo);
 
 	public int userPhotoChange(UserVO vo);
+
+	public int plusPoint(String userid);
 }
