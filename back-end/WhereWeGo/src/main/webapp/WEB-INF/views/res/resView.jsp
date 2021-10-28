@@ -242,13 +242,8 @@ color:#fd7d73;}
 	</div>
 
 	<div id="buttonMenu">
-		<a class="button" href="#">수정</a>
-		<c:if test="${vo.grade!='미승인'}">
-			<a class="button" href="#">미승인</a>
-		</c:if>
-		<c:if test="${vo.grade!='승인'}">
-			<a class="button" href="#">승인</a>
-		</c:if>
+		<a class="button" href="#">취소</a>
+
 		<a class="button" href="resList?nowPage=${pVo.nowPage }">목록</a>
 	</div>
 </div>
