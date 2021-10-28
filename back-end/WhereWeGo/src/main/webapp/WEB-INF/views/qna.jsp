@@ -23,7 +23,7 @@ b {color:#fd7d73;}
 <div id="mainDiv">
 	<h1>QnA</h1>
 
-	<h2>찾으시는 질문이 <a href="http://localhost:3000/#/faq" id="faq">FAQ</a>에 없으신가요?</h2>
+	<h2>찾으시는 질문이 <a href="http://192.168.0.63:3000/#/faq" id="faq">FAQ</a>에 없으신가요?</h2>
 	<br/>
 	<h3>1:1 문의는 <b>PlanD</b> 카카오톡 채널을 이용해주세요.</h3>
 	<br/><br/>

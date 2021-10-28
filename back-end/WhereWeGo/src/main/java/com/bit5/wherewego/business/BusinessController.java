@@ -53,7 +53,7 @@ public class BusinessController {
 		return result;
 	}
 	
-	/*
+
 	@RequestMapping(value = "/business/checkSession")
 	public boolean setBSession(@CookieValue(name = "b_id") String b_id, HttpSession session) {
 		//홈으로 이동해서 session에 있는 logid값에 따라 홈화면 다르게 보임
@@ -62,7 +62,7 @@ public class BusinessController {
 		// 쿠키 및 세션 저장
 		return true;
 	}
-	*/
+
 	
 	@RequestMapping(value = "/business/gohome")
 	public ModelAndView goHome(HttpSession session) {

@@ -67,8 +67,9 @@
 .info{
 	margin-top:20px;
 	width:100%;
-	border:1px solid gray;
+	border-radius: 12px;
 	padding:15px 40px 15px 40px;
+	background-color:#f5ebe3;
 	
 }
 
@@ -76,7 +77,7 @@
 	width:80%;
 	display:flex;
 	justify-content:flex-end;
-	
+
 	
 }
 
@@ -109,9 +110,14 @@
 	font-size: 13px;
 	width: 30%;
 	float:right;
+margin-right:30%;
+font-size:1.2em;
 }
 
 .button:hover {
+	color: #0e595f;
+}
+.button2:hover {
 	color: #0e595f;
 }
 </style>
@@ -137,24 +143,28 @@
 				<div class="shop">
 					${vo.p_num }
 					<h3> ${vo.brand }</h3><br/>
-					<h2>제품명 : ${vo.name }</h2><br/>
-					<h2>가 격 : ${vo.price }</h2><br/>
+					<h2>${vo.name }</h2><br/>
+					<h2>${vo.price }원</h2><br/>
 					
-					<div class="info"><h3>제품 설명: ${vo.info }</h3></div>	
+					<div class="info"><h3>제품 설명: </h3>
+					${vo.info }</div>	
 					<div class="buttonmain">
 						<a class="button2" href="paymentPage?p_num=${vo.p_num }&nowPage=${pVo.nowPage}">구매</a>
 					</div>
 				</div>
 			</div>
-				<!-- 이미지 상세정보 -->
+				<!-- 이미지 상세정보 
 				<div class="imggo">
 					<div class="imgin"><img src="img/icecream.jpg"/></div>
 				</div>
+				-->
 		</div>
 	</div>  
 	<div id="buttonMenu">		
 		<a class="button" href="pointshopList?nowPage=${pVo.nowPage }">목록</a>
-		<a class="button" href="pointshopEdit?p_num=${vo.p_num }">수정</a>
-		<a class="button" href="javascript:viewDel()">삭제</a>
+		<c:if test="${logid=='admin'}">
+			<a class="button" href="pointshopEdit?p_num=${vo.p_num }">수정</a>
+			<a class="button" href="javascript:viewDel()">삭제</a>
+		</c:if>
 	</div>
 </div>
