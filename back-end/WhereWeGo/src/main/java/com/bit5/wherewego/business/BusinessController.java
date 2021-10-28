@@ -53,9 +53,9 @@ public class BusinessController {
 		return result;
 	}
 	
-
+/*
 	@RequestMapping(value = "/business/checkSession")
-	public boolean setBSession(@CookieValue(name = "b_id") String b_id, HttpSession session) {
+	public boolean setBSession(@CookieValue(name = "b_id", defaultValue = "admin") String b_id, HttpSession session) {
 		//홈으로 이동해서 session에 있는 logid값에 따라 홈화면 다르게 보임
 		System.out.println("세션 체크" + b_id);
 		session.setAttribute("logid", b_id);
@@ -81,6 +81,39 @@ public class BusinessController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+*/
+	@RequestMapping(value = "/business/checkSession")
+	public ModelAndView setBSession(@CookieValue(name = "b_id") String b_id, HttpSession session) {
+		//홈으로 이동해서 session에 있는 logid값에 따라 홈화면 다르게 보임
+		System.out.println("세션 체크" + b_id);
+		session.setAttribute("logid", b_id);
+		// 쿠키 및 세션 저장
+		System.out.println("홈이나 가라");
+		BusinessDAOImp dao = sqlSession.getMapper(BusinessDAOImp.class);
+		// 세션에 저장된 id 체크해서 다시 정보 받아옴
+		String logid = (String)session.getAttribute("logid");
+		System.out.println("안비었지? 제발" + logid);
+		BusinessVO logVo = dao.goHome(b_id);
+		
+		// VO정보 중 필요한거 저장
+		System.out.println(logVo.getB_id());
+		System.out.println(logVo.getName());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", logVo);
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/business/gohome")
+	public ModelAndView goHome(HttpSession session) {
+		session.getAttribute("logid");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	
+	
 	//회원정보 가져오기
 	@RequestMapping(value = "/MyInfo")
 	public ModelAndView businessEdit(HttpSession session) {

@@ -213,7 +213,6 @@ nav {
 				</c:if>
 				<c:if test="${logid==null}">
 					<a href="http://192.168.0.63:3000">Plan.<span class="point_letter">D</span></a>
-
 				</c:if>
 			</div>
 			<!-- 우측 메뉴 -->

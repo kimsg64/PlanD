@@ -114,10 +114,6 @@ const InfoSection = styled.div`
   }
   & h3 {
     margin-bottom: calc(var(--margin-default) / 4);
-    &:nth-of-type(3n):hover {
-      cursor: pointer;
-      color: var(--color-focus);
-    }
   }
 `;
 
@@ -125,6 +121,14 @@ const ForecastBox = styled.div`
   margin: calc(var(--margin-default) / 2) 0;
   & h2 {
     margin-bottom: var(--margin-default);
+  }
+`;
+
+const SmallFont = styled.span`
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+    color: var(--color-focus);
   }
 `;
 
@@ -370,7 +374,7 @@ const Result = ({ location, history }) => {
 
                       {courseResults[0]?.link1 === null ? null : (
                         <h3 onClick={onClickLink}>
-                          링크: {courseResults[0]?.link1}
+                          링크: <SmallFont>{courseResults[0]?.link1}</SmallFont>
                         </h3>
                       )}
                       {courseResults[0]?.info1 === null ? null : (
@@ -407,7 +411,7 @@ const Result = ({ location, history }) => {
                       </h3>
                       {courseResults[0]?.link2 === null ? null : (
                         <h3 onClick={onClickLink}>
-                          링크: {courseResults[0]?.link2}
+                          링크: <SmallFont>{courseResults[0]?.link2}</SmallFont>
                         </h3>
                       )}
                       {courseResults[0]?.info2 === null ? null : (
@@ -444,7 +448,7 @@ const Result = ({ location, history }) => {
                       </h3>
                       {courseResults[0]?.link3 === null ? null : (
                         <h3 onClick={onClickLink}>
-                          링크: {courseResults[0]?.link3}
+                          링크: <SmallFont>{courseResults[0]?.link3}</SmallFont>
                         </h3>
                       )}
                       {courseResults[0]?.info3 === null ? null : (
@@ -488,7 +492,7 @@ const Result = ({ location, history }) => {
                     href={`https://search.musinsa.com/search/musinsa/integration?type=&q=${recommendedKor}`}
                     target="_blank"
                   >
-                    <div>사러 가기</div>
+                    <SmallFont>사러 가기</SmallFont>
                   </a>
                 </InfoSection>
               </PlaceInfoWindow>

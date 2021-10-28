@@ -69,9 +69,9 @@ const MyReviews = ({
                   <i className="fas fa-edit"></i>
                   <TitleP>{review.name}</TitleP>
                 </div>
-                <Link to={`/userreview/${review.c_num}`}>
+                {/* <Link to={`/userreview/${review.c_num}`}>
                   <StyledButton>후기작성</StyledButton>
-                </Link>
+                </Link> */}
               </MyMenuItemBox>
             );
           })

@@ -104,7 +104,7 @@ const MyCourseItem = ({ match }) => {
                   />
                 ) : matchedData?.coursesort === 2 ? (
                   <img
-                    src={`${process.env.PUBLIC_URL}/images/places/food2.jfif`}
+                    src={`${process.env.PUBLIC_URL}/images/places/food2.jpg`}
                   />
                 ) : matchedData?.coursesort === 3 ? (
                   <img
@@ -166,7 +166,7 @@ const MyCourseItem = ({ match }) => {
                   />
                 ) : matchedData?.coursesort === 5 ? (
                   <img
-                    src={`${process.env.PUBLIC_URL}/images/places/food2.jfif`}
+                    src={`${process.env.PUBLIC_URL}/images/places/food2.jpg`}
                   />
                 ) : matchedData?.coursesort === 6 ? (
                   <img
@@ -220,7 +220,7 @@ const MyCourseItem = ({ match }) => {
                   />
                 ) : matchedData?.coursesort === 6 ? (
                   <img
-                    src={`${process.env.PUBLIC_URL}/images/places/food2.jfif`}
+                    src={`${process.env.PUBLIC_URL}/images/places/food2.jpg`}
                   />
                 ) : null}
               </ImageBox>

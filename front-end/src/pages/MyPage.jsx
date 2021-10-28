@@ -272,9 +272,9 @@ const MyPage = () => {
             <EditButton as="label" htmlFor="photo">
               사진 변경
             </EditButton>
-            <EditButton type="submit" form="change_image">
+            {/* <EditButton type="submit" form="change_image">
               변경 완료
-            </EditButton>
+            </EditButton> */}
             <Link to={"/individualform"}>
               <EditButton>프로필 수정</EditButton>
             </Link>
