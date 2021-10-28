@@ -63,34 +63,37 @@ const MyCourseItem = ({ match }) => {
   const [matchedData, setMatchedData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   console.log("매치", match.params);
-  const cnum = parseInt(match.params.rnum);
+  const cnum = parseInt(match.params.cnum);
   console.log(cnum);
 
   useEffect(() => {
     axios
-      .post("/wherewego/userCourseDetail", { c_num: cnum })
+      .post("/wherewego/showReservedCourse", { c_num: cnum })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         setMatchedData(response.data);
         setIsLoaded(true);
       })
       .catch((error) => console.log(error));
   }, []);
+  console.log("매치데이터: ", matchedData);
   return (
     <>
       <Header />
       <BodyLayout>
         <MenuTitle>
-          {isLoaded ? matchedData?.userid : null}님의 추천 코스
+          {isLoaded ? matchedData?.userid : null}님이 예약한 코스
         </MenuTitle>
         <Container>
           <ContentsBox>
             <h1>{isLoaded ? matchedData?.name : null}</h1>
             <h3>{`@${matchedData?.stname}`}</h3>
             <h4>
-              {matchedData?.opt[0] === "#"
-                ? `${matchedData?.opt}`
-                : `#${matchedData?.opt}`}
+              {matchedData?.opt !== null
+                ? matchedData?.opt[0] === "#"
+                  ? `${matchedData?.opt}`
+                  : `#${matchedData?.opt}`
+                : null}
             </h4>
             <PlaceBox>
               <ImageBox>

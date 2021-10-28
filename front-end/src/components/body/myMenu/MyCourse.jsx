@@ -27,7 +27,7 @@ const MyCourse = (userCourse = null) => {
       ) : (
         <MyMenuItemBox>
           코스를 추천해 주세요
-          <Link to={`/userrecommendation}`}>
+          <Link to={`/userrecommendation`}>
             <StyledButton>추천하러 가기</StyledButton>
           </Link>
         </MyMenuItemBox>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit5.wherewego.notice.PagingVO;
+import com.bit5.wherewego.res.ResVO;
 import com.bit5.wherewego.res.ResultVO;
 import com.bit5.wherewego.user.UserVO;
 
@@ -326,6 +327,16 @@ public class CourseController {
 	@RequestMapping(value = "/userCourseDetail", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultVO courseView(@RequestBody CourseVO vo) {
+		System.out.println(vo.getC_num());
+		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
+		ResultVO Rvo = dao.courseDetail(vo.getC_num());
+		return Rvo;
+	}
+	
+	// 에약 코스 뷰
+	@RequestMapping(value = "/showReservedCourse", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultVO showReservedCourse(@RequestBody CourseVO vo) {
 		System.out.println(vo.getC_num());
 		CourseDAOImp dao = sqlSession.getMapper(CourseDAOImp.class);
 		ResultVO Rvo = dao.courseDetail(vo.getC_num());

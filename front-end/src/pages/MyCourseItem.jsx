@@ -62,9 +62,9 @@ const ImageBox = styled.div`
 const MyCourseItem = ({ match }) => {
   const [matchedData, setMatchedData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  console.log("매치", match.params);
+  // console.log("매치", match.params);
   const cnum = parseInt(match.params.cnum);
-  console.log(cnum);
+  // console.log(cnum);
 
   useEffect(() => {
     axios
@@ -88,9 +88,11 @@ const MyCourseItem = ({ match }) => {
             <h1>{isLoaded ? matchedData?.name : null}</h1>
             <h3>{`@${matchedData?.stname}`}</h3>
             <h4>
-              {matchedData?.opt[0] === "#"
-                ? `${matchedData?.opt}`
-                : `#${matchedData?.opt}`}
+              {matchedData?.opt !== null
+                ? matchedData?.opt[0] === "#"
+                  ? `${matchedData?.opt}`
+                  : `#${matchedData?.opt}`
+                : null}
             </h4>
             <PlaceBox>
               <ImageBox>

@@ -24,11 +24,12 @@ const MyReservation = ({
           parseInt(data.resdate.split("/")[1]) >= thisDate)
       );
     });
+    console.log(list);
     setReservationList(list);
-  }, []);
+  }, [reservationLoaded]);
 
-  console.log("나의 예약의 예약", userReservationData);
-  console.log(reservationList);
+  // console.log("나의 예약의 예약", userReservationData);
+  console.log("날짜 안지난 나의 예약", reservationList);
 
   return (
     <>
@@ -43,7 +44,7 @@ const MyReservation = ({
       {reservationList &&
         reservationList.map((reservation) => {
           return (
-            <Link to={`/userreservation/${reservation.c_num}`}>
+            <Link to={`/myreservationitem/${reservation?.c_num}`}>
               <MyMenuItemBox>
                 <div>
                   <i className="far fa-clock"></i>

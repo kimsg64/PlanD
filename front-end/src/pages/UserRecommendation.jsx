@@ -230,7 +230,7 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
   };
 
   // 마이페이지에서 접속하면 userCourseData가 넘어온다
-  console.log("from my home", userCourseData);
+  // console.log("from my home", userCourseData);
 
   //////////////////// 수정사항 /////////////////////////
   // 1. 데이트 순서 먼저 정해서 받고(sort1, sort2, sort3)

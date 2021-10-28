@@ -281,7 +281,7 @@ const MemberHome = () => {
                     />
                     <h2>
                       오늘의 날씨:
-                      <PointLetter>{weather?.description}</PointLetter>
+                      <PointLetter> {weather?.description}</PointLetter>
                     </h2>
                   </WeatherBox>
                 </>

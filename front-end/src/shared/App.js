@@ -21,6 +21,7 @@ import UserRecommendation from "../pages/UserRecommendation";
 import UserReview from "../pages/UserReview";
 import MyCourseItem from "../pages/MyCourseItem";
 import MyReviewsItem from "../pages/MyReviewsItem";
+import MyReservationItem from "../pages/MyReservationItem";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
       <Route path="/myhistory" component={MyHistory} />
       <Route path="/mypage" component={MyPage} />
       <Route path="/myrecommendation" component={MyRecommendation} />
+      <Route path="/myreservationitem/:cnum" component={MyReservationItem} />
       <Route path="/myreviewsitem/:rnum" component={MyReviewsItem} />
       <Route exact path="/planning" component={Planning} />
       <Route path="/planning/:date" component={Planning} />

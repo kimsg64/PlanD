@@ -54,7 +54,7 @@
 	
 	<!-- 유저 예약 확인 -->
 	<select id="selectUserRes" parameterType="com.bit5.wherewego.user.UserVO" resultType="com.bit5.wherewego.res.ResVO">		
-		select r.res_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate from res r join course c on r.c_num=c.c_num where r.userid=#{userId} order by r.res_num desc
+		select r.res_num, c.c_num, c.name, r.userid, to_char(r.resdate, 'MM/DD') resdate from res r join course c on r.c_num=c.c_num where r.userid=#{userId} order by r.res_num desc
 	</select>
 
 </mapper>
