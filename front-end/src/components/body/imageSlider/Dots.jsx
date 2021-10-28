@@ -41,6 +41,18 @@ const Dots = ({ idx = "first", setIdx = () => {} }) => {
         }
         onClick={() => setIdx("third")}
       />
+      <Dot
+        bgColor={
+          idx === "fourth" ? "var(--color-green)" : "var(--color-light-green)"
+        }
+        onClick={() => setIdx("fourth")}
+      />
+      <Dot
+        bgColor={
+          idx === "fifth" ? "var(--color-green)" : "var(--color-light-green)"
+        }
+        onClick={() => setIdx("fifth")}
+      />
     </DotsBox>
   );
 };

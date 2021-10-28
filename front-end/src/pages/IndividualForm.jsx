@@ -129,7 +129,7 @@ const IndividualForm = ({ history }) => {
       //   : setAddrDetail("");
       setEmail(userData.email);
       // 옵션 잘라서 넣기
-      setOpt(userData.opt.split("#"));
+      setOpt(userData?.opt?.split("#"));
     }
   }, [isLoaded]);
 

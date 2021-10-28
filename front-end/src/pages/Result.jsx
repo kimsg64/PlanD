@@ -389,7 +389,7 @@ const Result = ({ location, history }) => {
                           sort[1] === "카페"
                             ? "cafe2.jpg"
                             : sort[1] === "식당"
-                            ? "food2.jfif"
+                            ? "food2.jpg"
                             : "etc2.jpg"
                         }`}
                         alt="first"
@@ -426,7 +426,7 @@ const Result = ({ location, history }) => {
                           sort[2] === "카페"
                             ? "cafe1.jpg"
                             : sort[2] === "식당"
-                            ? "food2.jfif"
+                            ? "food2.jpg"
                             : "etc2.jpg"
                         }`}
                         alt="first"

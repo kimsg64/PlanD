@@ -14,7 +14,13 @@ const Container = styled.div`
         ? "0"
         : props.idx === "second"
         ? "-100%"
-        : "-200%";
+        : props.idx === "third"
+        ? "-200%"
+        : props.idx === "fourth"
+        ? "-300%"
+        : props.idx === "fifth"
+        ? "-400%"
+        : null;
     }}
   );
 `;
@@ -55,11 +61,17 @@ const LinkedContents = ({ idx = "first", setIdx = () => {} }) => {
   const interval = useRef();
   // useCallback을 쓰는 이유???
   const changeIdx = useCallback(() => {
-    idx === "first"
+    return idx === "first"
       ? setIdx("second")
       : idx === "second"
       ? setIdx("third")
-      : setIdx("first");
+      : idx === "third"
+      ? setIdx("fourth")
+      : idx === "fourth"
+      ? setIdx("fifth")
+      : idx === "fifth"
+      ? setIdx("first")
+      : null;
     // console.log(idx);
   }, [idx]);
 
@@ -108,6 +120,45 @@ const LinkedContents = ({ idx = "first", setIdx = () => {} }) => {
           <Image
             src={`${process.env.PUBLIC_URL}/images/img_main3.jpg`}
             alt="img_main3"
+            // fromTop="-24vh"
+          />
+        </ImageBox>
+        <TextInImage
+        //  fromTop="-76vh"
+        >
+          <h1>
+            볕 좋은 날 <PointLetter>한강</PointLetter>데이트,
+          </h1>
+          <h1>
+            비 오는 날엔<PointLetter>실내</PointLetter> 데이트!
+          </h1>
+        </TextInImage>
+      </div>
+
+      <div>
+        <ImageBox>
+          <Image
+            src={`${process.env.PUBLIC_URL}/images/img_main4.jpg`}
+            alt="img_main4"
+            // fromTop="-24vh"
+          />
+        </ImageBox>
+        <TextInImage
+        //  fromTop="-76vh"
+        >
+          <h1>
+            볕 좋은 날 <PointLetter>한강</PointLetter>데이트,
+          </h1>
+          <h1>
+            비 오는 날엔<PointLetter>실내</PointLetter> 데이트!
+          </h1>
+        </TextInImage>
+      </div>
+      <div>
+        <ImageBox>
+          <Image
+            src={`${process.env.PUBLIC_URL}/images/img_main5.png`}
+            alt="img_main5"
             // fromTop="-24vh"
           />
         </ImageBox>

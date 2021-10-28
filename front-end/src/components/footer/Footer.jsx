@@ -47,9 +47,8 @@ const Footer = () => {
           <NavItemsTitle>
             소개
             <NavItems>
-              <a href="http://192.168.0.63:9090/wherewego/noticeList">
-                공지사항
-              </a>
+              {/* <a href="http://192.168.0.63:9090/wherewego/noticeList"> */}
+              <a href="http://localhost:9090/wherewego/noticeList">공지사항</a>
             </NavItems>
             <NavItems>서비스 안내</NavItems>
             <NavItems>이용 방법</NavItems>
@@ -64,7 +63,8 @@ const Footer = () => {
               <Link to={`/faq`}>FAQ</Link>
             </NavItems>
             <NavItems>
-              <a href="http://192.168.0.63:9090/wherewego/qna">Q&A</a>
+              {/* <a href="http://192.168.0.63:9090/wherewego/qna">Q&A</a> */}
+              <a href="http://localhost:9090/wherewego/qna">Q&A</a>
             </NavItems>
           </NavItemsTitle>
         </NavItemsContainer>

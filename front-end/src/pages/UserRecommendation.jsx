@@ -277,7 +277,7 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
       info: info,
       opt: opt.join("#"),
     };
-    // console.log("코스 등록용 바디", body);
+    console.log("코스 등록용 바디", body);
     axios
       .post("/wherewego/checkCourse", body)
       .then((response) => {
@@ -372,6 +372,10 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
       window.open(e.target.innerText);
     }
   };
+
+  console.log(pcode1);
+  console.log(pcode2);
+  console.log(pcode3);
 
   // ★★★★★★ 6. 모달 창 셀렉트 결과로 pcode셋팅
   const onClickItem = (e) => {

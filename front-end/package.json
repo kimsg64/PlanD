@@ -2,7 +2,7 @@
   "name": "PlanD",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.0.63:9090",
+  "proxy": "http://localhost:9090",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^30.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.2",
