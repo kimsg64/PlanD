@@ -5,6 +5,7 @@
 <style>
 #buttonMenu {
 	float:right;
+	margin-right:14%;
 }
 #frame { 
 	margin : 0 38.5%;
@@ -124,15 +125,15 @@
 	}
 	
 	#titlediv {font-weight:bold; font-size:1.1em;}
-	
+	#rr{margin-left:14%;}
 </style>
-<h1>Review</h1>
+<h1 id='rr'>Review</h1>
 <div id="frame">
   <div class="review_item">
     <div id="titlediv">${vo.name }</div>
     <div class="image_box">
       <img
-        src="/imgs/icecream.jpg"
+        src="imgs/review.jpg"
         alt="cafe_review"
       />
     </div>
@@ -141,8 +142,7 @@
     </div>
     <div class="profile_box">
       <div class="icon">
-        <img
-          src="/imgs/icecream.jpg"
+        <img src="imgs/icecream.jpg"
           alt="user_icon"
         />
       </div>
@@ -172,5 +172,5 @@
 		<a href="/wherewego/reViewgradech?r_num=${vo.r_num}&grade=${vo.grade}" class="button">공개</a>
 	</c:if>
 	<a class="button" href="reviewList?nowPage=${pVo.nowPage }">목록</a>
-	<a class="button" href="reviewEdit?r_num=${vo.r_num }">수정</a>
+	<!--  <a class="button" href="reviewEdit?r_num=${vo.r_num }">수정</a> -->
 </div>

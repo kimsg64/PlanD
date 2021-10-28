@@ -95,7 +95,7 @@
 		<!-- 링크 이름은 임시로 제가 넣어둠! -->
 		<table id="adminMenu">
 			<tr>
-				<td><a href="http://192.168.0.65:9090/management"><img src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
+				<td><a href="http://192.168.0.65:9090/management" target="_blank"><img src="imgs/adminMenu/userB.png" /><br />회원 관리</a></td>
 				<td><a href="/wherewego/noticeList"><img src="imgs/adminMenu/notiB.png" /><br />공지 관리</a></td>
 				<td><a href="/wherewego/resList"><img src="imgs/adminMenu/resB.png" /><br />예약 관리</a></td>
 				<td><a href="/wherewego/reviewList"><img src="imgs/adminMenu/reviewB.png" /><br />후기 관리</a></td>
