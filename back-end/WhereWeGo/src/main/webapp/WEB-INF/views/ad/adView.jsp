@@ -88,12 +88,12 @@
 			<div class="write_main">
 				<img src="upload/adimg/${vo.photo}" width=70%; /><br />
 				<div class="info">
-				<h4>주소 : ${vo.addr }</h4><br/>
-				<h4>사업자번호 : ${vo.num }</h4><br/>
-				<h4>연락처 : ${vo.tel }</h4><br/>
-				<h4>승인여부 : ${vo.grade }</h4><br/>
-				<h4>가격 : ${vo.price }000원</h4><br/>
-				<h4>결제여부 : ${vo.payment }</h4>
+				<h4>주소 :</h4> ${vo.addr }<br/><br/>
+				<h4>사업자번호 :</h4> ${vo.num }<br/><br/>
+				<h4>연락처 :</h4> ${vo.tel }<br/><br/>
+				<h4>승인여부 :</h4> ${vo.grade }<br/><br/>
+				<h4>가격 : </h4>${vo.price }000원<br/><br/>
+				<h4>결제여부 :</h4> ${vo.payment }<br/>
 				</div>
 			</div>
 		</div>

@@ -159,7 +159,12 @@ ul.pagination li a:hover:not(.active) {
 	<!-- 검색 -->
 	<div id="searchDiv">
 		<div>
-			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
+			<c:if test="${logid!=admin }">
+				<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
+			</c:if>
+			<c:if test="${logid==admin }">
+				<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
+			</c:if>
 				<select name="searchKey">
 					<option value="brand">브랜드</option>
 					<option value="name">상품명</option>
@@ -215,9 +220,14 @@ ul.pagination li a:hover:not(.active) {
 		<ul class="pagination">
 			<!-- 이전페이지 -->
 			<c:if test="${pVo.nowPage>1}">
-				<li class='page-item'><a
-					href="/wherewego/pointshopList?nowPage=${pVo.nowPage-1}"
-					class='page-link'>«</a></li>
+				<li class='page-item'>
+					<c:if test="${logid!=admin }">
+						<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage-1}" class='page-link'>
+					</c:if>
+					<c:if test="${logid==admin }">
+						<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage-1}" class='page-link'>
+					</c:if>
+					«</a></li>
 			</c:if>
 
 			<c:if test="${pVo.nowPage==1}">
@@ -231,20 +241,41 @@ ul.pagination li a:hover:not(.active) {
 				<c:if test="${i<=pVo.totalPage}">
 
 					<c:if test="${i==pVo.nowPage}">
-						<li><a class="active"
-							href="/wherewego/pointshopList?nowPage=${i}">${i}</a>
+						<li>
+							<c:if test="${logid!=admin }">
+								<a class="active" href="/wherewego/pointshopList?nowPage=${i}">
+							</c:if>
+							<c:if test="${logid==admin }">
+								<a class="active" href="/wherewego/pointshopAdmin?nowPage=${i}">
+							</c:if>
+							
+							${i}</a>
 					</c:if>
 
 					<c:if test="${i!=pVo.nowPage}">
-						<li><a href="/wherewego/pointshopList?nowPage=${i}">${i}</a>
+						<li>
+							<c:if test="${logid!=admin }">
+								<a href="/wherewego/pointshopList?nowPage=${i}">
+							</c:if>
+							<c:if test="${logid==admin }">
+								<a href="/wherewego/pointshopAdmin?nowPage=${i}">
+							</c:if>
+							
+							${i}</a>
 					</c:if>
 				</c:if>
 			</c:forEach>
 
 			<!-- 다음페이지-->
 			<c:if test="${pVo.nowPage<pVo.totalPage}">
-				<li class='page-item'><a
-					href="/wherewego/pointshopList?nowPage=${pVo.nowPage+1}">»</a></li>
+				<li class='page-item'>
+					<c:if test="${logid!=admin }">
+						<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage+1}">
+					</c:if>
+					<c:if test="${logid==admin }">
+						<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage+1}">
+					</c:if>
+					»</a></li>
 			</c:if>
 
 			<c:if test="${pVo.nowPage==pVo.totalPage}">

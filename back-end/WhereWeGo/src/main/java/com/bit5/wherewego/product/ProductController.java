@@ -131,6 +131,8 @@ public class ProductController {
 	@RequestMapping(value="/productPay", method=RequestMethod.POST)
 	public ModelAndView productPay(BuyVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("전화번호 확인"+vo.getTel());
 
 		mav.addObject("vo",vo);
 		mav.setViewName("pointshop/productPay");

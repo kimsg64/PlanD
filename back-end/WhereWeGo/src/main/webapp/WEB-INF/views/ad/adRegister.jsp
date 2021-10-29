@@ -71,6 +71,7 @@
 	.button:hover {
 		color: #0e595f;
 	}
+	#tt{text-align:left;width:100%;}
 </style>
 
 <div id="mainDiv">
@@ -111,7 +112,8 @@
 			
 			<h3>내용</h3> <textarea name="info" id="info" rows="5"></textarea> <br />
 			
-			<h3>첨부파일</h3> <input type="file" id="filename" name="filename"/><br/>
+			<h3>첨부파일</h3><div id="tt">1920x785의 배율로 보내주세요.</div><input type="file" id="filename" name="filename"/><br/>
+			
 		</div>
 		
 		<div id="buttonMenu">

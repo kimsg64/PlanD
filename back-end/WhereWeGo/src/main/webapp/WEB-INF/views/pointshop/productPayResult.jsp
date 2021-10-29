@@ -27,7 +27,7 @@
 .button:hover {
 	color: #0e595f;
 }
-img {width:20%; margin:200px;}
+img {width:20%; margin:100px;}
 #mainDiv>h1 {
 	margin-bottom: 30px;
 	text-align: left;

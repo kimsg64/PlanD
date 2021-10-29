@@ -30,9 +30,9 @@ b {color:#fd7d73;}
 	<video src="imgs/talk/ka.mp4" width="40%" autoplay muted loop>
 	</video>
 	<div id="imgDiv">
-		<a href="https://pf.kakao.com/_xlPxiIb"><img src="imgs/talk/talk.jpg" id="talk"/></a>
-		<a href="https://pf.kakao.com/_xlPxiIb/chat"><img src="imgs/talk/chat.jpg" id="chat"/></a>
-		<a href="https://pf.kakao.com/_xlPxiIb/friend"><img src="imgs/talk/cha.jpg" id="cha"/></a>
+		<a href="https://pf.kakao.com/_xlPxiIb" target="_blank"><img src="imgs/talk/talk.jpg" id="talk"/></a>
+		<a href="https://pf.kakao.com/_xlPxiIb/chat" target="_blank"><img src="imgs/talk/chat.jpg" id="chat"/></a>
+		<a href="https://pf.kakao.com/_xlPxiIb/friend" target="_blank"><img src="imgs/talk/cha.jpg" id="cha"/></a>
 	</div>
 	<br/><br/><br/>
 	버튼을 누르면 <b>PlanD</b>의 카카오톡 채널로 이동합니다.

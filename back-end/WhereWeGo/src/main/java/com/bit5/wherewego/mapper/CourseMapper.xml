@@ -144,7 +144,7 @@
 		update course set 
 		<choose>
 			<when test='param2.equals("승인")'>grade='승인'</when>
-			<otherwise>grade='승인'</otherwise>
+			<otherwise>grade='미승인'</otherwise>
 		</choose>
 		where c_num=${param1} 
 	</update>

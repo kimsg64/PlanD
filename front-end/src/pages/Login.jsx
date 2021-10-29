@@ -181,8 +181,8 @@ const Login = ({ history }) => {
               .then((res) => {
                 console.log(res.data);
                 window.location.href =
-                  // "http://192.168.0.63:9090/wherewego/business/gohome";
-                  "http://localhost:9090/wherewego/business/gohome";
+                  "http://192.168.0.63:9090/wherewego/business/gohome";
+                // "http://localhost:9090/wherewego/business/gohome";
               });
           }
         } else {

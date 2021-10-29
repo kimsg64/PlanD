@@ -47,7 +47,7 @@ public class BuyController {
 		    
 		    String userid = vo.getUserid();
             UserDAOImp dao3 = sqlSession.getMapper(UserDAOImp.class);
-            String tel = dao3.selectUser(userid).getTel();
+            String tel = vo.getTel();
             
             double ran = Math.random();
     		int ranInt = (int)(ran*(999999-100000+1)+100000);

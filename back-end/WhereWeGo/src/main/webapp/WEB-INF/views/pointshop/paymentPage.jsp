@@ -43,6 +43,11 @@
 			}
 		});
 		
+		$('#tel').key(function(e) {
+			console.log(e.target.value);
+			$(this).val() = e.target.value;
+			console.log($(this).val());
+		});
 	});
 	
 </script>
@@ -163,8 +168,8 @@ position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 				<ul>
 					<li><b>아이디</b> : ${uVo.userId }<input type="hidden" name="userid" value="${uVo.userId }" readonly /><li>
 					<li><b>구매자</b> : ${uVo.name }<li>
-					<li><b>이메일</b> : <input type="text" id="inputtxt" name="email" value="${uVo.email }" required /><li>
-					<li><b>연락처</b> : <input type="text" id="inputtxt" name="tel" value="${uVo.tel }" required/><li>
+					<li><b>이메일</b> : <input type="text" id="email" name="email" value="${uVo.email }" required /><li>
+					<li><b>연락처</b> : <input type="text" id="tel" name="tel" value="${uVo.tel }" required/><li>
 					<br/><span>입력한 연락처로 쿠폰 번호가 발송됩니다.</span><br /> <br />
 				</ul>
 			</div>
@@ -175,9 +180,9 @@ position: sticky;bottom:20px; left:79%;right:14%;margin-bottom:50px;}
 			<h2>Point</h2><br/>
 			<div id="userInfo">
 				<ul>
-					<li><b>잔여</b> : <input type="text" id="inputtxt" name="point" class="point" value="${uVo.point }"  readonly/><li>
+					<li><b>잔여</b> : <input type="text" id="point" name="point" class="point" value="${uVo.point }"  readonly/><li>
 					<li>
-						<b>사용</b> : <input type="number" value="0" id="inputtxt" class="usepoint" min="0" max="${uVo.point }"/>
+						<b>사용</b> : <input type="number" value="0" id="usepoint" class="usepoint" min="0" max="${uVo.point }"/>
 						&nbsp;<input type="checkbox" id="check"><span>&nbsp;전체 사용</span>
 					<li>
 					<br/><span>1point 단위로 사용 가능합니다.</span><br /> <br />

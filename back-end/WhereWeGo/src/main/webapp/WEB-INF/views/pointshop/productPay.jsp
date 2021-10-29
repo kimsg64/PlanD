@@ -28,7 +28,7 @@
 	IMP.request_pay({
 		pg : 'inicis',
 		pay_method : 'card',
-		merchant_uid : userid+price+name+brand+year+month+date+day+p_num,
+		merchant_uid : price+name+brand+year+month+date+day+p_num+userid+count,
 		name : 'PlanD 포인트샵 결제',
 		amount : price,
 		buyer_email : email,
