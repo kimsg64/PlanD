@@ -159,12 +159,21 @@ ul.pagination li a:hover:not(.active) {
 	<!-- 검색 -->
 	<div id="searchDiv">
 		<div>
+<<<<<<< HEAD
 			<c:if test="${logid!=admin }">
 				<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
 			</c:if>
 			<c:if test="${logid==admin }">
 				<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
 			</c:if>
+=======
+		<c:if test="${logid=='admin'}">	
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopAdmin">
+		</c:if>
+		<c:if test="${logid!='admin'}">	
+			<form method="get" id="searchFrm" name="searchFrm" action="/wherewego/pointshopList">
+		</c:if>	
+>>>>>>> 54fa00ea0f98034c1c27f5e1967c79a7caaddb45
 				<select name="searchKey">
 					<option value="brand">브랜드</option>
 					<option value="name">상품명</option>
@@ -210,7 +219,8 @@ ul.pagination li a:hover:not(.active) {
 			<a class="button" href="paymentPage">결제</a>
 		</c:if>
 		<c:if test="${logid=='admin'}">
-			<a class="button" href="paymentPage">삭제</a>
+			<a class="button" href="#">작성</a>
+			<a class="button" href="#">삭제</a>	
 		</c:if>
 		</div>
 	</div>
@@ -221,6 +231,7 @@ ul.pagination li a:hover:not(.active) {
 			<!-- 이전페이지 -->
 			<c:if test="${pVo.nowPage>1}">
 				<li class='page-item'>
+<<<<<<< HEAD
 					<c:if test="${logid!=admin }">
 						<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage-1}" class='page-link'>
 					</c:if>
@@ -228,6 +239,15 @@ ul.pagination li a:hover:not(.active) {
 						<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage-1}" class='page-link'>
 					</c:if>
 					«</a></li>
+=======
+				<c:if test="${logid!='admin'}">
+					<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage-1}" class='page-link'>«
+				</c:if>
+				<c:if test="${logid=='admin'}">
+					<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage-1}" class='page-link'>«
+				</c:if>
+					</a></li>
+>>>>>>> 54fa00ea0f98034c1c27f5e1967c79a7caaddb45
 			</c:if>
 
 			<c:if test="${pVo.nowPage==1}">
@@ -242,6 +262,7 @@ ul.pagination li a:hover:not(.active) {
 
 					<c:if test="${i==pVo.nowPage}">
 						<li>
+<<<<<<< HEAD
 							<c:if test="${logid!=admin }">
 								<a class="active" href="/wherewego/pointshopList?nowPage=${i}">
 							</c:if>
@@ -250,10 +271,19 @@ ul.pagination li a:hover:not(.active) {
 							</c:if>
 							
 							${i}</a>
+=======
+						<c:if test="${logid!='admin'}">
+							<a class="active" href="/wherewego/pointshopList?nowPage=${i}">${i}</a>
+						</c:if>
+						<c:if test="${logid=='admin'}">
+							<a class="active" href="/wherewego/pointshopAdmin?nowPage=${i}">${i}</a>
+						</c:if>
+>>>>>>> 54fa00ea0f98034c1c27f5e1967c79a7caaddb45
 					</c:if>
 
 					<c:if test="${i!=pVo.nowPage}">
 						<li>
+<<<<<<< HEAD
 							<c:if test="${logid!=admin }">
 								<a href="/wherewego/pointshopList?nowPage=${i}">
 							</c:if>
@@ -262,6 +292,14 @@ ul.pagination li a:hover:not(.active) {
 							</c:if>
 							
 							${i}</a>
+=======
+							<c:if test="${logid!='admin'}">
+								<a href="/wherewego/pointshopList?nowPage=${i}">${i}</a>
+							</c:if>
+							<c:if test="${logid=='admin'}">
+								<a href="/wherewego/pointshopAdmin?nowPage=${i}">${i}</a>
+							</c:if>
+>>>>>>> 54fa00ea0f98034c1c27f5e1967c79a7caaddb45
 					</c:if>
 				</c:if>
 			</c:forEach>
@@ -269,13 +307,13 @@ ul.pagination li a:hover:not(.active) {
 			<!-- 다음페이지-->
 			<c:if test="${pVo.nowPage<pVo.totalPage}">
 				<li class='page-item'>
-					<c:if test="${logid!=admin }">
-						<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage+1}">
+					<c:if test="${logid!='admin'}">
+						<a href="/wherewego/pointshopList?nowPage=${pVo.nowPage+1}">»</a>
 					</c:if>
-					<c:if test="${logid==admin }">
-						<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage+1}">
+					<c:if test="${logid=='admin'}">
+						<a href="/wherewego/pointshopAdmin?nowPage=${pVo.nowPage+1}">»</a>
 					</c:if>
-					»</a></li>
+				</li>
 			</c:if>
 
 			<c:if test="${pVo.nowPage==pVo.totalPage}">

@@ -102,7 +102,7 @@ public class ProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		if(cnt>0) {
-			mav.setViewName("redirect:pointshopList");
+			mav.setViewName("redirect:pointshopAdmin");
 		}else {
 			mav.addObject("p_num", p_num);
 			mav.setViewName("redirect:pointshopView");

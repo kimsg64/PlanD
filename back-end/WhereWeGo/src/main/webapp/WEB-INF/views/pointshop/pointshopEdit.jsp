@@ -148,16 +148,16 @@ input[type=text], input[type=file] {
 					</div>
 				</div>
 			</div>
-			<!-- 상품 상세정보 -->
+			<!-- 상품 상세정보 
 			<div class="imggo">
 				<div class="imgin"><img src="img/icecream.jpg"/></div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 	<div id="buttonMenu">		
 		<input type="submit" class="button" value="수정"/>
 		<a class="button" href="/wherewego/pointshopView?p_num=${vo.p_num }">취소</a>
-		<a class="button" href="javascript:viewDel()">삭제</a>
+		<!-- <a class="button" href="javascript:viewDel()">삭제</a> -->
 	</div>
 </div>
 </form>
