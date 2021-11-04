@@ -1,4 +1,3 @@
-// ★★★ 미구현 기능
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -15,7 +14,6 @@ const Criteria = styled.div`
   height: 2px;
   position: absolute;
   top: 0;
-  /* background-color: rebeccapurple; */
 `;
 
 const HeaderContainer = styled.header`
