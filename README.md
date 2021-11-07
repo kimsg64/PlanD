@@ -16,7 +16,7 @@
 
 - 사용자로부터 날짜 및 시간, 장소, 관심사를 입력받아 데이트 코스를 추천해 주는 웹 플랫폼
   ![flow.png](./markdown_image/flow.png)
-  ![data_model.png](./markdown_image/flow.png)
+  ![data_model.png](./markdown_image/data_model.png)
 
 ### 프로젝트 기간
 
@@ -45,7 +45,7 @@
 - React.js
   프로젝트 목표에 맞게 일반 사용자 모드의 뷰 페이지는 모두 React.js를 이용해 제작했습니다.
 - styled-components
-- react-router-dom
+- react-router
 - axios
 - sfcookies
 - react-calendar
@@ -60,6 +60,19 @@
 
 1.  헤더
 
-- 헤더는 로고와 메인 메뉴, 서브 메뉴로 구성했으며, 1px이라도 스크롤 되면 색깔이 변경되도록 만들었습니다.
-- 헤더의 색상 변경은 페이지가 스크롤 되는 도중에 발생하는 이미지나 다른 컨텐츠의 로딩이 지연되는 것을 방지하기 위해, Intersection Observer API를 이용했습니다.
+- 헤더는 로고와 메인 메뉴, 서브 메뉴로 구성했으며, 1px이라도 스크롤 되면 색깔이 변경되도록 만들었습니다. 이는 페이지가 스크롤 되는 도중에 발생하는 이미지나 다른 컨텐츠의 로딩이 지연되는 것을 방지하기 위해, Intersection Observer API를 이용했습니다.
   ![header.gif](./markdown_image/header.gif)
+- 헤더의 메뉴는 쿠키 값을 확인하여 로그인되어 있는 경우에는 메인 메뉴가 보이도록 만들었습니다.
+- 메인 메뉴를 클릭하면 해당 페이지로 이동하도록 react-router를 이용했고, github pages에서 간편하게 배포할 수 있는 HashRouter를 사용했습니다.
+
+2. 회원가입
+
+- 개인 회원, 법인 회원으로 구분하여 회원 가입 기능을 구현하였습니다.
+- HTML input 태그의 pattern, maxLength, minLength, required 등의 속성과 정규표현식을 활용하여 간단한 유효성 검사를 실시하였습니다.
+- 데이터베이스를 체크하여 ID 중복 검사를 실시하였습니다.
+  ![checkID.gif](./markdown_image/checkID.gif)
+
+3. 로그인
+
+- 토글 버튼을 만들어 개인 회원, 법인 회원을 구분하여 로그인할 수 있도록 구현하였습니다.
+  ![login.gif](./markdown_image/login.gif)

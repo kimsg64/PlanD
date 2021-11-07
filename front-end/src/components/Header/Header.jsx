@@ -30,7 +30,7 @@ const HeaderContainer = styled.header`
 
 const HeaderSizeController = styled.div`
   width: 72%;
-  min-width: 1080px;
+  min-width: 1024px;
   display: flex;
   justify-content: space-between;
 `;
