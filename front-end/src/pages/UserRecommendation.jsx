@@ -277,18 +277,18 @@ const UserRecommendation = ({ history, userCourseData = [] }) => {
       info: info,
       opt: opt.join("#"),
     };
-    // console.log("코스 등록용 바디", body);
+    console.log("코스 등록용 바디", body);
     axios
       .post("/wherewego/checkCourse", body)
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         alert(
           "해당 코스는 관리자의 심사를 거친 후 등록 여부가 결정되기까지 수 일이 소요됩니다."
         );
         return history.push("/mypage");
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         alert("신규 코스 등록 신청에 실패했습니다... ");
       });
   };
