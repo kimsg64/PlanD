@@ -139,7 +139,7 @@ const Header = () => {
 
   // intersection observer로 헤더의 변화에 따라 색깔 변화시키기
   useEffect(() => {
-    console.log("옵저버 생성(첫 마운트 후)");
+    // console.log("옵저버 생성(첫 마운트 후)");
 
     const createObserver = () => {
       const options = {
@@ -168,8 +168,8 @@ const Header = () => {
 
       const target = headerRef.current;
       observer.observe(target);
-      console.log("타겟", target);
-      console.log(bgColor, fontColor);
+      // console.log("타겟", target);
+      // console.log(bgColor, fontColor);
     };
 
     createObserver();
