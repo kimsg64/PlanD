@@ -3,21 +3,21 @@
 비트캠프 파이널 프로젝트
 https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 
-## 1. About Project
+## 1. 프로젝트에 관하여
 
 ![Main.JPG](./markdown_image/Main.JPG)
-
-### 프로젝트 목표
-
-- Spring MVC 모델을 활용한 웹 페이지 제작(관리자, 법인 사용자 모드)
-- Spring을 활용한 RESTful 서버 구축 및 React.js를 활용한 연동(개인사용자 모드)
-- React.js를 이용한 뷰 페이지 제작
 
 ### 개요
 
 - 사용자로부터 날짜 및 시간, 장소, 관심사를 입력받아 데이트 코스를 추천해 주는 웹 플랫폼
   ![flow.png](./markdown_image/flow.png)
   ![data_model.png](./markdown_image/data_model.png)
+
+### 목표
+
+- Spring MVC 모델을 활용한 웹 페이지 제작(관리자, 법인 사용자 모드)
+- Spring을 활용한 RESTful 서버 구축 및 React.js를 활용한 연동(개인사용자 모드)
+- React.js를 이용한 뷰 페이지 제작
 
 ### 기간
 
@@ -36,22 +36,21 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 - OracleDB 18.4.0.
 - Java 14.0.2.
 - Spring Framework 5.2.10.
-  스프링 MVC 모델 활용 및 RESTful 서버 구축을 위해 스프링 프레임워크를 이용했습니다.
+  > 스프링 MVC 모델 활용 및 RESTful 서버 구축을 위해 스프링 프레임워크를 이용했습니다.
 - ojdbc 8
 - spring-jdbc 5.2.10.
 - json-simple 1.1.1.
-  스프링 프레임워크에서 JSON 형식으로 서버간 데이터를 전송하기 위해 이용했습니다.
+  > 스프링 프레임워크에서 JSON 형식으로 서버간 데이터를 전송하기 위해 이용했습니다.
 
 ### front-end
 
 - React.js
-  프로젝트 목표에 맞게 일반 사용자 모드의 뷰 페이지는 모두 React.js를 이용해 제작했습니다.
+  > 프로젝트 목표에 맞게 일반 사용자 모드의 뷰 페이지는 모두 React.js를 이용해 제작했습니다.
 - styled-components
 - react-router
 - axios
 - sfcookies
 - react-calendar
-- KakaoMap(services)
 - TMap
 - ckeditor
 - react-google-map
@@ -93,9 +92,7 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 - 역 정보는 음성 인식을 통해 검색이 가능하며, 이를 위해서 react-speech-kit 라이브러리를 이용하였습니다.
   ![speech.gif](./markdown_image/speech.gif)
 - 역 정보는 검색이나 클릭을 통해서도 선택이 가능하며, 선택이 완료되면 페이지를 슬라이드해 다음으로 넘어갑니다.
-
   ![select_station.gif](./markdown_image/select_station.gif)
-
 - 다음 페이지에서는 날짜, 순서, 관심사를 입력 받습니다.
   ![select_etc.gif](./markdown_image/select_etc.gif)
 - 메인 페이지에서 날짜를 선택하고 예약하기 버튼을 통해 코스 선택 페이지로 넘어온 경우, 해당 날짜가 선택된 채로 예약 페이지로 넘어옵니다.
