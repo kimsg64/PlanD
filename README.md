@@ -93,12 +93,14 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 - 역 정보는 음성 인식을 통해 검색이 가능하며, 이를 위해서 react-speech-kit 라이브러리를 이용하였습니다.
   ![speech.gif](./markdown_image/speech.gif)
 - 역 정보는 검색이나 클릭을 통해서도 선택이 가능하며, 선택이 완료되면 페이지를 슬라이드해 다음으로 넘어갑니다.
+
   ![select_station.gif](./markdown_image/select_station.gif)
+
 - 다음 페이지에서는 날짜, 순서, 관심사를 입력 받습니다.
   ![select_etc.gif](./markdown_image/select_etc.gif)
 - 메인 페이지에서 날짜를 선택하고 예약하기 버튼을 통해 코스 선택 페이지로 넘어온 경우, 해당 날짜가 선택된 채로 예약 페이지로 넘어옵니다.
   ![select_date.gif](./markdown_image/select_date.gif)
-- 데이터베이스에 저장되어 있는 코스 중, 사용자가 지정한 데이트 순서에 맞고, 사용자의 관심사와 부합하는 데이트 코스를 골라 화면에 표시합니다. TMap API를 이용하여 지도에 경로를 표시하였고, OpenWeather API를 통해 당일의 날씨를 표시해 주었습니다.
+- 데이터베이스에 저장되어 있는 코스 중, 사용자가 지정한 데이트 순서에 맞고, 사용자의 관심사와 부합하는 데이트 코스를 골라 화면에 표시합니다. TMap API를 이용하여 지도에 경로를 표시하였고(API KEY의 사용 기한이 만료되어 발표 당시의 영상 기록으로 대체합니다.), OpenWeather API를 통해 당일의 날씨를 표시해 주었습니다.
   ![show_course.gif](./markdown_image/show_course.gif)
 - 각 장소에 대한 상세 설명도 확인할 수 있습니다.
   ![show_place.gif](./markdown_image/show_place.gif)
