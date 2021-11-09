@@ -3,7 +3,7 @@
 비트캠프 파이널 프로젝트
 https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 
-## 1. 개요
+## 1. 프로젝트 개요
 
 > ![Main.JPG](./markdown_image/Main.JPG)
 
