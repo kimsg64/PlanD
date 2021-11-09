@@ -3,15 +3,14 @@
 비트캠프 파이널 프로젝트
 https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 
-## 1. 프로젝트에 관하여
+## 1. 개요
 
 > ![Main.JPG](./markdown_image/Main.JPG)
 
 ### 개요
 
 - 사용자로부터 날짜 및 시간, 장소, 관심사를 입력받아 데이트 코스를 추천해 주는 웹 플랫폼
-  > ![flow.png](./markdown_image/flow.png)
-  > ![data_model.png](./markdown_image/data_model.png)
+  > ![flow.png](./markdown_image/flow.png) > ![data_model.png](./markdown_image/data_model.png)
 
 ### 목표
 
@@ -29,33 +28,43 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 - 로그인, 회원가입, 회원정보 수정, 이력 보기 등의 사용자 기능은 프론트엔드뿐만 아니라, Spring 프레임워크를 이용해 RESTful 서버도 직접 구현했습니다.
 - 팀장으로서 프로젝트를 총괄하고, 발표회 때 발표를 담당했습니다.
 
+### 프로젝트를 통해 배운 것
+
+- HTML, CSS의 다양한 속성들을 공부하고, 활용할 수 있게 되었습니다.
+- Javascript의 이벤트 관련 개념들에 대해 익숙해졌습니다.
+- React.js의 함수형 컴포넌트를 통해 OOP의 강력한 기능인 재사용성을 직접 체험해보고, 활용할 수 있게 되었습니다.
+- React.js 라이브러리인 axios를 이용해 RESTful 서버와 통신하는 방법을 배우고, 이 때 발생하는 CORS 이슈와 대처 방법을 배웠습니다.
+- 팀원들과의 협업 및 형상 관리를 위해 Git을 활용함으로써 일반적인 Git Flow에 대한 이해도를 향상시켰습니다.
+
 ## 2. 기술 스택
 
 ### back-end
 
 - OracleDB 18.4.0.
-- Java 14.0.2.
-- Spring Framework 5.2.10.
-  > 스프링 MVC 모델 활용 및 RESTful 서버 구축을 위해 스프링 프레임워크를 이용했습니다.
-- ojdbc 8
-- spring-jdbc 5.2.10.
+  > Oracle 데이터베이스를 이용해 사용자 정보 및 기타 데이터를 저장했습니다.
+- Java 14.0.2. & Spring Framework 5.2.10.
+  > Spring MVC 모델 활용 및 RESTful 서버 구축을 위해 Spring 프레임워크를 이용했습니다.
+- ojdbc 8 & spring-jdbc 5.2.10.
+  > Java 및 Spring 환경에서 Oracle을 사용하기 위해 ojdbc, spring-jdbc 라이브러리를 이용했습니다.
 - json-simple 1.1.1.
-  > 스프링 프레임워크에서 JSON 형식으로 서버간 데이터를 전송하기 위해 이용했습니다.
+  > 서버와 클라이언트 사이에서 JSON 형식으로 데이터를 전송하기 위해 이용했습니다.
 
 ### front-end
 
 - React.js
   > 프로젝트 목표에 맞게 일반 사용자 모드의 뷰 페이지는 모두 React.js를 이용해 제작했습니다.
 - styled-components
+  > 컴포넌트 관리 효율성의 향상을 위해 이용하였으며, CSS in JS 방식에 익숙해졌습니다.
 - react-router
+  > 각 페이지를 개별적으로 관리하기 위해 이용했습니다.
 - axios
-- sfcookies
+  > 서버와 통신하기 위해 대표적인 REST API인 axios를 이용했습니다.
 - react-calendar
-- TMap
-- ckeditor
-- react-google-map
-- react-speech-kit
+  > 날짜를 선택할 때 사용하기 위해 이용한 라이브러리입니다.
 - react-geocode
+  > 주소 정보를 좌표값으로 변환하기 위해 이용한 라이브러리입니다.
+- react-speech-kit
+  > 음성 인식 기능을 위해 이용한 라이브러리입니다.
 
 ## 3. 구현 기능
 
@@ -104,8 +113,24 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 - 예약을 확정하면 데이터베이스에 저장되고, 마이 페이지에서 확인할 수 있습니다.
   > ![confirm.gif](./markdown_image/confirm.gif)
 
+### 리뷰
+
+- 다른 사용자들이 코스에 대해 작성한 리뷰를 확인할 수 있습니다.
+- 리뷰는 화살표 버튼으로 넘기거나 클릭&드래그로 이동시킬 수 있습니다.
+  > ![review_scroll.gif](./markdown_image/review_scroll.gif)
+
 ### 코스 추천
 
-- 데이터베이스에 없는 코스는 사용자가 추천할 수 있습니다. 사용자 추천 코스는 관리자의 승인을 거쳐 데이터베이스에 등록되거나 승인이 거부될 수 있습니다.
+- 데이터베이스에 없는 코스는 사용자가 추천할 수 있습니다. 사용자가 코스명, 데이트 순서, 3개의 장소, 역 정보, 추천 내용 등을 입력하여 제출하면 관리자의 승인을 거쳐 데이터베이스에 등록됩니다.
+  > ![add_place.gif](./markdown_image/add_place.gif)
+- 이미 데이터베이스에 등록되어 있는 장소는 검색을 통해 선택할 수 있습니다.
+  > ![select_place.gif](./markdown_image/select_place.gif)
+- 데이터베이스에 등록되지 않은 장소는 사용자가 직접 추가할 수 있으며, 해당 장소의 데이터를 가져오기 위해 Kakao Map API를 이용했습니다.
+  > ![add_course.gif](./markdown_image/add_course.gif)
+- 장소 등록이나 검색을 위해 모달 창을 구현하였습니다. 우측 상단의 X 버튼이나 바깥의 검은 화면을 클릭하여 모달 창을 벗어날 수 있습니다.
+  > ![modal.gif](./markdown_image/modal.gif)
 
 ### 마이페이지
+
+- 데이터베이스로부터 사용자 정보를 가져와 정보 수정, 이용 내역 확인을 할 수 있습니다.
+  > ![mypage.gif](./markdown_image/mypage.gif)
