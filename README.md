@@ -1,7 +1,10 @@
 # Plan.D
 
-비트캠프 파이널 프로젝트
-https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
+비트캠프 파이널 프로젝트 PlanD
+
+> "디지털컨버전스 기반 융합기술을 활용한 SW 웹 개발자 양성과정"의 파이널 팀 프로젝트로 제작한 웹사이트 PlanD입니다.
+
+> https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 
 ## 1. 프로젝트 개요
 
@@ -10,7 +13,7 @@ https://www.youtube.com/watch?v=HVULvaywn4k&t=162s
 ### 개요
 
 - 사용자로부터 날짜 및 시간, 장소, 관심사를 입력받아 데이트 코스를 추천해 주는 웹 플랫폼
-  > ![flow.png](./markdown_image/flow.png) > ![data_model.png](./markdown_image/data_model.png)
+  > ![flow.png](./markdown_image/flow.png) ![data_model.png](./markdown_image/data_model.png)
 
 ### 목표
 
